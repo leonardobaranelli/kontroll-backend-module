@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "international-trade-track",
-  "description": "International Trade Track Express-API",
+  "name": "express-boilerplate",
+  "description": "Boilerplate made in Express, in order to propose the architecture for the development of a backend module for Kontroll",
   "main": "src/app.ts",
   "scripts": {
     "production-start": "ts-node bin/server.init.ts",
