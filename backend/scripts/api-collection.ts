@@ -43,6 +43,99 @@ function createPostmanCollection(): void {
   const baseUrl = '{{base_url}}';
 
   const endpoints: Record<string, Endpoint[]> = {
+    Shipments: [
+      { name: 'Get All Shipments', method: 'GET', path: '/shipments' },
+      {
+        name: 'Get Shipment by Name',
+        method: 'GET',
+        path: '/shipments/name/{{name}}',
+      },
+      {
+        name: 'Get Shipment by Tracking Number',
+        method: 'GET',
+        path: '/shipments/trackingNumber/{{trackingNumber}}',
+      },
+      {
+        name: 'Get Shipment by ID',
+        method: 'GET',
+        path: '/shipments/id/{{id}}',
+      },
+      { name: 'Create Shipment', method: 'POST', path: '/shipments' },
+      {
+        name: 'Update Shipment by Name',
+        method: 'PUT',
+        path: '/shipments/name/{{name}}',
+      },
+      {
+        name: 'Update Shipment by Tracking Number',
+        method: 'PUT',
+        path: '/shipments/trackingNumber/{{trackingNumber}}',
+      },
+      {
+        name: 'Update Shipment by ID',
+        method: 'PUT',
+        path: '/shipments/id/{{id}}',
+      },
+      {
+        name: 'Delete All Shipments',
+        method: 'DELETE',
+        path: '/shipments/all',
+      },
+      {
+        name: 'Delete Shipment by Name',
+        method: 'DELETE',
+        path: '/shipments/name/{{name}}',
+      },
+      {
+        name: 'Delete Shipment by Tracking Number',
+        method: 'DELETE',
+        path: '/shipments/trackingNumber/{{trackingNumber}}',
+      },
+      {
+        name: 'Delete Shipment by ID',
+        method: 'DELETE',
+        path: '/shipments/id/{{id}}',
+      },
+    ],
+    Connectors: [
+      { name: 'Get All Connectors', method: 'GET', path: '/connectors' },
+      {
+        name: 'Get Connector by Name',
+        method: 'GET',
+        path: '/connectors/name/{{name}}',
+      },
+      {
+        name: 'Get Connector by ID',
+        method: 'GET',
+        path: '/connectors/id/{{id}}',
+      },
+      { name: 'Create Connector', method: 'POST', path: '/connectors' },
+      {
+        name: 'Update Connector by Name',
+        method: 'PUT',
+        path: '/connectors/name/{{name}}',
+      },
+      {
+        name: 'Update Connector by ID',
+        method: 'PUT',
+        path: '/connectors/id/{{id}}',
+      },
+      {
+        name: 'Delete All Connectors',
+        method: 'DELETE',
+        path: '/connectors/all',
+      },
+      {
+        name: 'Delete Connector by Name',
+        method: 'DELETE',
+        path: '/connectors/name/{{name}}',
+      },
+      {
+        name: 'Delete Connector by ID',
+        method: 'DELETE',
+        path: '/connectors/id/{{id}}',
+      },
+    ],
     Users: [
       { name: 'Get All Users', method: 'GET', path: '/users' },
       {

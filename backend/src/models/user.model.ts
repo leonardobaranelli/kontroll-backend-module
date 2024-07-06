@@ -25,7 +25,7 @@ export class User extends Model<IUser> implements IUser {
   @Column(DataType.STRING)
   name!: string;
 
-  @AllowNull(true)
+  @AllowNull(false)
   @Column(DataType.STRING)
   lastName!: string;
 
@@ -40,7 +40,7 @@ export class User extends Model<IUser> implements IUser {
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  avatarUrl?: string | undefined;
+  avatarUrl?: string | null;
 
   @AllowNull(false)
   @Default('user')

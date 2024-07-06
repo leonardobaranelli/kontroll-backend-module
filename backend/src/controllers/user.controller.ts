@@ -1,6 +1,6 @@
+import { Request, Response } from 'express';
 import { validateOrReject } from 'class-validator';
 import { plainToClass } from 'class-transformer';
-import { Request, Response } from 'express';
 import {
   sendSuccessResponse,
   sendErrorResponse,

@@ -5,6 +5,405 @@
   },
   "item": [
     {
+      "name": "Shipments",
+      "item": [
+        {
+          "name": "Get All Shipments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/shipments",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Shipment by Name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/shipments/name/{{name}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "name",
+                "{{name}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Shipment by Tracking Number",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/shipments/trackingNumber/{{trackingNumber}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "trackingNumber",
+                "{{trackingNumber}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Shipment by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/shipments/id/{{id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "id",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Shipment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/shipments",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Shipment by Name",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/shipments/name/{{name}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "name",
+                "{{name}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Shipment by Tracking Number",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/shipments/trackingNumber/{{trackingNumber}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "trackingNumber",
+                "{{trackingNumber}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Shipment by ID",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/shipments/id/{{id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "id",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete All Shipments",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/shipments/all",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Shipment by Name",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/shipments/name/{{name}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "name",
+                "{{name}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Shipment by Tracking Number",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/shipments/trackingNumber/{{trackingNumber}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "trackingNumber",
+                "{{trackingNumber}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Shipment by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/shipments/id/{{id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "id",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Connectors",
+      "item": [
+        {
+          "name": "Get All Connectors",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/connectors",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Connector by Name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/connectors/name/{{name}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors",
+                "name",
+                "{{name}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Connector by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/connectors/id/{{id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors",
+                "id",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Connector",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/connectors",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Connector by Name",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/connectors/name/{{name}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors",
+                "name",
+                "{{name}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Connector by ID",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/connectors/id/{{id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors",
+                "id",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete All Connectors",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/connectors/all",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Connector by Name",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/connectors/name/{{name}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors",
+                "name",
+                "{{name}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Connector by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/connectors/id/{{id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors",
+                "id",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Users",
       "item": [
         {

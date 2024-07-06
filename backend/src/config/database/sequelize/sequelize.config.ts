@@ -1,5 +1,9 @@
 import { Sequelize } from 'sequelize-typescript';
 import { User } from '../../../models/user.model';
+import { Connector } from '../../../models/connector.model';
+import { UserConnector } from '../../../models/pivot-tables/user-connector.model';
+import { Shipment } from '../../../models/shipment.model';
+import { ConnectorShipment } from '../../../models/pivot-tables/connector-shipment.model';
 
 const { DB_USER, DB_PASS, DB_HOST, DB_NAME, DB_PORT } = process.env;
 
@@ -11,7 +15,7 @@ const sequelize: Sequelize = new Sequelize({
   host: DB_HOST || 'localhost',
   port: parseInt(DB_PORT || '5432', 10),
   logging: false,
-  models: [User],
+  models: [User, Connector, Shipment, UserConnector, ConnectorShipment],
   dialectOptions: {
     ssl: {
       require: true,
