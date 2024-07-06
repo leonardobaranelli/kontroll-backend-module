@@ -1,0 +1,7 @@
+transformers
+torch
+numpy<2
+pandas
+json_repair
+flask
+sentencepiece
