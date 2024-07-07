@@ -78,7 +78,7 @@ export default class ShipmentController {
   };
 
   public static create = async (req: Request, res: Response): Promise<void> => {
-    const shipmentData: CreateShipmentDto = plainToClass(
+    let shipmentData: CreateShipmentDto = plainToClass(
       CreateShipmentDto,
       req.body,
     ) as CreateShipmentDto;

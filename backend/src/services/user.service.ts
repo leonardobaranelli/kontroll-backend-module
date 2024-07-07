@@ -8,7 +8,7 @@ import {
   AbstractUserPublic,
   IError,
 } from '../utils/types/utilities.interface';
-import { getAttributes } from './helpers/get-atributes.helper';
+import { getAttributes } from './helpers/get-attributes.helper';
 
 export default class UserService {
   public static async getAllUsers(): Promise<IUserPublic[]> {

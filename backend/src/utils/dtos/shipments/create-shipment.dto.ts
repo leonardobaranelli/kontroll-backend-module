@@ -13,7 +13,7 @@ export class CreateShipmentDto implements Omit<IShipment, 'id'> {
   @IsNotEmpty({ message: 'Name cannot be empty' })
   @IsString({ message: 'Name must be a string' })
   @Transform(({ value }) => value.trim())
-  readonly name: string = '';
+  name: string = '';
 
   @IsOptional()
   @IsString({ message: 'Tracking number must be a string' })

@@ -1,13 +1,11 @@
 import { Shipment } from '../models/shipment.model';
 import { CreateShipmentDto, UpdateShipmentDto } from '../utils/dtos';
-import { IShipment } from '../utils/types/models.interface';
 import {
   IShipmentPublic,
   AbstractShipmentPublic,
   IError,
 } from '../utils/types/utilities.interface';
-import { getAttributes } from './helpers/get-atributes.helper';
-import axios from 'axios';
+import { getAttributes } from './helpers/get-attributes.helper';
 
 export default class ShipmentService {
   public static async getAllShipments(): Promise<IShipmentPublic[]> {
@@ -108,21 +106,6 @@ export default class ShipmentService {
       const newShipment: IShipmentPublic = await Shipment.create(shipmentData);
       return newShipment;
     } catch (error) {
-      throw error;
-    }
-  }
-
-  public static async formatAndValidateShipment(
-    shipmentData: IShipment,
-  ): Promise<IShipmentPublic> {
-    try {
-      const response = await axios.post<IShipmentPublic>(
-        'http://localhost:5000/add_shipment',
-        shipmentData,
-      );
-      return response.data;
-    } catch (error) {
-      console.error('Error in AI formatting and validation:', error);
       throw error;
     }
   }

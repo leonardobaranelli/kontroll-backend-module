@@ -13,7 +13,7 @@ export interface IUserPublic {
   username: string;
 }
 
-// Abstract class representing a public user with metadata
+// Public User with metadata
 export class AbstractUserPublic {
   @Property()
   id!: string;
@@ -38,7 +38,7 @@ export interface IConnectorPublic {
   apiUrl?: MaybeString;
 }
 
-// Abstract class representing a public connector with metadata
+// Public Connector with metadata
 export class AbstractConnectorPublic {
   @Property()
   id!: string;
@@ -67,7 +67,7 @@ export interface IShipmentPublic {
   courier?: MaybeString;
 }
 
-// Abstract class representing a public shipment with metadata
+// Public Shipment with metadata
 export class AbstractShipmentPublic {
   @Property()
   id!: string;
