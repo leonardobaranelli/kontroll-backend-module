@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-// Property decorator to mark properties for metadata handling
+// Mark properties for metadata handling
 export function Property() {
   return function (target: any, propertyKey: string) {
     const properties = Reflect.getMetadata('properties', target) || [];

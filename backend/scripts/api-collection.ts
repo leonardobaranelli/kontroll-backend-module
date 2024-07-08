@@ -160,6 +160,10 @@ function createPostmanCollection(): void {
       },
       { name: 'Delete User by ID', method: 'DELETE', path: '/users/id/{{id}}' },
     ],
+    AiParser: [
+      { name: 'Parse Shipment', method: 'POST', path: '/ai-parser/parse' },
+      { name: 'Train Model', method: 'POST', path: '/ai-parser/train' },
+    ],
   };
 
   for (const [folderName, folderEndpoints] of Object.entries(endpoints)) {
