@@ -6,7 +6,7 @@ import {
   AbstractConnectorPublic,
   IError,
 } from '../utils/types/utilities.interface';
-import { getAttributes } from './helpers/get-atributes.helper';
+import { getAttributes } from './helpers/get-attributes.helper';
 
 export default class ConnectorService {
   public static async getAllConnectors(): Promise<IConnectorPublic[]> {

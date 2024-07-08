@@ -592,6 +592,47 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "AiParser",
+      "item": [
+        {
+          "name": "Parse Shipment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/ai-parser/parse",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "ai-parser",
+                "parse"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Train Model",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/ai-parser/train",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "ai-parser",
+                "train"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "variable": [
