@@ -1,4 +1,4 @@
-import Express from 'express';
+/* import Express from 'express';
 import AiParserController from '../controllers/ai-parser.controller';
 
 const router = Express.Router();
@@ -8,3 +8,4 @@ router.post('/parse', AiParserController.parseAndCreate);
 router.post('/train', AiParserController.trainAndCreate);
 
 export default router;
+*/

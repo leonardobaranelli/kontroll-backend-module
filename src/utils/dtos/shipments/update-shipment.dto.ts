@@ -1,56 +1,58 @@
 import {
+  IsNumber,
   IsOptional,
   IsString,
-  //IsDateString,
+  ValidateNested,
 } from 'class-validator';
-import { Transform } from 'class-transformer';
-import { IShipment } from '@/utils/types/models.interface';
-
+import { Transform, Type } from 'class-transformer';
+import { IShipment } from '../../types/models.interface';
+import {
+  OriginDto,
+  DestinationDto,
+  DateAndTimesDto,
+  TotalWeightDto,
+  TotalVolumeDto,
+  TimestampDto,
+} from './update-shipment-dto-classes';
 type MaybeString = string | null;
+type MaybeNumber = number | null;
 
-export class UpdateShipmentDto implements Partial<IShipment> {
+export class UpdateShipmentDto implements Omit<IShipment, 'id'> {
   @IsOptional()
-  @IsString({ message: 'Name must be a string' })
+  @IsString({ message: 'Housebill number must be a string' })
   @Transform(({ value }) => value.trim())
-  name?: string;
+  HousebillNumber: string = '';
 
-  @IsOptional()
-  @IsString({ message: 'Tracking number must be a string' })
-  @Transform(({ value }) => value.trim())
-  trackingNumber?: MaybeString;
+  @ValidateNested()
+  @Type(() => OriginDto)
+  Origin!: OriginDto;
 
-  @IsOptional()
-  @IsString({ message: 'Origin country must be a string' })
-  @Transform(({ value }) => value.trim())
-  originCountry?: MaybeString;
+  @ValidateNested()
+  @Type(() => DestinationDto)
+  Destination!: DestinationDto;
 
-  @IsOptional()
-  @IsString({ message: 'Final country must be a string' })
-  @Transform(({ value }) => value.trim())
-  finalCountry?: MaybeString;
+  @ValidateNested()
+  @Type(() => DateAndTimesDto)
+  DateAndTimes!: DateAndTimesDto;
 
   @IsOptional()
-  //@IsDateString({}, { message: 'Departure date must be a valid date' })
+  @IsString({ message: 'Product type date must be a string' })
   @Transform(({ value }) => value.trim())
-  departureDate?: MaybeString;
+  readonly ProductType?: MaybeString;
 
   @IsOptional()
-  //@IsDateString({}, { message: 'Arrival date must be a valid date' })
-  @Transform(({ value }) => value.trim())
-  arrivalDate?: MaybeString;
+  @IsNumber({}, { message: 'Total packages must be a valid number' })
+  readonly TotalPackages?: MaybeNumber;
 
-  @IsOptional()
-  @IsString({ message: 'Status must be a string' })
-  @Transform(({ value }) => value.trim())
-  status?: MaybeString;
+  @ValidateNested()
+  @Type(() => TotalWeightDto)
+  TotalWeight!: TotalWeightDto;
 
-  @IsOptional()
-  @IsString({ message: 'Provider must be a string' })
-  @Transform(({ value }) => value.trim())
-  provider?: MaybeString;
+  @ValidateNested()
+  @Type(() => TotalVolumeDto)
+  TotalVolume!: TotalVolumeDto;
 
-  @IsOptional()
-  @IsString({ message: 'Courier must be a string' })
-  @Transform(({ value }) => value.trim())
-  courier?: MaybeString;
+  @ValidateNested()
+  @Type(() => TimestampDto)
+  Timestamp!: TimestampDto;
 }
