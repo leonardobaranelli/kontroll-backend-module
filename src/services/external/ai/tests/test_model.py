@@ -1,50 +1,89 @@
 import json
-from utils.format_utils import format_product
-from utils.test_utils import generate_random_test_object, save_unformatted_keys_to_file, sort_unformatted_keys
+from ..utils.format_utils import format_shipment
+from ..utils.test_utils import save_unformatted_keys_to_file, sort_unformatted_keys
+from ..config.file_paths import TRAINING_FILE, UNFORMATTED_KEYS_FILE
+from ..config.shipment_structure import SHIPMENT_STRUCTURE
 
 def run_test():
     # Load training data to extract keys and values
     print("Loading training examples...")
-    with open("data/training_examples.json", "r") as file:
+    with open(TRAINING_FILE, "r", encoding="utf-8") as file:
         training_examples = json.load(file)
 
-    # Target keys with example values
-    target_keys = {
-        "name": "Product-50",
-        "originCountry": "Country-50",
-        "finalCountry": "Destination-50",
-        "departureDate": "21/10/24",
-        "arrivalDate": "25/12/24",
-        "status": "Processing",
-        "provider": "Provider-50",
-        "courier": "DHL"
+    # Ensure training_examples is a list of dictionaries
+    if not isinstance(training_examples, list) or not all(isinstance(ex, dict) for ex in training_examples):
+        raise ValueError("training_examples must be a list of dictionaries")
+
+    # Use a fixed test object
+    fixed_test_object = {
+        "id": "ABC123XYZ456",
+        "origin": {
+            "address": {
+                "countryCode": "US",
+                "addressLocality": "NEW YORK"
+            }
+        },
+        "destination": {
+            "address": {
+                "countryCode": "GB",
+                "addressLocality": "LONDON"
+            }
+        },
+        "status": {
+            "timestamp": "2023-06-01T08:45:00",
+            "statusCode": "delivered",
+            "status": "OUT FOR DELIVERY",
+            "location": {
+                "address": {
+                    "addressLocality": "HEATHROW, GB"
+                }
+            }
+        },
+        "service": "express",
+        "details": {
+            "weight": {
+                "value": 2.5,
+                "unitText": "KG"
+            }
+        }
     }
 
-    # Generate a random test object ensuring target keys are present
-    random_test_object = generate_random_test_object(target_keys, training_examples)
-    print('Random Test Object:', random_test_object)
+    print('Fixed Test Object:', json.dumps(fixed_test_object, indent=2))
 
-    # Format the object using the trained model
-    formatted_data = format_product(random_test_object)
+    # Format the fixed test object using the trained model
+    formatted_data = format_shipment(fixed_test_object)
 
-    # Ensure all target keys are present
-    final_data = {target_key: formatted_data.get(target_key, None) for target_key in target_keys}
-    print('Final Formatted Data:', final_data)
+    print('\nFormatted Data:')
+    print(json.dumps(formatted_data, indent=2))
 
-    # Identify origin_keys that couldn't be formatted correctly
-    unformatted_keys = []
-    for key, value in random_test_object.items():
-        if key in target_keys and (formatted_data.get(key) == value or formatted_data.get(key) is None):
-            continue  # Ignore desired keys already present or have desired values
-        target_key = next((t_key for t_key, t_value in target_keys.items() if formatted_data.get(t_key) == value), None)
-        if target_key is None or final_data.get(target_key) is None:
-            unformatted_keys.append(key)
+    # Define the expected structure
+    expected_structure = SHIPMENT_STRUCTURE
 
-    if unformatted_keys:
-        print('\nKeys that could not be formatted:', unformatted_keys)
-        save_unformatted_keys_to_file(unformatted_keys)
+    # Validate the formatted data against the expected structure
+    def validate_structure(data, structure, path=""):
+        missing_keys = []
+        for key, expected_type in structure.items():
+            current_path = f"{path}.{key}" if path else key
+            if key not in data:
+                missing_keys.append(current_path)
+            elif isinstance(expected_type, dict):
+                missing_keys.extend(validate_structure(data[key], expected_type, current_path))
+            elif isinstance(expected_type, list):
+                if not isinstance(data[key], list) or not data[key]:
+                    missing_keys.append(current_path)
+                else:
+                    missing_keys.extend(validate_structure(data[key][0], expected_type[0], f"{current_path}[]"))
+            elif not isinstance(data[key], expected_type):
+                missing_keys.append(current_path)
+        return missing_keys
+
+    missing_keys = validate_structure(formatted_data, expected_structure)
+
+    if missing_keys:
+        print('\nKeys that could not be formatted or are missing:', missing_keys)
+        save_unformatted_keys_to_file(missing_keys)
     else:
-        print('\nAll keys were formatted correctly.')
+        print('\nAll keys were formatted correctly and match the expected structure.')
 
 if __name__ == "__main__":
     run_test()

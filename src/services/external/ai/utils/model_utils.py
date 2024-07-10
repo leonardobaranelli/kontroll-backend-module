@@ -2,12 +2,15 @@ import os
 import logging
 from typing import Tuple
 import torch
-from config import MODEL_NAME
-from transformers import PreTrainedModel, PreTrainedTokenizer, T5ForConditionalGeneration, T5Tokenizer
+import torch_directml
+from ..config.model_config import MODEL_NAME
+from transformers import PreTrainedModel, PreTrainedTokenizer, BartForConditionalGeneration, BartTokenizer
 
 # Saves the model and tokenizer to the specified directory
 def save_model(model: PreTrainedModel, tokenizer: PreTrainedTokenizer, save_directory: str) -> None:
     try:
+        # Move model to CPU before saving to avoid issues with device-specific tensors
+        model.to('cpu')
         # Save the model and tokenizer to the directory
         model.save_pretrained(save_directory)
         tokenizer.save_pretrained(save_directory)
@@ -28,17 +31,24 @@ def load_model(model_class: type, tokenizer_class: type, model_path: str) -> Tup
         raise
 
 # Initializes the model and tokenizer, either from scratch or from an existing directory
-def initialize_model(model_path: str, from_scratch: bool = False) -> Tuple[T5ForConditionalGeneration, T5Tokenizer]:
+def initialize_model(model_path: str, from_scratch: bool = False) -> Tuple[BartForConditionalGeneration, BartTokenizer]:
     if from_scratch or not os.path.exists(model_path):
         # Initialize the model and tokenizer from the Hugging Face base model
-        model = T5ForConditionalGeneration.from_pretrained('t5-base')
-        tokenizer = T5Tokenizer.from_pretrained('t5-base')
+        model = BartForConditionalGeneration.from_pretrained(MODEL_NAME)
+        tokenizer = BartTokenizer.from_pretrained(MODEL_NAME)
     else:
         # Load the model and tokenizer from the specified directory
-        model = T5ForConditionalGeneration.from_pretrained(model_path)
-        tokenizer = T5Tokenizer.from_pretrained(model_path)
+        model = BartForConditionalGeneration.from_pretrained(model_path)
+        tokenizer = BartTokenizer.from_pretrained(model_path)
     return model, tokenizer
 
 # Gets the device (GPU if available, otherwise CPU)
 def get_device() -> torch.device:
-    return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if torch.cuda.is_available():
+        return torch.device("cuda")
+    elif torch.backends.mps.is_available():
+        return torch.device("mps")
+    elif torch_directml.is_available():
+        return torch_directml.device()
+    else:
+        return torch.device("cpu")
