@@ -1,4 +1,4 @@
-/* import { Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { validateOrReject } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 import {
@@ -16,23 +16,25 @@ export default class AiParserController {
     req: Request,
     res: Response,
   ): Promise<void> => {
-    let shipmentData: CreateShipmentDto = plainToClass(
-      CreateShipmentDto,
-      req.body,
-    ) as CreateShipmentDto;
+    const shipmentData: object = req.body;
 
     try {
-      await validateOrReject(shipmentData);
+      // Parse shipment data using AI service
+      const parsedShipment: IShipment | null =
+        await AiParserService.parseShipment(shipmentData);
 
-      // Attempt to format and parse the shipment data using the AI service
-      const parsedShipment: IShipment =
-        await AiParserService.formatAndParseShipment(shipmentData);
-      if (parsedShipment) {
-        shipmentData = parsedShipment;
+      if (!parsedShipment) {
+        throw new Error('Failed to parse shipment data');
       }
 
+      // Convert parsed shipment data to DTO
+      const createShipmentDto = plainToClass(CreateShipmentDto, parsedShipment);
+      await validateOrReject(createShipmentDto);
+
+      // Create the shipment using the DTO
       const newShipment: IShipmentPublic | null =
-        await AiParserService.createParsedShipment(shipmentData);
+        await AiParserService.createParsedShipment(createShipmentDto);
+
       sendSuccessResponse(
         res,
         newShipment,
@@ -51,8 +53,12 @@ export default class AiParserController {
     }
   };
 
-  public static trainAndCreate = async () => {
+  public static trainAndCreate = async (
+    _req: Request,
+    res: Response,
+  ): Promise<void> => {
     console.log('Retrain AI model and create shipment');
+    AiParserService.trainAiModel();
+    sendSuccessResponse(res, null, 'AI model retrained', 200);
   };
 }
-*/
