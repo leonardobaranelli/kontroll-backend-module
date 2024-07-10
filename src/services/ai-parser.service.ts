@@ -1,4 +1,4 @@
-import { Shipment } from '../models/shipment.model';
+/* import { Shipment } from '../models/shipment.model';
 import { CreateShipmentDto } from '../utils/dtos';
 import { IShipment } from '../utils/types/models.interface';
 import {
@@ -69,3 +69,5 @@ export default class AiParserService {
     }
   }
 }
+
+*/

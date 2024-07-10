@@ -13,6 +13,7 @@ import { ConnectorShipment } from './pivot-tables/connector-shipment.model';
 import { IShipment } from '../utils/types/models.interface';
 
 type MaybeString = string | null;
+type MaybeNumber = number | null;
 
 @Table({
   tableName: 'shipments',
@@ -21,45 +22,64 @@ type MaybeString = string | null;
 })
 export class Shipment extends Model<IShipment> implements IShipment {
   @PrimaryKey
-  @Default(DataType.UUIDV4)
-  @Column(DataType.UUID)
-  id!: string;
+  @Default(DataType.STRING)
+  @Column(DataType.STRING)
+  HousebillNumber!: string;
 
   @AllowNull(false)
-  @Column(DataType.STRING)
-  name!: string;
+  @Column(DataType.JSONB)
+  Origin!: {
+    LocationCode: string;
+    LocationName: string;
+    CountryCode: string;
+  };
+
+  @AllowNull(false)
+  @Column(DataType.JSONB)
+  Destination!: {
+    LocationCode: string;
+    LocationName: string;
+    CountryCode: string;
+  };
+
+  @AllowNull(false)
+  @Column(DataType.JSONB)
+  DateAndTimes!: {
+    ScheduledDeparture: string;
+    ScheduledArrival: string;
+    ShipmentDate: string;
+  };
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  trackingNumber?: MaybeString;
+  ProductType?: MaybeString;
 
   @AllowNull(true)
-  @Column(DataType.STRING)
-  originCountry?: MaybeString;
+  @Column(DataType.NUMBER)
+  TotalPackages?: MaybeNumber;
 
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  finalCountry?: MaybeString;
+  @AllowNull(false)
+  @Column(DataType.JSONB)
+  TotalWeight!: {
+    body: number;
+    uom: string;
+  };
 
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  departureDate?: MaybeString;
+  @AllowNull(false)
+  @Column(DataType.JSONB)
+  TotalVolume!: {
+    body: number;
+    uom: string;
+  };
 
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  arrivalDate?: MaybeString;
-
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  status?: MaybeString;
-
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  provider?: MaybeString;
-
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  courier?: MaybeString;
+  @AllowNull(false)
+  @Column(DataType.JSONB)
+  Timestamp!: {
+    TimestampCode: string;
+    TimestampDescription: string;
+    TimestampDateTime: Date;
+    TimestampLocation: string;
+  };
 
   @BelongsToMany(() => Connector, () => ConnectorShipment)
   connectors!: Connector[];

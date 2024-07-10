@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+/* import { Request, Response } from 'express';
 import { validateOrReject } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 import {
@@ -55,3 +55,4 @@ export default class AiParserController {
     console.log('Retrain AI model and create shipment');
   };
 }
+*/

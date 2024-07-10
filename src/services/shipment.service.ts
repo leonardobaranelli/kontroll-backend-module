@@ -25,56 +25,19 @@ export default class ShipmentService {
     }
   }
 
-  public static async getShipmentByName(
-    name: string,
+  public static async getShipmentByNumber(
+    HousebillNumber: string,
   ): Promise<IShipmentPublic> {
     try {
       const shipment: IShipmentPublic | null = await Shipment.findOne({
-        where: { name },
-        attributes: getAttributes(AbstractShipmentPublic),
-      });
-
-      if (!shipment) {
-        const error: IError = new Error(`Shipment with name ${name} not found`);
-        error.statusCode = 404;
-        throw error;
-      }
-      return shipment;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  public static async getShipmentByTrackingNumber(
-    trackingNumber: string,
-  ): Promise<IShipmentPublic> {
-    try {
-      const shipment: IShipmentPublic | null = await Shipment.findOne({
-        where: { trackingNumber },
+        where: { HousebillNumber },
         attributes: getAttributes(AbstractShipmentPublic),
       });
 
       if (!shipment) {
         const error: IError = new Error(
-          `Shipment with tracking number ${trackingNumber} not found`,
+          `Shipment with number ${HousebillNumber} not found`,
         );
-        error.statusCode = 404;
-        throw error;
-      }
-      return shipment;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  public static async getShipmentById(id: string): Promise<IShipmentPublic> {
-    try {
-      const shipment: IShipmentPublic | null = await Shipment.findByPk(id, {
-        attributes: getAttributes(AbstractShipmentPublic),
-      });
-
-      if (!shipment) {
-        const error: IError = new Error(`Shipment with ID ${id} not found`);
         error.statusCode = 404;
         throw error;
       }
@@ -87,17 +50,17 @@ export default class ShipmentService {
   public static async createShipment(
     shipmentData: CreateShipmentDto,
   ): Promise<IShipmentPublic> {
-    const { trackingNumber } = shipmentData;
+    const { HousebillNumber } = shipmentData;
 
     try {
       const existingShipment: IShipmentPublic | null = await Shipment.findOne({
-        where: { trackingNumber },
+        where: { HousebillNumber },
         attributes: getAttributes(AbstractShipmentPublic),
       });
 
       if (existingShipment) {
         const error: IError = new Error(
-          `Shipment with tracking number ${trackingNumber} already exists`,
+          `Shipment with tracking number ${HousebillNumber} already exists`,
         );
         error.statusCode = 409;
         throw error;
@@ -110,79 +73,25 @@ export default class ShipmentService {
     }
   }
 
-  public static async updateShipmentByName(
-    name: string,
+  public static async updateShipmentByNumber(
+    HousebillNumber: string,
     newData: UpdateShipmentDto,
   ): Promise<IShipmentPublic> {
     try {
       const [updatedRows]: [number] = await Shipment.update(newData, {
-        where: { name },
-      });
-
-      if (updatedRows === 0) {
-        const error: IError = new Error(`Shipment with name ${name} not found`);
-        error.statusCode = 404;
-        throw error;
-      }
-
-      const updatedShipment: IShipmentPublic | null = await Shipment.findOne({
-        where: { name },
-        attributes: getAttributes(AbstractShipmentPublic),
-      });
-
-      return updatedShipment as IShipmentPublic;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  public static async updateShipmentById(
-    id: string,
-    newData: UpdateShipmentDto,
-  ): Promise<IShipmentPublic> {
-    try {
-      const [updatedRows]: [number] = await Shipment.update(newData, {
-        where: { id },
-      });
-
-      if (updatedRows === 0) {
-        const error: IError = new Error(`Shipment with ID ${id} not found`);
-        error.statusCode = 404;
-        throw error;
-      }
-
-      const updatedShipment: IShipmentPublic | null = await Shipment.findByPk(
-        id,
-        {
-          attributes: getAttributes(AbstractShipmentPublic),
-        },
-      );
-
-      return updatedShipment as IShipmentPublic;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  public static async updateShipmentByTrackingNumber(
-    trackingNumber: string,
-    newData: UpdateShipmentDto,
-  ): Promise<IShipmentPublic> {
-    try {
-      const [updatedRows]: [number] = await Shipment.update(newData, {
-        where: { trackingNumber },
+        where: { HousebillNumber },
       });
 
       if (updatedRows === 0) {
         const error: IError = new Error(
-          `Shipment with tracking number ${trackingNumber} not found`,
+          `Shipment with number ${HousebillNumber} not found`,
         );
         error.statusCode = 404;
         throw error;
       }
 
       const updatedShipment: IShipmentPublic | null = await Shipment.findOne({
-        where: { trackingNumber },
+        where: { HousebillNumber },
         attributes: getAttributes(AbstractShipmentPublic),
       });
 
@@ -200,45 +109,17 @@ export default class ShipmentService {
     }
   }
 
-  public static async deleteShipmentByName(name: string): Promise<void> {
-    try {
-      const shipments: Shipment[] | null = await Shipment.findAll({
-        where: { name },
-      });
-      if (shipments.length === 0) {
-        throw new Error(`No shipments with name ${name} found`);
-      }
-      await Shipment.destroy({ where: { name } });
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  public static async deleteShipmentByTrackingNumber(
-    trackingNumber: string,
+  public static async deleteShipmentByNumber(
+    HousebillNumber: string,
   ): Promise<void> {
     try {
-      const shipment: Shipment | null = await Shipment.findOne({
-        where: { trackingNumber },
+      const shipments: Shipment[] | null = await Shipment.findAll({
+        where: { HousebillNumber },
       });
-      if (!shipment) {
-        throw new Error(
-          `Shipment with tracking number ${trackingNumber} not found`,
-        );
+      if (shipments.length === 0) {
+        throw new Error(`No shipments with number ${HousebillNumber} found`);
       }
-      await Shipment.destroy({ where: { trackingNumber } });
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  public static async deleteShipmentById(id: string): Promise<void> {
-    try {
-      const shipment: Shipment | null = await Shipment.findByPk(id);
-      if (!shipment) {
-        throw new Error(`Shipment with ID ${id} not found`);
-      }
-      await Shipment.destroy({ where: { id } });
+      await Shipment.destroy({ where: { HousebillNumber } });
     } catch (error) {
       throw error;
     }
