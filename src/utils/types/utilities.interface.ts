@@ -1,6 +1,7 @@
 import { Property } from '../decorators/property.decorator';
 
 type MaybeString = string | null;
+type MaybeNumber = number | null;
 
 export interface IError extends Error {
   statusCode?: number;
@@ -55,16 +56,38 @@ export class AbstractConnectorPublic {
 }
 
 export interface IShipmentPublic {
-  id: string;
-  name: string;
-  trackingNumber?: MaybeString;
-  originCountry?: MaybeString;
-  finalCountry?: MaybeString;
-  departureDate?: MaybeString;
-  arrivalDate?: MaybeString;
-  status?: MaybeString;
-  provider?: MaybeString;
-  courier?: MaybeString;
+  HousebillNumber: string;
+  Origin: {
+    LocationCode: string; // Codigo de ubicacion de origen, formato ISO-3166
+    LocationName: string;
+    CountryCode: string;
+  };
+  Destination: {
+    LocationCode: string; // Codigo de ubicacion de destino, formato ISO-3166
+    LocationName: string;
+    CountryCode: string;
+  };
+  DateAndTimes: {
+    ScheduledDeparture: string;
+    ScheduledArrival: string;
+    ShipmentDate: string;
+  };
+  ProductType?: MaybeString;
+  TotalPackages?: MaybeNumber;
+  TotalWeight: {
+    body: number;
+    uom: string;
+  };
+  TotalVolume: {
+    body: number;
+    uom: string;
+  };
+  Timestamp: {
+    TimestampCode: string;
+    TimestampDescription: string;
+    TimestampDateTime: Date;
+    TimestampLocation: string;
+  };
 }
 
 // Public Shipment with metadata
