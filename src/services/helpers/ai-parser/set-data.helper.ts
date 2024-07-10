@@ -1,46 +1,34 @@
-type AnyObject = { [key: string]: any };
+type Primitive = string | number | boolean | null | undefined;
+type NestedObject = {
+  [key: string]: Primitive | NestedObject | PrimitiveArray;
+};
+type PrimitiveArray = Primitive[];
+type DataObject = { [key: string]: Primitive | NestedObject | PrimitiveArray };
 
-function setData(obj: AnyObject, parentKey: string = ''): AnyObject {
-  return Object.keys(obj).reduce((acc: AnyObject, key: string) => {
+function setData(obj: DataObject, parentKey: string = ''): DataObject {
+  return Object.keys(obj).reduce((acc: DataObject, key: string) => {
     const fullKey = parentKey ? `${parentKey}_${key}` : key;
-    if (
-      typeof obj[key] === 'object' &&
-      !Array.isArray(obj[key]) &&
-      obj[key] !== null
-    ) {
-      const flattened = setData(obj[key], fullKey);
-      return { ...acc, ...flattened };
-    } else if (Array.isArray(obj[key])) {
-      obj[key].forEach((item: any, index: number) => {
-        if (typeof item === 'object' && !Array.isArray(item) && item !== null) {
-          const flattened = setData(item, `${fullKey}[${index}]`);
+    const value = obj[key];
+
+    if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+      const flattened = setData(value, fullKey);
+      acc = { ...acc, ...flattened };
+    } else if (Array.isArray(value)) {
+      value.forEach((item, index) => {
+        const arrayKey = `${fullKey}_${index}`;
+        if (typeof item === 'object' && item !== null) {
+          const flattened = setData(item, arrayKey);
           acc = { ...acc, ...flattened };
         } else {
-          acc[`${fullKey}[${index}]`] = item;
+          acc[arrayKey] = item;
         }
       });
     } else {
-      acc[fullKey] = obj[key];
+      acc[fullKey] = value;
     }
+
     return acc;
   }, {});
 }
 
-function formatData(obj: AnyObject): AnyObject {
-  const flattenedData = setData(obj);
-  const result: AnyObject = {};
-
-  Object.keys(flattenedData).forEach((key) => {
-    if (!key.includes('events')) {
-      const newKey = key
-        .replace(/shipments\[\d+\]\./g, '') // Remove 'shipments[n].'
-        .replace(/\./g, '_') // Replace '.' with '_'
-        .replace(/\[\d+\]/g, ''); // Remove '[n]'
-      result[newKey] = flattenedData[key];
-    }
-  });
-
-  return result;
-}
-
-export default formatData;
+export default setData;

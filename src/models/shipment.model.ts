@@ -55,7 +55,7 @@ export class Shipment extends Model<IShipment> implements IShipment {
   ProductType?: MaybeString;
 
   @AllowNull(true)
-  @Column(DataType.NUMBER)
+  @Column(DataType.INTEGER)
   TotalPackages?: MaybeNumber;
 
   @AllowNull(false)
