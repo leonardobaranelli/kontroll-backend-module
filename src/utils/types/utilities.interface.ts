@@ -35,8 +35,7 @@ export class AbstractUserPublic {
 
 export interface IConnectorPublic {
   id: string;
-  name: string;
-  apiUrl?: MaybeString;
+  type: string;
 }
 
 // Public Connector with metadata
@@ -44,14 +43,11 @@ export class AbstractConnectorPublic {
   @Property()
   id!: string;
   @Property()
-  name!: string;
-  @Property()
-  apiUrl?: MaybeString;
+  type!: string;
 
   constructor() {
     this.id = '';
-    this.name = '';
-    this.apiUrl = null;
+    this.type = '';
   }
 }
 

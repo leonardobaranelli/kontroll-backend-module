@@ -4,10 +4,10 @@ import { plainToClass } from 'class-transformer';
 import {
   sendSuccessResponse,
   sendErrorResponse,
-} from './helpers/handlers/responses.handler';
+} from './helpers/commons/handlers/responses.handler';
 import { CreateUserDto, UpdateUserDto } from '../utils/dtos';
 import UserService from '../services/user.service';
-import { isErrorArray } from './helpers/is-error-array.helper';
+import { isErrorArray } from './helpers/commons/is-error-array.helper';
 import { IUserPublic } from '../utils/types/utilities.interface';
 
 export default class UserController {
@@ -30,8 +30,9 @@ export default class UserController {
     const username = req.params.username as string;
 
     try {
-      const user: IUserPublic | null =
-        await UserService.getUserByUsername(username);
+      const user: IUserPublic | null = await UserService.getUserByUsername(
+        username,
+      );
       sendSuccessResponse(
         res,
         user,
@@ -82,8 +83,9 @@ export default class UserController {
     try {
       await validateOrReject(userData);
 
-      const newUser: IUserPublic | null =
-        await UserService.registerUser(userData);
+      const newUser: IUserPublic | null = await UserService.registerUser(
+        userData,
+      );
       sendSuccessResponse(res, newUser, 'User created successfully', 201);
     } catch (error: any) {
       if (isErrorArray(error)) {
