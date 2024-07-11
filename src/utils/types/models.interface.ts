@@ -13,9 +13,7 @@ export interface IUser {
 
 export interface IConnector {
   id: MaybeString;
-  name: string;
-  apiUrl?: MaybeString;
-  apiKey?: MaybeString;
+  type: string;
 }
 
 export interface IShipment {

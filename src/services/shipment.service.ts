@@ -5,7 +5,7 @@ import {
   AbstractShipmentPublic,
   IError,
 } from '../utils/types/utilities.interface';
-import { getAttributes } from './helpers/get-attributes.helper';
+import { getAttributes } from './helpers/commons/get-attributes.helper';
 
 export default class ShipmentService {
   public static async getAllShipments(): Promise<IShipmentPublic[]> {
