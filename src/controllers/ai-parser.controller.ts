@@ -4,10 +4,10 @@ import { plainToClass } from 'class-transformer';
 import {
   sendSuccessResponse,
   sendErrorResponse,
-} from './helpers/handlers/responses.handler';
+} from './helpers/commons/handlers/responses.handler';
 import { CreateShipmentDto } from '../utils/dtos';
 import AiParserService from '../services/ai-parser.service';
-import { isErrorArray } from './helpers/is-error-array.helper';
+import { isErrorArray } from './helpers/commons/is-error-array.helper';
 import { IShipmentPublic } from '../utils/types/utilities.interface';
 import { IShipment } from '@/utils/types/models.interface';
 
