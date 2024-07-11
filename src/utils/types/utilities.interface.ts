@@ -122,3 +122,29 @@ export class AbstractShipmentPublic {
     this.courier = null;
   }
 }
+
+export interface ICarrierPublic {
+  id: MaybeString;
+  name: string;
+  url: string;
+  accountNumber?: MaybeString;
+}
+
+// Public Carrier with metadata
+export class AbstractCarrierPublic {
+  @Property()
+  id!: string;
+  @Property()
+  name!: string;
+  @Property()
+  url!: string;
+  @Property()
+  accountNumber?: MaybeString;
+
+  constructor() {
+    this.id = '';
+    this.name = '';
+    this.url = '';
+    this.accountNumber = '';
+  }
+}
