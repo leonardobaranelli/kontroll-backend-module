@@ -50,3 +50,11 @@ export interface IShipment {
     TimestampLocation: string;
   };
 }
+
+export interface ICarrier {
+  id: MaybeString;
+  name: string;
+  url: string;
+  accountNumber?: MaybeString;
+  apiKey?: MaybeString;
+}
