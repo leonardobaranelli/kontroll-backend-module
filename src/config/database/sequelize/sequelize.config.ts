@@ -4,6 +4,8 @@ import { Connector } from '../../../models/connector.model';
 import { UserConnector } from '../../../models/pivot-tables/user-connector.model';
 import { Shipment } from '../../../models/shipment.model';
 import { ConnectorShipment } from '../../../models/pivot-tables/connector-shipment.model';
+import { Carrier } from '../../../models/carrier.model';
+import { ConnectorCarrier } from '../../../models/pivot-tables/connector-carrier.model';
 
 const { DB_USER, DB_PASS, DB_HOST, DB_NAME, DB_PORT } = process.env;
 
@@ -15,7 +17,15 @@ const sequelize: Sequelize = new Sequelize({
   host: DB_HOST || 'localhost',
   port: parseInt(DB_PORT || '5432', 10),
   logging: false,
-  models: [User, Connector, Shipment, UserConnector, ConnectorShipment],
+  models: [
+    User,
+    Connector,
+    Shipment,
+    Carrier,
+    UserConnector,
+    ConnectorShipment,
+    ConnectorCarrier,
+  ],
   dialectOptions: {
     ssl: {
       require: true,
@@ -35,7 +45,7 @@ async function authenticateDatabase(): Promise<void> {
 
 async function synchronizeDatabase(): Promise<void> {
   try {
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ force: true });
     console.log('Database synchronized successfully.');
   } catch (error) {
     console.error('Database synchronization failed:', error);
