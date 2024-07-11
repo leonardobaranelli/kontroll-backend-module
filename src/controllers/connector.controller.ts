@@ -4,10 +4,10 @@ import { plainToClass } from 'class-transformer';
 import {
   sendSuccessResponse,
   sendErrorResponse,
-} from './helpers/handlers/responses.handler';
+} from './helpers/commons/handlers/responses.handler';
 import { CreateConnectorDto, UpdateConnectorDto } from '../utils/dtos';
 import ConnectorService from '../services/connector.service';
-import { isErrorArray } from './helpers/is-error-array.helper';
+import { isErrorArray } from './helpers/commons/is-error-array.helper';
 import { IConnectorPublic } from '../utils/types/utilities.interface';
 
 export default class ConnectorController {
@@ -24,19 +24,19 @@ export default class ConnectorController {
     }
   };
 
-  public static getByName = async (
+  public static getByType = async (
     req: Request,
     res: Response,
   ): Promise<void> => {
-    const name = req.params.name as string;
+    const type = req.params.type as string;
 
     try {
       const connector: IConnectorPublic | null =
-        await ConnectorService.getConnectorByName(name);
+        await ConnectorService.getConnectorByType(type);
       sendSuccessResponse(
         res,
         connector,
-        `Connector with name ${name} retrieved successfully`,
+        `Connector with type ${type} retrieved successfully`,
       );
     } catch (error: any) {
       sendErrorResponse(res, error, error.statusCode || 400);
@@ -87,11 +87,11 @@ export default class ConnectorController {
     }
   };
 
-  public static updateByName = async (
+  public static updateByType = async (
     req: Request,
     res: Response,
   ): Promise<void> => {
-    const name = req.params.name as string;
+    const type = req.params.type as string;
     const newData: UpdateConnectorDto = plainToClass(
       UpdateConnectorDto,
       req.body,
@@ -99,11 +99,11 @@ export default class ConnectorController {
 
     try {
       const updatedConnector: IConnectorPublic | null =
-        await ConnectorService.updateConnectorByName(name, newData);
+        await ConnectorService.updateConnectorByType(type, newData);
       sendSuccessResponse(
         res,
         updatedConnector,
-        `Connectors with name ${name} updated successfully`,
+        `Connectors with type ${type} updated successfully`,
       );
     } catch (error: any) {
       sendErrorResponse(res, error, error.statusCode || 400);
@@ -145,18 +145,18 @@ export default class ConnectorController {
     }
   };
 
-  public static deleteByName = async (
+  public static deleteByType = async (
     req: Request,
     res: Response,
   ): Promise<void> => {
-    const name: string = req.params.name;
+    const type: string = req.params.type;
 
     try {
-      await ConnectorService.deleteConnectorByName(name);
+      await ConnectorService.deleteConnectorByType(type);
       sendSuccessResponse(
         res,
         null,
-        `Connectors with name ${name} deleted successfully`,
+        `Connectors with type ${type} deleted successfully`,
       );
     } catch (error: any) {
       sendErrorResponse(res, error, error.statusCode || 400);

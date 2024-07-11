@@ -4,10 +4,10 @@ import { plainToClass } from 'class-transformer';
 import {
   sendSuccessResponse,
   sendErrorResponse,
-} from './helpers/handlers/responses.handler';
+} from './helpers/commons/handlers/responses.handler';
 import { CreateShipmentDto, UpdateShipmentDto } from '../utils/dtos';
 import ShipmentService from '../services/shipment.service';
-import { isErrorArray } from './helpers/is-error-array.helper';
+import { isErrorArray } from './helpers/commons/is-error-array.helper';
 import { IShipmentPublic } from '../utils/types/utilities.interface';
 
 export default class ShipmentController {

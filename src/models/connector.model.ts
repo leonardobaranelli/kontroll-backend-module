@@ -12,8 +12,6 @@ import { User } from './user.model';
 import { UserConnector } from './pivot-tables/user-connector.model';
 import { IConnector } from '../utils/types/models.interface';
 
-type MaybeString = string | null;
-
 @Table({
   tableName: 'connectors',
   timestamps: false,
@@ -26,15 +24,7 @@ export class Connector extends Model<IConnector> implements IConnector {
 
   @AllowNull(false)
   @Column(DataType.STRING)
-  name!: string;
-
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  apiUrl?: MaybeString;
-
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  apiKey?: MaybeString;
+  type!: string;
 
   @BelongsToMany(() => User, () => UserConnector)
   users!: User[];
