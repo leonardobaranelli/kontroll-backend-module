@@ -1,11 +1,12 @@
 import { IsNumber, IsString, IsDateString, IsOptional } from 'class-validator';
 import { Transform } from 'class-transformer';
+import { IsISO } from './iso-validator';
 
 export class OriginDto {
   @IsOptional()
   @IsString({ message: 'Location code must be a string' })
   @Transform(({ value }) => value.trim())
-  //Ensure location code is ISO 3166
+  @IsISO('location')
   LocationCode!: string;
 
   @IsOptional()
@@ -15,6 +16,7 @@ export class OriginDto {
 
   @IsOptional()
   @IsString({ message: 'Country code must be a string' })
+  @IsISO('country')
   @Transform(({ value }) => value.trim())
   CountryCode!: string;
 }
@@ -23,7 +25,7 @@ export class DestinationDto {
   @IsOptional()
   @IsString({ message: 'Location code must be a string' })
   @Transform(({ value }) => value.trim())
-  //Ensure location code is ISO 3166
+  @IsISO('location')
   LocationCode!: string;
 
   @IsOptional()
@@ -33,6 +35,7 @@ export class DestinationDto {
 
   @IsOptional()
   @IsString({ message: 'Country code must be a string' })
+  @IsISO('country')
   @Transform(({ value }) => value.trim())
   CountryCode!: string;
 }
