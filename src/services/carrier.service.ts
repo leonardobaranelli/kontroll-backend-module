@@ -8,9 +8,8 @@ export default class CarrierService {
     connectorData: CreateConnectorDto,
   ): Promise<IConnectorPublic> {
     try {
-      const newConnector: IConnectorPublic = await Connector.create(
-        connectorData,
-      );
+      const newConnector: IConnectorPublic =
+        await Connector.create(connectorData);
       return newConnector;
     } catch (error) {
       throw error;
