@@ -30,9 +30,8 @@ export default class UserController {
     const username = req.params.username as string;
 
     try {
-      const user: IUserPublic | null = await UserService.getUserByUsername(
-        username,
-      );
+      const user: IUserPublic | null =
+        await UserService.getUserByUsername(username);
       sendSuccessResponse(
         res,
         user,
@@ -83,9 +82,8 @@ export default class UserController {
     try {
       await validateOrReject(userData);
 
-      const newUser: IUserPublic | null = await UserService.registerUser(
-        userData,
-      );
+      const newUser: IUserPublic | null =
+        await UserService.registerUser(userData);
       sendSuccessResponse(res, newUser, 'User created successfully', 201);
     } catch (error: any) {
       if (isErrorArray(error)) {
