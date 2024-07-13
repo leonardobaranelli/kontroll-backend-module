@@ -45,6 +45,9 @@ coverage/
 
 # Ai model
 src/services/external/ai/models/fine-tuned-bart/
+# Large model files
+src/services/external/models/fine-tuned-bart/model.safetensors
+src/services/external/ai/models/fine-tuned-bart/model.safetensors
 
 # Python cache files
 __pycache__/
