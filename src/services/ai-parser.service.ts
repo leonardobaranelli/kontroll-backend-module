@@ -24,7 +24,7 @@ export default class AiParserService {
 
       console.log('Parsing data...');
       const response = await axios.post<object>(
-        'http://localhost:5000/add_shipment',
+        'http://localhost:5000/parse_shipment',
         formattedData,
       );
 
