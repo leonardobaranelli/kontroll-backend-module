@@ -1,14 +1,28 @@
-import Express from 'express';
+import dotenv from 'dotenv';
+import express from 'express';
 import cors from 'cors';
 import logger from 'morgan';
+import session from 'express-session';
 import mainRouter from './routes';
 import { handleError, handleNotFound } from './middlewares/errors.middleware';
 
-const app = Express();
+dotenv.config();
+
+const app = express();
 
 app.use(cors());
 app.use(logger('dev'));
-app.use(Express.json());
+app.use(express.json());
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || 'default-secret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }, // true to HTTPS
+  }),
+);
+
 app.use(mainRouter);
 
 // Catch 404 and forward to error handler

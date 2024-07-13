@@ -14,8 +14,12 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/shipments",
-              "host": ["{{base_url}}"],
-              "path": ["shipments"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments"
+              ]
             }
           },
           "response": []
@@ -27,8 +31,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/shipments/name/{{name}}",
-              "host": ["{{base_url}}"],
-              "path": ["shipments", "name", "{{name}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "name",
+                "{{name}}"
+              ]
             }
           },
           "response": []
@@ -40,8 +50,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/shipments/trackingNumber/{{trackingNumber}}",
-              "host": ["{{base_url}}"],
-              "path": ["shipments", "trackingNumber", "{{trackingNumber}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "trackingNumber",
+                "{{trackingNumber}}"
+              ]
             }
           },
           "response": []
@@ -53,8 +69,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/shipments/id/{{id}}",
-              "host": ["{{base_url}}"],
-              "path": ["shipments", "id", "{{id}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "id",
+                "{{id}}"
+              ]
             }
           },
           "response": []
@@ -66,8 +88,12 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/shipments",
-              "host": ["{{base_url}}"],
-              "path": ["shipments"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments"
+              ]
             }
           },
           "response": []
@@ -79,8 +105,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/shipments/name/{{name}}",
-              "host": ["{{base_url}}"],
-              "path": ["shipments", "name", "{{name}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "name",
+                "{{name}}"
+              ]
             }
           },
           "response": []
@@ -92,8 +124,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/shipments/trackingNumber/{{trackingNumber}}",
-              "host": ["{{base_url}}"],
-              "path": ["shipments", "trackingNumber", "{{trackingNumber}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "trackingNumber",
+                "{{trackingNumber}}"
+              ]
             }
           },
           "response": []
@@ -105,8 +143,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/shipments/id/{{id}}",
-              "host": ["{{base_url}}"],
-              "path": ["shipments", "id", "{{id}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "id",
+                "{{id}}"
+              ]
             }
           },
           "response": []
@@ -118,8 +162,13 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/shipments/all",
-              "host": ["{{base_url}}"],
-              "path": ["shipments", "all"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "all"
+              ]
             }
           },
           "response": []
@@ -131,8 +180,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/shipments/name/{{name}}",
-              "host": ["{{base_url}}"],
-              "path": ["shipments", "name", "{{name}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "name",
+                "{{name}}"
+              ]
             }
           },
           "response": []
@@ -144,8 +199,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/shipments/trackingNumber/{{trackingNumber}}",
-              "host": ["{{base_url}}"],
-              "path": ["shipments", "trackingNumber", "{{trackingNumber}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "trackingNumber",
+                "{{trackingNumber}}"
+              ]
             }
           },
           "response": []
@@ -157,8 +218,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/shipments/id/{{id}}",
-              "host": ["{{base_url}}"],
-              "path": ["shipments", "id", "{{id}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "shipments",
+                "id",
+                "{{id}}"
+              ]
             }
           },
           "response": []
@@ -175,21 +242,31 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/connectors",
-              "host": ["{{base_url}}"],
-              "path": ["connectors"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors"
+              ]
             }
           },
           "response": []
         },
         {
-          "name": "Get Connector by Name",
+          "name": "Get Connector by Type",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/connectors/name/{{name}}",
-              "host": ["{{base_url}}"],
-              "path": ["connectors", "name", "{{name}}"]
+              "raw": "{{base_url}}/connectors/type/{{type}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors",
+                "type",
+                "{{type}}"
+              ]
             }
           },
           "response": []
@@ -201,8 +278,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/connectors/id/{{id}}",
-              "host": ["{{base_url}}"],
-              "path": ["connectors", "id", "{{id}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors",
+                "id",
+                "{{id}}"
+              ]
             }
           },
           "response": []
@@ -214,21 +297,31 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/connectors",
-              "host": ["{{base_url}}"],
-              "path": ["connectors"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors"
+              ]
             }
           },
           "response": []
         },
         {
-          "name": "Update Connector by Name",
+          "name": "Update Connector by Type",
           "request": {
             "method": "PUT",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/connectors/name/{{name}}",
-              "host": ["{{base_url}}"],
-              "path": ["connectors", "name", "{{name}}"]
+              "raw": "{{base_url}}/connectors/type/{{type}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors",
+                "type",
+                "{{type}}"
+              ]
             }
           },
           "response": []
@@ -240,8 +333,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/connectors/id/{{id}}",
-              "host": ["{{base_url}}"],
-              "path": ["connectors", "id", "{{id}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors",
+                "id",
+                "{{id}}"
+              ]
             }
           },
           "response": []
@@ -253,21 +352,32 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/connectors/all",
-              "host": ["{{base_url}}"],
-              "path": ["connectors", "all"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors",
+                "all"
+              ]
             }
           },
           "response": []
         },
         {
-          "name": "Delete Connector by Name",
+          "name": "Delete Connector by Type",
           "request": {
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/connectors/name/{{name}}",
-              "host": ["{{base_url}}"],
-              "path": ["connectors", "name", "{{name}}"]
+              "raw": "{{base_url}}/connectors/type/{{type}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors",
+                "type",
+                "{{type}}"
+              ]
             }
           },
           "response": []
@@ -279,8 +389,90 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/connectors/id/{{id}}",
-              "host": ["{{base_url}}"],
-              "path": ["connectors", "id", "{{id}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "connectors",
+                "id",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Carriers",
+      "item": [
+        {
+          "name": "Get All Carriers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/carriers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "carriers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Carrier Step By Step",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/carriers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "carriers"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete All Carriers",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/carriers/all",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "carriers",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Carrier by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/carriers/id/{{id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "carriers",
+                "id",
+                "{{id}}"
+              ]
             }
           },
           "response": []
@@ -297,8 +489,12 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/users",
-              "host": ["{{base_url}}"],
-              "path": ["users"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ]
             }
           },
           "response": []
@@ -310,8 +506,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/users/username/{{username}}",
-              "host": ["{{base_url}}"],
-              "path": ["users", "username", "{{username}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "username",
+                "{{username}}"
+              ]
             }
           },
           "response": []
@@ -323,8 +525,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/users/id/{{id}}",
-              "host": ["{{base_url}}"],
-              "path": ["users", "id", "{{id}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "id",
+                "{{id}}"
+              ]
             }
           },
           "response": []
@@ -336,8 +544,13 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/users/register",
-              "host": ["{{base_url}}"],
-              "path": ["users", "register"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "register"
+              ]
             }
           },
           "response": []
@@ -349,8 +562,13 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/users/login",
-              "host": ["{{base_url}}"],
-              "path": ["users", "login"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "login"
+              ]
             }
           },
           "response": []
@@ -362,8 +580,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/users/username/{{username}}",
-              "host": ["{{base_url}}"],
-              "path": ["users", "username", "{{username}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "username",
+                "{{username}}"
+              ]
             }
           },
           "response": []
@@ -375,8 +599,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/users/id/{{id}}",
-              "host": ["{{base_url}}"],
-              "path": ["users", "id", "{{id}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "id",
+                "{{id}}"
+              ]
             }
           },
           "response": []
@@ -388,8 +618,13 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/users/all",
-              "host": ["{{base_url}}"],
-              "path": ["users", "all"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "all"
+              ]
             }
           },
           "response": []
@@ -401,8 +636,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/users/username/{{username}}",
-              "host": ["{{base_url}}"],
-              "path": ["users", "username", "{{username}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "username",
+                "{{username}}"
+              ]
             }
           },
           "response": []
@@ -414,8 +655,14 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/users/id/{{id}}",
-              "host": ["{{base_url}}"],
-              "path": ["users", "id", "{{id}}"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "id",
+                "{{id}}"
+              ]
             }
           },
           "response": []
@@ -432,8 +679,13 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/ai-parser/parse",
-              "host": ["{{base_url}}"],
-              "path": ["ai-parser", "parse"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "ai-parser",
+                "parse"
+              ]
             }
           },
           "response": []
@@ -445,8 +697,13 @@
             "header": [],
             "url": {
               "raw": "{{base_url}}/ai-parser/train",
-              "host": ["{{base_url}}"],
-              "path": ["ai-parser", "train"]
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "ai-parser",
+                "train"
+              ]
             }
           },
           "response": []

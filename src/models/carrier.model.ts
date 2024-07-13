@@ -11,6 +11,8 @@ import {
 import { Connector } from './connector.model';
 import { ConnectorCarrier } from './pivot-tables/connector-carrier.model';
 import { ICarrier } from '../utils/types/models.interface';
+import { Step } from './step.model';
+import { CarrierStep } from './pivot-tables/carrier-step.model';
 
 type MaybeString = string | null;
 
@@ -42,4 +44,7 @@ export class Carrier extends Model<ICarrier> implements ICarrier {
 
   @BelongsToMany(() => Connector, () => ConnectorCarrier)
   connectors!: Connector[];
+
+  @BelongsToMany(() => Step, () => CarrierStep)
+  steps!: Step[];
 }
