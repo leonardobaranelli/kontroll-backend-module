@@ -4,10 +4,10 @@ import { plainToClass } from 'class-transformer';
 import {
   sendSuccessResponse,
   sendErrorResponse,
-} from './helpers/handlers/responses.handler';
+} from './helpers/commons/handlers/responses.handler';
 import { CreateShipmentDto, UpdateShipmentDto } from '../utils/dtos';
 import ShipmentService from '../services/shipment.service';
-import { isErrorArray } from './helpers/is-error-array.helper';
+import { isErrorArray } from './helpers/commons/is-error-array.helper';
 import { IShipmentPublic } from '../utils/types/utilities.interface';
 
 export default class ShipmentController {
@@ -24,54 +24,20 @@ export default class ShipmentController {
     }
   };
 
-  public static getByName = async (
+  public static getByNumber = async (
     req: Request,
     res: Response,
   ): Promise<void> => {
-    const name = req.params.name as string;
+    const HousebillNumber = req.params.HousebillNumber as string;
 
     try {
       const shipment: IShipmentPublic | null =
-        await ShipmentService.getShipmentByName(name);
+        await ShipmentService.getShipmentByNumber(HousebillNumber);
       sendSuccessResponse(
         res,
         shipment,
-        `Shipment with name ${name} retrieved successfully`,
+        `Shipment with name ${HousebillNumber} retrieved successfully`,
       );
-    } catch (error: any) {
-      sendErrorResponse(res, error, error.statusCode || 400);
-    }
-  };
-
-  public static getByTrackingNumber = async (
-    req: Request,
-    res: Response,
-  ): Promise<void> => {
-    const trackingNumber = req.params.trackingNumber as string;
-
-    try {
-      const shipment: IShipmentPublic | null =
-        await ShipmentService.getShipmentByTrackingNumber(trackingNumber);
-      sendSuccessResponse(
-        res,
-        shipment,
-        'Shipment retrieved successfully by tracking number',
-      );
-    } catch (error: any) {
-      sendErrorResponse(res, error, error.statusCode || 400);
-    }
-  };
-
-  public static getById = async (
-    req: Request,
-    res: Response,
-  ): Promise<void> => {
-    const shipmentId = req.params.id as string;
-
-    try {
-      const shipment: IShipmentPublic | null =
-        await ShipmentService.getShipmentById(shipmentId);
-      sendSuccessResponse(res, shipment, 'Shipment retrieved successfully');
     } catch (error: any) {
       sendErrorResponse(res, error, error.statusCode || 400);
     }
@@ -106,11 +72,11 @@ export default class ShipmentController {
     }
   };
 
-  public static updateByName = async (
+  public static updateByNumber = async (
     req: Request,
     res: Response,
   ): Promise<void> => {
-    const shipmentName = req.params.name as string;
+    const HousebillNumber = req.params.HousebillNumber as string;
     const newData: UpdateShipmentDto = plainToClass(
       UpdateShipmentDto,
       req.body,
@@ -118,60 +84,11 @@ export default class ShipmentController {
 
     try {
       const updatedShipment: IShipmentPublic | null =
-        await ShipmentService.updateShipmentByName(shipmentName, newData);
+        await ShipmentService.updateShipmentByNumber(HousebillNumber, newData);
       sendSuccessResponse(
         res,
         updatedShipment,
-        `Shipment with name ${shipmentName} updated successfully`,
-      );
-    } catch (error: any) {
-      sendErrorResponse(res, error, error.statusCode || 400);
-    }
-  };
-
-  public static updateById = async (
-    req: Request,
-    res: Response,
-  ): Promise<void> => {
-    const shipmentId = req.params.id as string;
-    const newData: UpdateShipmentDto = plainToClass(
-      UpdateShipmentDto,
-      req.body,
-    ) as UpdateShipmentDto;
-
-    try {
-      const updatedShipment: IShipmentPublic | null =
-        await ShipmentService.updateShipmentById(shipmentId, newData);
-      sendSuccessResponse(
-        res,
-        updatedShipment,
-        `Shipment with ID ${shipmentId} updated successfully`,
-      );
-    } catch (error: any) {
-      sendErrorResponse(res, error, error.statusCode || 400);
-    }
-  };
-
-  public static updateByTrackingNumber = async (
-    req: Request,
-    res: Response,
-  ): Promise<void> => {
-    const trackingNumber = req.params.trackingNumber as string;
-    const newData: UpdateShipmentDto = plainToClass(
-      UpdateShipmentDto,
-      req.body,
-    ) as UpdateShipmentDto;
-
-    try {
-      const updatedShipment: IShipmentPublic | null =
-        await ShipmentService.updateShipmentByTrackingNumber(
-          trackingNumber,
-          newData,
-        );
-      sendSuccessResponse(
-        res,
-        updatedShipment,
-        `Shipment with tracking number ${trackingNumber} updated successfully`,
+        `Shipment with name ${HousebillNumber} updated successfully`,
       );
     } catch (error: any) {
       sendErrorResponse(res, error, error.statusCode || 400);
@@ -190,54 +107,18 @@ export default class ShipmentController {
     }
   };
 
-  public static deleteByName = async (
+  public static deleteByNumber = async (
     req: Request,
     res: Response,
   ): Promise<void> => {
-    const name: string = req.params.name;
+    const HousebillNumber: string = req.params.HousebillNumber;
 
     try {
-      await ShipmentService.deleteShipmentByName(name);
+      await ShipmentService.deleteShipmentByNumber(HousebillNumber);
       sendSuccessResponse(
         res,
         null,
-        `Shipments with name ${name} deleted successfully`,
-      );
-    } catch (error: any) {
-      sendErrorResponse(res, error, error.statusCode || 400);
-    }
-  };
-
-  public static deleteByTrackingNumber = async (
-    req: Request,
-    res: Response,
-  ): Promise<void> => {
-    const trackingNumber: string = req.params.trackingNumber;
-
-    try {
-      await ShipmentService.deleteShipmentByTrackingNumber(trackingNumber);
-      sendSuccessResponse(
-        res,
-        null,
-        `Shipment with tracking number ${trackingNumber} deleted successfully`,
-      );
-    } catch (error: any) {
-      sendErrorResponse(res, error, error.statusCode || 400);
-    }
-  };
-
-  public static deleteById = async (
-    req: Request,
-    res: Response,
-  ): Promise<void> => {
-    const shipmentId: string = req.params.id;
-
-    try {
-      await ShipmentService.deleteShipmentById(shipmentId);
-      sendSuccessResponse(
-        res,
-        null,
-        `Shipment with ID ${shipmentId} deleted successfully`,
+        `Shipments with name ${HousebillNumber} deleted successfully`,
       );
     } catch (error: any) {
       sendErrorResponse(res, error, error.statusCode || 400);

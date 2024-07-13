@@ -45,3 +45,6 @@ coverage/
 
 # Ai model
 src/services/external/ai/models/fine-tuned-bart/
+
+# Local auxiliary dev files
+*.auxiliary.*

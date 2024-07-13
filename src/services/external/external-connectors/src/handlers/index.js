@@ -1,5 +1,5 @@
-const { getDHLproducts } = require("./getDHLproducts");
-const { getMSCproducts } = require("./getMSCproducts");
+const { getDHLproducts } = require('./getDHLproducts');
+const { getMSCproducts } = require('./getMSCproducts');
 
 module.exports = {
   getDHLproducts,

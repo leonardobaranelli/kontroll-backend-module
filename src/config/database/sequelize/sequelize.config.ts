@@ -4,6 +4,10 @@ import { Connector } from '../../../models/connector.model';
 import { UserConnector } from '../../../models/pivot-tables/user-connector.model';
 import { Shipment } from '../../../models/shipment.model';
 import { ConnectorShipment } from '../../../models/pivot-tables/connector-shipment.model';
+import { Carrier } from '../../../models/carrier.model';
+import { ConnectorCarrier } from '../../../models/pivot-tables/connector-carrier.model';
+import { Step } from '../../../models/step.model';
+import { CarrierStep } from '../../../models/pivot-tables/carrier-step.model';
 
 const { DB_USER, DB_PASS, DB_HOST, DB_NAME, DB_PORT } = process.env;
 
@@ -15,7 +19,17 @@ const sequelize: Sequelize = new Sequelize({
   host: DB_HOST || 'localhost',
   port: parseInt(DB_PORT || '5432', 10),
   logging: false,
-  models: [User, Connector, Shipment, UserConnector, ConnectorShipment],
+  models: [
+    User,
+    Connector,
+    Shipment,
+    Carrier,
+    Step,
+    UserConnector,
+    ConnectorShipment,
+    ConnectorCarrier,
+    CarrierStep,
+  ],
   dialectOptions: {
     ssl: {
       require: true,

@@ -5,31 +5,16 @@ const router = Express.Router();
 
 //GET
 router.get('/', ShipmentController.getAll);
-router.get('/name/:name', ShipmentController.getByName);
-router.get(
-  '/trackingNumber/:trackingNumber',
-  ShipmentController.getByTrackingNumber,
-);
-router.get('/id/:id', ShipmentController.getById);
+router.get('/number/:number', ShipmentController.getByNumber);
 
 //POST
 router.post('/', ShipmentController.create);
 
 //PUT
-router.put('/name/:name', ShipmentController.updateByName);
-router.put(
-  '/trackingNumber/:trackingNumber',
-  ShipmentController.updateByTrackingNumber,
-);
-router.put('/id/:id', ShipmentController.updateById);
+router.put('/name/:name', ShipmentController.updateByNumber);
 
 //DELETE
 router.delete('/all', ShipmentController.deleteAll);
-router.delete('/name/:name', ShipmentController.deleteByName);
-router.delete(
-  '/trackingNumber/:trackingNumber',
-  ShipmentController.deleteByTrackingNumber,
-);
-router.delete('/id/:id', ShipmentController.deleteById);
+router.delete('/name/:name', ShipmentController.deleteByNumber);
 
 export default router;

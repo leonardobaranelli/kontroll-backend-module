@@ -1,50 +1,26 @@
 import { Shipment } from '../models/shipment.model';
 import { CreateShipmentDto } from '../utils/dtos';
 import { IShipment } from '../utils/types/models.interface';
-import {
-  IShipmentPublic,
-  AbstractShipmentPublic,
-  IError,
-} from '../utils/types/utilities.interface';
-import { getAttributes } from './helpers/get-attributes.helper';
+import { IShipmentPublic } from '../utils/types/utilities.interface';
 import axios from 'axios';
-import formatData from './helpers/ai-parser/set-data.helper';
+import setData from './helpers/ai-parser/set-data.helper';
 
 export default class AiParserService {
   public static async createParsedShipment(
-    shipmentData: CreateShipmentDto,
+    parsedShipment: CreateShipmentDto,
   ): Promise<IShipmentPublic> {
-    const { trackingNumber, name } = shipmentData;
-
     try {
-      const existingShipment: IShipmentPublic | null = await Shipment.findOne({
-        where: { trackingNumber },
-        attributes: getAttributes(AbstractShipmentPublic),
-      });
-
-      if (existingShipment) {
-        const error: IError = new Error(
-          `Shipment with tracking number ${trackingNumber} already exists`,
-        );
-        error.statusCode = 409;
-        throw error;
-      }
-
-      shipmentData.name =
-        name !== undefined && name !== null
-          ? name
-          : `undefined_name_${Date.now()}`;
-
-      const newShipment: IShipmentPublic = await Shipment.create(shipmentData);
-      return newShipment;
+      const newShipment: Shipment = await Shipment.create(parsedShipment);
+      return newShipment as IShipmentPublic;
     } catch (error) {
+      console.error('Error creating parsed shipment: ', error);
       throw error;
     }
   }
 
-  public static async formatAndParseShipment(shipmentData: any): Promise<any> {
+  public static async parseShipment(shipmentData: any): Promise<IShipment> {
     try {
-      const formattedData: object = await formatData(shipmentData);
+      const formattedData: object = await setData(shipmentData);
 
       console.log('Parsing data...');
       const response = await axios.post<object>(
@@ -59,8 +35,7 @@ export default class AiParserService {
     }
   }
 
-  // Retrain the AI model
-  public static async trainAiModel(): Promise<any> {
+  public static async trainAiModel(): Promise<void> {
     try {
       console.log('Training model...');
     } catch (error) {
