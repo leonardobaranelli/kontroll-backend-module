@@ -1,6 +1,5 @@
 import { Connector } from '../models/connector.model';
 import { CreateConnectorDto, UpdateConnectorDto } from '../utils/dtos';
-//import { IConnector } from '../utils/types/models.interface';
 import {
   IConnectorPublic,
   AbstractConnectorPublic,

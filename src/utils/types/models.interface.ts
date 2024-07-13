@@ -58,3 +58,28 @@ export interface ICarrier {
   accountNumber?: MaybeString;
   apiKey?: MaybeString;
 }
+
+// Beginning of the Step region
+export interface IStepDetails {
+  step: number;
+  stepTitle: string;
+  details1: string;
+  details2: string;
+  details3: string;
+  details4: string;
+}
+
+export interface IForm {
+  instruction: string;
+  label: string;
+  title: string;
+  placeholder: string;
+}
+
+export interface IStep {
+  id: string;
+  carrierId: string;
+  stepsDetails: IStepDetails;
+  form: IForm;
+}
+// End of the Step region
