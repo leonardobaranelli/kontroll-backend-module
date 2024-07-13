@@ -100,9 +100,9 @@ function createPostmanCollection(): void {
     Connectors: [
       { name: 'Get All Connectors', method: 'GET', path: '/connectors' },
       {
-        name: 'Get Connector by Name',
+        name: 'Get Connector by Type',
         method: 'GET',
-        path: '/connectors/name/{{name}}',
+        path: '/connectors/type/{{type}}',
       },
       {
         name: 'Get Connector by ID',
@@ -111,9 +111,9 @@ function createPostmanCollection(): void {
       },
       { name: 'Create Connector', method: 'POST', path: '/connectors' },
       {
-        name: 'Update Connector by Name',
+        name: 'Update Connector by Type',
         method: 'PUT',
-        path: '/connectors/name/{{name}}',
+        path: '/connectors/type/{{type}}',
       },
       {
         name: 'Update Connector by ID',
@@ -126,14 +126,32 @@ function createPostmanCollection(): void {
         path: '/connectors/all',
       },
       {
-        name: 'Delete Connector by Name',
+        name: 'Delete Connector by Type',
         method: 'DELETE',
-        path: '/connectors/name/{{name}}',
+        path: '/connectors/type/{{type}}',
       },
       {
         name: 'Delete Connector by ID',
         method: 'DELETE',
         path: '/connectors/id/{{id}}',
+      },
+    ],
+    Carriers: [
+      { name: 'Get All Carriers', method: 'GET', path: '/carriers' },
+      {
+        name: 'Create Carrier Step By Step',
+        method: 'POST',
+        path: '/carriers',
+      },
+      {
+        name: 'Delete All Carriers',
+        method: 'DELETE',
+        path: '/carriers/all',
+      },
+      {
+        name: 'Delete Carrier by ID',
+        method: 'DELETE',
+        path: '/carriers/id/{{id}}',
       },
     ],
     Users: [
