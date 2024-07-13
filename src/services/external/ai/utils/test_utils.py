@@ -1,6 +1,6 @@
 import random
 from collections import defaultdict
-from config import UNFORMATTED_KEYS_FILE
+from ..config.file_paths import UNFORMATTED_KEYS_FILE
 
 # Saves the unformatted keys to a file, updating the count of each key.
 def save_unformatted_keys_to_file(unformatted_keys, file_path=UNFORMATTED_KEYS_FILE):
@@ -44,7 +44,7 @@ def sort_unformatted_keys(file_path=UNFORMATTED_KEYS_FILE):
 # Gets a random key-value pair for a target key from training examples.
 def get_random_key_value_for_target(target_key, training_examples):
     # Filter examples containing the target key in the output
-    possible_examples = [ex for ex in training_examples if target_key in ex["output"].keys()]
+    possible_examples = [ex for ex in training_examples if target_key in ex["output"]]
     if not possible_examples:
         return None, None
     # Select a random example from the possible ones

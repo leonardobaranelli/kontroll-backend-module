@@ -43,5 +43,32 @@ yarn.lock
 # Coverage directory used by testing tools
 coverage/
 
+<<<<<<< HEAD
+# Ai model
+src/services/external/ai/models/fine-tuned-bart/
+# Large model files
+src/services/external/models/fine-tuned-bart/model.safetensors
+src/services/external/ai/models/fine-tuned-bart/model.safetensors
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.venv/
+
+# VS Code settings
+.vscode/
+
+# Other common files to ignore
+*.log
+*.sqlite3
+.DS_Store
+
+=======
+>>>>>>> e78ce53b8318022d50c89b97176a182af2553bff
 # Local auxiliary dev files
 *.auxiliary.*

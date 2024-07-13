@@ -1,0 +1,1361 @@
+premise,hypothesis,label
+Shipment Status: Departed facility at 2024-11-04 12:17:37,This example is about Timestamp,entailment
+Package Volume: 0.423 m³,This example is about TotalVolume,entailment
+Shipment ID: UPS829466985702,This example is about HousebillNumber,entailment
+Package Weight: 7.79 KG,This example is about HousebillNumber,contradiction
+Service Type: Freight,This example is about Origin,contradiction
+Package Weight: 99.62 KG,This example is about TotalWeight,entailment
+Shipment Status: Customs clearance at 2024-02-06 19:09:47,This example is about Timestamp,entailment
+Number of Packages: 1,This example is about TotalPackages,entailment
+Shipment ID: 1Z875034696019,This example is about HousebillNumber,entailment
+Package Volume: 0.775 m³,This example is about ProductType,contradiction
+Shipment ID: DHL534512651883,This example is about HousebillNumber,entailment
+Number of Packages: 6,This example is about TotalPackages,entailment
+"Origin: New York, AE",This example is about TotalVolume,contradiction
+"Origin: Berlin, DE",This example is about Origin,entailment
+Package Volume: 0.954 m³,This example is about TotalVolume,entailment
+"Destination: Sydney, DE",This example is about Destination,entailment
+Number of Packages: 10,This example is about TotalPackages,entailment
+Service Type: Economy,This example is about TotalWeight,contradiction
+Number of Packages: 6,This example is about TotalPackages,entailment
+Scheduled DateAndTimes: 2024-06-18 04:54:45,This example is about TotalPackages,contradiction
+Shipment Status: Departed facility at 2023-08-04 16:12:43,This example is about Timestamp,entailment
+Service Type: Next Day Air,This example is about ProductType,entailment
+Shipment ID: DHL973678510589,This example is about HousebillNumber,entailment
+"Origin: Sydney, GB",This example is about ProductType,contradiction
+Scheduled DateAndTimes: 2024-10-09 12:26:49,This example is about TotalPackages,contradiction
+Number of Packages: 5,This example is about DateAndTimes,contradiction
+"Destination: Toronto, AU",This example is about Destination,entailment
+Shipment Status: Exception at 2024-12-14 13:20:54,This example is about HousebillNumber,contradiction
+Package Weight: 79.61 KG,This example is about TotalWeight,entailment
+Package Weight: 11.65 KG,This example is about ProductType,contradiction
+"Destination: Toronto, US",This example is about TotalWeight,contradiction
+"Destination: London, AU",This example is about Destination,entailment
+Package Weight: 51.29 KG,This example is about TotalPackages,contradiction
+Shipment Status: Departed facility at 2024-10-05 18:04:26,This example is about Timestamp,entailment
+Scheduled DateAndTimes: 2023-04-05 16:05:46,This example is about DateAndTimes,entailment
+Package Volume: 0.383 m³,This example is about Timestamp,contradiction
+Scheduled DateAndTimes: 2023-06-01 19:13:06,This example is about TotalVolume,contradiction
+"Origin: Tokyo, CN",This example is about ProductType,contradiction
+Number of Packages: 10,This example is about TotalPackages,entailment
+Number of Packages: 1,This example is about DateAndTimes,contradiction
+"Destination: Beijing, JP",This example is about Destination,entailment
+Number of Packages: 9,This example is about TotalWeight,contradiction
+Number of Packages: 3,This example is about TotalPackages,entailment
+Shipment ID: FDX298110902565,This example is about HousebillNumber,entailment
+"Origin: Sydney, CN",This example is about TotalWeight,contradiction
+Shipment Status: Customs clearance at 2024-09-24 18:13:11,This example is about DateAndTimes,contradiction
+Shipment Status: Exception at 2023-07-22 22:49:18,This example is about ProductType,contradiction
+Package Weight: 51.29 KG,This example is about TotalWeight,entailment
+Scheduled DateAndTimes: 2023-09-09 00:34:03,This example is about DateAndTimes,entailment
+Shipment Status: Delivered at 2023-09-17 18:52:04,This example is about Timestamp,entailment
+Package Volume: 0.173 m³,This example is about TotalVolume,entailment
+Number of Packages: 9,This example is about TotalVolume,contradiction
+Package Volume: 0.697 m³,This example is about ProductType,contradiction
+Package Volume: 0.855 m³,This example is about TotalVolume,entailment
+Number of Packages: 6,This example is about TotalPackages,entailment
+"Origin: Paris, US",This example is about Timestamp,contradiction
+Service Type: Next Day Air,This example is about ProductType,entailment
+Package Volume: 0.563 m³,This example is about Timestamp,contradiction
+Shipment Status: In transit at 2023-05-07 21:53:49,This example is about TotalVolume,contradiction
+Shipment ID: FDX028583002372,This example is about HousebillNumber,entailment
+Package Volume: 0.459 m³,This example is about TotalVolume,entailment
+"Destination: London, AU",This example is about Destination,entailment
+Shipment Status: Out for delivery at 2024-09-28 00:18:34,This example is about Timestamp,entailment
+Shipment Status: Out for delivery at 2023-09-11 12:45:57,This example is about Timestamp,entailment
+Shipment Status: Arrived at facility at 2023-08-26 10:12:37,This example is about Timestamp,entailment
+Package Volume: 0.862 m³,This example is about HousebillNumber,contradiction
+"Origin: Toronto, AE",This example is about TotalVolume,contradiction
+Shipment Status: Picked up at 2023-10-02 15:00:10,This example is about Timestamp,entailment
+Package Weight: 44.6 KG,This example is about Timestamp,contradiction
+Package Weight: 42.99 KG,This example is about TotalWeight,entailment
+"Destination: Tokyo, DE",This example is about TotalWeight,contradiction
+"Origin: New York, AE",This example is about Origin,entailment
+Scheduled DateAndTimes: 2023-03-27 03:36:29,This example is about Destination,contradiction
+Scheduled DateAndTimes: 2023-11-16 20:32:27,This example is about DateAndTimes,entailment
+Scheduled DateAndTimes: 2023-09-09 00:34:03,This example is about TotalPackages,contradiction
+"Destination: Beijing, AE",This example is about DateAndTimes,contradiction
+Service Type: 2nd Day Air,This example is about DateAndTimes,contradiction
+"Origin: Tokyo, CA",This example is about Origin,entailment
+Shipment Status: Out for delivery at 2024-03-26 04:02:44,This example is about Destination,contradiction
+Number of Packages: 10,This example is about TotalPackages,entailment
+Package Weight: 42.57 KG,This example is about DateAndTimes,contradiction
+Service Type: Same Day,This example is about ProductType,entailment
+Package Volume: 0.453 m³,This example is about TotalVolume,entailment
+Package Weight: 64.08 KG,This example is about ProductType,contradiction
+"Origin: Toronto, AU",This example is about Origin,entailment
+Shipment ID: DHL951056746476,This example is about HousebillNumber,entailment
+Service Type: Standard,This example is about HousebillNumber,contradiction
+Package Weight: 20.94 KG,This example is about TotalWeight,entailment
+"Destination: Paris, US",This example is about Destination,entailment
+"Origin: New York, GB",This example is about Origin,entailment
+"Destination: Sydney, US",This example is about DateAndTimes,contradiction
+Shipment Status: In transit at 2023-12-31 12:40:00,This example is about Timestamp,entailment
+Scheduled DateAndTimes: 2024-07-16 17:53:03,This example is about TotalWeight,contradiction
+Shipment Status: Picked up at 2023-10-02 15:00:10,This example is about Origin,contradiction
+Scheduled DateAndTimes: 2023-07-08 07:13:34,This example is about TotalWeight,contradiction
+Service Type: Standard,This example is about Timestamp,contradiction
+Scheduled DateAndTimes: 2024-09-11 03:42:05,This example is about DateAndTimes,entailment
+Number of Packages: 6,This example is about TotalPackages,entailment
+"Destination: Toronto, JP",This example is about ProductType,contradiction
+Package Volume: 0.329 m³,This example is about Destination,contradiction
+Service Type: Same Day,This example is about Origin,contradiction
+Shipment Status: Exception at 2024-04-12 07:40:30,This example is about DateAndTimes,contradiction
+Package Weight: 19.89 KG,This example is about TotalWeight,entailment
+"Destination: London, AE",This example is about Destination,entailment
+Package Weight: 55.1 KG,This example is about Destination,contradiction
+"Destination: Berlin, IN",This example is about Origin,contradiction
+Scheduled DateAndTimes: 2023-03-01 12:26:27,This example is about DateAndTimes,entailment
+Package Volume: 0.932 m³,This example is about TotalVolume,entailment
+Shipment Status: In transit at 2024-04-24 04:04:28,This example is about Timestamp,entailment
+Package Weight: 27.26 KG,This example is about ProductType,contradiction
+Package Volume: 0.595 m³,This example is about HousebillNumber,contradiction
+Package Weight: 76.91 KG,This example is about TotalVolume,contradiction
+"Destination: Berlin, IN",This example is about HousebillNumber,contradiction
+"Destination: Toronto, GB",This example is about DateAndTimes,contradiction
+Number of Packages: 2,This example is about TotalPackages,entailment
+Package Volume: 0.133 m³,This example is about TotalVolume,entailment
+Number of Packages: 3,This example is about Origin,contradiction
+"Origin: Beijing, AE",This example is about Origin,entailment
+Scheduled DateAndTimes: 2024-07-25 17:24:08,This example is about TotalPackages,contradiction
+Shipment Status: Delivered at 2023-01-11 03:39:30,This example is about Timestamp,entailment
+Scheduled DateAndTimes: 2024-06-26 20:10:00,This example is about Timestamp,contradiction
+"Origin: Sydney, AU",This example is about ProductType,contradiction
+Package Weight: 6.93 KG,This example is about TotalWeight,entailment
+Scheduled DateAndTimes: 2024-04-30 20:40:38,This example is about DateAndTimes,entailment
+Number of Packages: 5,This example is about Origin,contradiction
+Shipment Status: Arrived at facility at 2024-05-23 17:38:20,This example is about TotalWeight,contradiction
+Number of Packages: 1,This example is about Timestamp,contradiction
+"Origin: Toronto, FR",This example is about Destination,contradiction
+Shipment Status: Exception at 2023-07-09 23:07:47,This example is about TotalPackages,contradiction
+Package Volume: 0.398 m³,This example is about TotalVolume,entailment
+Shipment ID: FDX044063915357,This example is about HousebillNumber,entailment
+Shipment Status: Customs clearance at 2023-09-04 22:55:40,This example is about Timestamp,entailment
+Shipment Status: Picked up at 2024-09-03 07:35:23,This example is about Timestamp,entailment
+"Destination: Tokyo, IN",This example is about Destination,entailment
+Shipment ID: 1Z607903853856,This example is about HousebillNumber,entailment
+Number of Packages: 10,This example is about Timestamp,contradiction
+Number of Packages: 7,This example is about HousebillNumber,contradiction
+Package Weight: 94.22 KG,This example is about Destination,contradiction
+Shipment Status: Picked up at 2023-06-09 16:37:18,This example is about Destination,contradiction
+Package Weight: 61.63 KG,This example is about TotalWeight,entailment
+"Origin: Dubai, GB",This example is about Origin,entailment
+Shipment ID: FDX294961300962,This example is about HousebillNumber,entailment
+Service Type: 2nd Day Air,This example is about ProductType,entailment
+"Destination: London, US",This example is about Destination,entailment
+Service Type: Ground,This example is about Origin,contradiction
+Shipment Status: Delivered at 2024-02-21 08:10:05,This example is about Destination,contradiction
+Service Type: Ground,This example is about ProductType,entailment
+Package Weight: 95.18 KG,This example is about DateAndTimes,contradiction
+Package Volume: 0.658 m³,This example is about TotalVolume,entailment
+"Origin: Berlin, CA",This example is about TotalVolume,contradiction
+Package Volume: 0.225 m³,This example is about TotalVolume,entailment
+Package Volume: 0.349 m³,This example is about Destination,contradiction
+Package Volume: 0.066 m³,This example is about Origin,contradiction
+Service Type: Economy,This example is about TotalWeight,contradiction
+Package Weight: 64.2 KG,This example is about Timestamp,contradiction
+Shipment ID: FDX293472162587,This example is about HousebillNumber,entailment
+Shipment Status: Delivered at 2024-03-22 11:26:57,This example is about DateAndTimes,contradiction
+Shipment Status: In transit at 2023-06-04 03:57:47,This example is about Timestamp,entailment
+Service Type: Same Day,This example is about ProductType,entailment
+"Destination: Mumbai, FR",This example is about DateAndTimes,contradiction
+Scheduled DateAndTimes: 2024-05-27 00:37:13,This example is about TotalWeight,contradiction
+Package Volume: 0.955 m³,This example is about TotalVolume,entailment
+"Destination: Mumbai, AU",This example is about Destination,entailment
+Shipment Status: Exception at 2024-12-14 13:20:54,This example is about Timestamp,entailment
+"Origin: Dubai, GB",This example is about Origin,entailment
+Shipment Status: Departed facility at 2023-03-22 05:58:49,This example is about Destination,contradiction
+Number of Packages: 7,This example is about TotalPackages,entailment
+Service Type: Freight,This example is about ProductType,entailment
+Number of Packages: 4,This example is about TotalVolume,contradiction
+Scheduled DateAndTimes: 2024-07-26 10:37:06,This example is about Destination,contradiction
+Package Weight: 21.1 KG,This example is about DateAndTimes,contradiction
+Shipment Status: Delivered at 2024-12-03 05:21:14,This example is about Destination,contradiction
+Package Weight: 34.07 KG,This example is about HousebillNumber,contradiction
+"Origin: London, JP",This example is about Origin,entailment
+"Origin: London, CA",This example is about HousebillNumber,contradiction
+"Destination: New York, IN",This example is about Destination,entailment
+Service Type: Express,This example is about TotalWeight,contradiction
+Package Volume: 0.089 m³,This example is about TotalWeight,contradiction
+Shipment Status: Arrived at facility at 2024-08-18 19:37:28,This example is about TotalVolume,contradiction
+Scheduled DateAndTimes: 2024-08-24 12:43:32,This example is about DateAndTimes,entailment
+Package Volume: 0.922 m³,This example is about TotalVolume,entailment
+Number of Packages: 3,This example is about TotalPackages,entailment
+"Destination: Dubai, IN",This example is about Destination,entailment
+Shipment Status: Out for delivery at 2024-03-26 04:02:44,This example is about Timestamp,entailment
+Scheduled DateAndTimes: 2023-09-13 19:59:21,This example is about DateAndTimes,entailment
+Package Weight: 72.34 KG,This example is about TotalWeight,entailment
+Package Weight: 34.07 KG,This example is about TotalWeight,entailment
+Scheduled DateAndTimes: 2024-04-25 11:35:19,This example is about Destination,contradiction
+Shipment Status: Exception at 2023-07-22 22:49:18,This example is about Timestamp,entailment
+"Origin: Mumbai, JP",This example is about Origin,entailment
+Scheduled DateAndTimes: 2023-05-17 12:37:16,This example is about DateAndTimes,entailment
+Shipment Status: Customs clearance at 2023-10-05 02:15:42,This example is about TotalPackages,contradiction
+Package Volume: 0.453 m³,This example is about HousebillNumber,contradiction
+Service Type: Express,This example is about ProductType,entailment
+Service Type: 2nd Day Air,This example is about ProductType,entailment
+Number of Packages: 8,This example is about TotalPackages,entailment
+"Origin: Sydney, CA",This example is about Origin,entailment
+Package Volume: 0.922 m³,This example is about TotalPackages,contradiction
+Scheduled DateAndTimes: 2024-07-08 14:26:44,This example is about DateAndTimes,entailment
+Package Weight: 88.67 KG,This example is about TotalWeight,entailment
+Service Type: Express,This example is about Destination,contradiction
+Shipment Status: Arrived at facility at 2024-12-02 19:03:48,This example is about Timestamp,entailment
+Scheduled DateAndTimes: 2024-10-03 02:07:42,This example is about ProductType,contradiction
+"Origin: New York, CN",This example is about Origin,entailment
+Service Type: Freight,This example is about ProductType,entailment
+"Origin: Beijing, DE",This example is about Origin,entailment
+Package Volume: 0.493 m³,This example is about TotalPackages,contradiction
+Scheduled DateAndTimes: 2023-09-16 22:34:55,This example is about DateAndTimes,entailment
+Package Weight: 88.15 KG,This example is about DateAndTimes,contradiction
+"Destination: Toronto, AU",This example is about TotalWeight,contradiction
+Package Weight: 78.91 KG,This example is about TotalWeight,entailment
+Shipment Status: In transit at 2024-10-23 00:42:58,This example is about ProductType,contradiction
+Shipment Status: Picked up at 2023-01-16 07:17:03,This example is about Destination,contradiction
+"Destination: Beijing, CA",This example is about Destination,entailment
+Shipment ID: 1Z910785117430,This example is about HousebillNumber,entailment
+Shipment Status: Departed facility at 2024-01-10 01:27:08,This example is about Timestamp,entailment
+Package Weight: 47.5 KG,This example is about HousebillNumber,contradiction
+"Origin: Dubai, DE",This example is about Origin,entailment
+Package Volume: 0.357 m³,This example is about TotalVolume,entailment
+Shipment Status: Out for delivery at 2023-06-17 18:47:44,This example is about ProductType,contradiction
+Number of Packages: 7,This example is about TotalPackages,entailment
+Scheduled DateAndTimes: 2024-10-03 02:07:42,This example is about DateAndTimes,entailment
+Package Weight: 66.95 KG,This example is about Origin,contradiction
+Service Type: Freight,This example is about Timestamp,contradiction
+Number of Packages: 5,This example is about TotalPackages,entailment
+Shipment ID: 1Z081692843130,This example is about HousebillNumber,entailment
+Package Volume: 0.73 m³,This example is about TotalVolume,entailment
+Package Weight: 21.1 KG,This example is about TotalWeight,entailment
+"Destination: Sydney, IN",This example is about Destination,entailment
+Shipment Status: Out for delivery at 2023-06-17 18:47:44,This example is about Timestamp,entailment
+Number of Packages: 1,This example is about TotalPackages,entailment
+Package Weight: 60.27 KG,This example is about TotalWeight,entailment
+Scheduled DateAndTimes: 2023-01-04 03:57:54,This example is about ProductType,contradiction
+Number of Packages: 4,This example is about TotalPackages,entailment
+Service Type: Same Day,This example is about ProductType,entailment
+"Origin: New York, CN",This example is about ProductType,contradiction
+Shipment Status: Customs clearance at 2024-02-08 15:14:01,This example is about Timestamp,entailment
+"Origin: New York, GB",This example is about ProductType,contradiction
+Shipment Status: In transit at 2023-06-04 03:57:47,This example is about DateAndTimes,contradiction
+Shipment Status: Delivered at 2023-10-14 01:48:12,This example is about TotalWeight,contradiction
+Service Type: 2nd Day Air,This example is about TotalPackages,contradiction
+"Destination: Tokyo, GB",This example is about Destination,entailment
+Package Weight: 24.44 KG,This example is about TotalWeight,entailment
+Scheduled DateAndTimes: 2024-07-08 14:26:44,This example is about Destination,contradiction
+Service Type: Standard,This example is about TotalPackages,contradiction
+"Destination: Toronto, GB",This example is about Destination,entailment
+Shipment Status: Departed facility at 2024-06-06 04:39:45,This example is about Timestamp,entailment
+Package Volume: 0.243 m³,This example is about HousebillNumber,contradiction
+Number of Packages: 10,This example is about HousebillNumber,contradiction
+Package Weight: 88.58 KG,This example is about TotalWeight,entailment
+Package Volume: 0.467 m³,This example is about TotalVolume,entailment
+Shipment Status: Arrived at facility at 2024-12-04 06:48:52,This example is about TotalVolume,contradiction
+"Origin: Mumbai, DE",This example is about ProductType,contradiction
+Shipment ID: FDX669295386095,This example is about HousebillNumber,entailment
+Shipment Status: Exception at 2023-12-04 19:17:31,This example is about Timestamp,entailment
+Package Weight: 32.77 KG,This example is about TotalWeight,entailment
+Number of Packages: 4,This example is about HousebillNumber,contradiction
+"Destination: Berlin, IN",This example is about Destination,entailment
+"Destination: Sydney, CN",This example is about Destination,entailment
+Shipment Status: Delivered at 2024-08-02 10:55:43,This example is about TotalWeight,contradiction
+Number of Packages: 8,This example is about TotalPackages,entailment
+Number of Packages: 6,This example is about TotalPackages,entailment
+Package Weight: 25.33 KG,This example is about DateAndTimes,contradiction
+Service Type: Express,This example is about TotalPackages,contradiction
+Number of Packages: 8,This example is about Origin,contradiction
+"Origin: Paris, GB",This example is about TotalVolume,contradiction
+Service Type: 2nd Day Air,This example is about ProductType,entailment
+Package Volume: 0.841 m³,This example is about TotalWeight,contradiction
+"Destination: Toronto, AE",This example is about TotalWeight,contradiction
+Scheduled DateAndTimes: 2023-06-01 19:13:06,This example is about DateAndTimes,entailment
+Service Type: 2nd Day Air,This example is about ProductType,entailment
+Package Weight: 93.39 KG,This example is about TotalVolume,contradiction
+Package Volume: 0.425 m³,This example is about DateAndTimes,contradiction
+Scheduled DateAndTimes: 2024-05-29 09:37:58,This example is about Origin,contradiction
+Package Volume: 0.267 m³,This example is about DateAndTimes,contradiction
+Package Volume: 0.357 m³,This example is about TotalVolume,entailment
+Number of Packages: 3,This example is about Destination,contradiction
+"Destination: Paris, US",This example is about Destination,entailment
+Number of Packages: 7,This example is about TotalPackages,entailment
+Shipment ID: DHL535847296257,This example is about HousebillNumber,entailment
+Package Weight: 67.56 KG,This example is about TotalWeight,entailment
+Service Type: Standard,This example is about Timestamp,contradiction
+Shipment Status: Delivered at 2024-03-27 23:45:45,This example is about Timestamp,entailment
+Package Volume: 0.723 m³,This example is about Timestamp,contradiction
+Shipment Status: In transit at 2023-12-31 12:40:00,This example is about TotalVolume,contradiction
+Shipment Status: Departed facility at 2024-01-30 23:14:09,This example is about TotalPackages,contradiction
+"Origin: Toronto, US",This example is about Origin,entailment
+Package Volume: 0.119 m³,This example is about TotalVolume,entailment
+Package Volume: 0.842 m³,This example is about TotalVolume,entailment
+Shipment Status: Arrived at facility at 2024-05-23 17:38:20,This example is about Timestamp,entailment
+"Origin: Berlin, DE",This example is about DateAndTimes,contradiction
+Shipment ID: FDX069465489568,This example is about HousebillNumber,entailment
+"Origin: Berlin, IN",This example is about Origin,entailment
+Package Weight: 93.96 KG,This example is about TotalWeight,entailment
+Scheduled DateAndTimes: 2023-10-05 22:48:47,This example is about TotalPackages,contradiction
+Package Weight: 88.15 KG,This example is about TotalWeight,entailment
+Number of Packages: 1,This example is about TotalWeight,contradiction
+Scheduled DateAndTimes: 2023-01-26 11:56:15,This example is about DateAndTimes,entailment
+Scheduled DateAndTimes: 2024-06-18 04:54:45,This example is about DateAndTimes,entailment
+Number of Packages: 5,This example is about TotalPackages,entailment
+Scheduled DateAndTimes: 2024-02-25 22:46:09,This example is about TotalWeight,contradiction
+Scheduled DateAndTimes: 2024-06-04 23:35:34,This example is about Timestamp,contradiction
+Service Type: Ground,This example is about ProductType,entailment
+"Destination: Beijing, GB",This example is about Destination,entailment
+Service Type: 2nd Day Air,This example is about ProductType,entailment
+Package Weight: 32.77 KG,This example is about TotalVolume,contradiction
+Package Weight: 64.08 KG,This example is about TotalWeight,entailment
+Shipment ID: 1Z963582263346,This example is about HousebillNumber,entailment
+Service Type: Standard,This example is about ProductType,entailment
+Service Type: Freight,This example is about ProductType,entailment
+Shipment Status: Delivered at 2024-05-05 18:59:14,This example is about Timestamp,entailment
+Package Volume: 0.612 m³,This example is about ProductType,contradiction
+"Destination: Dubai, GB",This example is about Destination,entailment
+Number of Packages: 6,This example is about TotalPackages,entailment
+Number of Packages: 1,This example is about TotalPackages,entailment
+Package Volume: 0.215 m³,This example is about HousebillNumber,contradiction
+Scheduled DateAndTimes: 2023-03-03 21:20:59,This example is about TotalPackages,contradiction
+"Destination: Berlin, IN",This example is about Destination,entailment
+Shipment Status: Customs clearance at 2024-02-13 03:59:02,This example is about Timestamp,entailment
+Package Volume: 0.595 m³,This example is about TotalVolume,entailment
+Package Weight: 64.2 KG,This example is about TotalWeight,entailment
+Number of Packages: 6,This example is about Timestamp,contradiction
+Scheduled DateAndTimes: 2024-05-29 09:37:58,This example is about DateAndTimes,entailment
+Shipment ID: UPS823678297566,This example is about HousebillNumber,entailment
+Shipment Status: Picked up at 2024-04-26 23:27:44,This example is about ProductType,contradiction
+Number of Packages: 6,This example is about Timestamp,contradiction
+Shipment ID: FDX382848270173,This example is about HousebillNumber,entailment
+Shipment ID: DHL171808028717,This example is about HousebillNumber,entailment
+"Origin: Sydney, US",This example is about ProductType,contradiction
+"Origin: Dubai, IN",This example is about TotalVolume,contradiction
+Package Weight: 24.44 KG,This example is about DateAndTimes,contradiction
+Package Weight: 62.85 KG,This example is about TotalWeight,entailment
+Package Volume: 0.733 m³,This example is about TotalVolume,entailment
+Number of Packages: 2,This example is about TotalPackages,entailment
+Package Weight: 20.94 KG,This example is about Timestamp,contradiction
+Service Type: Freight,This example is about Origin,contradiction
+"Destination: Berlin, JP",This example is about Destination,entailment
+Package Volume: 0.612 m³,This example is about TotalVolume,entailment
+"Origin: Beijing, CA",This example is about Origin,entailment
+Number of Packages: 5,This example is about TotalPackages,entailment
+Package Weight: 88.67 KG,This example is about Destination,contradiction
+Package Weight: 89.38 KG,This example is about TotalWeight,entailment
+Service Type: Standard,This example is about Destination,contradiction
+Service Type: Same Day,This example is about TotalPackages,contradiction
+Package Weight: 11.65 KG,This example is about TotalWeight,entailment
+"Origin: Beijing, CA",This example is about Origin,entailment
+Scheduled DateAndTimes: 2023-12-04 02:04:03,This example is about DateAndTimes,entailment
+Scheduled DateAndTimes: 2023-02-12 12:56:00,This example is about TotalVolume,contradiction
+Scheduled DateAndTimes: 2024-12-26 19:57:47,This example is about TotalVolume,contradiction
+"Origin: Paris, GB",This example is about Origin,entailment
+Service Type: 2nd Day Air,This example is about Origin,contradiction
+Shipment Status: Arrived at facility at 2023-12-24 02:44:49,This example is about Timestamp,entailment
+"Destination: Berlin, DE",This example is about TotalVolume,contradiction
+Shipment Status: Out for delivery at 2024-10-22 21:34:13,This example is about ProductType,contradiction
+Service Type: Freight,This example is about TotalVolume,contradiction
+Shipment ID: FDX708310218257,This example is about HousebillNumber,entailment
+Number of Packages: 10,This example is about Origin,contradiction
+Shipment Status: Departed facility at 2024-06-26 12:34:55,This example is about Timestamp,entailment
+"Origin: New York, DE",This example is about Origin,entailment
+Scheduled DateAndTimes: 2023-06-05 17:13:37,This example is about DateAndTimes,entailment
+Service Type: Freight,This example is about HousebillNumber,contradiction
+"Origin: New York, FR",This example is about Destination,contradiction
+Shipment Status: In transit at 2023-09-27 05:23:23,This example is about HousebillNumber,contradiction
+"Destination: Toronto, AE",This example is about ProductType,contradiction
+Shipment ID: 1Z295296409139,This example is about HousebillNumber,entailment
+Shipment Status: Exception at 2024-04-12 07:40:30,This example is about Timestamp,entailment
+Package Weight: 33.13 KG,This example is about TotalWeight,entailment
+"Destination: Beijing, CN",This example is about Timestamp,contradiction
+Package Weight: 78.91 KG,This example is about ProductType,contradiction
+Scheduled DateAndTimes: 2024-07-29 05:07:12,This example is about DateAndTimes,entailment
+"Destination: Toronto, AU",This example is about Destination,entailment
+Shipment ID: 1Z719248276780,This example is about HousebillNumber,entailment
+Scheduled DateAndTimes: 2023-07-23 13:54:23,This example is about Origin,contradiction
+Package Volume: 0.472 m³,This example is about TotalVolume,entailment
+Service Type: Express,This example is about ProductType,entailment
+Package Weight: 42.57 KG,This example is about TotalWeight,entailment
+Service Type: Economy,This example is about ProductType,entailment
+Package Volume: 0.736 m³,This example is about TotalVolume,entailment
+Shipment Status: Picked up at 2023-05-30 11:53:58,This example is about Timestamp,entailment
+Package Volume: 0.546 m³,This example is about TotalVolume,entailment
+Shipment Status: Exception at 2023-08-15 22:56:01,This example is about Origin,contradiction
+"Destination: Beijing, CA",This example is about Destination,entailment
+Shipment ID: FDX648322046569,This example is about HousebillNumber,entailment
+Package Weight: 79.61 KG,This example is about HousebillNumber,contradiction
+"Origin: Sydney, GB",This example is about HousebillNumber,contradiction
+Service Type: Express,This example is about ProductType,entailment
+"Origin: New York, FR",This example is about Origin,entailment
+Package Volume: 0.224 m³,This example is about TotalVolume,entailment
+"Origin: Berlin, US",This example is about HousebillNumber,contradiction
+Scheduled DateAndTimes: 2024-12-17 08:32:55,This example is about DateAndTimes,entailment
+"Origin: New York, CN",This example is about Origin,entailment
+Scheduled DateAndTimes: 2024-11-06 22:15:06,This example is about TotalVolume,contradiction
+Shipment Status: Arrived at facility at 2023-12-24 02:44:49,This example is about HousebillNumber,contradiction
+Shipment Status: Delivered at 2024-12-03 05:21:14,This example is about Timestamp,entailment
+Scheduled DateAndTimes: 2023-05-17 12:37:16,This example is about TotalVolume,contradiction
+Shipment ID: 1Z298027278650,This example is about HousebillNumber,entailment
+Number of Packages: 8,This example is about Destination,contradiction
+"Destination: Beijing, CN",This example is about DateAndTimes,contradiction
+Package Weight: 88.43 KG,This example is about HousebillNumber,contradiction
+Package Weight: 50.22 KG,This example is about Timestamp,contradiction
+Number of Packages: 4,This example is about TotalPackages,entailment
+Shipment ID: UPS547781886038,This example is about HousebillNumber,entailment
+Number of Packages: 7,This example is about Destination,contradiction
+"Destination: Beijing, JP",This example is about TotalVolume,contradiction
+"Destination: Mumbai, CA",This example is about DateAndTimes,contradiction
+Package Volume: 0.215 m³,This example is about TotalVolume,entailment
+Shipment ID: FDX483311374067,This example is about HousebillNumber,entailment
+Shipment ID: 1Z420434607597,This example is about HousebillNumber,entailment
+"Destination: Sydney, JP",This example is about Timestamp,contradiction
+Service Type: Ground,This example is about ProductType,entailment
+Number of Packages: 10,This example is about TotalPackages,entailment
+"Destination: Sydney, AU",This example is about Destination,entailment
+Package Volume: 0.128 m³,This example is about TotalVolume,entailment
+Shipment Status: Exception at 2023-08-12 06:57:33,This example is about Timestamp,entailment
+Shipment Status: Departed facility at 2024-11-04 12:17:37,This example is about ProductType,contradiction
+"Destination: Paris, US",This example is about TotalVolume,contradiction
+Package Volume: 0.842 m³,This example is about TotalWeight,contradiction
+Package Weight: 15.07 KG,This example is about Destination,contradiction
+Scheduled DateAndTimes: 2023-09-13 19:59:21,This example is about Timestamp,contradiction
+Shipment Status: Departed facility at 2024-09-16 01:13:42,This example is about Timestamp,entailment
+Number of Packages: 6,This example is about Destination,contradiction
+"Origin: Berlin, DE",This example is about Origin,entailment
+Package Volume: 0.066 m³,This example is about TotalVolume,entailment
+Number of Packages: 1,This example is about TotalPackages,entailment
+Shipment Status: Exception at 2023-07-09 23:07:47,This example is about Timestamp,entailment
+"Origin: London, CA",This example is about Origin,entailment
+Shipment ID: FDX013528854834,This example is about HousebillNumber,entailment
+Scheduled DateAndTimes: 2023-02-18 06:45:30,This example is about Origin,contradiction
+Shipment Status: Out for delivery at 2024-11-10 21:07:15,This example is about TotalWeight,contradiction
+Scheduled DateAndTimes: 2023-03-23 09:55:35,This example is about Origin,contradiction
+Number of Packages: 9,This example is about TotalPackages,entailment
+Package Weight: 94.22 KG,This example is about TotalWeight,entailment
+"Destination: Beijing, CA",This example is about TotalVolume,contradiction
+"Destination: Dubai, CA",This example is about Destination,entailment
+Package Weight: 70.0 KG,This example is about TotalWeight,entailment
+Shipment Status: Customs clearance at 2024-08-07 01:09:00,This example is about TotalWeight,contradiction
+Shipment Status: Picked up at 2023-05-30 07:50:02,This example is about Timestamp,entailment
+Scheduled DateAndTimes: 2024-02-18 12:36:25,This example is about Destination,contradiction
+Shipment Status: Delivered at 2023-03-27 10:30:22,This example is about Timestamp,entailment
+"Destination: Toronto, AU",This example is about TotalVolume,contradiction
+"Destination: Toronto, US",This example is about Destination,entailment
+Package Weight: 76.91 KG,This example is about TotalWeight,entailment
+Package Volume: 0.73 m³,This example is about DateAndTimes,contradiction
+"Origin: Paris, US",This example is about HousebillNumber,contradiction
+Package Volume: 0.02 m³,This example is about TotalVolume,entailment
+Shipment ID: DHL877798810255,This example is about HousebillNumber,entailment
+"Destination: Dubai, GB",This example is about ProductType,contradiction
+Shipment ID: DHL939176334946,This example is about HousebillNumber,entailment
+Number of Packages: 9,This example is about TotalPackages,entailment
+Package Volume: 0.86 m³,This example is about TotalVolume,entailment
+Scheduled DateAndTimes: 2023-05-08 20:36:39,This example is about DateAndTimes,entailment
+Package Weight: 35.94 KG,This example is about TotalWeight,entailment
+"Origin: Mumbai, US",This example is about Origin,entailment
+"Origin: New York, CN",This example is about Origin,entailment
+Service Type: Next Day Air,This example is about TotalPackages,contradiction
+Number of Packages: 6,This example is about ProductType,contradiction
+Scheduled DateAndTimes: 2023-06-20 14:21:51,This example is about Destination,contradiction
+Number of Packages: 4,This example is about TotalPackages,entailment
+"Origin: Dubai, IN",This example is about Origin,entailment
+Scheduled DateAndTimes: 2023-09-16 22:34:55,This example is about TotalVolume,contradiction
+"Origin: Dubai, DE",This example is about HousebillNumber,contradiction
+"Origin: Mumbai, AE",This example is about Origin,entailment
+Service Type: Same Day,This example is about ProductType,entailment
+Number of Packages: 7,This example is about TotalPackages,entailment
+"Origin: Mumbai, US",This example is about ProductType,contradiction
+Service Type: Economy,This example is about Origin,contradiction
+Shipment ID: DHL657723570291,This example is about HousebillNumber,entailment
+Service Type: Express,This example is about ProductType,entailment
+Shipment ID: 1Z935253200538,This example is about HousebillNumber,entailment
+"Origin: Beijing, DE",This example is about ProductType,contradiction
+Package Volume: 0.386 m³,This example is about Origin,contradiction
+Shipment ID: FDX519529753577,This example is about HousebillNumber,entailment
+Scheduled DateAndTimes: 2024-01-10 00:42:18,This example is about DateAndTimes,entailment
+Package Weight: 83.64 KG,This example is about TotalWeight,entailment
+Number of Packages: 10,This example is about TotalPackages,entailment
+Scheduled DateAndTimes: 2024-01-10 00:42:18,This example is about TotalWeight,contradiction
+Scheduled DateAndTimes: 2024-07-26 10:37:06,This example is about DateAndTimes,entailment
+Number of Packages: 4,This example is about ProductType,contradiction
+Service Type: 2nd Day Air,This example is about ProductType,entailment
+Shipment Status: Exception at 2023-12-10 23:06:23,This example is about Timestamp,entailment
+Shipment ID: UPS870156089766,This example is about HousebillNumber,entailment
+Package Weight: 76.42 KG,This example is about HousebillNumber,contradiction
+Shipment ID: 1Z897598543368,This example is about HousebillNumber,entailment
+Shipment Status: Delivered at 2024-03-27 23:45:45,This example is about Destination,contradiction
+"Origin: Beijing, CA",This example is about Destination,contradiction
+"Destination: Mumbai, JP",This example is about Destination,entailment
+"Destination: Sydney, JP",This example is about Destination,entailment
+"Origin: London, CA",This example is about Origin,entailment
+Shipment ID: DHL753016613275,This example is about HousebillNumber,entailment
+"Origin: Toronto, US",This example is about TotalVolume,contradiction
+Service Type: Same Day,This example is about Origin,contradiction
+"Destination: Sydney, AE",This example is about Destination,entailment
+Package Volume: 0.952 m³,This example is about TotalVolume,entailment
+Scheduled DateAndTimes: 2024-04-07 02:18:26,This example is about DateAndTimes,entailment
+Service Type: Economy,This example is about ProductType,entailment
+Package Volume: 0.834 m³,This example is about TotalPackages,contradiction
+"Origin: Tokyo, CN",This example is about Origin,entailment
+"Origin: Mumbai, FR",This example is about Origin,entailment
+Package Weight: 32.59 KG,This example is about Origin,contradiction
+Package Volume: 0.438 m³,This example is about TotalVolume,entailment
+Package Weight: 88.58 KG,This example is about Timestamp,contradiction
+Package Weight: 99.24 KG,This example is about TotalWeight,entailment
+Shipment Status: Delivered at 2023-09-17 18:52:04,This example is about DateAndTimes,contradiction
+"Origin: Sydney, CN",This example is about Origin,entailment
+Shipment Status: Out for delivery at 2024-09-19 20:49:50,This example is about Timestamp,entailment
+Package Volume: 0.267 m³,This example is about TotalVolume,entailment
+"Origin: Paris, AU",This example is about Origin,entailment
+Number of Packages: 1,This example is about TotalWeight,contradiction
+"Origin: Tokyo, CN",This example is about Origin,entailment
+"Origin: Sydney, GB",This example is about Origin,entailment
+"Destination: Dubai, GB",This example is about Destination,entailment
+Shipment Status: Picked up at 2023-06-30 19:35:56,This example is about Timestamp,entailment
+Package Weight: 93.39 KG,This example is about TotalWeight,entailment
+Shipment ID: FDX420268710841,This example is about HousebillNumber,entailment
+Package Volume: 0.416 m³,This example is about DateAndTimes,contradiction
+Number of Packages: 2,This example is about TotalPackages,entailment
+Service Type: Express,This example is about Origin,contradiction
+Shipment Status: Picked up at 2023-05-30 11:53:58,This example is about Destination,contradiction
+Number of Packages: 1,This example is about TotalPackages,entailment
+Service Type: Economy,This example is about ProductType,entailment
+Service Type: Express,This example is about ProductType,entailment
+"Destination: Dubai, CA",This example is about ProductType,contradiction
+Scheduled DateAndTimes: 2023-07-08 07:13:34,This example is about DateAndTimes,entailment
+Package Volume: 0.697 m³,This example is about TotalVolume,entailment
+Service Type: Standard,This example is about ProductType,entailment
+Shipment Status: Customs clearance at 2024-02-06 19:09:47,This example is about Destination,contradiction
+Service Type: Same Day,This example is about TotalPackages,contradiction
+Scheduled DateAndTimes: 2023-02-01 14:27:38,This example is about ProductType,contradiction
+Package Weight: 92.18 KG,This example is about ProductType,contradiction
+Scheduled DateAndTimes: 2024-04-30 18:36:56,This example is about HousebillNumber,contradiction
+Shipment Status: Customs clearance at 2023-01-18 07:02:31,This example is about Timestamp,entailment
+"Origin: Toronto, DE",This example is about TotalVolume,contradiction
+Package Volume: 0.496 m³,This example is about Origin,contradiction
+Package Weight: 92.18 KG,This example is about TotalWeight,entailment
+Service Type: Freight,This example is about ProductType,entailment
+"Destination: Toronto, AE",This example is about Destination,entailment
+Scheduled DateAndTimes: 2024-10-22 09:51:25,This example is about Timestamp,contradiction
+Number of Packages: 2,This example is about TotalPackages,entailment
+"Origin: Berlin, DE",This example is about Destination,contradiction
+Number of Packages: 4,This example is about Origin,contradiction
+Scheduled DateAndTimes: 2024-06-04 23:35:34,This example is about DateAndTimes,entailment
+"Destination: Dubai, CA",This example is about Origin,contradiction
+Package Weight: 82.54 KG,This example is about Timestamp,contradiction
+Shipment Status: Arrived at facility at 2024-01-31 20:15:11,This example is about Timestamp,entailment
+Number of Packages: 10,This example is about TotalPackages,entailment
+Number of Packages: 7,This example is about DateAndTimes,contradiction
+"Origin: New York, GB",This example is about TotalWeight,contradiction
+Scheduled DateAndTimes: 2023-09-10 13:53:31,This example is about TotalWeight,contradiction
+Shipment Status: Customs clearance at 2023-09-04 22:55:40,This example is about HousebillNumber,contradiction
+"Origin: London, CA",This example is about TotalVolume,contradiction
+Number of Packages: 9,This example is about TotalPackages,entailment
+Scheduled DateAndTimes: 2023-07-29 06:30:47,This example is about Origin,contradiction
+Package Volume: 0.577 m³,This example is about ProductType,contradiction
+Package Volume: 0.128 m³,This example is about HousebillNumber,contradiction
+Scheduled DateAndTimes: 2024-12-26 19:57:47,This example is about DateAndTimes,entailment
+Service Type: Economy,This example is about Origin,contradiction
+Service Type: Same Day,This example is about Timestamp,contradiction
+Service Type: Next Day Air,This example is about Destination,contradiction
+Service Type: Same Day,This example is about TotalVolume,contradiction
+Package Volume: 0.799 m³,This example is about TotalVolume,entailment
+"Destination: New York, US",This example is about TotalWeight,contradiction
+Package Volume: 0.217 m³,This example is about Destination,contradiction
+Service Type: 2nd Day Air,This example is about Destination,contradiction
+Shipment Status: Picked up at 2024-06-28 22:39:57,This example is about Timestamp,entailment
+Scheduled DateAndTimes: 2024-09-11 03:42:05,This example is about ProductType,contradiction
+Shipment ID: FDX370535482638,This example is about HousebillNumber,entailment
+Shipment Status: Delivered at 2023-05-31 02:51:47,This example is about Timestamp,entailment
+Package Weight: 21.4 KG,This example is about DateAndTimes,contradiction
+Number of Packages: 3,This example is about Timestamp,contradiction
+"Origin: Toronto, AU",This example is about TotalVolume,contradiction
+Package Volume: 0.473 m³,This example is about HousebillNumber,contradiction
+Scheduled DateAndTimes: 2024-07-16 17:53:03,This example is about DateAndTimes,entailment
+Package Volume: 0.903 m³,This example is about DateAndTimes,contradiction
+Package Weight: 23.74 KG,This example is about ProductType,contradiction
+Package Weight: 40.65 KG,This example is about TotalWeight,entailment
+Package Volume: 0.578 m³,This example is about TotalVolume,entailment
+Package Weight: 85.47 KG,This example is about HousebillNumber,contradiction
+Service Type: Freight,This example is about ProductType,entailment
+Package Volume: 0.859 m³,This example is about Destination,contradiction
+Service Type: Same Day,This example is about ProductType,entailment
+"Origin: Berlin, CA",This example is about Origin,entailment
+Number of Packages: 5,This example is about TotalPackages,entailment
+Scheduled DateAndTimes: 2023-03-16 17:39:31,This example is about DateAndTimes,entailment
+"Origin: New York, IN",This example is about Origin,entailment
+Scheduled DateAndTimes: 2023-05-08 20:36:39,This example is about ProductType,contradiction
+Number of Packages: 6,This example is about TotalPackages,entailment
+Package Weight: 72.34 KG,This example is about ProductType,contradiction
+Scheduled DateAndTimes: 2024-02-18 12:36:25,This example is about DateAndTimes,entailment
+Scheduled DateAndTimes: 2023-02-04 05:52:28,This example is about DateAndTimes,entailment
+Number of Packages: 1,This example is about DateAndTimes,contradiction
+"Origin: Toronto, FR",This example is about Origin,entailment
+Scheduled DateAndTimes: 2023-01-05 10:59:08,This example is about HousebillNumber,contradiction
+Package Volume: 0.801 m³,This example is about TotalWeight,contradiction
+Package Volume: 0.398 m³,This example is about DateAndTimes,contradiction
+Package Weight: 13.86 KG,This example is about TotalWeight,entailment
+Package Weight: 73.01 KG,This example is about TotalWeight,entailment
+Service Type: Express,This example is about HousebillNumber,contradiction
+"Destination: Toronto, AE",This example is about Destination,entailment
+Package Weight: 29.58 KG,This example is about TotalWeight,entailment
+Package Weight: 29.06 KG,This example is about TotalVolume,contradiction
+Package Volume: 0.275 m³,This example is about ProductType,contradiction
+Service Type: Express,This example is about TotalVolume,contradiction
+Number of Packages: 7,This example is about TotalPackages,entailment
+Package Weight: 15.33 KG,This example is about TotalWeight,entailment
+Number of Packages: 9,This example is about TotalPackages,entailment
+Scheduled DateAndTimes: 2024-06-10 19:30:30,This example is about TotalPackages,contradiction
+"Origin: Tokyo, CA",This example is about ProductType,contradiction
+Service Type: Ground,This example is about ProductType,entailment
+Package Weight: 6.93 KG,This example is about Origin,contradiction
+"Destination: Berlin, FR",This example is about HousebillNumber,contradiction
+Package Weight: 60.12 KG,This example is about Timestamp,contradiction
+Shipment Status: Out for delivery at 2024-09-28 00:18:34,This example is about TotalVolume,contradiction
+Number of Packages: 7,This example is about HousebillNumber,contradiction
+Service Type: Ground,This example is about HousebillNumber,contradiction
+Shipment Status: Exception at 2023-08-12 06:57:33,This example is about TotalPackages,contradiction
+Number of Packages: 9,This example is about HousebillNumber,contradiction
+"Origin: Beijing, CA",This example is about Destination,contradiction
+Service Type: Same Day,This example is about DateAndTimes,contradiction
+Number of Packages: 1,This example is about Timestamp,contradiction
+Service Type: Express,This example is about Destination,contradiction
+Service Type: Standard,This example is about ProductType,entailment
+Package Volume: 0.775 m³,This example is about TotalVolume,entailment
+Service Type: Express,This example is about TotalPackages,contradiction
+"Destination: Beijing, DE",This example is about HousebillNumber,contradiction
+Package Weight: 21.4 KG,This example is about TotalWeight,entailment
+Shipment Status: Delivered at 2024-06-05 02:16:32,This example is about TotalVolume,contradiction
+Scheduled DateAndTimes: 2023-06-13 04:21:05,This example is about TotalPackages,contradiction
+Package Volume: 0.152 m³,This example is about TotalVolume,entailment
+Shipment Status: Arrived at facility at 2023-08-26 10:12:37,This example is about HousebillNumber,contradiction
+Package Weight: 52.1 KG,This example is about ProductType,contradiction
+"Origin: New York, CN",This example is about Timestamp,contradiction
+Package Volume: 0.496 m³,This example is about TotalVolume,entailment
+Package Volume: 0.135 m³,This example is about TotalVolume,entailment
+Package Weight: 77.99 KG,This example is about TotalWeight,entailment
+Shipment ID: 1Z373318904123,This example is about HousebillNumber,entailment
+Scheduled DateAndTimes: 2023-02-12 12:56:00,This example is about DateAndTimes,entailment
+Number of Packages: 8,This example is about TotalPackages,entailment
+Package Weight: 47.5 KG,This example is about TotalWeight,entailment
+Number of Packages: 1,This example is about TotalPackages,entailment
+Number of Packages: 8,This example is about TotalVolume,contradiction
+Scheduled DateAndTimes: 2024-04-07 02:18:26,This example is about ProductType,contradiction
+Package Volume: 0.349 m³,This example is about TotalVolume,entailment
+Scheduled DateAndTimes: 2024-10-02 22:15:06,This example is about TotalPackages,contradiction
+Number of Packages: 2,This example is about TotalPackages,entailment
+Shipment ID: UPS725611446163,This example is about HousebillNumber,entailment
+Package Volume: 0.425 m³,This example is about TotalVolume,entailment
+"Origin: Berlin, CA",This example is about DateAndTimes,contradiction
+Shipment Status: Picked up at 2023-06-09 16:37:18,This example is about Timestamp,entailment
+Package Volume: 0.357 m³,This example is about Destination,contradiction
+Number of Packages: 5,This example is about Timestamp,contradiction
+"Destination: Toronto, AE",This example is about Destination,entailment
+Number of Packages: 10,This example is about Destination,contradiction
+Package Weight: 41.11 KG,This example is about TotalWeight,entailment
+"Origin: Sydney, FR",This example is about TotalPackages,contradiction
+Shipment ID: 1Z126739826169,This example is about HousebillNumber,entailment
+Shipment ID: DHL709699697344,This example is about HousebillNumber,entailment
+Number of Packages: 5,This example is about Timestamp,contradiction
+Package Weight: 6.32 KG,This example is about TotalWeight,entailment
+Service Type: Same Day,This example is about Destination,contradiction
+Package Volume: 0.438 m³,This example is about DateAndTimes,contradiction
+Package Volume: 0.444 m³,This example is about TotalVolume,entailment
+"Destination: London, AE",This example is about Origin,contradiction
+Package Volume: 0.152 m³,This example is about HousebillNumber,contradiction
+Package Volume: 0.119 m³,This example is about ProductType,contradiction
+Package Weight: 52.1 KG,This example is about TotalWeight,entailment
+Shipment Status: Picked up at 2023-05-30 07:50:02,This example is about Origin,contradiction
+Number of Packages: 6,This example is about Destination,contradiction
+Service Type: Express,This example is about TotalWeight,contradiction
+Shipment Status: Delivered at 2024-02-21 08:10:05,This example is about Timestamp,entailment
+Service Type: Same Day,This example is about ProductType,entailment
+Scheduled DateAndTimes: 2024-08-31 07:52:35,This example is about DateAndTimes,entailment
+Service Type: Freight,This example is about ProductType,entailment
+Service Type: Same Day,This example is about ProductType,entailment
+"Origin: Mumbai, AE",This example is about DateAndTimes,contradiction
+Package Volume: 0.275 m³,This example is about TotalVolume,entailment
+"Destination: London, CN",This example is about Destination,entailment
+Package Weight: 41.11 KG,This example is about Timestamp,contradiction
+Package Volume: 0.467 m³,This example is about Destination,contradiction
+Package Weight: 13.86 KG,This example is about Origin,contradiction
+"Origin: New York, JP",This example is about HousebillNumber,contradiction
+Package Weight: 23.74 KG,This example is about TotalWeight,entailment
+Number of Packages: 10,This example is about TotalVolume,contradiction
+Service Type: Express,This example is about ProductType,entailment
+Service Type: Express,This example is about TotalVolume,contradiction
+"Destination: Sydney, AE",This example is about TotalVolume,contradiction
+Package Volume: 0.723 m³,This example is about TotalVolume,entailment
+Package Volume: 0.05 m³,This example is about TotalVolume,entailment
+Scheduled DateAndTimes: 2024-06-10 19:30:30,This example is about DateAndTimes,entailment
+Scheduled DateAndTimes: 2023-09-11 13:50:54,This example is about DateAndTimes,entailment
+Package Weight: 99.24 KG,This example is about Destination,contradiction
+Package Volume: 0.858 m³,This example is about TotalPackages,contradiction
+Service Type: Next Day Air,This example is about ProductType,entailment
+Package Weight: 40.65 KG,This example is about HousebillNumber,contradiction
+"Origin: Paris, AU",This example is about TotalWeight,contradiction
+Shipment Status: In transit at 2023-09-27 05:23:23,This example is about Timestamp,entailment
+"Destination: Beijing, JP",This example is about Timestamp,contradiction
+Number of Packages: 2,This example is about TotalVolume,contradiction
+"Destination: Toronto, JP",This example is about Destination,entailment
+"Origin: New York, GB",This example is about Origin,entailment
+"Destination: Paris, DE",This example is about Destination,entailment
+Scheduled DateAndTimes: 2023-10-12 00:51:28,This example is about TotalWeight,contradiction
+"Origin: Paris, CN",This example is about Origin,entailment
+Shipment Status: In transit at 2024-10-05 10:16:36,This example is about ProductType,contradiction
+Scheduled DateAndTimes: 2023-07-13 06:34:51,This example is about DateAndTimes,entailment
+"Destination: Dubai, AU",This example is about DateAndTimes,contradiction
+Number of Packages: 10,This example is about Timestamp,contradiction
+Shipment Status: Customs clearance at 2024-02-08 15:14:01,This example is about Origin,contradiction
+Scheduled DateAndTimes: 2024-04-25 11:35:19,This example is about DateAndTimes,entailment
+Scheduled DateAndTimes: 2023-03-27 03:36:29,This example is about DateAndTimes,entailment
+Number of Packages: 9,This example is about TotalPackages,entailment
+Number of Packages: 4,This example is about TotalPackages,entailment
+Service Type: Express,This example is about DateAndTimes,contradiction
+Number of Packages: 5,This example is about ProductType,contradiction
+Package Volume: 0.659 m³,This example is about TotalVolume,entailment
+Scheduled DateAndTimes: 2023-06-13 04:21:05,This example is about DateAndTimes,entailment
+"Origin: Beijing, US",This example is about DateAndTimes,contradiction
+"Destination: Paris, JP",This example is about TotalVolume,contradiction
+Package Weight: 5.86 KG,This example is about TotalPackages,contradiction
+Service Type: Express,This example is about ProductType,entailment
+"Destination: London, AU",This example is about TotalPackages,contradiction
+Package Weight: 67.56 KG,This example is about DateAndTimes,contradiction
+"Destination: Tokyo, DE",This example is about ProductType,contradiction
+Package Volume: 0.423 m³,This example is about DateAndTimes,contradiction
+Scheduled DateAndTimes: 2023-07-23 13:54:23,This example is about DateAndTimes,entailment
+"Destination: Beijing, JP",This example is about Timestamp,contradiction
+"Destination: Toronto, CN",This example is about Destination,entailment
+Shipment Status: Departed facility at 2024-06-06 04:39:45,This example is about TotalPackages,contradiction
+"Origin: Sydney, FR",This example is about Origin,entailment
+Number of Packages: 6,This example is about ProductType,contradiction
+Scheduled DateAndTimes: 2023-05-27 02:06:46,This example is about DateAndTimes,entailment
+"Origin: Mumbai, IN",This example is about ProductType,contradiction
+"Origin: Mumbai, JP",This example is about Destination,contradiction
+Number of Packages: 7,This example is about DateAndTimes,contradiction
+"Origin: Paris, US",This example is about Origin,entailment
+"Origin: Tokyo, AE",This example is about TotalWeight,contradiction
+Scheduled DateAndTimes: 2023-01-10 23:02:28,This example is about ProductType,contradiction
+"Origin: Paris, US",This example is about Origin,entailment
+Shipment Status: Out for delivery at 2023-03-13 16:08:16,This example is about Timestamp,entailment
+"Origin: Berlin, GB",This example is about HousebillNumber,contradiction
+Shipment Status: Customs clearance at 2024-02-13 03:59:02,This example is about TotalPackages,contradiction
+"Origin: Mumbai, FR",This example is about HousebillNumber,contradiction
+"Destination: Paris, FR",This example is about Destination,entailment
+Service Type: Express,This example is about TotalVolume,contradiction
+"Destination: Paris, FR",This example is about TotalWeight,contradiction
+Shipment Status: Exception at 2023-08-15 22:56:01,This example is about Timestamp,entailment
+"Origin: Toronto, AU",This example is about Destination,contradiction
+Package Volume: 0.224 m³,This example is about Destination,contradiction
+Shipment Status: Departed facility at 2023-05-01 15:04:03,This example is about Timestamp,entailment
+Shipment ID: 1Z411445991785,This example is about HousebillNumber,entailment
+"Destination: Berlin, FR",This example is about TotalVolume,contradiction
+Package Volume: 0.766 m³,This example is about Timestamp,contradiction
+"Origin: Sydney, CN",This example is about Origin,entailment
+"Destination: Toronto, AE",This example is about HousebillNumber,contradiction
+Shipment Status: In transit at 2024-10-23 00:42:58,This example is about Timestamp,entailment
+Service Type: Economy,This example is about ProductType,entailment
+"Destination: London, GB",This example is about TotalVolume,contradiction
+Number of Packages: 1,This example is about TotalWeight,contradiction
+Scheduled DateAndTimes: 2023-09-11 13:50:54,This example is about ProductType,contradiction
+"Origin: New York, JP",This example is about Origin,entailment
+"Origin: Sydney, CN",This example is about TotalVolume,contradiction
+Scheduled DateAndTimes: 2023-09-20 13:35:18,This example is about TotalPackages,contradiction
+Shipment ID: UPS518316795776,This example is about HousebillNumber,entailment
+Shipment Status: Exception at 2023-12-04 19:17:31,This example is about TotalPackages,contradiction
+Scheduled DateAndTimes: 2024-08-24 12:43:32,This example is about TotalPackages,contradiction
+Shipment ID: 1Z834056035806,This example is about HousebillNumber,entailment
+Number of Packages: 1,This example is about TotalPackages,entailment
+Package Volume: 0.357 m³,This example is about DateAndTimes,contradiction
+Service Type: Economy,This example is about HousebillNumber,contradiction
+Scheduled DateAndTimes: 2024-11-06 22:15:06,This example is about DateAndTimes,entailment
+Number of Packages: 3,This example is about HousebillNumber,contradiction
+Shipment Status: Customs clearance at 2023-01-18 07:02:31,This example is about HousebillNumber,contradiction
+"Destination: Sydney, CN",This example is about DateAndTimes,contradiction
+Service Type: 2nd Day Air,This example is about ProductType,entailment
+Shipment ID: UPS284405412576,This example is about HousebillNumber,entailment
+"Origin: Dubai, GB",This example is about TotalWeight,contradiction
+Number of Packages: 8,This example is about TotalPackages,entailment
+Package Volume: 0.493 m³,This example is about TotalVolume,entailment
+Shipment Status: Departed facility at 2024-10-05 18:04:26,This example is about HousebillNumber,contradiction
+Scheduled DateAndTimes: 2024-02-25 22:46:09,This example is about DateAndTimes,entailment
+Scheduled DateAndTimes: 2023-01-06 17:46:54,This example is about Destination,contradiction
+"Destination: London, GB",This example is about Destination,entailment
+Service Type: Ground,This example is about Origin,contradiction
+Service Type: 2nd Day Air,This example is about ProductType,entailment
+"Destination: London, IN",This example is about Destination,entailment
+Number of Packages: 8,This example is about HousebillNumber,contradiction
+Scheduled DateAndTimes: 2023-07-19 15:38:24,This example is about Origin,contradiction
+Package Weight: 64.63 KG,This example is about TotalWeight,entailment
+"Destination: Sydney, JP",This example is about Timestamp,contradiction
+"Origin: Toronto, AU",This example is about Origin,entailment
+Number of Packages: 7,This example is about HousebillNumber,contradiction
+Scheduled DateAndTimes: 2023-01-05 10:59:08,This example is about DateAndTimes,entailment
+"Destination: Tokyo, DE",This example is about Destination,entailment
+Shipment ID: UPS511346711308,This example is about HousebillNumber,entailment
+Scheduled DateAndTimes: 2024-01-29 14:28:58,This example is about Timestamp,contradiction
+Number of Packages: 4,This example is about ProductType,contradiction
+Package Volume: 0.507 m³,This example is about TotalWeight,contradiction
+Package Weight: 85.47 KG,This example is about TotalWeight,entailment
+Number of Packages: 1,This example is about TotalWeight,contradiction
+Package Volume: 0.217 m³,This example is about TotalVolume,entailment
+Package Volume: 0.625 m³,This example is about TotalVolume,entailment
+Package Volume: 0.416 m³,This example is about TotalVolume,entailment
+Shipment Status: Picked up at 2023-03-13 23:56:42,This example is about TotalPackages,contradiction
+Service Type: Freight,This example is about TotalPackages,contradiction
+Package Volume: 0.681 m³,This example is about HousebillNumber,contradiction
+Scheduled DateAndTimes: 2024-09-28 22:14:25,This example is about DateAndTimes,entailment
+Shipment ID: UPS278694151703,This example is about HousebillNumber,entailment
+"Origin: Paris, CA",This example is about TotalVolume,contradiction
+"Origin: Berlin, DE",This example is about Timestamp,contradiction
+Shipment ID: FDX013630698678,This example is about HousebillNumber,entailment
+Package Volume: 0.658 m³,This example is about Origin,contradiction
+"Destination: Berlin, DE",This example is about Destination,entailment
+"Origin: Dubai, FR",This example is about TotalPackages,contradiction
+Package Volume: 0.383 m³,This example is about TotalVolume,entailment
+Package Volume: 0.489 m³,This example is about DateAndTimes,contradiction
+Scheduled DateAndTimes: 2023-07-19 15:38:24,This example is about DateAndTimes,entailment
+"Destination: Beijing, CA",This example is about TotalWeight,contradiction
+Package Weight: 22.72 KG,This example is about Origin,contradiction
+"Destination: Dubai, CA",This example is about Destination,entailment
+Package Weight: 57.12 KG,This example is about TotalWeight,entailment
+"Destination: Toronto, JP",This example is about ProductType,contradiction
+Service Type: Ground,This example is about Origin,contradiction
+Package Weight: 88.43 KG,This example is about TotalWeight,entailment
+Scheduled DateAndTimes: 2023-07-29 06:30:47,This example is about DateAndTimes,entailment
+Number of Packages: 9,This example is about Origin,contradiction
+Number of Packages: 4,This example is about TotalPackages,entailment
+Service Type: Ground,This example is about ProductType,entailment
+Shipment Status: Out for delivery at 2023-09-11 12:45:57,This example is about TotalVolume,contradiction
+Service Type: Freight,This example is about TotalPackages,contradiction
+Package Weight: 7.79 KG,This example is about TotalWeight,entailment
+Service Type: Standard,This example is about ProductType,entailment
+Shipment ID: UPS726199895824,This example is about HousebillNumber,entailment
+"Origin: Paris, US",This example is about Origin,entailment
+Package Volume: 0.064 m³,This example is about TotalVolume,entailment
+Shipment Status: Departed facility at 2023-08-04 16:12:43,This example is about TotalPackages,contradiction
+Scheduled DateAndTimes: 2023-11-20 19:54:40,This example is about Timestamp,contradiction
+"Destination: Mumbai, JP",This example is about Origin,contradiction
+"Destination: London, AU",This example is about TotalVolume,contradiction
+Package Volume: 0.841 m³,This example is about TotalVolume,entailment
+Package Volume: 0.064 m³,This example is about TotalWeight,contradiction
+"Origin: Dubai, GB",This example is about DateAndTimes,contradiction
+Scheduled DateAndTimes: 2023-03-03 21:20:59,This example is about DateAndTimes,entailment
+Package Weight: 83.64 KG,This example is about Timestamp,contradiction
+Service Type: Same Day,This example is about ProductType,entailment
+Package Weight: 95.68 KG,This example is about Destination,contradiction
+Package Weight: 35.94 KG,This example is about HousebillNumber,contradiction
+"Destination: Tokyo, GB",This example is about DateAndTimes,contradiction
+Shipment ID: DHL607551804955,This example is about HousebillNumber,entailment
+Service Type: Ground,This example is about ProductType,entailment
+"Origin: Berlin, GB",This example is about Origin,entailment
+Scheduled DateAndTimes: 2023-06-05 17:13:37,This example is about Origin,contradiction
+Package Volume: 0.301 m³,This example is about Destination,contradiction
+Number of Packages: 3,This example is about TotalPackages,entailment
+Package Weight: 57.12 KG,This example is about DateAndTimes,contradiction
+Number of Packages: 5,This example is about DateAndTimes,contradiction
+"Destination: Beijing, US",This example is about Destination,entailment
+"Destination: Tokyo, DE",This example is about HousebillNumber,contradiction
+Shipment Status: Customs clearance at 2023-06-11 23:00:27,This example is about Timestamp,entailment
+"Destination: Dubai, GB",This example is about ProductType,contradiction
+Shipment ID: FDX289301975441,This example is about HousebillNumber,entailment
+Number of Packages: 5,This example is about TotalWeight,contradiction
+Package Volume: 0.122 m³,This example is about Timestamp,contradiction
+Scheduled DateAndTimes: 2023-09-20 13:35:18,This example is about DateAndTimes,entailment
+Package Volume: 0.954 m³,This example is about Timestamp,contradiction
+"Destination: London, US",This example is about TotalPackages,contradiction
+Scheduled DateAndTimes: 2023-04-05 16:05:46,This example is about TotalWeight,contradiction
+Service Type: Economy,This example is about Origin,contradiction
+"Destination: New York, US",This example is about Destination,entailment
+Service Type: Express,This example is about Timestamp,contradiction
+Scheduled DateAndTimes: 2023-03-16 17:39:31,This example is about TotalPackages,contradiction
+Scheduled DateAndTimes: 2023-03-01 12:26:27,This example is about Destination,contradiction
+Service Type: Express,This example is about ProductType,entailment
+Shipment Status: Arrived at facility at 2024-12-04 06:48:52,This example is about Timestamp,entailment
+"Destination: Toronto, GB",This example is about HousebillNumber,contradiction
+Shipment Status: Picked up at 2024-09-03 07:35:23,This example is about TotalPackages,contradiction
+"Origin: Tokyo, CN",This example is about ProductType,contradiction
+Service Type: Standard,This example is about TotalVolume,contradiction
+"Destination: Sydney, US",This example is about Destination,entailment
+Shipment ID: FDX532317419225,This example is about HousebillNumber,entailment
+Service Type: Express,This example is about ProductType,entailment
+Package Weight: 87.31 KG,This example is about Origin,contradiction
+"Destination: New York, CA",This example is about TotalWeight,contradiction
+"Origin: Paris, CA",This example is about Origin,entailment
+Shipment ID: UPS588067737189,This example is about HousebillNumber,entailment
+Package Volume: 0.733 m³,This example is about TotalWeight,contradiction
+Scheduled DateAndTimes: 2024-06-23 03:27:15,This example is about TotalPackages,contradiction
+Service Type: Standard,This example is about ProductType,entailment
+Scheduled DateAndTimes: 2023-02-04 05:52:28,This example is about TotalVolume,contradiction
+Shipment ID: FDX752370578485,This example is about HousebillNumber,entailment
+"Destination: Paris, CN",This example is about Destination,entailment
+Shipment Status: Departed facility at 2024-01-10 01:27:08,This example is about TotalWeight,contradiction
+Number of Packages: 6,This example is about TotalPackages,entailment
+"Origin: Berlin, US",This example is about Origin,entailment
+Package Weight: 91.96 KG,This example is about TotalWeight,entailment
+Package Weight: 91.96 KG,This example is about HousebillNumber,contradiction
+"Destination: London, AU",This example is about Origin,contradiction
+"Origin: Mumbai, DE",This example is about Origin,entailment
+"Origin: New York, AE",This example is about Origin,entailment
+Number of Packages: 10,This example is about TotalPackages,entailment
+Service Type: Express,This example is about ProductType,entailment
+"Origin: Berlin, CA",This example is about Origin,entailment
+Scheduled DateAndTimes: 2023-10-12 00:51:28,This example is about DateAndTimes,entailment
+"Origin: Beijing, AE",This example is about TotalVolume,contradiction
+Number of Packages: 7,This example is about TotalPackages,entailment
+Shipment Status: Arrived at facility at 2024-11-17 04:31:30,This example is about ProductType,contradiction
+Scheduled DateAndTimes: 2024-08-10 07:02:47,This example is about DateAndTimes,entailment
+Number of Packages: 8,This example is about TotalPackages,entailment
+"Destination: Berlin, FR",This example is about Destination,entailment
+Package Weight: 6.32 KG,This example is about DateAndTimes,contradiction
+"Origin: Mumbai, IN",This example is about TotalWeight,contradiction
+Package Weight: 29.58 KG,This example is about Destination,contradiction
+Scheduled DateAndTimes: 2023-02-18 06:45:30,This example is about DateAndTimes,entailment
+Number of Packages: 2,This example is about TotalPackages,entailment
+Shipment ID: 1Z893224821199,This example is about HousebillNumber,entailment
+"Destination: Paris, IN",This example is about TotalWeight,contradiction
+Service Type: Ground,This example is about DateAndTimes,contradiction
+Service Type: Next Day Air,This example is about TotalVolume,contradiction
+Service Type: 2nd Day Air,This example is about TotalPackages,contradiction
+Package Weight: 66.79 KG,This example is about Destination,contradiction
+Service Type: Next Day Air,This example is about ProductType,entailment
+Package Volume: 0.444 m³,This example is about ProductType,contradiction
+Scheduled DateAndTimes: 2024-08-10 07:02:47,This example is about TotalPackages,contradiction
+Shipment Status: Delivered at 2023-01-11 03:39:30,This example is about HousebillNumber,contradiction
+Service Type: Economy,This example is about DateAndTimes,contradiction
+"Origin: Dubai, FR",This example is about Origin,entailment
+"Destination: Sydney, IN",This example is about Origin,contradiction
+Number of Packages: 3,This example is about TotalPackages,entailment
+Shipment Status: Delivered at 2023-03-27 10:30:22,This example is about DateAndTimes,contradiction
+Shipment Status: In transit at 2024-04-24 04:04:28,This example is about Origin,contradiction
+Number of Packages: 9,This example is about ProductType,contradiction
+Shipment Status: Departed facility at 2024-02-12 12:04:07,This example is about Timestamp,entailment
+"Destination: Paris, US",This example is about TotalWeight,contradiction
+Service Type: Economy,This example is about ProductType,entailment
+"Destination: Beijing, DE",This example is about Destination,entailment
+Number of Packages: 1,This example is about TotalWeight,contradiction
+Shipment Status: Delivered at 2024-05-05 18:59:14,This example is about Origin,contradiction
+Shipment ID: DHL265380738843,This example is about HousebillNumber,entailment
+Package Weight: 62.85 KG,This example is about Destination,contradiction
+Package Volume: 0.862 m³,This example is about TotalVolume,entailment
+Package Weight: 77.18 KG,This example is about TotalVolume,contradiction
+"Destination: Beijing, US",This example is about DateAndTimes,contradiction
+Scheduled DateAndTimes: 2024-05-27 00:37:13,This example is about DateAndTimes,entailment
+"Destination: London, AE",This example is about Origin,contradiction
+"Destination: New York, IN",This example is about Timestamp,contradiction
+"Origin: Berlin, US",This example is about DateAndTimes,contradiction
+Shipment Status: Out for delivery at 2024-09-19 20:49:50,This example is about TotalVolume,contradiction
+Shipment Status: Arrived at facility at 2024-12-02 19:03:48,This example is about HousebillNumber,contradiction
+Number of Packages: 9,This example is about TotalPackages,entailment
+Shipment ID: UPS722053786354,This example is about HousebillNumber,entailment
+Scheduled DateAndTimes: 2024-10-02 22:15:06,This example is about DateAndTimes,entailment
+Shipment Status: Arrived at facility at 2023-09-20 02:50:35,This example is about DateAndTimes,contradiction
+Scheduled DateAndTimes: 2024-06-03 23:28:40,This example is about DateAndTimes,entailment
+Number of Packages: 1,This example is about TotalPackages,entailment
+Shipment Status: Picked up at 2023-03-06 01:44:55,This example is about HousebillNumber,contradiction
+"Destination: Dubai, AU",This example is about Destination,entailment
+Service Type: Ground,This example is about ProductType,entailment
+Package Weight: 77.18 KG,This example is about TotalWeight,entailment
+"Origin: Berlin, JP",This example is about ProductType,contradiction
+Scheduled DateAndTimes: 2023-08-29 21:05:43,This example is about DateAndTimes,entailment
+Service Type: Standard,This example is about TotalPackages,contradiction
+Number of Packages: 5,This example is about TotalPackages,entailment
+Service Type: Next Day Air,This example is about Origin,contradiction
+Shipment ID: FDX265114077312,This example is about HousebillNumber,entailment
+Package Weight: 52.71 KG,This example is about TotalWeight,entailment
+Shipment Status: Out for delivery at 2024-02-15 02:59:18,This example is about DateAndTimes,contradiction
+Number of Packages: 2,This example is about HousebillNumber,contradiction
+Number of Packages: 2,This example is about TotalWeight,contradiction
+Shipment ID: 1Z544731644590,This example is about HousebillNumber,entailment
+Scheduled DateAndTimes: 2023-03-23 09:55:35,This example is about DateAndTimes,entailment
+Package Weight: 33.13 KG,This example is about ProductType,contradiction
+Shipment Status: Delivered at 2024-06-05 02:16:32,This example is about Timestamp,entailment
+Shipment Status: Customs clearance at 2024-08-07 01:09:00,This example is about Timestamp,entailment
+"Destination: Dubai, GB",This example is about Destination,entailment
+Package Weight: 19.89 KG,This example is about TotalVolume,contradiction
+Package Volume: 0.507 m³,This example is about TotalVolume,entailment
+Shipment ID: UPS829714530345,This example is about HousebillNumber,entailment
+Shipment Status: Departed facility at 2023-09-09 19:02:03,This example is about TotalPackages,contradiction
+"Origin: Mumbai, CN",This example is about TotalWeight,contradiction
+Scheduled DateAndTimes: 2023-02-01 14:27:38,This example is about DateAndTimes,entailment
+Number of Packages: 9,This example is about TotalPackages,entailment
+Package Volume: 0.824 m³,This example is about DateAndTimes,contradiction
+Package Volume: 0.243 m³,This example is about TotalVolume,entailment
+Package Volume: 0.173 m³,This example is about Timestamp,contradiction
+Number of Packages: 4,This example is about Timestamp,contradiction
+Number of Packages: 7,This example is about Origin,contradiction
+Package Volume: 0.625 m³,This example is about ProductType,contradiction
+Number of Packages: 2,This example is about Destination,contradiction
+"Destination: New York, DE",This example is about TotalVolume,contradiction
+Number of Packages: 1,This example is about TotalPackages,entailment
+Scheduled DateAndTimes: 2023-02-23 15:38:26,This example is about TotalPackages,contradiction
+Service Type: Ground,This example is about HousebillNumber,contradiction
+Package Weight: 70.0 KG,This example is about Timestamp,contradiction
+Scheduled DateAndTimes: 2023-12-21 19:55:53,This example is about DateAndTimes,entailment
+Package Weight: 50.22 KG,This example is about TotalWeight,entailment
+Scheduled DateAndTimes: 2023-07-15 14:53:56,This example is about TotalVolume,contradiction
+Service Type: Express,This example is about Destination,contradiction
+"Origin: Beijing, CA",This example is about Origin,entailment
+Package Weight: 95.18 KG,This example is about TotalWeight,entailment
+Scheduled DateAndTimes: 2023-01-10 23:02:28,This example is about DateAndTimes,entailment
+"Origin: Toronto, AE",This example is about DateAndTimes,contradiction
+Number of Packages: 9,This example is about Timestamp,contradiction
+Package Volume: 0.459 m³,This example is about ProductType,contradiction
+Package Weight: 19.49 KG,This example is about TotalPackages,contradiction
+Shipment ID: DHL887754351173,This example is about HousebillNumber,entailment
+Scheduled DateAndTimes: 2023-06-20 14:21:51,This example is about DateAndTimes,entailment
+Number of Packages: 1,This example is about TotalPackages,entailment
+Shipment Status: Delivered at 2024-08-02 10:55:43,This example is about Timestamp,entailment
+Shipment ID: FDX450449767149,This example is about HousebillNumber,entailment
+Package Volume: 0.351 m³,This example is about TotalVolume,entailment
+Package Weight: 27.26 KG,This example is about TotalWeight,entailment
+Service Type: Freight,This example is about Origin,contradiction
+Service Type: Same Day,This example is about ProductType,entailment
+"Destination: Dubai, JP",This example is about Destination,entailment
+Number of Packages: 6,This example is about Origin,contradiction
+Shipment Status: Arrived at facility at 2024-01-31 20:15:11,This example is about TotalWeight,contradiction
+Number of Packages: 10,This example is about TotalPackages,entailment
+"Origin: Beijing, DE",This example is about Origin,entailment
+Scheduled DateAndTimes: 2024-10-15 21:53:58,This example is about Timestamp,contradiction
+Shipment Status: Customs clearance at 2023-06-11 23:00:27,This example is about TotalPackages,contradiction
+"Origin: Berlin, DE",This example is about Origin,entailment
+Shipment ID: FDX590832323699,This example is about HousebillNumber,entailment
+"Destination: Sydney, JP",This example is about Destination,entailment
+Package Weight: 44.6 KG,This example is about TotalWeight,entailment
+Package Weight: 98.04 KG,This example is about TotalPackages,contradiction
+"Destination: Toronto, CN",This example is about Destination,entailment
+Package Volume: 0.329 m³,This example is about TotalVolume,entailment
+"Origin: New York, FR",This example is about Origin,entailment
+"Destination: Tokyo, IN",This example is about HousebillNumber,contradiction
+Shipment ID: DHL396008317939,This example is about HousebillNumber,entailment
+Package Weight: 25.33 KG,This example is about TotalWeight,entailment
+"Destination: Mumbai, AU",This example is about Timestamp,contradiction
+Package Weight: 87.31 KG,This example is about TotalWeight,entailment
+"Origin: New York, CN",This example is about TotalVolume,contradiction
+Package Weight: 93.96 KG,This example is about DateAndTimes,contradiction
+Number of Packages: 2,This example is about Timestamp,contradiction
+"Destination: New York, AU",This example is about Destination,entailment
+Package Weight: 60.27 KG,This example is about HousebillNumber,contradiction
+Service Type: Next Day Air,This example is about Timestamp,contradiction
+Service Type: Freight,This example is about ProductType,entailment
+Number of Packages: 9,This example is about TotalVolume,contradiction
+Service Type: Express,This example is about ProductType,entailment
+Package Volume: 0.705 m³,This example is about TotalVolume,entailment
+Service Type: Ground,This example is about ProductType,entailment
+"Origin: Beijing, JP",This example is about TotalPackages,contradiction
+"Destination: Berlin, JP",This example is about DateAndTimes,contradiction
+Shipment Status: Arrived at facility at 2024-08-18 19:37:28,This example is about Timestamp,entailment
+Number of Packages: 9,This example is about Timestamp,contradiction
+Package Volume: 0.736 m³,This example is about ProductType,contradiction
+Shipment Status: Customs clearance at 2023-10-05 02:15:42,This example is about Timestamp,entailment
+"Destination: Dubai, CN",This example is about DateAndTimes,contradiction
+"Origin: Paris, GB",This example is about Origin,entailment
+"Destination: Sydney, DE",This example is about Timestamp,contradiction
+Scheduled DateAndTimes: 2024-01-12 10:05:27,This example is about TotalVolume,contradiction
+Shipment ID: FDX569252151094,This example is about HousebillNumber,entailment
+"Destination: Beijing, JP",This example is about Destination,entailment
+Package Volume: 0.824 m³,This example is about TotalVolume,entailment
+Scheduled DateAndTimes: 2024-06-03 23:28:40,This example is about TotalWeight,contradiction
+Service Type: 2nd Day Air,This example is about HousebillNumber,contradiction
+"Destination: Dubai, JP",This example is about DateAndTimes,contradiction
+Package Weight: 99.62 KG,This example is about Timestamp,contradiction
+"Origin: New York, DE",This example is about DateAndTimes,contradiction
+Shipment Status: In transit at 2024-10-05 10:16:36,This example is about Timestamp,entailment
+Package Volume: 0.766 m³,This example is about TotalVolume,entailment
+Service Type: Economy,This example is about ProductType,entailment
+Scheduled DateAndTimes: 2023-09-20 12:45:44,This example is about DateAndTimes,entailment
+Package Volume: 0.122 m³,This example is about TotalVolume,entailment
+Service Type: Same Day,This example is about Timestamp,contradiction
+"Origin: Beijing, DE",This example is about TotalWeight,contradiction
+"Destination: London, AE",This example is about Destination,entailment
+"Destination: Paris, IN",This example is about Destination,entailment
+Shipment Status: Picked up at 2023-07-05 19:56:15,This example is about Timestamp,entailment
+Package Volume: 0.974 m³,This example is about TotalVolume,entailment
+"Destination: London, US",This example is about Destination,entailment
+Shipment Status: Out for delivery at 2024-11-10 21:07:15,This example is about Timestamp,entailment
+Shipment Status: Departed facility at 2024-06-26 12:34:55,This example is about DateAndTimes,contradiction
+Scheduled DateAndTimes: 2024-08-31 07:52:35,This example is about HousebillNumber,contradiction
+Package Volume: 0.015 m³,This example is about TotalVolume,entailment
+"Destination: Sydney, AU",This example is about HousebillNumber,contradiction
+"Origin: Sydney, US",This example is about Origin,entailment
+Number of Packages: 1,This example is about ProductType,contradiction
+Package Weight: 77.99 KG,This example is about HousebillNumber,contradiction
+Shipment ID: FDX405893035822,This example is about HousebillNumber,entailment
+"Origin: New York, IN",This example is about TotalVolume,contradiction
+Package Volume: 0.05 m³,This example is about DateAndTimes,contradiction
+Scheduled DateAndTimes: 2024-07-29 05:07:12,This example is about TotalVolume,contradiction
+"Origin: New York, AE",This example is about TotalWeight,contradiction
+Package Weight: 73.01 KG,This example is about TotalPackages,contradiction
+Shipment ID: DHL026024085453,This example is about HousebillNumber,entailment
+Service Type: Economy,This example is about TotalPackages,contradiction
+Package Weight: 55.1 KG,This example is about TotalWeight,entailment
+"Origin: London, AE",This example is about Origin,entailment
+"Origin: London, JP",This example is about TotalWeight,contradiction
+Service Type: Express,This example is about ProductType,entailment
+"Origin: Beijing, US",This example is about Timestamp,contradiction
+Package Volume: 0.96 m³,This example is about TotalVolume,entailment
+Scheduled DateAndTimes: 2023-03-14 21:50:54,This example is about DateAndTimes,entailment
+Service Type: Economy,This example is about ProductType,entailment
+Scheduled DateAndTimes: 2023-12-04 02:04:03,This example is about TotalPackages,contradiction
+"Destination: Beijing, JP",This example is about Destination,entailment
+"Destination: Beijing, AE",This example is about Destination,entailment
+Service Type: Economy,This example is about ProductType,entailment
+Number of Packages: 7,This example is about Destination,contradiction
+Number of Packages: 3,This example is about TotalPackages,entailment
+Scheduled DateAndTimes: 2023-08-21 19:27:43,This example is about DateAndTimes,entailment
+Service Type: Standard,This example is about ProductType,entailment
+Scheduled DateAndTimes: 2023-07-13 06:34:51,This example is about Origin,contradiction
+Package Volume: 0.472 m³,This example is about Origin,contradiction
+Package Weight: 45.49 KG,This example is about Origin,contradiction
+Number of Packages: 4,This example is about TotalPackages,entailment
+Number of Packages: 10,This example is about Origin,contradiction
+Service Type: Freight,This example is about ProductType,entailment
+"Destination: Toronto, JP",This example is about Destination,entailment
+Number of Packages: 1,This example is about Origin,contradiction
+Package Weight: 22.72 KG,This example is about TotalWeight,entailment
+Scheduled DateAndTimes: 2023-11-16 20:32:27,This example is about TotalVolume,contradiction
+Scheduled DateAndTimes: 2024-10-15 21:53:58,This example is about DateAndTimes,entailment
+Shipment Status: Departed facility at 2023-03-22 05:58:49,This example is about Timestamp,entailment
+"Origin: Dubai, IN",This example is about Origin,entailment
+Package Weight: 52.71 KG,This example is about HousebillNumber,contradiction
+Package Volume: 0.578 m³,This example is about TotalWeight,contradiction
+Package Volume: 0.473 m³,This example is about TotalVolume,entailment
+"Origin: Toronto, AU",This example is about Origin,entailment
+"Origin: Beijing, US",This example is about Origin,entailment
+Scheduled DateAndTimes: 2024-06-26 20:10:00,This example is about DateAndTimes,entailment
+Service Type: Standard,This example is about ProductType,entailment
+"Destination: Beijing, DE",This example is about Destination,entailment
+"Origin: Mumbai, IN",This example is about Origin,entailment
+"Origin: Sydney, GB",This example is about Origin,entailment
+Package Volume: 0.489 m³,This example is about TotalVolume,entailment
+Number of Packages: 5,This example is about TotalPackages,entailment
+Service Type: Same Day,This example is about ProductType,entailment
+Service Type: Ground,This example is about TotalVolume,contradiction
+Package Volume: 0.952 m³,This example is about TotalWeight,contradiction
+Shipment Status: Customs clearance at 2024-09-24 18:13:11,This example is about Timestamp,entailment
+"Destination: Toronto, CN",This example is about HousebillNumber,contradiction
+"Origin: New York, FR",This example is about TotalPackages,contradiction
+Scheduled DateAndTimes: 2023-01-26 11:56:15,This example is about Destination,contradiction
+Service Type: Same Day,This example is about TotalPackages,contradiction
+"Destination: Dubai, IN",This example is about Timestamp,contradiction
+Number of Packages: 8,This example is about HousebillNumber,contradiction
+Number of Packages: 5,This example is about TotalPackages,entailment
+Service Type: Express,This example is about TotalWeight,contradiction
+Service Type: Standard,This example is about ProductType,entailment
+Package Weight: 98.04 KG,This example is about TotalWeight,entailment
+"Origin: Paris, US",This example is about ProductType,contradiction
+Service Type: Same Day,This example is about Timestamp,contradiction
+Service Type: Economy,This example is about DateAndTimes,contradiction
+Shipment Status: Picked up at 2023-01-16 07:17:03,This example is about Timestamp,entailment
+Package Volume: 0.089 m³,This example is about TotalVolume,entailment
+Service Type: 2nd Day Air,This example is about Timestamp,contradiction
+Service Type: Standard,This example is about TotalWeight,contradiction
+Package Volume: 0.799 m³,This example is about ProductType,contradiction
+Shipment ID: FDX289149886548,This example is about HousebillNumber,entailment
+"Destination: Sydney, AU",This example is about ProductType,contradiction
+Service Type: Same Day,This example is about ProductType,entailment
+Package Weight: 38.83 KG,This example is about TotalWeight,entailment
+Package Volume: 0.135 m³,This example is about ProductType,contradiction
+"Destination: Paris, DE",This example is about HousebillNumber,contradiction
+Shipment Status: Out for delivery at 2024-02-15 02:59:18,This example is about Timestamp,entailment
+Shipment Status: Departed facility at 2024-09-16 01:13:42,This example is about TotalPackages,contradiction
+Number of Packages: 7,This example is about TotalPackages,entailment
+Shipment Status: Picked up at 2023-03-06 01:44:55,This example is about Timestamp,entailment
+Shipment Status: Departed facility at 2023-09-09 19:02:03,This example is about Timestamp,entailment
+Service Type: Ground,This example is about TotalWeight,contradiction
+"Origin: Sydney, CA",This example is about DateAndTimes,contradiction
+Package Weight: 38.83 KG,This example is about Origin,contradiction
+Package Weight: 76.42 KG,This example is about TotalWeight,entailment
+Service Type: Economy,This example is about ProductType,entailment
+Scheduled DateAndTimes: 2023-05-27 02:06:46,This example is about Origin,contradiction
+Service Type: Ground,This example is about HousebillNumber,contradiction
+"Destination: London, JP",This example is about HousebillNumber,contradiction
+"Origin: Berlin, IN",This example is about DateAndTimes,contradiction
+Number of Packages: 1,This example is about TotalPackages,entailment
+Number of Packages: 4,This example is about DateAndTimes,contradiction
+"Destination: Toronto, CN",This example is about HousebillNumber,contradiction
+"Origin: New York, JP",This example is about HousebillNumber,contradiction
+Scheduled DateAndTimes: 2024-01-12 10:05:27,This example is about DateAndTimes,entailment
+Service Type: Next Day Air,This example is about ProductType,entailment
+"Origin: Beijing, US",This example is about Origin,entailment
+Shipment Status: Out for delivery at 2023-03-13 16:08:16,This example is about Destination,contradiction
+"Origin: Beijing, JP",This example is about Origin,entailment
+Shipment ID: 1Z289572988381,This example is about HousebillNumber,entailment
+Scheduled DateAndTimes: 2024-01-29 14:28:58,This example is about DateAndTimes,entailment
+Package Volume: 0.834 m³,This example is about TotalVolume,entailment
+Service Type: Freight,This example is about Timestamp,contradiction
+Number of Packages: 7,This example is about TotalWeight,contradiction
+Scheduled DateAndTimes: 2024-04-30 20:40:38,This example is about TotalPackages,contradiction
+Shipment Status: Delivered at 2023-05-23 22:55:15,This example is about Timestamp,entailment
+Package Weight: 66.95 KG,This example is about TotalWeight,entailment
+Service Type: Same Day,This example is about HousebillNumber,contradiction
+Number of Packages: 7,This example is about TotalPackages,entailment
+"Destination: Beijing, DE",This example is about TotalVolume,contradiction
+Shipment Status: Delivered at 2023-10-14 01:48:12,This example is about Timestamp,entailment
+Package Weight: 37.91 KG,This example is about Origin,contradiction
+"Origin: Mumbai, IN",This example is about Origin,entailment
+Package Weight: 41.75 KG,This example is about TotalWeight,entailment
+"Destination: Paris, JP",This example is about Destination,entailment
+"Destination: Tokyo, DE",This example is about Destination,entailment
+Number of Packages: 10,This example is about Destination,contradiction
+Scheduled DateAndTimes: 2024-04-30 18:36:56,This example is about DateAndTimes,entailment
+Package Weight: 61.63 KG,This example is about Timestamp,contradiction
+Shipment Status: Picked up at 2023-07-05 19:56:15,This example is about TotalWeight,contradiction
+"Origin: New York, JP",This example is about Origin,entailment
+Package Weight: 55.44 KG,This example is about Timestamp,contradiction
+Service Type: Same Day,This example is about ProductType,entailment
+"Destination: Beijing, GB",This example is about Origin,contradiction
+"Origin: Beijing, CA",This example is about TotalWeight,contradiction
+Service Type: Same Day,This example is about DateAndTimes,contradiction
+Service Type: Standard,This example is about TotalWeight,contradiction
+Scheduled DateAndTimes: 2023-11-20 19:54:40,This example is about DateAndTimes,entailment
+"Origin: Berlin, JP",This example is about Origin,entailment
+Shipment Status: Delivered at 2024-03-22 11:26:57,This example is about Timestamp,entailment
+Scheduled DateAndTimes: 2024-06-23 03:27:15,This example is about DateAndTimes,entailment
+Package Volume: 0.563 m³,This example is about TotalVolume,entailment
+"Origin: Paris, GB",This example is about TotalPackages,contradiction
+Service Type: 2nd Day Air,This example is about Timestamp,contradiction
+"Destination: Berlin, FR",This example is about Destination,entailment
+"Destination: Paris, CN",This example is about Origin,contradiction
+Shipment Status: Delivered at 2023-05-23 22:55:15,This example is about TotalWeight,contradiction
+"Origin: Mumbai, CN",This example is about Origin,entailment
+"Destination: London, JP",This example is about Destination,entailment
+Package Weight: 5.86 KG,This example is about TotalWeight,entailment
+Package Volume: 0.386 m³,This example is about TotalVolume,entailment
+Package Volume: 0.133 m³,This example is about DateAndTimes,contradiction
+Package Volume: 0.903 m³,This example is about TotalVolume,entailment
+Package Volume: 0.801 m³,This example is about TotalVolume,entailment
+"Origin: Tokyo, AE",This example is about Origin,entailment
+Package Volume: 0.974 m³,This example is about Destination,contradiction
+Scheduled DateAndTimes: 2023-01-04 03:57:54,This example is about DateAndTimes,entailment
+Shipment ID: FDX744352489445,This example is about HousebillNumber,entailment
+Number of Packages: 8,This example is about TotalPackages,entailment
+Shipment Status: Departed facility at 2023-05-01 15:04:03,This example is about TotalVolume,contradiction
+"Origin: Sydney, AU",This example is about Origin,entailment
+Service Type: Express,This example is about TotalPackages,contradiction
+Scheduled DateAndTimes: 2023-03-14 21:50:54,This example is about TotalWeight,contradiction
+"Origin: Dubai, IN",This example is about TotalPackages,contradiction
+Package Volume: 0.301 m³,This example is about TotalVolume,entailment
+Shipment ID: 1Z542466286577,This example is about HousebillNumber,entailment
+"Origin: Toronto, AE",This example is about Origin,entailment
+"Origin: Toronto, AE",This example is about Origin,entailment
+Service Type: Same Day,This example is about ProductType,entailment
+Scheduled DateAndTimes: 2023-10-05 22:48:47,This example is about DateAndTimes,entailment
+Scheduled DateAndTimes: 2023-07-15 14:53:56,This example is about DateAndTimes,entailment
+Package Volume: 0.225 m³,This example is about TotalPackages,contradiction
+Service Type: Standard,This example is about ProductType,entailment
+Package Volume: 0.932 m³,This example is about ProductType,contradiction
+Shipment Status: Picked up at 2023-06-30 19:35:56,This example is about Origin,contradiction
+Package Weight: 42.99 KG,This example is about HousebillNumber,contradiction
+"Destination: Toronto, GB",This example is about Destination,entailment
+Service Type: 2nd Day Air,This example is about TotalVolume,contradiction
+"Origin: Mumbai, IN",This example is about Destination,contradiction
+Number of Packages: 10,This example is about TotalWeight,contradiction
+Scheduled DateAndTimes: 2024-12-17 08:32:55,This example is about Timestamp,contradiction
+"Destination: London, CN",This example is about ProductType,contradiction
+"Origin: Beijing, CA",This example is about Origin,entailment
+Number of Packages: 5,This example is about Origin,contradiction
+Package Volume: 0.705 m³,This example is about TotalPackages,contradiction
+Shipment Status: Arrived at facility at 2023-09-20 02:50:35,This example is about Timestamp,entailment
+"Destination: London, AU",This example is about Destination,entailment
+Scheduled DateAndTimes: 2023-12-21 19:55:53,This example is about TotalWeight,contradiction
+Scheduled DateAndTimes: 2023-08-21 19:27:43,This example is about HousebillNumber,contradiction
+Number of Packages: 5,This example is about TotalPackages,entailment
+Scheduled DateAndTimes: 2023-01-06 17:46:54,This example is about DateAndTimes,entailment
+Number of Packages: 9,This example is about TotalPackages,entailment
+Number of Packages: 4,This example is about TotalPackages,entailment
+"Origin: Toronto, AU",This example is about TotalVolume,contradiction
+Number of Packages: 2,This example is about Origin,contradiction
+Service Type: Same Day,This example is about ProductType,entailment
+Number of Packages: 2,This example is about Timestamp,contradiction
+Package Volume: 0.681 m³,This example is about TotalVolume,entailment
+Shipment Status: In transit at 2023-05-07 21:53:49,This example is about Timestamp,entailment
+Scheduled DateAndTimes: 2024-09-28 22:14:25,This example is about Timestamp,contradiction
+Package Weight: 15.07 KG,This example is about TotalWeight,entailment
+Service Type: Express,This example is about ProductType,entailment
+Package Weight: 89.38 KG,This example is about HousebillNumber,contradiction
+Shipment Status: Out for delivery at 2024-10-22 21:34:13,This example is about Timestamp,entailment
+Package Weight: 55.44 KG,This example is about TotalWeight,entailment
+Service Type: Express,This example is about ProductType,entailment
+"Origin: Toronto, DE",This example is about Origin,entailment
+Package Weight: 19.49 KG,This example is about TotalWeight,entailment
+Service Type: Same Day,This example is about Destination,contradiction
+"Destination: Mumbai, CA",This example is about Destination,entailment
+Scheduled DateAndTimes: 2023-09-20 12:45:44,This example is about TotalWeight,contradiction
+Shipment ID: FDX730346066723,This example is about HousebillNumber,entailment
+"Destination: Beijing, CN",This example is about Destination,entailment
+Shipment ID: 1Z996792320586,This example is about HousebillNumber,entailment
+Package Volume: 0.015 m³,This example is about ProductType,contradiction
+Package Volume: 0.955 m³,This example is about Timestamp,contradiction
+Package Volume: 0.855 m³,This example is about ProductType,contradiction
+"Origin: Beijing, CA",This example is about ProductType,contradiction
+Shipment Status: Picked up at 2024-06-28 22:39:57,This example is about ProductType,contradiction
+Number of Packages: 1,This example is about DateAndTimes,contradiction
+Service Type: Express,This example is about ProductType,entailment
+Scheduled DateAndTimes: 2023-09-10 13:53:31,This example is about DateAndTimes,entailment
+Scheduled DateAndTimes: 2024-10-22 09:51:25,This example is about DateAndTimes,entailment
+Package Weight: 60.12 KG,This example is about TotalWeight,entailment
+Shipment ID: 1Z215126902191,This example is about HousebillNumber,entailment
+Shipment Status: Departed facility at 2024-02-12 12:04:07,This example is about ProductType,contradiction
+Shipment Status: Picked up at 2024-04-26 23:27:44,This example is about Timestamp,entailment
+Package Volume: 0.86 m³,This example is about Destination,contradiction
+Package Volume: 0.546 m³,This example is about DateAndTimes,contradiction
+Number of Packages: 10,This example is about TotalPackages,entailment
+Service Type: 2nd Day Air,This example is about ProductType,entailment
+Package Volume: 0.351 m³,This example is about Timestamp,contradiction
+"Destination: Beijing, CN",This example is about Destination,entailment
+"Destination: New York, AU",This example is about TotalVolume,contradiction
+Shipment ID: DHL344535631074,This example is about HousebillNumber,entailment
+Shipment ID: DHL301969276960,This example is about HousebillNumber,entailment
+"Destination: Tokyo, DE",This example is about Destination,entailment
+"Destination: Dubai, CN",This example is about Destination,entailment
+"Destination: Dubai, GB",This example is about Timestamp,contradiction
+"Destination: London, US",This example is about TotalWeight,contradiction
+Package Volume: 0.577 m³,This example is about TotalVolume,entailment
+Package Weight: 95.68 KG,This example is about TotalWeight,entailment
+Number of Packages: 7,This example is about DateAndTimes,contradiction
+"Destination: London, IN",This example is about DateAndTimes,contradiction
+Package Weight: 29.06 KG,This example is about TotalWeight,entailment
+Shipment Status: Arrived at facility at 2024-11-17 04:31:30,This example is about Timestamp,entailment
+Shipment Status: Exception at 2023-12-10 23:06:23,This example is about DateAndTimes,contradiction
+Number of Packages: 7,This example is about TotalPackages,entailment
+Package Volume: 0.02 m³,This example is about HousebillNumber,contradiction
+Scheduled DateAndTimes: 2024-07-25 17:24:08,This example is about DateAndTimes,entailment
+Scheduled DateAndTimes: 2023-08-29 21:05:43,This example is about TotalPackages,contradiction
+"Destination: Mumbai, FR",This example is about Destination,entailment
+Package Volume: 0.858 m³,This example is about TotalVolume,entailment
+Shipment ID: 1Z654409734651,This example is about HousebillNumber,entailment
+"Origin: London, AE",This example is about TotalWeight,contradiction
+"Destination: New York, CA",This example is about Destination,entailment
+Package Weight: 37.91 KG,This example is about TotalWeight,entailment
+Package Volume: 0.859 m³,This example is about TotalVolume,entailment
+Number of Packages: 8,This example is about Timestamp,contradiction
+Shipment ID: UPS233592197147,This example is about HousebillNumber,entailment
+Number of Packages: 3,This example is about TotalWeight,contradiction
+"Destination: Sydney, AU",This example is about Destination,entailment
+Package Volume: 0.659 m³,This example is about Timestamp,contradiction
+Number of Packages: 6,This example is about Origin,contradiction
+"Origin: Paris, CN",This example is about TotalVolume,contradiction
+Service Type: Ground,This example is about ProductType,entailment
+Shipment Status: Departed facility at 2024-01-30 23:14:09,This example is about Timestamp,entailment
+Number of Packages: 7,This example is about TotalPackages,entailment
+Package Weight: 66.79 KG,This example is about TotalWeight,entailment
+Package Weight: 32.59 KG,This example is about TotalWeight,entailment
+Shipment Status: In transit at 2024-11-07 23:23:22,This example is about ProductType,contradiction
+Package Weight: 45.49 KG,This example is about TotalWeight,entailment
+Package Weight: 82.54 KG,This example is about TotalWeight,entailment
+Shipment Status: Picked up at 2023-03-13 23:56:42,This example is about Timestamp,entailment
+Package Weight: 41.75 KG,This example is about ProductType,contradiction
+Service Type: Freight,This example is about ProductType,entailment
+"Origin: Berlin, US",This example is about Origin,entailment
+Scheduled DateAndTimes: 2024-10-09 12:26:49,This example is about DateAndTimes,entailment
+Package Weight: 64.63 KG,This example is about DateAndTimes,contradiction
+Package Weight: 15.33 KG,This example is about TotalVolume,contradiction
+Service Type: Express,This example is about ProductType,entailment
+Number of Packages: 1,This example is about TotalPackages,entailment
+Shipment Status: Delivered at 2023-05-31 02:51:47,This example is about ProductType,contradiction
+"Origin: Mumbai, IN",This example is about Origin,entailment
+Number of Packages: 2,This example is about TotalPackages,entailment
+Shipment Status: In transit at 2024-11-07 23:23:22,This example is about Timestamp,entailment
+Scheduled DateAndTimes: 2023-02-23 15:38:26,This example is about DateAndTimes,entailment
+Package Volume: 0.96 m³,This example is about ProductType,contradiction
+"Destination: New York, DE",This example is about Destination,entailment

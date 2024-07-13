@@ -1,22 +1,44 @@
 import json
 import logging
 from typing import List, Dict, Tuple
-from transformers import T5Tokenizer
+from transformers import BartTokenizer
 from torch.utils.data import DataLoader, TensorDataset
-from utils.file_utils import backup_and_update_file, compare_json_files, reset_file
+from .file_utils import backup_and_update_file, compare_json_files, reset_file
 
 # Loads training and validation data from JSON files
 def load_data(training_files: List[str], validation_file: str) -> Tuple[List[Dict], List[Dict]]:
     training_data = []
-    # Iterate over each training file and load the data
-    for training_file in training_files:
-        with open(training_file, 'r') as f:
-            training_data.extend(json.load(f))
+    for file in training_files:
+        try:
+            with open(file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                if not isinstance(data, list):
+                    logging.error(f"File {file} does not contain a list of dictionaries.")
+                    continue
+                training_data.extend(data)
+        except json.JSONDecodeError as e:
+            logging.error(f"Error decoding JSON from file {file}: {e}")
+        except FileNotFoundError:
+            logging.error(f"File not found: {file}")
+        except Exception as e:
+            logging.error(f"Unexpected error reading file {file}: {e}")
     
-    # Load validation data
-    with open(validation_file, 'r') as f:
-        validation_data = json.load(f)
-    
+    validation_data = []
+    if validation_file:
+        try:
+            with open(validation_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                if not isinstance(data, list):
+                    logging.error(f"File {validation_file} does not contain a list of dictionaries.")
+                else:
+                    validation_data.extend(data)
+        except json.JSONDecodeError as e:
+            logging.error(f"Error decoding JSON from file {validation_file}: {e}")
+        except FileNotFoundError:
+            logging.error(f"File not found: {validation_file}")
+        except Exception as e:
+            logging.error(f"Unexpected error reading file {validation_file}: {e}")
+
     return training_data, validation_data
 
 # Loads unformatted keys from a text file
@@ -69,7 +91,7 @@ def get_target_text(example: Dict) -> str:
     return f"{target_key} : {target_value}"
 
 # Prepares data for training
-def prepare_data(examples: List[Dict], tokenizer: T5Tokenizer, batch_size: int = 16) -> DataLoader:
+def prepare_data(examples: List[Dict], tokenizer: BartTokenizer, batch_size: int = 16) -> DataLoader:
     # Get input and target texts for each example
     input_texts = [get_input_text(ex) for ex in examples]
     target_texts = [get_target_text(ex) for ex in examples]
