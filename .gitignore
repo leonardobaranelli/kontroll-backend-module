@@ -46,5 +46,23 @@ coverage/
 # Ai model
 src/services/external/ai/models/fine-tuned-bart/
 
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.venv/
+
+# VS Code settings
+.vscode/
+
+# Other common files to ignore
+*.log
+*.sqlite3
+.DS_Store
+
 # Local auxiliary dev files
 *.auxiliary.*
