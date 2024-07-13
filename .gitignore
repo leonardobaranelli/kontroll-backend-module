@@ -43,6 +43,7 @@ yarn.lock
 # Coverage directory used by testing tools
 coverage/
 
+<<<<<<< HEAD
 # Ai model
 src/services/external/ai/models/fine-tuned-bart/
 # Large model files
@@ -67,5 +68,7 @@ venv/
 *.sqlite3
 .DS_Store
 
+=======
+>>>>>>> e78ce53b8318022d50c89b97176a182af2553bff
 # Local auxiliary dev files
 *.auxiliary.*
