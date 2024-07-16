@@ -1,89 +1,78 @@
-# Shipment Parser
+# Shipment Parser Module
 
-This project contains a parser for shipment data, designed to process and validate JSON input containing shipment information.
+The Shipment Parser Module is a standalone service designed to parse and standardize shipment data from various carriers and formats. It provides a unified interface for handling different shipment data structures and converting them into a consistent format for further processing.
 
-## Project Structure
+## Table of Contents
 
-- `src/services/external/shipment-parser/`
-  - `config/`: Configuration files for input and shipment data structure
-    - `input_config.py`: Defines the input file path
-    - `shipment_structure.py`: Defines the shipment data structure
-    - `model_config.py`: Defines the model name and shipment synonyms
-  - `core/`: Core parser logic
-    - `classifier.py`: Classification functions
-    - `mapper.py`: Mapping functions
-    - `preprocessor.py`: Preprocessing functions
-  - `utils/`: Utility functions
-    - `ai_utils.py`: Utility functions for the AI parser
-    - `file_utils.py`: Utility functions for file operations
-    - `logging_utils.py`: Logging configuration and functions
-  - `data/`: Data files
-    - `dhl_shipment_example.json`: Sample DHL shipment data
-  - `main.py`: Main entry point for the parser
-  - `server.py`: Flask server for the parser
-  - `test_shipment_parser.py`: Test case using fixed input data for the parser
-  - `requirements.txt`: List of project dependencies
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [API Endpoints](#api-endpoints)
+4. [Configuration](#configuration)
+5. [Parsers](#parsers)
+6. [Data Models](#data-models)
+7. [Error Handling](#error-handling)
 
 ## Installation
 
-1. Clone the repository containing the shipment-parser project.
-2. Navigate to the project directory:
+To install the Shipment Parser Module, follow these steps:
+
+1. Navigate to the module directory:
+
    ```
    cd src/services/external/shipment-parser
    ```
-3. Create a virtual environment:
+
+2. Install dependencies:
    ```
-   python -m venv venv
-   ```
-4. Activate the virtual environment:
-   - On Windows:
-     ```
-     venv\Scripts\activate
-     ```
-   - On macOS and Linux:
-     ```
-     source venv/bin/activate
-     ```
-5. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-6. Run the server:
-   ```
-   python -m server.py
-   ```
-7. Run the tests:
-   ```
-   python -m test_shipment_parser
+   npm install
    ```
 
-## Testing Input Configuration
+## Usage
 
-To change the input file:
+To start the Shipment Parser service:
 
-1. Open `src/services/external/shipment-parser/config/input_config.py`
-2. Modify the `INPUT_FILE` value to point to your desired JSON input file.
-3. Save the configuration file.
-
-Example `input_config.py`:
-
-```python
-import os
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-INPUT_FILE = os.path.join(BASE_DIR, 'data', 'dhl_shipment_example.json')
+```
+npm start
 ```
 
-## Synonyms
+This will start the service on the port specified in your environment variables or default to port 3003.
 
-The synonyms are defined in the `model_config.py` file.
-You can add more synonyms to the `SYNONYMS` dictionary for each label.
-They will be used to help the mapping of the input shipment data to the shipment data structure.
+## API Endpoints
 
-## In order to parse the shipment data, you can use the following endpoint:
+The module exposes the following API endpoints:
 
-`http://localhost:5000/parse_shipment`
+1. Parse Shipment
 
-## Development
+   - URL: `/shipment-parser/parse`
+   - Method: POST
+   - Body: Raw shipment data
+   - Response: Parsed shipment data in standardized format
 
-To contribute to the project, make sure to follow the established coding conventions and add tests for any new functionality.
+2. Parse Known Shipment
+   - URL: `/shipment-parser/parse_known`
+   - Method: POST
+   - Body: Shipment data in a known format
+   - Response: Parsed shipment data in standardized format
+
+## Configuration
+
+Configuration settings can be found in `config/config.ts`. Make sure to set up your environment variables, especially the OpenAI API key if you're using AI-assisted parsing.
+
+## Parsers
+
+The module includes several parsers:
+
+1. General Shipment Parser (`parsers/shipment-parser.ts`)
+2. Known Format Parser (`parsers/known-parser.ts`)
+
+These parsers handle different input formats and convert them to the standardized `ShipmentData` format.
+
+## Data Models
+
+The main data model used is `ShipmentData`, defined in `types/index.ts`. This model represents the standardized format for all parsed shipment data.
+
+## Error Handling
+
+The module uses a consistent error handling approach, returning structured error responses when parsing fails. Errors are logged for debugging purposes.
+
+For more detailed information about each component, please refer to the individual files within the module.
