@@ -13,6 +13,7 @@ interface StepConfig {
     details4: string;
   };
   form?: {
+    expectedFieldName: string;
     instruction: string;
     label: string;
     title: string;
@@ -40,6 +41,7 @@ export const carrierConfig: Record<StepKey, StepConfig> = {
       details4: '',
     },
     form: {
+      expectedFieldName: 'accountNumber',
       instruction:
         'Log into your provider account and navigate to the account or profile section. Your account number should be listed there.',
       label: 'Account number',
@@ -66,6 +68,7 @@ export const carrierConfig: Record<StepKey, StepConfig> = {
       details4: '',
     },
     form: {
+      expectedFieldName: 'apiKey',
       instruction:
         'Generate your API key in the developer or API section of your account dashboard. Ensure to store it securely for future use.',
       label: 'Api Key',
