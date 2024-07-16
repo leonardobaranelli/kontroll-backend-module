@@ -4,15 +4,24 @@ import cors from 'cors';
 import logger from 'morgan';
 import session from 'express-session';
 import mainRouter from './routes';
+import cookieParser from 'cookie-parser';
 import { handleError, handleNotFound } from './middlewares/errors.middleware';
 
 dotenv.config();
 
 const app = express();
 
-app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
+app.use(cookieParser());
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }),
+);
 
 app.use(
   session({
