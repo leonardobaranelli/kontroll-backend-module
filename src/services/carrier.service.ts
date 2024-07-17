@@ -70,6 +70,22 @@ export default class CarrierService {
         await this.completeProcess(sessionID, state);
         return {
           message: `Process completed successfully! Carrier ${state.name} created.`,
+          nextStep: '',
+          stepsDetails: {
+            step: '',
+            stepTitle: '',
+            details1: '',
+            details2: '',
+            details3: '',
+            details4: '',
+          },
+          form: {
+            expectedFieldName: '',
+            instruction: '',
+            label: '',
+            title: '',
+            placeholder: '',
+          },
         };
       } else {
         await this.updateState(sessionID, stepConfig.next, state);
