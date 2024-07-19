@@ -1,0 +1,39 @@
+{
+  "ShipmentId": "DBSN1234567890",
+  "RecipientName": "María García",
+  "RecipientAddress1": "Calle Mayor 123",
+  "RecipientAddress2": "Piso 4B",
+  "RecipientZip": "28001",
+  "RecipientPlace": "Madrid",
+  "PickupName": "Electrónica Martínez S.L.",
+  "PickupAddress": "Polígono Industrial El Pinar, Nave 15",
+  "PickupZip": "08228",
+  "PickupPlace": "Barcelona",
+  "PickupDate": "2024-07-22T09:30:00",
+  "PickupTimeFrom": "2024-07-22T09:00:00",
+  "PickupTimeTo": "2024-07-22T12:00:00",
+  "PickedupDate": "2024-07-22T10:15:00",
+  "UnitType": "Pallet",
+  "NumberOfUnits": 2,
+  "NumberOfParcels": 5,
+  "Weight": 150.5,
+  "Parcels": [
+    {
+      "ParcelNumber": "DBSP987654321"
+    },
+    {
+      "ParcelNumber": "DBSP987654322"
+    },
+    {
+      "ParcelNumber": "DBSP987654323"
+    },
+    {
+      "ParcelNumber": "DBSP987654324"
+    },
+    {
+      "ParcelNumber": "DBSP987654325"
+    }
+  ],
+  "CustomerId": 45678,
+  "IsSplitted": false
+}
