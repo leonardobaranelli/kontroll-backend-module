@@ -1,0 +1,15 @@
+const linksKeywords = [
+  'doc',
+  //'document',
+  // 'customer',
+  // 'endpoint',
+  // 'requirements',
+  // 'service',
+  // 'docs',
+  // 'manual',
+  // 'guide',
+  // 'api',
+  // 'reference',
+  // 'specification',
+  // 'help',
+];

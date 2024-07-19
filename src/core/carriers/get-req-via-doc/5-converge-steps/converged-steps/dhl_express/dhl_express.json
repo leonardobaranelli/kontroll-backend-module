@@ -1,0 +1,74 @@
+[
+  {
+    "keyword": "api",
+    "stepsDetails": {
+      "step": 1,
+      "stepTitle": "How to find your api",
+      "details1": "Skip to main content api developer portal main navigation apis documentation help center en register login search api.",
+      "details2": "Clear all filters recommended division dhl ecommerce dhl express dhl freight dhl global forwarding dhl supply chain.",
+      "details3": "Post & parcel germany service type additional services information location shipping tracking region browse apis.",
+      "details4": ""
+    },
+    "form": {
+      "instruction": "Provide your api.",
+      "label": "Api",
+      "expectedFieldName": "api",
+      "title": "Enter your api",
+      "placeholder": "Text"
+    }
+  },
+  {
+    "keyword": "account number",
+    "stepsDetails": {
+      "step": 2,
+      "stepTitle": "How to find your account number",
+      "details1": "I already have a dhl express account number:.",
+      "details2": "",
+      "details3": "",
+      "details4": ""
+    },
+    "form": {
+      "instruction": "Provide your account number.",
+      "label": "Account number",
+      "expectedFieldName": "accountnumber",
+      "title": "Enter your account number",
+      "placeholder": "Text"
+    }
+  },
+  {
+    "keyword": "authentication",
+    "stepsDetails": {
+      "step": 3,
+      "stepTitle": "How to find your authentication",
+      "details1": "Authentication your dhl express consultant will provide you with access credentials to the dhl express api (mydhl api).",
+      "details2": "And assist in technical queries you may have..",
+      "details3": "",
+      "details4": ""
+    },
+    "form": {
+      "instruction": "Provide your authentication.",
+      "label": "Authentication",
+      "expectedFieldName": "authentication",
+      "title": "Enter your authentication",
+      "placeholder": "Text"
+    }
+  },
+  {
+    "keyword": "credentials",
+    "stepsDetails": {
+      "step": 4,
+      "stepTitle": "How to find your credentials",
+      "details1": "Authentication your dhl express consultant will provide you with access credentials to the dhl express api (mydhl api).",
+      "details2": "And assist in technical queries you may have..",
+      "details3": "",
+      "details4": ""
+    },
+    "form": {
+      "instruction": "Provide your credentials.",
+      "label": "Credentials",
+      "expectedFieldName": "credentials",
+      "title": "Enter your credentials",
+      "placeholder": "Text"
+    }
+  }
+]
