@@ -65,9 +65,7 @@ export async function parseShipment(
     if (Object.keys(inputJson).length === 0) {
       throw new Error('Input JSON is empty');
     }
-
     const parsedData = parseShipmentWithMapping(inputJson);
-
     return {
       success: true,
       data: parsedData,

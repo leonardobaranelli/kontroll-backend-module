@@ -110,3 +110,5 @@ Run the main server and the auxiliary python server (both must be running simult
    ```bash
     python nlp_server.py
    ```
+
+At this point, you have already configured the software :)
