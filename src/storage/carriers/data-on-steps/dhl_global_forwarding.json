@@ -1,0 +1,74 @@
+[
+  {
+    "keyword": "api",
+    "stepsDetails": {
+      "step": 3,
+      "stepTitle": "How to find your api",
+      "details1": "Skip to main content api developer portal main navigation apis documentation help center en register login search api.",
+      "details2": "Clear all filters division dhl ecommerce dhl express dhl freight dhl global forwarding dhl supply chain post & parcel.",
+      "details3": "Germany service type additional services shipping tracking region browse apis document (dhl global forwarding) dhl.",
+      "details4": ""
+    },
+    "form": {
+      "instruction": "Provide your api.",
+      "label": "Api",
+      "expectedFieldName": "api",
+      "title": "Enter your api",
+      "placeholder": "Text"
+    }
+  },
+  {
+    "keyword": "account number",
+    "stepsDetails": {
+      "step": 4,
+      "stepTitle": "How to find your account number",
+      "details1": "Arr carrier: arrived arv arrived final destination dlv handover freight to forwarder dih pick-up from airline fpr.",
+      "details2": "Freight recovered at tbn broker notified ecr export customs cleared cus import customs entry clc import customs cleared.",
+      "details3": "Ofd out for delivery doh import document handover epd estimated delivery pod shipment delivered can shipment cancelled.",
+      "details4": ""
+    },
+    "form": {
+      "instruction": "Provide your account number.",
+      "label": "Account number",
+      "expectedFieldName": "accountnumber",
+      "title": "Enter your account number",
+      "placeholder": "Text"
+    }
+  },
+  {
+    "keyword": "authentication",
+    "stepsDetails": {
+      "step": 5,
+      "stepTitle": "How to find your authentication",
+      "details1": "If you wish to add the api to an existing app, click on app's \"edit\" button fill in the form select \"shipment booking.",
+      "details2": "(dhl global forwarding)\" from the api drop down list when you have completed the form, click the add app button or save.",
+      "details3": "Button please email dgf.apisupport@dhl.com for api request approval authentication shipment booking api uses oauth 2.0.",
+      "details4": ""
+    },
+    "form": {
+      "instruction": "Provide your authentication.",
+      "label": "Authentication",
+      "expectedFieldName": "authentication",
+      "title": "Enter your authentication",
+      "placeholder": "Text"
+    }
+  },
+  {
+    "keyword": "credentials",
+    "stepsDetails": {
+      "step": 6,
+      "stepTitle": "How to find your credentials",
+      "details1": "For additional information, please contact dgf.apisupport@dhl.com user guide get access you must request credentials.",
+      "details2": "For any applications you develop to register your app and get your api subscription keys: click my apps on the portal.",
+      "details3": "Website..",
+      "details4": ""
+    },
+    "form": {
+      "instruction": "Provide your credentials.",
+      "label": "Credentials",
+      "expectedFieldName": "credentials",
+      "title": "Enter your credentials",
+      "placeholder": "Text"
+    }
+  }
+]

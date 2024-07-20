@@ -6,6 +6,7 @@ const router = Express.Router();
 
 //POST
 router.post('/', CarrierController.create);
+router.post('/dev', CarrierController.devCreate);
 
 //GET
 router.get('/', CarrierController.getAll);

@@ -4,9 +4,11 @@ import {
   sendErrorResponse,
 } from './helpers/commons/handlers/responses.handler';
 import CarrierService from '../services/carrier.service';
+import DevCarrierService from '../services/dev-carrier-service';
 import { ICarrierPublic } from '../utils/types/utilities.interface';
-import { StepKey } from '@/services/helpers/carrier/dhl-global-forwarding/carrier-config.helper';
+import { StepKey } from '../services/helpers/carrier/dhl-global-forwarding/dhl-g-f-config.helper';
 import { verifyStepRequest } from './helpers/carrier/dhl-global-forwarding/verify-step-request.helper';
+import { devVerifyStepRequest } from './helpers/carrier/custom/verify-step-request.helper';
 
 export default class CarrierController {
   public static getAll = async (
@@ -31,6 +33,29 @@ export default class CarrierController {
         };
 
         const result = await CarrierService.handleStep(
+          step,
+          data,
+          req.sessionID,
+        );
+        sendSuccessResponse(res, result, 'Step completed successfully');
+      });
+    } catch (error: any) {
+      sendErrorResponse(res, error);
+    }
+  };
+
+  public static devCreate = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
+    try {
+      devVerifyStepRequest(req, res, async () => {
+        const { step, data } = req.body as {
+          step: any;
+          data: any;
+        };
+
+        const result = await DevCarrierService.devHandleStep(
           step,
           data,
           req.sessionID,
