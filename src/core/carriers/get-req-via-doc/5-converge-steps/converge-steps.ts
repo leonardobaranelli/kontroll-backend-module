@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Define the interface for steps details
 interface StepsDetails {
   step: number;
   stepTitle: string;
@@ -14,7 +13,6 @@ interface StepsDetails {
   details4: string;
 }
 
-// Define the interface for form details
 interface FormDetails {
   instruction: string;
   label: string;
@@ -23,7 +21,6 @@ interface FormDetails {
   placeholder: string;
 }
 
-// Define the interface for step information
 interface StepInfo {
   keyword: string;
   stepsDetails: StepsDetails;
@@ -59,7 +56,7 @@ export const convergeSteps = async (serviceName: string): Promise<void> => {
     return;
   }
 
-  const outputDir = `./5-converge-steps/converged-steps/${formattedServiceName}`;
+  const outputDir = `../../../storage/carriers/data-on-steps`;
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
@@ -96,7 +93,7 @@ export const convergeSteps = async (serviceName: string): Promise<void> => {
     // Sort and reassign step numbers sequentially
     allSteps.sort((a, b) => a.stepsDetails.step - b.stepsDetails.step);
     allSteps.forEach((step, index) => {
-      step.stepsDetails.step = index + 1;
+      step.stepsDetails.step = index + 3;
     });
 
     fs.writeFileSync(

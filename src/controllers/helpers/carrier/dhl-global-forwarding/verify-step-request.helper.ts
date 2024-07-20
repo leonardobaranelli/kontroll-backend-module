@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { StepKey } from '@/services/helpers/carrier/dhl-global-forwarding/carrier-config.helper';
+import { StepKey } from '../../../../services/helpers/carrier/dhl-global-forwarding/dhl-g-f-config.helper';
 
 export const verifyStepRequest = (
   req: Request,
