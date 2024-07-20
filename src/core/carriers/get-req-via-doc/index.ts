@@ -39,8 +39,14 @@ export const getReqViaDoc = async (
   }
 };
 
-const serviceName = 'DHL Express';
+const serviceName = 'DHL Global Forwarding';
 const linksKeywords = ['forNowJustEmptyWithTheServiceNameOnly'];
-const contentKeywords = ['key', 'auth', 'account', 'client'];
+const contentKeywords = [
+  'api key',
+  'auth',
+  'account number',
+  'client number',
+  'credential',
+];
 
 getReqViaDoc(serviceName, linksKeywords, contentKeywords);

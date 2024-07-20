@@ -31,7 +31,8 @@
    npm i
    ```
 
-You also have to install a python server, that is used to process some tasks in the core of the backend:
+You also have to install a python server, that is used to process some tasks in the core of the backend
+(be sure you have python 3.9 or higher installed in your main system)
 
 4. #### Navigate to the server directory:
 
@@ -71,11 +72,12 @@ You also have to install a python server, that is used to process some tasks in 
    python -m spacy download en_core_web_sm
    ```
 
-<br>
+At this point, you have already configured the software :)
+<br><br>
 
-### Use the software (already configured)
+### Run the backend (already configured)
 
-Well, only need to run the main server and the auxiliary python server
+Run the main server and the auxiliary python server (both must be running simultaneously)
 
 1. #### On the root of the directory run the following command:
 

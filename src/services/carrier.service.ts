@@ -2,7 +2,7 @@ import { Carrier } from '../models/carrier.model';
 import {
   carrierConfig,
   StepKey,
-} from './helpers/carrier/dhl-global-forwarding/carrier-config.helper';
+} from './helpers/carrier/dhl-global-forwarding/dhl-g-f-config.helper';
 import {
   ICarrierPublic,
   AbstractCarrierPublic,
