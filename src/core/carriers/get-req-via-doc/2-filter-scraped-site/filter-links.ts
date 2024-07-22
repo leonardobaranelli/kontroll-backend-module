@@ -78,8 +78,8 @@ export const filterLinks = (
 ): void => {
   // Load links from JSON file
   const formattedServiceName = serviceName.toLowerCase().replace(/\s+/g, '_');
-  const linksFilePath = `./1-scrape-site/links/all_links_${formattedServiceName}.json`;
-  const outputFilePath = `./2-filter-scraped-site/filtered-links/filtered_links_${formattedServiceName}.json`;
+  const linksFilePath = `./src/core/carriers/get-req-via-doc/1-scrape-site/links/all_links_${formattedServiceName}.json`;
+  const outputFilePath = `./src/core/carriers/get-req-via-doc/2-filter-scraped-site/filtered-links/filtered_links_${formattedServiceName}.json`;
 
   const links = loadLinks(linksFilePath);
 
@@ -96,6 +96,5 @@ export const filterLinks = (
   saveFilteredLinks(outputFilePath, filteredLinks);
 
   // Print the number of filtered links
-  console.log(`Filtered links saved to ${outputFilePath}`);
   console.log(`\nNumber of filtered links: ${filteredLinks.length}`);
 };

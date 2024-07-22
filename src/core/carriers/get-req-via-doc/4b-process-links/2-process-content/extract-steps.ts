@@ -39,7 +39,7 @@ function cleanAndFormatContent(content: string): string {
 }
 
 // Function to extract steps and forms
-async function extractSteps(content: string): Promise<StepObject[]> {
+async function _extractSteps(content: string): Promise<StepObject[]> {
   const stepsMap: StepsMap = {};
 
   try {
@@ -49,9 +49,6 @@ async function extractSteps(content: string): Promise<StepObject[]> {
     });
 
     const entities = response.data;
-
-    // Debugging
-    console.log('Entities received from Flask:', entities);
 
     for (const entity of entities) {
       if (entity && entity.keyword) {
@@ -91,7 +88,6 @@ async function extractSteps(content: string): Promise<StepObject[]> {
       }
     }
 
-    console.log('Steps map:', stepsMap); // Debugging
     return Object.values(stepsMap);
   } catch (error) {
     console.error('Error extracting steps:', error);
@@ -100,16 +96,16 @@ async function extractSteps(content: string): Promise<StepObject[]> {
 }
 
 // Main (interact with spacy nlp server)
-export async function processContent(serviceName: string): Promise<void> {
+export async function extractSteps(serviceName: string): Promise<void> {
   try {
     const formattedServiceName = serviceName.toLowerCase().replace(/\s+/g, '_');
-    const directoryPath = `./4b-process-links/1-extract-content-from-scraped-links/extracted-content/${formattedServiceName}`;
+    const directoryPath = `./src/core/carriers/get-req-via-doc/4b-process-links/1-extract-content-from-scraped-links/extracted-content/${formattedServiceName}`;
 
     const jsonFiles = fs
       .readdirSync(directoryPath)
       .filter((file) => file.endsWith('.json'));
 
-    const outputDirectory = `./4b-process-links/2-process-content/extracted-steps/${formattedServiceName}`;
+    const outputDirectory = `./src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/extracted-steps/${formattedServiceName}`;
     if (!fs.existsSync(outputDirectory)) {
       fs.mkdirSync(outputDirectory);
     }
@@ -123,7 +119,7 @@ export async function processContent(serviceName: string): Promise<void> {
 
       const cleanedContent = cleanAndFormatContent(content);
 
-      const steps = await extractSteps(cleanedContent);
+      const steps = await _extractSteps(cleanedContent);
 
       const outputFileName = `${path.basename(
         jsonFile,
@@ -136,8 +132,6 @@ export async function processContent(serviceName: string): Promise<void> {
         JSON.stringify(steps, null, 2),
         'utf-8',
       );
-
-      console.log(`Steps extracted and saved successfully for ${jsonFile}.`);
     }
   } catch (error) {
     console.error('Error processing:', error);

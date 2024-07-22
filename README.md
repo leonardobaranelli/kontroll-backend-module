@@ -82,33 +82,11 @@ Run the main server and the auxiliary python server (both must be running simult
 1. #### On the root of the directory run the following command:
 
    ```bash
-   npm start
+   npm run production-start
    ```
 
-2. #### Open other console and navigate to python server directory:
+2. #### Open other console and run the python server:
 
    ```bash
-   cd src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/spacy
+   python src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/spacy/nlp_server.py
    ```
-
-3. #### Activate the virtual environment:
-
-   On Windows:
-
-   ```bash
-    source venv/scripts/activate
-   ```
-
-   On Linux:
-
-   ```bash
-    source venv/bin/activate
-   ```
-
-4. #### Run the server:
-
-   ```bash
-    python nlp_server.py
-   ```
-
-At this point, you have already configured the software :)
