@@ -56,7 +56,9 @@
   },
   "nodemonConfig": {
     "ignore": [
-      "scripts/*"
+      "scripts/*",
+      "src/core/carriers/get-req-via-doc/*",
+      "src/storage/carriers/data-on-steps/*"
     ]
   }
 }
