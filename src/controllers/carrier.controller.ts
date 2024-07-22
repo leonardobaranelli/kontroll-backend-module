@@ -55,6 +55,8 @@ export default class CarrierController {
           data: any;
         };
 
+        console.log('step: ' + step + '\ndata: ' + data);
+
         const result = await DevCarrierService.devHandleStep(
           step,
           data,

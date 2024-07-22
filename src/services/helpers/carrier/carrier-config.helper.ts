@@ -24,7 +24,11 @@ interface StepConfig {
 export const generateCarrierConfig = (
   numberOfSteps: number,
   dataOnSteps: any,
-): Record<string, StepConfig> => {
+): Record<string, StepConfig> | string => {
+  if (!dataOnSteps || dataOnSteps.length === 0) {
+    return 'No documentation found for the carrier.';
+  }
+
   const config: Record<string, StepConfig> = {};
 
   for (let i = 0; i < numberOfSteps; i++) {
@@ -38,13 +42,12 @@ export const generateCarrierConfig = (
       message: async (state: any) => {
         if (stepIndex === 2) {
           const result = await carrierStepsData(state.name);
-          console.log(result);
           if (result) {
             return `Requeriments via documentation to carrier ${state.name} founded!`;
           } else {
             return `No documentation found for carrier ${state.name}.`;
           }
-        } else if (stepIndex === numberOfSteps + 2) {
+        } else if (stepIndex === numberOfSteps + 1) {
           return `Connection with the ${state.name} carrier established correctly`;
         }
         return `Step ${stepIndex} completed!`;
@@ -65,7 +68,7 @@ export const generateCarrierConfig = (
         placeholder: stepData.form.placeholder,
       },
       next:
-        stepIndex === numberOfSteps + 2 ? 'complete' : `step${stepIndex + 1}`,
+        stepIndex === numberOfSteps + 1 ? 'complete' : `step${stepIndex + 1}`,
     };
   }
 
