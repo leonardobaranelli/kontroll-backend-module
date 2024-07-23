@@ -48,11 +48,23 @@ export const carrierStepsData = async (carrierName: string) => {
   }
 };
 
-const linksKeywords = ['forNowJustEmptyWithTheServiceNameOnly'];
+//const linksKeywords = ['forNowJustEmptyWithTheServiceNameOnly'];
 const contentKeywords = [
   'api key',
   'auth',
   'account number',
   'client number',
   'credential',
+  'customer',
+  'endpoint',
+  'requirements',
+  'service',
+  'docs',
+  'manual',
+  'guide',
+  'api',
+  'reference',
+  'specification',
+  'help',
 ];
+const linksKeywords = [...contentKeywords, 'doc'];

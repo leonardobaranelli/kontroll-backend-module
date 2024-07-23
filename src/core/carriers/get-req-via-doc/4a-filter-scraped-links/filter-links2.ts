@@ -64,20 +64,13 @@ const filterLinks = (
 ): LinkInfo[] => {
   return links.filter((link) => {
     if (!link.url || !link.text) {
-      console.log(
-        `Skipping link due to missing url or text: ${JSON.stringify(link)}`,
-      );
       return false;
     }
     const combinedText = (link.url + ' ' + link.text).toLowerCase();
     const isMatch = linksKeywords.some((keyword) =>
       combinedText.includes(keyword.toLowerCase()),
     );
-    if (!isMatch) {
-      console.log(
-        `Skipping link due to no keyword match: ${JSON.stringify(link)}`,
-      );
-    }
+
     return isMatch;
   });
 };

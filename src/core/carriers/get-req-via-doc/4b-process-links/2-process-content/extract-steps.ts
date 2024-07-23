@@ -39,13 +39,17 @@ function cleanAndFormatContent(content: string): string {
 }
 
 // Function to extract steps and forms
-async function _extractSteps(content: string): Promise<StepObject[]> {
+async function _extractSteps(
+  content: string,
+  contentKeywords: string[],
+): Promise<StepObject[]> {
   const stepsMap: StepsMap = {};
 
   try {
     // Send the cleaned content to the Flask server for analysis
-    const response = await axios.post('http://localhost:5000/analyze', {
+    const response = await axios.post('http://127.0.0.1:5000/analyze', {
       content: content,
+      contentKeywords: contentKeywords,
     });
 
     const entities = response.data;
@@ -91,12 +95,15 @@ async function _extractSteps(content: string): Promise<StepObject[]> {
     return Object.values(stepsMap);
   } catch (error) {
     console.error('Error extracting steps:', error);
-    throw error; // Throw error to handle it in main()
+    return []; // Return an empty array in case of an error
   }
 }
 
 // Main (interact with spacy nlp server)
-export async function extractSteps(serviceName: string): Promise<void> {
+export async function extractSteps(
+  serviceName: string,
+  contentKeywords: string[],
+): Promise<void> {
   try {
     const formattedServiceName = serviceName.toLowerCase().replace(/\s+/g, '_');
     const directoryPath = `./src/core/carriers/get-req-via-doc/4b-process-links/1-extract-content-from-scraped-links/extracted-content/${formattedServiceName}`;
@@ -119,19 +126,23 @@ export async function extractSteps(serviceName: string): Promise<void> {
 
       const cleanedContent = cleanAndFormatContent(content);
 
-      const steps = await _extractSteps(cleanedContent);
+      try {
+        const steps = await _extractSteps(cleanedContent, contentKeywords);
 
-      const outputFileName = `${path.basename(
-        jsonFile,
-        '.json',
-      )}_extractedSteps.json`;
-      const outputFilePath = path.join(outputDirectory, outputFileName);
+        const outputFileName = `${path.basename(
+          jsonFile,
+          '.json',
+        )}_extractedSteps.json`;
+        const outputFilePath = path.join(outputDirectory, outputFileName);
 
-      await writeFileAsync(
-        outputFilePath,
-        JSON.stringify(steps, null, 2),
-        'utf-8',
-      );
+        await writeFileAsync(
+          outputFilePath,
+          JSON.stringify(steps, null, 2),
+          'utf-8',
+        );
+      } catch (error) {
+        console.error(`Error processing file ${jsonFile}:`, error);
+      }
     }
   } catch (error) {
     console.error('Error processing:', error);

@@ -96,5 +96,5 @@ export const filterLinks = (
   saveFilteredLinks(outputFilePath, filteredLinks);
 
   // Print the number of filtered links
-  console.log(`\nNumber of filtered links: ${filteredLinks.length}`);
+  console.log(`Number of filtered links: ${filteredLinks.length}`);
 };
