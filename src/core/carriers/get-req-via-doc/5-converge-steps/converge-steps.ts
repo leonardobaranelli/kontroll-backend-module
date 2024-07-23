@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
+import 'colors';
 
 dotenv.config();
 
@@ -101,7 +102,7 @@ export const convergeSteps = async (serviceName: string): Promise<void> => {
       JSON.stringify(allSteps, null, 2),
       'utf-8',
     );
-    console.log(`Steps saved successfully on: ${outputFilePath}`);
+    console.log(`Steps saved successfully on: ${outputFilePath}\n`.green);
   } catch (error) {
     console.error('Error during processing:', error);
   }

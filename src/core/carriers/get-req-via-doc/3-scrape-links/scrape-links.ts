@@ -71,7 +71,7 @@ export const scrapeLinks = async (
       throw new Error(`Links file does not exist at ${inputLinksFilePath}`);
     }
 
-    const links: LinkInfo[] = loadJSON(inputLinksFilePath).slice(0, 10);
+    const links: LinkInfo[] = loadJSON(inputLinksFilePath).slice(0, 200);
 
     const processLink = async (link: LinkInfo) => {
       const page: Page = await browser.newPage();
@@ -79,8 +79,6 @@ export const scrapeLinks = async (
         if (!link.url) {
           throw new Error(`Invalid URL for link: ${link.text}`);
         }
-
-        console.log(`Processing link: ${link.url}`);
 
         await page.goto(link.url, {
           waitUntil: 'networkidle2',

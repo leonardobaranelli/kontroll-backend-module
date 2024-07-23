@@ -116,7 +116,10 @@ export async function scrapeSite(serviceName: string): Promise<void> {
 
   try {
     const results = await searchGoogle(query, numberOfResults);
-    console.log(`Search for carrier ${serviceName} completed:`, results);
+    console.log(
+      `Search for carrier ${serviceName} completed:`,
+      results.siteUrl,
+    );
   } catch (error) {
     console.error('Search failed:', error);
     throw error;
