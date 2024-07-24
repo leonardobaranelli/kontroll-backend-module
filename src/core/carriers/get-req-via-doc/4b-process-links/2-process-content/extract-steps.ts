@@ -30,6 +30,9 @@ interface StepObject {
 
 type StepsMap = { [keyword: string]: StepObject };
 
+const lightOrange = (text: string) => `\u001b[38;5;214m${text}\u001b[39m`;
+const lightRed = (text: string) => `\u001b[38;5;203m${text}\u001b[39m`;
+
 // Function to clean and format content
 function cleanAndFormatContent(content: string): string {
   let cleanedContent = content.replace(/\n/g, ' '); // Remove newlines
@@ -40,6 +43,7 @@ function cleanAndFormatContent(content: string): string {
 
 // Function to extract steps and forms
 async function _extractSteps(
+  fileName: string,
   content: string,
   contentKeywords: string[],
 ): Promise<StepObject[]> {
@@ -94,7 +98,17 @@ async function _extractSteps(
 
     return Object.values(stepsMap);
   } catch (error) {
-    console.error('Error extracting steps:', error);
+    // Log the error to a file in the logs directory
+    const logDirectory =
+      './src/core/carriers/get-req-via-doc/logs/errors/4b-process-links';
+    if (!fs.existsSync(logDirectory)) {
+      fs.mkdirSync(logDirectory, { recursive: true });
+    }
+    const logFilePath = path.join(logDirectory, `${fileName}_error.log`);
+    await writeFileAsync(logFilePath, JSON.stringify(error, null, 2), 'utf-8');
+
+    console.error(lightRed(`Error extracting steps on file ${fileName} `));
+    console.error(lightOrange(`Error logged, continuing with the process...`));
     return []; // Return an empty array in case of an error
   }
 }
@@ -119,6 +133,7 @@ export async function extractSteps(
 
     for (const jsonFile of jsonFiles) {
       const filePath = path.join(directoryPath, jsonFile);
+      const fileName = path.basename(filePath);
       const jsonData = await readFileAsync(filePath, 'utf-8');
       const jsonContent = JSON.parse(jsonData);
 
@@ -127,7 +142,11 @@ export async function extractSteps(
       const cleanedContent = cleanAndFormatContent(content);
 
       try {
-        const steps = await _extractSteps(cleanedContent, contentKeywords);
+        const steps = await _extractSteps(
+          fileName,
+          cleanedContent,
+          contentKeywords,
+        );
 
         const outputFileName = `${path.basename(
           jsonFile,

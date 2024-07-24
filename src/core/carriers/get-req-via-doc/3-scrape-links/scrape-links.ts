@@ -2,13 +2,19 @@ import puppeteer, { Browser, Page } from 'puppeteer';
 import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
+import { promisify } from 'util';
 
 dotenv.config();
+
+const writeFileAsync = promisify(fs.writeFile);
 
 interface LinkInfo {
   text: string;
   url: string;
 }
+
+const lightOrange = (text: string) => `\u001b[38;5;214m${text}\u001b[39m`;
+const lightRed = (text: string) => `\u001b[38;5;203m${text}\u001b[39m`;
 
 const loadJSON = (filePath: string): any => {
   const rawData = fs.readFileSync(filePath, 'utf-8');
@@ -41,6 +47,10 @@ const extractServiceRequirements = (
 
   return requirements;
 };
+
+function sanitizeUrl(url: string): string {
+  return url.replace(/[\/\\:]/g, '_');
+}
 
 export const scrapeLinks = async (
   serviceName: string,
@@ -105,7 +115,8 @@ export const scrapeLinks = async (
         );
 
         const fileName =
-          link.text.replace(/\s+/g, '_').toLowerCase() || 'default';
+          link.text.replace(/\s+/g, '_').replace(/\//g, '_').toLowerCase() ||
+          'default';
         const outputDirPath = path.join(serviceDir, `${fileName}.json`);
 
         const result = {
@@ -120,7 +131,26 @@ export const scrapeLinks = async (
 
         saveJSON(outputDirPath, result);
       } catch (error) {
-        console.error(`Error visiting ${link.url}:`, error);
+        // Log the error to a file in the logs directory
+        const logDirectory =
+          './src/core/carriers/get-req-via-doc/logs/errors/3-scrape-links';
+        if (!fs.existsSync(logDirectory)) {
+          fs.mkdirSync(logDirectory, { recursive: true });
+        }
+        const logFilePath = path.join(
+          logDirectory,
+          `${sanitizeUrl(link.url)}_error.log`,
+        );
+        await writeFileAsync(
+          logFilePath,
+          JSON.stringify(error, null, 2),
+          'utf-8',
+        );
+
+        console.error(lightRed(`Error visiting ${link.url} `));
+        console.error(
+          lightOrange(`Error logged, continuing with the process...`),
+        );
       } finally {
         await page.close();
       }

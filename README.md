@@ -122,3 +122,9 @@ Run the main server and the auxiliary python server (both must be running simult
    ```bash
    python3 src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/spacy/nlp_server.py
    ```
+
+#### <span style="color:#32CD99">[EXTRA] to clean the data on steps on the local storage you can run:</span>
+
+```bash
+npm run clean-storage
+```

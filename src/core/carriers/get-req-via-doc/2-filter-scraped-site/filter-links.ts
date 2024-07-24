@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { URL } from 'url';
+import { ignoreExtensions } from '../utils/ignore-extensions.util';
 
 // Define the interface for the links
 interface LinkInfo {
@@ -48,10 +49,17 @@ const saveFilteredLinks = (filePath: string, links: LinkInfo[]): void => {
   fs.writeFileSync(filePath, jsonData);
 };
 
+const isIgnoredExtension = (url: string): boolean => {
+  return ignoreExtensions.some((ext) => url.toLowerCase().endsWith(ext));
+};
+
 // Filter links based on keywords
 const _filterLinks = (links: LinkInfo[], keywords: string[]): LinkInfo[] => {
   return links.filter((link) => {
     const combinedText = (link.url + ' ' + link.text).toLowerCase();
+    if (isIgnoredExtension(combinedText)) {
+      return;
+    }
     return keywords.some((keyword) =>
       combinedText.includes(keyword.toLowerCase()),
     );
