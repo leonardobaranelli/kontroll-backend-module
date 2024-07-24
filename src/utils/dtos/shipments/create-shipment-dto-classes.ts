@@ -1,5 +1,12 @@
-import { IsNumber, IsString, IsDateString, IsOptional } from 'class-validator';
-import { Transform } from 'class-transformer';
+import {
+  IsNumber,
+  IsString,
+  IsDateString,
+  IsOptional,
+  IsArray,
+  ValidateNested,
+} from 'class-validator';
+import { Transform, Type } from 'class-transformer';
 import { IsISO } from './iso-validator';
 
 export class OriginDto {
@@ -43,40 +50,40 @@ export class DestinationDto {
 export class DateAndTimesDto {
   @IsOptional()
   @IsString({ message: 'Scheduled departure must be a string' })
-  @Transform(({ value }) => value.trim())
-  ScheduledDeparture!: string;
+  @Transform(({ value }) => value?.trim())
+  ScheduledDeparture!: string | null;
 
   @IsOptional()
   @IsString({ message: 'Scheduled Arrival must be a string' })
-  @Transform(({ value }) => value.trim())
-  ScheduledArrival!: string;
+  @Transform(({ value }) => value?.trim())
+  ScheduledArrival!: string | null;
 
   @IsOptional()
-  @IsString({ message: 'Shipment data must be a string' })
-  @Transform(({ value }) => value.trim())
-  ShipmentDate!: string;
+  @IsString({ message: 'Shipment date must be a string' })
+  @Transform(({ value }) => value?.trim())
+  ShipmentDate!: string | null;
 }
 
 export class TotalWeightDto {
   @IsOptional()
   @IsNumber({}, { message: 'Weight value must be a number' })
-  body!: number;
+  '*body'!: number | null;
 
   @IsOptional()
   @IsString({ message: 'Weight unit must be a string' })
-  @Transform(({ value }) => value.trim())
-  uom!: string;
+  @Transform(({ value }) => value?.trim())
+  '@uom'!: string | null;
 }
 
 export class TotalVolumeDto {
   @IsOptional()
   @IsNumber({}, { message: 'Volume value must be a number' })
-  body!: number;
+  '*body'!: number | null;
 
   @IsOptional()
   @IsString({ message: 'Volume unit must be a string' })
-  @Transform(({ value }) => value.trim())
-  uom!: string;
+  @Transform(({ value }) => value?.trim())
+  '@uom'!: string | null;
 }
 
 export class TimestampDto {
@@ -91,12 +98,31 @@ export class TimestampDto {
   TimestampDescription!: string;
 
   @IsOptional()
-  @IsDateString(
-    {},
-    { message: 'Timestamp date time must be a valid date format' },
-  )
-  @Transform(({ value }) => (value instanceof Date ? value : new Date(value)))
-  TimestampDateTime!: Date;
+  @IsString({ message: 'Timestamp date time must be a string' })
+  @Transform(({ value }) => value.trim())
+  TimestampDateTime!: string;
+
+  @IsOptional()
+  @IsString({ message: 'Timestamp location must be a string' })
+  @Transform(({ value }) => value.trim())
+  TimestampLocation!: string;
+}
+
+export class TimestampItemDto {
+  @IsOptional()
+  @IsString({ message: 'Timestamp code must be a string' })
+  @Transform(({ value }) => value.trim())
+  TimestampCode!: string;
+
+  @IsOptional()
+  @IsString({ message: 'Timestamp description must be a string' })
+  @Transform(({ value }) => value.trim())
+  TimestampDescription!: string;
+
+  @IsOptional()
+  @IsString({ message: 'Timestamp date time must be a string' })
+  @Transform(({ value }) => value.trim())
+  TimestampDateTime!: string;
 
   @IsOptional()
   @IsString({ message: 'Timestamp location must be a string' })

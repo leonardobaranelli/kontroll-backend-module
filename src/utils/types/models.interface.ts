@@ -19,38 +19,63 @@ export interface IConnector {
 export interface IShipment {
   HousebillNumber: string;
   Origin: {
-    LocationCode: string; // Codigo de ubicacion de origen, formato ISO-3166
+    LocationCode: string;
     LocationName: string;
     CountryCode: string;
   };
   Destination: {
-    LocationCode: string; // Codigo de ubicacion de destino, formato ISO-3166
+    LocationCode: string;
     LocationName: string;
     CountryCode: string;
   };
   DateAndTimes: {
-    ScheduledDeparture: string;
-    ScheduledArrival: string;
-    ShipmentDate: string;
+    ScheduledDeparture: string | null;
+    ScheduledArrival: string | null;
+    ShipmentDate: string | null;
   };
-  ProductType?: MaybeString;
-  TotalPackages?: MaybeNumber;
+  ProductType: string | null;
+  TotalPackages: number | null;
   TotalWeight: {
-    body: number;
-    uom: string;
+    '*body': number | null;
+    '@uom': string | null;
   };
   TotalVolume: {
-    body: number;
-    uom: string;
+    '*body': number | null;
+    '@uom': string | null;
   };
-  Timestamp: {
+  Timestamp: Array<{
     TimestampCode: string;
     TimestampDescription: string;
-    TimestampDateTime: Date;
+    TimestampDateTime: string;
     TimestampLocation: string;
-  };
+  }>;
+  brokerName: string | null;
+  incoterms: string | null;
+  shipmentDate: string | null;
+  booking: string | null;
+  mawb: string | null;
+  hawb: string | null;
+  flight: string | null;
+  airportOfDeparture: string | null;
+  etd: string | null;
+  atd: string | null;
+  airportOfArrival: string | null;
+  eta: string | null;
+  ata: string | null;
+  vessel: string | null;
+  portOfLoading: string | null;
+  mbl: string | null;
+  hbl: string | null;
+  pickupDate: string | null;
+  containerNumber: string | null;
+  portOfUnloading: string | null;
+  finalDestination: string | null;
+  internationalCarrier: string | null;
+  voyage: string | null;
+  portOfReceipt: string | null;
+  goodsDescription: string | null;
+  containers: Array<any> | null;
 }
-
 export interface ICarrier {
   id: MaybeString;
   name: string;

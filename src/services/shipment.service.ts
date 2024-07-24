@@ -8,20 +8,39 @@ import {
 import { getAttributes } from './helpers/commons/get-attributes.helper';
 
 export default class ShipmentService {
+  private static async findShipment(
+    HousebillNumber: string,
+  ): Promise<IShipmentPublic | null> {
+    const shipment = await Shipment.findOne({
+      where: { HousebillNumber },
+      attributes: getAttributes(AbstractShipmentPublic),
+    });
+    return shipment as IShipmentPublic | null;
+  }
+
+  private static createError(message: string, statusCode: number): IError {
+    const error: IError = new Error(message);
+    error.statusCode = statusCode;
+    return error;
+  }
+
+  private static handleError(error: any): never {
+    console.error('Error in ShipmentService:', error);
+    throw error;
+  }
+
   public static async getAllShipments(): Promise<IShipmentPublic[]> {
     try {
-      const allShipments: IShipmentPublic[] = await Shipment.findAll({
+      const allShipments = await Shipment.findAll({
         attributes: getAttributes(AbstractShipmentPublic),
       });
 
       if (allShipments.length === 0) {
-        const error: IError = new Error('There are no shipments available');
-        error.statusCode = 404;
-        throw error;
+        throw this.createError('There are no shipments available', 404);
       }
-      return allShipments;
+      return allShipments as IShipmentPublic[];
     } catch (error) {
-      throw error;
+      return this.handleError(error);
     }
   }
 
@@ -29,47 +48,53 @@ export default class ShipmentService {
     HousebillNumber: string,
   ): Promise<IShipmentPublic> {
     try {
-      const shipment: IShipmentPublic | null = await Shipment.findOne({
-        where: { HousebillNumber },
-        attributes: getAttributes(AbstractShipmentPublic),
-      });
-
+      const shipment = await this.findShipment(HousebillNumber);
       if (!shipment) {
-        const error: IError = new Error(
+        throw this.createError(
           `Shipment with number ${HousebillNumber} not found`,
+          404,
         );
-        error.statusCode = 404;
-        throw error;
       }
       return shipment;
     } catch (error) {
-      throw error;
+      return this.handleError(error);
     }
   }
 
   public static async createShipment(
     shipmentData: CreateShipmentDto,
   ): Promise<IShipmentPublic> {
-    const { HousebillNumber } = shipmentData;
-
     try {
-      const existingShipment: IShipmentPublic | null = await Shipment.findOne({
-        where: { HousebillNumber },
-        attributes: getAttributes(AbstractShipmentPublic),
-      });
+      const { HousebillNumber } = shipmentData;
 
-      if (existingShipment) {
-        const error: IError = new Error(
-          `Shipment with tracking number ${HousebillNumber} already exists`,
+      // Check in the external database
+      const externalShipmentData = await this.checkExternalDatabase(
+        HousebillNumber,
+      );
+
+      if (!externalShipmentData) {
+        throw this.createError(
+          `Shipment with HousebillNumber ${HousebillNumber} not found in external database`,
+          404,
         );
-        error.statusCode = 409;
-        throw error;
       }
 
-      const newShipment: IShipmentPublic = await Shipment.create(shipmentData);
-      return newShipment;
+      // Check if it already exists in our database
+      const existingShipment = await this.findShipment(HousebillNumber);
+      if (existingShipment) {
+        throw this.createError(
+          `Shipment with HousebillNumber ${HousebillNumber} already exists in our database`,
+          409,
+        );
+      }
+
+      // Create the shipment with data from the external database
+      const newShipment = await Shipment.create(
+        this.prepareShipmentData(externalShipmentData),
+      );
+      return newShipment as IShipmentPublic;
     } catch (error) {
-      throw error;
+      return this.handleError(error);
     }
   }
 
@@ -78,26 +103,28 @@ export default class ShipmentService {
     newData: UpdateShipmentDto,
   ): Promise<IShipmentPublic> {
     try {
-      const [updatedRows]: [number] = await Shipment.update(newData, {
+      const updateData = this.prepareUpdateData(newData);
+      const [updatedRows] = await Shipment.update(updateData, {
         where: { HousebillNumber },
       });
 
       if (updatedRows === 0) {
-        const error: IError = new Error(
+        throw this.createError(
           `Shipment with number ${HousebillNumber} not found`,
+          404,
         );
-        error.statusCode = 404;
-        throw error;
       }
 
-      const updatedShipment: IShipmentPublic | null = await Shipment.findOne({
-        where: { HousebillNumber },
-        attributes: getAttributes(AbstractShipmentPublic),
-      });
-
-      return updatedShipment as IShipmentPublic;
+      const updatedShipment = await this.findShipment(HousebillNumber);
+      if (!updatedShipment) {
+        throw this.createError(
+          `Updated shipment with number ${HousebillNumber} not found`,
+          404,
+        );
+      }
+      return updatedShipment;
     } catch (error) {
-      throw error;
+      return this.handleError(error);
     }
   }
 
@@ -105,7 +132,7 @@ export default class ShipmentService {
     try {
       await Shipment.destroy({ where: {} });
     } catch (error) {
-      throw error;
+      return this.handleError(error);
     }
   }
 
@@ -113,15 +140,72 @@ export default class ShipmentService {
     HousebillNumber: string,
   ): Promise<void> {
     try {
-      const shipments: Shipment[] | null = await Shipment.findAll({
-        where: { HousebillNumber },
-      });
-      if (shipments.length === 0) {
-        throw new Error(`No shipments with number ${HousebillNumber} found`);
+      const result = await Shipment.destroy({ where: { HousebillNumber } });
+      if (result === 0) {
+        throw this.createError(
+          `No shipments with number ${HousebillNumber} found`,
+          404,
+        );
       }
-      await Shipment.destroy({ where: { HousebillNumber } });
     } catch (error) {
-      throw error;
+      return this.handleError(error);
     }
+  }
+
+  private static prepareShipmentData(data: any): any {
+    return {
+      ...data,
+      Origin: data.Origin ?? {
+        LocationCode: '',
+        LocationName: '',
+        CountryCode: '',
+      },
+      Destination: data.Destination ?? {
+        LocationCode: '',
+        LocationName: '',
+        CountryCode: '',
+      },
+      DateAndTimes: data.DateAndTimes ?? {
+        ScheduledDeparture: null,
+        ScheduledArrival: null,
+        ShipmentDate: null,
+      },
+      TotalVolume: data.TotalVolume ?? { '*body': null, '@uom': null },
+      Timestamp: data.Timestamp ?? [],
+    };
+  }
+
+  private static prepareUpdateData(data: UpdateShipmentDto): any {
+    const updateData = { ...data };
+    if (updateData.TotalWeight) {
+      updateData.TotalWeight = {
+        '*body': updateData.TotalWeight['*body'],
+        '@uom': updateData.TotalWeight['@uom'],
+      };
+    }
+    if (updateData.TotalVolume) {
+      updateData.TotalVolume = {
+        '*body': updateData.TotalVolume['*body'],
+        '@uom': updateData.TotalVolume['@uom'],
+      };
+    }
+    if (updateData.Timestamp) {
+      updateData.Timestamp = updateData.Timestamp.map((timestamp) => ({
+        TimestampCode: timestamp.TimestampCode,
+        TimestampDescription: timestamp.TimestampDescription,
+        TimestampDateTime: timestamp.TimestampDateTime,
+        TimestampLocation: timestamp.TimestampLocation,
+      }));
+    }
+    return updateData;
+  }
+
+  private static async checkExternalDatabase(
+    HousebillNumber: string,
+  ): Promise<any> {
+    // This method should be implemented to check the external database
+    // and return the shipment data if found
+    // For now, it's a placeholder
+    throw new Error('Method not implemented');
   }
 }

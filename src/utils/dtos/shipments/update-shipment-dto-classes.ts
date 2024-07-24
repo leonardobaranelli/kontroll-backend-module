@@ -60,25 +60,24 @@ export class DateAndTimesDto {
 export class TotalWeightDto {
   @IsOptional()
   @IsNumber({}, { message: 'Weight value must be a number' })
-  body!: number;
+  '*body'!: number;
 
   @IsOptional()
   @IsString({ message: 'Weight unit must be a string' })
   @Transform(({ value }) => value.trim())
-  uom!: string;
+  '@uom'!: string;
 }
 
 export class TotalVolumeDto {
   @IsOptional()
   @IsNumber({}, { message: 'Volume value must be a number' })
-  body!: number;
+  '*body'!: number;
 
   @IsOptional()
   @IsString({ message: 'Volume unit must be a string' })
   @Transform(({ value }) => value.trim())
-  uom!: string;
+  '@uom'!: string;
 }
-
 export class TimestampDto {
   @IsOptional()
   @IsString({ message: 'Timestamp code must be a string' })
@@ -91,12 +90,11 @@ export class TimestampDto {
   TimestampDescription!: string;
 
   @IsOptional()
-  @IsDateString(
-    {},
-    { message: 'Timestamp date time must be a valid date format' },
+  @IsString({ message: 'Timestamp date time must be a string' })
+  @Transform(({ value }) =>
+    value instanceof Date ? value.toISOString() : value.trim(),
   )
-  @Transform(({ value }) => (value instanceof Date ? value : new Date(value)))
-  TimestampDateTime!: Date;
+  TimestampDateTime!: string;
 
   @IsOptional()
   @IsString({ message: 'Timestamp location must be a string' })
