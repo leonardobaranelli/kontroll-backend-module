@@ -22,7 +22,7 @@ export const getReqViaDoc = async (
     await new Promise((resolve) => setTimeout(resolve, 200));
 
     console.log('Scraping links for content...'.cyan);
-    await scrapeLinks(serviceName, contentKeywords, 35);
+    await scrapeLinks(serviceName, contentKeywords, 40);
     await new Promise((resolve) => setTimeout(resolve, 200));
 
     await filterLinks2(serviceName, linksKeywords);

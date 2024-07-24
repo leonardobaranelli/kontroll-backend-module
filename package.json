@@ -7,6 +7,7 @@
     "production-start": "ts-node bin/server.init.ts",
     "start": "nodemon bin/server.init.ts --exec ts-node",
     "api-collection": "ts-node scripts/api-collection.ts",
+    "clean-storage": "ts-node scripts/clean-storage.ts",
     "test": "jest"
   },
   "dependencies": {

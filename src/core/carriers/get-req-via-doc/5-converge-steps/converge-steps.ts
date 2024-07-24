@@ -91,15 +91,18 @@ export const convergeSteps = async (serviceName: string): Promise<void> => {
 
     const allSteps = Array.from(allStepsMap.values());
 
-    // Sort and reassign step numbers sequentially
+    // Sort and reassign step numbers sequentially starting from 3
     allSteps.sort((a, b) => a.stepsDetails.step - b.stepsDetails.step);
     allSteps.forEach((step, index) => {
       step.stepsDetails.step = index + 3;
     });
 
+    // Limit the number of steps to max 8 steps
+    const limitedSteps = allSteps.slice(0, 6);
+
     fs.writeFileSync(
       outputFilePath,
-      JSON.stringify(allSteps, null, 2),
+      JSON.stringify(limitedSteps, null, 2),
       'utf-8',
     );
     console.log(`Steps saved successfully on: ${outputFilePath}\n`.green);
