@@ -6,6 +6,7 @@
   "scripts": {
     "production-start": "ts-node bin/server.init.ts",
     "start": "nodemon bin/server.init.ts --exec ts-node",
+    "firestore": "DATABASE_TYPE=FIRESTORE nodemon bin/server.init.ts --exec ts-node",
     "api-collection": "ts-node scripts/api-collection.ts",
     "test": "jest"
   },
