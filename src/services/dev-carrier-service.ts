@@ -68,7 +68,11 @@ export default class DevCarrierService {
       const step = carrierSteps[stepKey];
 
       if (!step) {
-        throw new Error(`Step configuration for ${stepKey} is missing.`);
+        throw new Error(
+          `Step configuration for ${stepKey} is missing. Available steps: ${Object.keys(
+            carrierSteps,
+          ).join(', ')}`,
+        );
       }
 
       await step.action(data, state);

@@ -21,12 +21,24 @@ const loadJSON = (filePath: string): any => {
   return JSON.parse(rawData);
 };
 
-const saveJSON = (filePath: string, data: any): void => {
+const saveJSON = async (filePath: string, data: any): Promise<void> => {
   try {
     const jsonData = JSON.stringify(data, null, 2);
     fs.writeFileSync(filePath, jsonData);
   } catch (error) {
-    console.error(`Error saving JSON file at ${filePath}:`, error);
+    // Log the error to a file in the logs directory
+    const logDirectory =
+      './src/core/carriers/get-req-via-doc/logs/errors/3-scrape-links';
+    if (!fs.existsSync(logDirectory)) {
+      fs.mkdirSync(logDirectory, { recursive: true });
+    }
+    const logFilePath = path.join(
+      logDirectory,
+      `${sanitizeUrl(filePath)}_error.log`,
+    );
+    await writeFileAsync(logFilePath, JSON.stringify(error, null, 2), 'utf-8');
+    console.error(lightRed(`Error saving JSON file at ${filePath}`));
+    console.error(lightOrange(`Error logged, continuing with the process...`));
   }
 };
 
@@ -49,7 +61,7 @@ const extractServiceRequirements = (
 };
 
 function sanitizeUrl(url: string): string {
-  return url.replace(/[\/\\:]/g, '_');
+  return url.replace(/[\/\\:*\?"<>|]/g, '_');
 }
 
 export const scrapeLinks = async (
@@ -115,8 +127,10 @@ export const scrapeLinks = async (
         );
 
         const fileName =
-          link.text.replace(/\s+/g, '_').replace(/\//g, '_').toLowerCase() ||
-          'default';
+          link.text
+            .replace(/\s+/g, '_')
+            .replace(/[\/\\:*\?"<>|]/g, '_')
+            .toLowerCase() || 'default';
         const outputDirPath = path.join(serviceDir, `${fileName}.json`);
 
         const result = {
@@ -147,7 +161,7 @@ export const scrapeLinks = async (
           'utf-8',
         );
 
-        console.error(lightRed(`Error visiting ${link.url} `));
+        console.error(lightRed(`Error visiting ${link.url}`));
         console.error(
           lightOrange(`Error logged, continuing with the process...`),
         );
