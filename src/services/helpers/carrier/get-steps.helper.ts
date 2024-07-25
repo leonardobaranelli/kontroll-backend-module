@@ -2,8 +2,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { getReqViaDoc } from '../../../core/carriers/get-req-via-doc';
 
-// Load JSON content from a file
+const lightRed = (text: string) => `\u001b[38;5;203m${text}\u001b[39m`;
 
+// Load JSON content from a file
 const loadJSON = (filePath: string): any => {
   try {
     const rawData = fs.readFileSync(filePath, 'utf-8');
@@ -19,7 +20,7 @@ const loadJSON = (filePath: string): any => {
 // Function to count the number of objects in an array
 const countObjectsInArray = (array: any[]): number => {
   if (!Array.isArray(array)) {
-    throw new Error('The provided data is not an array.');
+    throw new Error(lightRed('The provided data is not an array.'));
   }
   return array.length;
 };
@@ -58,6 +59,7 @@ const contentKeywords = [
   'credential',
   'endpoint',
 ];
+
 const linksKeywords = [
   'doc',
   'customer',
