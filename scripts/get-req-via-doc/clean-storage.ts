@@ -3,7 +3,7 @@ import * as path from 'path';
 
 const directoryPath = path.join(
   __dirname,
-  '../src/storage/carriers/data-on-steps',
+  '../../src/storage/carriers/data-on-steps',
 );
 
 fs.readdir(directoryPath, (err, files) => {
@@ -12,7 +12,10 @@ fs.readdir(directoryPath, (err, files) => {
   }
 
   files.forEach((file) => {
-    if (path.extname(file) === '.json') {
+    if (
+      path.extname(file) === '.json' &&
+      path.basename(file) !== 'dhl-g-f-example.json'
+    ) {
       fs.unlink(path.join(directoryPath, file), (err) => {
         if (err) {
           console.error('Failed to delete file:', file, err);
