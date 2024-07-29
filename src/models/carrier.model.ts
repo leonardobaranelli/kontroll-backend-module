@@ -42,6 +42,10 @@ export class Carrier extends Model<ICarrier> implements ICarrier {
   @Column(DataType.STRING)
   apiKey?: MaybeString;
 
+  @AllowNull(true)
+  @Column(DataType.JSON)
+  memoryParser?: {};
+
   @BelongsToMany(() => Connector, () => ConnectorCarrier)
   connectors!: Connector[];
 

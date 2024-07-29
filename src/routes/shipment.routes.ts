@@ -7,8 +7,10 @@ const router = Express.Router();
 //GET
 router.get('/', ShipmentController.getAll);
 router.get('/firebase/:carrier', ShipmentControllerFirebase.getByCarrier);
-
-router.get('/number/:number', ShipmentController.getByNumber);
+router.get(
+  '/firebase/:carrier/:id',
+  ShipmentControllerFirebase.getByCarrierAndId,
+);
 
 //POST
 router.post('/', ShipmentController.create);

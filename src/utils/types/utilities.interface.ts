@@ -155,6 +155,7 @@ export interface ICarrierPublic {
   name: string;
   url: string;
   accountNumber?: MaybeString;
+  memoryParser?: {};
 }
 
 // Public Carrier with metadata

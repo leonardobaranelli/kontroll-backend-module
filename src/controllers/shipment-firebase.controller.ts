@@ -20,4 +20,18 @@ export default class ShipmentControllerFirebase {
       sendErrorResponse(res, error, error.statusCode || 400);
     }
   };
+
+  public static getByCarrierAndId = async (
+    _req: Request,
+    res: Response,
+  ): Promise<void> => {
+    const { carrier, id } = _req.params;
+    try {
+      const shipment: IShipmentPublic =
+        await ShipmentServiceFirebase.getShipmentByCarrierAndId(carrier, id);
+      sendSuccessResponse(res, shipment, 'Shipment retrieved successfully');
+    } catch (error: any) {
+      sendErrorResponse(res, error, error.statusCode || 400);
+    }
+  };
 }
