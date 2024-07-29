@@ -97,8 +97,8 @@ export const convergeSteps = async (serviceName: string): Promise<void> => {
       step.stepsDetails.step = index + 3;
     });
 
-    // Limit the number of steps to max 8 steps
-    const limitedSteps = allSteps.slice(0, 6);
+    // Limit the number of steps to max 6 steps
+    const limitedSteps = allSteps.slice(0, 4);
 
     fs.writeFileSync(
       outputFilePath,
