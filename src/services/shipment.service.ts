@@ -38,7 +38,9 @@ export default class ShipmentService {
       }
 
       if (allShipments.length === 0) {
-        throw this.createError('There are no shipments available', 404);
+        const error: IError = new Error('There are no shipments available');
+        error.statusCode = 404;
+        throw error;
       }
 
       return allShipments;
@@ -110,7 +112,7 @@ export default class ShipmentService {
 
       return shipmentDoc as IShipmentPublic;
     } catch (error) {
-      return this.handleError(error);
+      throw error;
     }
   }
 
@@ -174,28 +176,26 @@ export default class ShipmentService {
     newData: UpdateShipmentDto,
   ): Promise<IShipmentPublic> {
     try {
-      const updateData = this.prepareUpdateData(newData);
-      const [updatedRows] = await Shipment.update(updateData, {
+      const [updatedRows]: [number] = await Shipment.update(newData, {
         where: { HousebillNumber },
       });
 
       if (updatedRows === 0) {
-        throw this.createError(
+        const error: IError = new Error(
           `Shipment with number ${HousebillNumber} not found`,
-          404,
         );
+        error.statusCode = 404;
+        throw error;
       }
 
-      const updatedShipment = await this.findShipment(HousebillNumber);
-      if (!updatedShipment) {
-        throw this.createError(
-          `Updated shipment with number ${HousebillNumber} not found`,
-          404,
-        );
-      }
-      return updatedShipment;
+      const updatedShipment: IShipmentPublic | null = await Shipment.findOne({
+        where: { HousebillNumber },
+        attributes: getAttributes(AbstractShipmentPublic),
+      });
+
+      return updatedShipment as IShipmentPublic;
     } catch (error) {
-      return this.handleError(error);
+      throw error;
     }
   }
 
@@ -203,7 +203,7 @@ export default class ShipmentService {
     try {
       await Shipment.destroy({ where: {} });
     } catch (error) {
-      return this.handleError(error);
+      throw error;
     }
   }
 
@@ -211,13 +211,13 @@ export default class ShipmentService {
     HousebillNumber: string,
   ): Promise<void> {
     try {
-      const result = await Shipment.destroy({ where: { HousebillNumber } });
-      if (result === 0) {
-        throw this.createError(
-          `No shipments with number ${HousebillNumber} found`,
-          404,
-        );
+      const shipments: Shipment[] | null = await Shipment.findAll({
+        where: { HousebillNumber },
+      });
+      if (shipments.length === 0) {
+        throw new Error(`No shipments with number ${HousebillNumber} found`);
       }
+      await Shipment.destroy({ where: { HousebillNumber } });
     } catch (error) {
       throw error;
     }
