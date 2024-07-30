@@ -49,7 +49,7 @@ export class UpdateShipmentDto implements Partial<Omit<IShipment, 'id'>> {
 
   @IsOptional()
   @IsNumber({}, { message: 'Total packages must be a valid number' })
-  @Transform(({ value }) => value === '' ? null : Number(value))
+  @Transform(({ value }) => (value === '' ? null : Number(value)))
   TotalPackages?: MaybeNumber;
 
   @IsOptional()
