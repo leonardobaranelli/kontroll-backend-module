@@ -12,39 +12,47 @@ import { Connector } from './connector.model';
 import { ConnectorShipment } from './pivot-tables/connector-shipment.model';
 import { IShipment } from '../utils/types/models.interface';
 
+type MaybeString = string | null;
+type MaybeNumber = number | null;
+type MaybeDate = Date | string | null;
+
 @Table({
   tableName: 'shipments',
   freezeTableName: true,
   timestamps: false,
 })
-export class Shipment extends Model<IShipment> implements IShipment {
+export class Shipment extends Model<Shipment> implements IShipment {
   @PrimaryKey
-  @Default(DataType.STRING)
+  @Default(DataType.UUIDV4)
+  @Column(DataType.UUID)
+  id!: string;
+
+  @AllowNull(false)
   @Column(DataType.STRING)
   HousebillNumber!: string;
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.JSONB)
-  Origin!: {
-    LocationCode: string;
-    LocationName: string;
-    CountryCode: string;
+  Origin?: {
+    LocationCode?: MaybeString;
+    LocationName?: MaybeString;
+    CountryCode?: MaybeString;
   };
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.JSONB)
-  Destination!: {
-    LocationCode: string;
-    LocationName: string;
-    CountryCode: string;
+  Destination?: {
+    LocationCode?: MaybeString;
+    LocationName?: MaybeString;
+    CountryCode?: MaybeString;
   };
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.JSONB)
-  DateAndTimes!: {
-    ScheduledDeparture: string | null;
-    ScheduledArrival: string | null;
-    ShipmentDate: string | null;
+  DateAndTimes?: {
+    ScheduledDeparture?: MaybeDate;
+    ScheduledArrival?: MaybeDate;
+    ShipmentDate?: MaybeDate;
   };
 
   @AllowNull(true)
@@ -55,132 +63,132 @@ export class Shipment extends Model<IShipment> implements IShipment {
   @Column(DataType.INTEGER)
   TotalPackages!: number | null;
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.JSONB)
-  TotalWeight!: {
-    '*body': number | null;
-    '@uom': string | null;
+  TotalWeight?: {
+    '*body': MaybeNumber;
+    '@uom': MaybeString;
   };
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.JSONB)
-  TotalVolume!: {
-    '*body': number | null;
-    '@uom': string | null;
+  TotalVolume?: {
+    '*body': MaybeNumber;
+    '@uom': MaybeString;
   };
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.JSONB)
-  Timestamp!: Array<{
-    TimestampCode: string;
-    TimestampDescription: string;
-    TimestampDateTime: string;
-    TimestampLocation: string;
+  Timestamp?: Array<{
+    TimestampCode?: MaybeString;
+    TimestampDescription?: MaybeString;
+    TimestampDateTime?: MaybeDate;
+    TimestampLocation?: MaybeString;
   }>;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  brokerName!: string | null;
+  brokerName?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  incoterms!: string | null;
+  incoterms?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  shipmentDate!: string | null;
+  shipmentDate?: MaybeDate;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  booking!: string | null;
+  booking?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  mawb!: string | null;
+  mawb?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  hawb!: string | null;
+  hawb?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  flight!: string | null;
+  flight?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  airportOfDeparture!: string | null;
+  airportOfDeparture?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  etd!: string | null;
+  etd?: MaybeDate;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  atd!: string | null;
+  atd?: MaybeDate;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  airportOfArrival!: string | null;
+  airportOfArrival?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  eta!: string | null;
+  eta?: MaybeDate;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  ata!: string | null;
+  ata?: MaybeDate;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  finalDestination!: string | null;
+  vessel?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  internationalCarrier!: string | null;
+  portOfLoading?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  voyage!: string | null;
+  mbl?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  portOfReceipt!: string | null;
+  hbl?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  goodsDescription!: string | null;
+  pickupDate?: MaybeDate;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  vessel!: string | null;
+  containerNumber?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  portOfLoading!: string | null;
+  portOfUnloading?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  mbl!: string | null;
+  finalDestination?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  hbl!: string | null;
+  internationalCarrier?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  pickupDate!: string | null;
+  voyage?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  containerNumber!: string | null;
+  portOfReceipt?: MaybeString;
 
   @AllowNull(true)
-  @Column(DataType.STRING)
-  portOfUnloading!: string | null;
+  @Column(DataType.TEXT)
+  goodsDescription?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.JSONB)
-  containers!: Array<any> | null;
+  containers?: Array<any> | null;
 
   @BelongsToMany(() => Connector, () => ConnectorShipment)
   connectors!: Connector[];

@@ -1,3 +1,4 @@
+import admin from 'firebase-admin';
 import { Shipment } from '../models/shipment.model';
 import { CreateShipmentDto, UpdateShipmentDto } from '../utils/dtos';
 import {
@@ -8,54 +9,106 @@ import {
 import { getAttributes } from './helpers/commons/get-attributes.helper';
 
 export default class ShipmentService {
-  private static async findShipment(
-    HousebillNumber: string,
-  ): Promise<IShipmentPublic | null> {
-    const shipment = await Shipment.findOne({
-      where: { HousebillNumber },
-      attributes: getAttributes(AbstractShipmentPublic),
-    });
-    return shipment as IShipmentPublic | null;
-  }
+  private static getIdFieldForCarrier(carrier: string): string {
+    const carrierIdFields: { [key: string]: string } = {
+      dhl: 'id',
+      fedex: 'transactionId',
+      kandn: 'shipmentNumber',
+      sch: 'ShipmentId',
+    };
 
-  private static createError(message: string, statusCode: number): IError {
-    const error: IError = new Error(message);
-    error.statusCode = statusCode;
-    return error;
-  }
-
-  private static handleError(error: any): never {
-    console.error('Error in ShipmentService:', error);
-    throw error;
+    return carrierIdFields[carrier] || 'id';
   }
 
   public static async getAllShipments(): Promise<IShipmentPublic[]> {
     try {
-      const allShipments = await Shipment.findAll({
-        attributes: getAttributes(AbstractShipmentPublic),
-      });
+      const shipmentCollections = [
+        'shipments_dhl',
+        'shipments_fedex',
+        'shipments_kandn',
+        'shipments_sch',
+      ];
+      const allShipments: IShipmentPublic[] = [];
+
+      for (const collection of shipmentCollections) {
+        const snapshot = await admin.firestore().collection(collection).get();
+        snapshot.forEach((doc) => {
+          allShipments.push({ ...(doc.data() as IShipmentPublic) });
+        });
+      }
 
       if (allShipments.length === 0) {
         throw this.createError('There are no shipments available', 404);
       }
-      return allShipments as IShipmentPublic[];
+
+      return allShipments;
     } catch (error) {
-      return this.handleError(error);
+      throw error;
+    }
+  }
+  public static async getShipmentsByCarrier(
+    carrier: string,
+  ): Promise<IShipmentPublic[]> {
+    try {
+      const shipmentsCollection = admin
+        .firestore()
+        .collection(`shipments_${carrier}`);
+      const snapshot = await shipmentsCollection.get();
+      const shipments: IShipmentPublic[] = [];
+
+      snapshot.forEach((doc) => {
+        shipments.push(doc.data() as IShipmentPublic);
+      });
+
+      if (shipments.length === 0) {
+        const error: IError = new Error(
+          'There are no shipments available for that carrier',
+        );
+        error.statusCode = 404;
+        throw error;
+      }
+
+      return shipments;
+    } catch (error) {
+      throw error;
     }
   }
 
-  public static async getShipmentByNumber(
-    HousebillNumber: string,
+  public static async getShipmentByCarrierAndId(
+    carrier: string,
+    shipmentId: string,
   ): Promise<IShipmentPublic> {
     try {
-      const shipment = await this.findShipment(HousebillNumber);
-      if (!shipment) {
-        throw this.createError(
-          `Shipment with number ${HousebillNumber} not found`,
-          404,
-        );
+      const shipmentsCollection = admin
+        .firestore()
+        .collection(`shipments_${carrier}`);
+
+      const snapshot = await shipmentsCollection.get();
+      const idField = this.getIdFieldForCarrier(carrier);
+
+      let shipmentDoc = null;
+      for (const doc of snapshot.docs) {
+        const data = doc.data();
+        if (data[idField] === shipmentId) {
+          shipmentDoc = data;
+          break;
+        } else {
+          const shipments = data.shipments || [];
+          shipmentDoc = shipments.find(
+            (shipment: any) => shipment[idField] === shipmentId,
+          );
+        }
       }
-      return shipment;
+
+      if (!shipmentDoc) {
+        const error: IError = new Error(
+          `Shipment with ID ${shipmentId} not found for carrier ${carrier}`,
+        );
+        error.statusCode = 404;
+        throw error;
+      }
+
+      return shipmentDoc as IShipmentPublic;
     } catch (error) {
       return this.handleError(error);
     }
@@ -64,38 +117,56 @@ export default class ShipmentService {
   public static async createShipment(
     shipmentData: CreateShipmentDto,
   ): Promise<IShipmentPublic> {
-    try {
-      const { HousebillNumber } = shipmentData;
+    const { HousebillNumber } = shipmentData;
 
-      // Check in the external database
-      const externalShipmentData = await this.checkExternalDatabase(
+    try {
+      // Aquí deberíamos buscar el envío en los conectores
+      const existingShipment = await this.searchShipmentInConnectors(
         HousebillNumber,
       );
 
-      if (!externalShipmentData) {
-        throw this.createError(
-          `Shipment with HousebillNumber ${HousebillNumber} not found in external database`,
-          404,
-        );
-      }
-
-      // Check if it already exists in our database
-      const existingShipment = await this.findShipment(HousebillNumber);
       if (existingShipment) {
-        throw this.createError(
-          `Shipment with HousebillNumber ${HousebillNumber} already exists in our database`,
-          409,
+        const error: IError = new Error(
+          `Shipment with tracking number ${HousebillNumber} already exists`,
         );
+        error.statusCode = 409;
+        throw error;
       }
 
-      // Create the shipment with data from the external database
-      const newShipment = await Shipment.create(
-        this.prepareShipmentData(externalShipmentData),
-      );
-      return newShipment as IShipmentPublic;
+      // Aquí deberíamos crear el envío en el conector apropiado
+      const newShipment = await this.createShipmentInConnector(shipmentData);
+
+      // Convertir el resultado del conector a IShipmentPublic
+      const publicShipment: IShipmentPublic =
+        this.convertToPublicShipment(newShipment);
+
+      return publicShipment;
     } catch (error) {
-      return this.handleError(error);
+      throw error;
     }
+  }
+
+  private static async searchShipmentInConnectors(
+    HousebillNumber: string,
+  ): Promise<any> {
+    // Implementar la lógica para buscar en los conectores
+    // Por ahora, retornamos null como placeholder
+    console.log('Buscando envío en conectores... a ' + HousebillNumber);
+    return null;
+  }
+
+  private static async createShipmentInConnector(
+    shipmentData: CreateShipmentDto,
+  ): Promise<any> {
+    // Implementar la lógica para crear el envío en el conector apropiado
+    // Por ahora, retornamos los datos recibidos como placeholder
+    return shipmentData;
+  }
+
+  private static convertToPublicShipment(shipmentData: any): IShipmentPublic {
+    // Implementar la lógica para convertir los datos del conector a IShipmentPublic
+    // Por ahora, hacemos un cast simple
+    return shipmentData as IShipmentPublic;
   }
 
   public static async updateShipmentByNumber(
@@ -148,64 +219,7 @@ export default class ShipmentService {
         );
       }
     } catch (error) {
-      return this.handleError(error);
+      throw error;
     }
-  }
-
-  private static prepareShipmentData(data: any): any {
-    return {
-      ...data,
-      Origin: data.Origin ?? {
-        LocationCode: '',
-        LocationName: '',
-        CountryCode: '',
-      },
-      Destination: data.Destination ?? {
-        LocationCode: '',
-        LocationName: '',
-        CountryCode: '',
-      },
-      DateAndTimes: data.DateAndTimes ?? {
-        ScheduledDeparture: null,
-        ScheduledArrival: null,
-        ShipmentDate: null,
-      },
-      TotalVolume: data.TotalVolume ?? { '*body': null, '@uom': null },
-      Timestamp: data.Timestamp ?? [],
-    };
-  }
-
-  private static prepareUpdateData(data: UpdateShipmentDto): any {
-    const updateData = { ...data };
-    if (updateData.TotalWeight) {
-      updateData.TotalWeight = {
-        '*body': updateData.TotalWeight['*body'],
-        '@uom': updateData.TotalWeight['@uom'],
-      };
-    }
-    if (updateData.TotalVolume) {
-      updateData.TotalVolume = {
-        '*body': updateData.TotalVolume['*body'],
-        '@uom': updateData.TotalVolume['@uom'],
-      };
-    }
-    if (updateData.Timestamp) {
-      updateData.Timestamp = updateData.Timestamp.map((timestamp) => ({
-        TimestampCode: timestamp.TimestampCode,
-        TimestampDescription: timestamp.TimestampDescription,
-        TimestampDateTime: timestamp.TimestampDateTime,
-        TimestampLocation: timestamp.TimestampLocation,
-      }));
-    }
-    return updateData;
-  }
-
-  private static async checkExternalDatabase(
-    HousebillNumber: string,
-  ): Promise<any> {
-    // This method should be implemented to check the external database
-    // and return the shipment data if found
-    // For now, it's a placeholder
-    throw new Error('Method not implemented');
   }
 }

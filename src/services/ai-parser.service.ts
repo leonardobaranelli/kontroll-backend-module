@@ -1,46 +1,78 @@
-import { Shipment } from '../models/shipment.model';
-import { CreateShipmentDto } from '../utils/dtos';
 import { IShipment } from '../utils/types/models.interface';
 import { IShipmentPublic } from '../utils/types/utilities.interface';
+import { CreateShipmentDto } from '../utils/dtos';
+import ShipmentController from '../controllers/shipment.controller';
 import axios from 'axios';
-import setData from './helpers/ai-parser/set-data.helper';
+import { Request, Response } from 'express';
 
 export default class AiParserService {
   public static async createParsedShipment(
     parsedShipment: CreateShipmentDto,
   ): Promise<IShipmentPublic> {
-    try {
-      const newShipment: Shipment = await Shipment.create(parsedShipment);
-      return newShipment as IShipmentPublic;
-    } catch (error) {
-      console.error('Error creating parsed shipment: ', error);
-      throw error;
-    }
+    console.log('Placeholder: Creating parsed shipment:', parsedShipment);
+    // Retornamos un objeto vacío como placeholder
+    return {} as IShipmentPublic;
   }
 
-  public static async parseShipment(shipmentData: any): Promise<IShipment> {
-    try {
-      const formattedData: object = await setData(shipmentData);
+  public static async parseShipment(
+    carrier: string,
+    trackingId: string,
+  ): Promise<IShipment> {
+    console.log(
+      `[DEBUG] Entering parseShipment with carrier: ${carrier}, trackingId: ${trackingId}`,
+    );
 
-      console.log('Parsing data...');
-      const response = await axios.post<object>(
-        'http://localhost:5000/parse_shipment',
-        formattedData,
+    try {
+      // Crear un objeto Request simulado
+      const mockRequest = {
+        params: { carrier, shipmentId: trackingId },
+      } as unknown as Request;
+
+      // Crear un objeto Response simulado
+      const mockResponse = {
+        json: (data: any) => data,
+        status: () => ({ json: (data: any) => data }),
+      } as unknown as Response;
+
+      // Llamar al método del controlador directamente
+      const shipment = await ShipmentController.getByCarrierAndId(
+        mockRequest,
+        mockResponse,
       );
 
-      return response.data as IShipment;
+      if (!shipment) {
+        throw new Error(
+          `Shipment not found for carrier ${carrier} and tracking ID ${trackingId}`,
+        );
+      }
+
+      console.log('[DEBUG] Shipment data fetched:', shipment);
+
+      console.log('[DEBUG] Sending request to shipment parser service');
+      const response = await axios.post(
+        'http://localhost:3003/shipment-parser/parse',
+        shipment,
+      );
+      console.log(
+        '[DEBUG] Shipment parser service response:',
+        response.status,
+        response.data,
+      );
+
+      if (response.status === 200) {
+        console.log('[DEBUG] Returning parsed shipment data');
+        return response.data as IShipment;
+      } else {
+        console.log('[DEBUG] Throwing error due to non-200 status');
+        throw new Error(`Failed to parse shipment. Status: ${response.status}`);
+      }
     } catch (error) {
-      console.error('Error in AI parsing process: ', error);
+      console.error('[DEBUG] Error in parseShipment:', error);
       throw error;
     }
   }
 
   public static async trainAiModel(): Promise<void> {
-    try {
-      console.log('Training model...');
-    } catch (error) {
-      console.error('Error in AI training process: ', error);
-      throw error;
-    }
+    console.log('Placeholder: Training AI model...');
   }
 }

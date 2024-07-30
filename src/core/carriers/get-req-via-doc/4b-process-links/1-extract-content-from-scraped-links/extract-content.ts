@@ -32,13 +32,13 @@ export const extractContent = async (serviceName: string): Promise<void> => {
   // Create the service folder if it does not exist
   const formattedServiceName = serviceName.toLowerCase().replace(/\s+/g, '_');
   const serviceDir = path.join(
-    `./3-scrape-links/scraped-links/${formattedServiceName}`,
+    `./src/core/carriers/get-req-via-doc/3-scrape-links/scraped-links/${formattedServiceName}`,
   );
   if (!fs.existsSync(serviceDir)) {
     fs.mkdirSync(serviceDir, { recursive: true });
   }
 
-  const outputDir = `./4b-process-links/1-extract-content-from-scraped-links/extracted-content/${formattedServiceName}`;
+  const outputDir = `./src/core/carriers/get-req-via-doc/4b-process-links/1-extract-content-from-scraped-links/extracted-content/${formattedServiceName}`;
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }

@@ -24,22 +24,39 @@ export default class ShipmentController {
     }
   };
 
-  public static getByNumber = async (
-    req: Request,
+  public static getByCarrier = async (
+    _req: Request,
     res: Response,
   ): Promise<void> => {
-    const HousebillNumber = req.params.HousebillNumber as string;
+    const { carrier } = _req.params;
+    try {
+      const shipments: IShipmentPublic[] =
+        await ShipmentService.getShipmentsByCarrier(carrier);
+      sendSuccessResponse(res, shipments, 'Shipments retrieved successfully');
+    } catch (error: any) {
+      sendErrorResponse(res, error, error.statusCode || 400);
+    }
+  };
+
+  public static getByCarrierAndId = async (
+    req: Request,
+    res: Response,
+  ): Promise<IShipmentPublic | null> => {
+    const carrier = req.params.carrier as string;
+    const shipmentId = req.params.shipmentId as string;
 
     try {
       const shipment: IShipmentPublic | null =
-        await ShipmentService.getShipmentByNumber(HousebillNumber);
+        await ShipmentService.getShipmentByCarrierAndId(carrier, shipmentId);
       sendSuccessResponse(
         res,
         shipment,
-        `Shipment with name ${HousebillNumber} retrieved successfully`,
+        `Shipment with id ${shipmentId} retrieved successfully`,
       );
+      return shipment;
     } catch (error: any) {
       sendErrorResponse(res, error, error.statusCode || 400);
+      return null;
     }
   };
 

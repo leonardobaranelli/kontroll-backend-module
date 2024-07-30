@@ -1,13 +1,9 @@
 import { Request, Response } from 'express';
-import { validateOrReject } from 'class-validator';
-import { plainToClass } from 'class-transformer';
 import {
   sendSuccessResponse,
   sendErrorResponse,
 } from './helpers/commons/handlers/responses.handler';
-import { CreateShipmentDto } from '../utils/dtos';
 import AiParserService from '../services/ai-parser.service';
-import { isErrorArray } from './helpers/commons/is-error-array.helper';
 import { IShipmentPublic } from '../utils/types/utilities.interface';
 import { IShipment } from '@/utils/types/models.interface';
 
@@ -19,37 +15,25 @@ export default class AiParserController {
     const shipmentData: object = req.body;
 
     try {
-      // Parse shipment data using AI service
-      const parsedShipment: IShipment | null =
-        await AiParserService.parseShipment(shipmentData);
+      console.log('Placeholder: Parsing and creating shipment:', shipmentData);
 
-      if (!parsedShipment) {
-        throw new Error('Failed to parse shipment data');
-      }
-
-      // Convert parsed shipment data to DTO
-      const createShipmentDto = plainToClass(CreateShipmentDto, parsedShipment);
-      await validateOrReject(createShipmentDto);
-
-      // Create the shipment using the DTO
-      const newShipment: IShipmentPublic | null =
-        await AiParserService.createParsedShipment(createShipmentDto);
+      // Placeholder response
+      const placeholderShipment: IShipmentPublic = {
+        HousebillNumber: 'placeholder-housebill-number',
+        // Add other required fields with placeholder values
+      };
 
       sendSuccessResponse(
         res,
-        newShipment,
-        'Shipment parsed and created successfully',
+        placeholderShipment,
+        'Placeholder: Shipment parsed and created successfully',
         201,
       );
     } catch (error: any) {
-      if (isErrorArray(error)) {
-        const errorMessage: string = error
-          .map((err) => Object.values(err.constraints || {}))
-          .join(', ');
-        sendErrorResponse(res, new Error(errorMessage));
-      } else {
-        sendErrorResponse(res, error as Error);
-      }
+      sendErrorResponse(
+        res,
+        new Error('Placeholder: Error parsing and creating shipment'),
+      );
     }
   };
 
@@ -60,5 +44,33 @@ export default class AiParserController {
     console.log('Retrain AI model and create shipment');
     AiParserService.trainAiModel();
     sendSuccessResponse(res, null, 'AI model retrained', 200);
+  };
+
+  public static parseShipment = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
+    console.log('[DEBUG] Entering AiParserController.parseShipment');
+    const { carrier, trackingId } = req.params;
+    console.log(`[DEBUG] Params: carrier=${carrier}, trackingId=${trackingId}`);
+
+    try {
+      console.log('[DEBUG] Calling AiParserService.parseShipment');
+      const parsedShipment: IShipment = await AiParserService.parseShipment(
+        carrier,
+        trackingId,
+      );
+      console.log('[DEBUG] Parsed shipment:', parsedShipment);
+      console.log('[DEBUG] Sending success response');
+      sendSuccessResponse(res, parsedShipment, 'Shipment parsed successfully');
+    } catch (error: any) {
+      console.error(
+        '[DEBUG] Error in AiParserController.parseShipment:',
+        error,
+      );
+      console.log('[DEBUG] Sending error response');
+      sendErrorResponse(res, error, error.statusCode || 500);
+    }
+    console.log('[DEBUG] Exiting AiParserController.parseShipment');
   };
 }

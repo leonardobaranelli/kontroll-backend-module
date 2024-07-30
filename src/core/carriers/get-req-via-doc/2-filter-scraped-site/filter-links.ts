@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { URL } from 'url';
+import { ignoreExtensions } from '../utils/ignore-extensions.util';
 
 // Define the interface for the links
 interface LinkInfo {
@@ -48,10 +49,17 @@ const saveFilteredLinks = (filePath: string, links: LinkInfo[]): void => {
   fs.writeFileSync(filePath, jsonData);
 };
 
+const isIgnoredExtension = (url: string): boolean => {
+  return ignoreExtensions.some((ext) => url.toLowerCase().endsWith(ext));
+};
+
 // Filter links based on keywords
 const _filterLinks = (links: LinkInfo[], keywords: string[]): LinkInfo[] => {
   return links.filter((link) => {
     const combinedText = (link.url + ' ' + link.text).toLowerCase();
+    if (isIgnoredExtension(combinedText)) {
+      return;
+    }
     return keywords.some((keyword) =>
       combinedText.includes(keyword.toLowerCase()),
     );
@@ -78,8 +86,8 @@ export const filterLinks = (
 ): void => {
   // Load links from JSON file
   const formattedServiceName = serviceName.toLowerCase().replace(/\s+/g, '_');
-  const linksFilePath = `./1-scrape-site/links/all_links_${formattedServiceName}.json`;
-  const outputFilePath = `./2-filter-scraped-site/filtered-links/filtered_links_${formattedServiceName}.json`;
+  const linksFilePath = `./src/core/carriers/get-req-via-doc/1-scrape-site/links/all_links_${formattedServiceName}.json`;
+  const outputFilePath = `./src/core/carriers/get-req-via-doc/2-filter-scraped-site/filtered-links/filtered_links_${formattedServiceName}.json`;
 
   const links = loadLinks(linksFilePath);
 
@@ -96,6 +104,5 @@ export const filterLinks = (
   saveFilteredLinks(outputFilePath, filteredLinks);
 
   // Print the number of filtered links
-  console.log(`Filtered links saved to ${outputFilePath}`);
-  console.log(`\nNumber of filtered links: ${filteredLinks.length}`);
+  console.log(`Number of filtered links: ${filteredLinks.length}`);
 };

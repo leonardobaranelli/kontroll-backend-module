@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
+import 'colors';
 
 dotenv.config();
 
@@ -48,7 +49,7 @@ export const convergeSteps = async (serviceName: string): Promise<void> => {
   // Create the service folder if it does not exist
   const formattedServiceName = serviceName.toLowerCase().replace(/\s+/g, '_');
   const serviceDir = path.join(
-    `./4b-process-links/2-process-content/extracted-steps/${formattedServiceName}`,
+    `./src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/extracted-steps/${formattedServiceName}`,
   );
 
   if (!fs.existsSync(serviceDir)) {
@@ -56,7 +57,7 @@ export const convergeSteps = async (serviceName: string): Promise<void> => {
     return;
   }
 
-  const outputDir = `../../../storage/carriers/data-on-steps`;
+  const outputDir = `./src/storage/carriers/data-on-steps`;
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
@@ -90,18 +91,21 @@ export const convergeSteps = async (serviceName: string): Promise<void> => {
 
     const allSteps = Array.from(allStepsMap.values());
 
-    // Sort and reassign step numbers sequentially
+    // Sort and reassign step numbers sequentially starting from 3
     allSteps.sort((a, b) => a.stepsDetails.step - b.stepsDetails.step);
     allSteps.forEach((step, index) => {
       step.stepsDetails.step = index + 3;
     });
 
+    // Limit the number of steps to max 6 steps
+    const limitedSteps = allSteps.slice(0, 4);
+
     fs.writeFileSync(
       outputFilePath,
-      JSON.stringify(allSteps, null, 2),
+      JSON.stringify(limitedSteps, null, 2),
       'utf-8',
     );
-    console.log(`Steps converged successfully: ${outputFilePath}`);
+    console.log(`Steps saved successfully on: ${outputFilePath}\n`.green);
   } catch (error) {
     console.error('Error during processing:', error);
   }

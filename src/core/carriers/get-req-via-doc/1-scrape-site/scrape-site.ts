@@ -24,7 +24,7 @@ async function searchGoogle(
   )}`;
 
   const browser: Browser = await puppeteer.launch({
-    headless: false, // Set to true for headless operation
+    headless: true, // Set to true for headless operation
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
     defaultViewport: null, // Use default viewport for more flexibility
     ignoreHTTPSErrors: true,
@@ -85,11 +85,10 @@ async function searchGoogle(
       }, siteUrl);
 
       // Save all links to a JSON file
-      const jsonFileName = `1-scrape-site/links/all_links_${query
+      const jsonFileName = `src/core/carriers/get-req-via-doc/1-scrape-site/links/all_links_${query
         .replace(/\s+/g, '_')
         .toLowerCase()}.json`;
       fs.writeFileSync(jsonFileName, JSON.stringify(allLinks, null, 2));
-      console.log(`Saved all links to ${jsonFileName}`);
 
       return {
         siteUrl,
@@ -117,7 +116,10 @@ export async function scrapeSite(serviceName: string): Promise<void> {
 
   try {
     const results = await searchGoogle(query, numberOfResults);
-    console.log('Search completed:', results);
+    console.log(
+      `Search for carrier ${serviceName} completed:`,
+      results.siteUrl,
+    );
   } catch (error) {
     console.error('Search failed:', error);
     throw error;

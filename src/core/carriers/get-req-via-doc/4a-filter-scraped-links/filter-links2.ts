@@ -25,7 +25,6 @@ const loadLinks = (folderPath: string): LinkInfo[] => {
   files.forEach((file) => {
     if (file.endsWith('.json')) {
       const filePath = path.join(folderPath, file);
-      console.log(`Loading links from file: ${filePath}`);
       const rawData = fs.readFileSync(filePath, 'utf8');
       const jsonData: PageData = JSON.parse(rawData);
 
@@ -56,7 +55,6 @@ const loadLinks = (folderPath: string): LinkInfo[] => {
 const saveFilteredLinks = (filePath: string, links: LinkInfo[]): void => {
   const jsonData = JSON.stringify(links, null, 2);
   fs.writeFileSync(filePath, jsonData);
-  console.log(`Filtered links saved to: ${filePath}`);
 };
 
 // Filter links based on keywords and relevance
@@ -66,20 +64,13 @@ const filterLinks = (
 ): LinkInfo[] => {
   return links.filter((link) => {
     if (!link.url || !link.text) {
-      console.log(
-        `Skipping link due to missing url or text: ${JSON.stringify(link)}`,
-      );
       return false;
     }
     const combinedText = (link.url + ' ' + link.text).toLowerCase();
     const isMatch = linksKeywords.some((keyword) =>
       combinedText.includes(keyword.toLowerCase()),
     );
-    if (!isMatch) {
-      console.log(
-        `Skipping link due to no keyword match: ${JSON.stringify(link)}`,
-      );
-    }
+
     return isMatch;
   });
 };
@@ -104,8 +95,8 @@ export const filterLinks2 = (
 ): void => {
   // Load links from JSON file
   const formattedServiceName = serviceName.toLowerCase().replace(/\s+/g, '_');
-  const linksDirPath = `./3-scrape-links/scraped-links/${formattedServiceName}`;
-  const outputDirPath = `./4a-filter-scraped-links/filtered-links/${formattedServiceName}`;
+  const linksDirPath = `./src/core/carriers/get-req-via-doc/3-scrape-links/scraped-links/${formattedServiceName}`;
+  const outputDirPath = `./src/core/carriers/get-req-via-doc/4a-filter-scraped-links/filtered-links/${formattedServiceName}`;
   const outputFilePath = path.join(
     outputDirPath,
     `${formattedServiceName}_filtered_links.json`,
@@ -129,6 +120,4 @@ export const filterLinks2 = (
 
   // Save filtered links to a new JSON file
   saveFilteredLinks(outputFilePath, filteredLinks);
-
-  console.log(`Filtered links saved to ${outputFilePath}`);
 };

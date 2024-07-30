@@ -4,12 +4,11 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 nlp = spacy.load('en_core_web_sm')
 
-def extract_relevant_info(doc):
-    keywords = ['api', 'api key', 'account number', 'authentication', 'credentials']
+def extract_relevant_info(doc, contentKeywords):    
     steps = []
     seen_keywords = set()
 
-    for keyword in keywords:
+    for keyword in contentKeywords:
         if keyword in seen_keywords:
             continue
         for sentence in doc.sents:
@@ -77,7 +76,6 @@ def split_text_into_details(text, max_chars_per_detail=120, max_details=4):
 
     return details
 
-
 def split_long_sentence(sentence, max_chars_per_detail=120):
     # Split a long sentence into chunks that fit within the max_chars_per_detail
     parts = []
@@ -91,16 +89,18 @@ def split_long_sentence(sentence, max_chars_per_detail=120):
         parts.append(sentence.strip())
     return parts
 
-
-
 @app.route('/analyze', methods=['POST'])
 def analyze():
     content = request.json.get('content', '')
+    contentKeywords = request.json.get('contentKeywords', [])
+    
     if not content:
         return jsonify({'error': 'No content provided'}), 400
+    if not contentKeywords:
+        return jsonify({'error': 'No keywords provided'}), 400
 
     doc = nlp(content)
-    steps = extract_relevant_info(doc)
+    steps = extract_relevant_info(doc, contentKeywords)
 
     formatted_steps = []
     for idx, step in enumerate(steps):

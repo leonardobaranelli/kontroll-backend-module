@@ -46,15 +46,21 @@ You also have to install a python server, that is used to process some tasks in 
    python -m venv venv
    ```
 
+   or
+
+   ```bash
+   python3 -m venv venv
+   ```
+
 6. #### Activate the virtual environment:
 
    On Windows:
 
    ```bash
-    source venv/scripts/activate
+    venv/scripts/activate
    ```
 
-   On Linux:
+   On Linux or Mac:
 
    ```bash
     source venv/bin/activate
@@ -72,43 +78,53 @@ You also have to install a python server, that is used to process some tasks in 
    python -m spacy download en_core_web_sm
    ```
 
+   or
+
+   ```bash
+   python3 -m spacy download en_core_web_sm
+   ```
+
 At this point, you have already configured the software :)
 <br><br>
 
-### Run the backend (already configured)
+## <span style="color:#32CD99">Run the backend (already configured)</span>
 
 Run the main server and the auxiliary python server (both must be running simultaneously)
 
-1. #### On the root of the directory run the following command:
+1. #### <span style="color:#32CD99">On the root of the directory run the following command:</span>
 
    ```bash
-   npm start
+   npm run production-start
    ```
 
-2. #### Open other console and navigate to python server directory:
-
-   ```bash
-   cd src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/spacy
-   ```
-
-3. #### Activate the virtual environment:
+2. #### <span style="color:#32CD99">Open other console and activate the python virtual environment:</span>
 
    On Windows:
 
    ```bash
-    source venv/scripts/activate
+    src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/spacy/venv/scripts/activate
    ```
 
-   On Linux:
+   On Linux or Mac:
 
    ```bash
-    source venv/bin/activate
+    source src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/spacy/venv/bin/activate
    ```
 
-4. #### Run the server:
+3. #### <span style="color:#32CD99">Run the python server:</span>
 
    ```bash
-    python nlp_server.py
+   python src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/spacy/nlp_server.py
    ```
 
-At this point, you have already configured the software :)
+   or
+
+   ```bash
+   python3 src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/spacy/nlp_server.py
+   ```
+
+#### <span style="color:#32CD99">[EXTRA] to clean the data on steps on the local storage you can run:</span>
+
+```bash
+npm run clean-storage
+```

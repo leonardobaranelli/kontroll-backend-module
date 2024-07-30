@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import {
   IsNotEmpty,
   IsNumber,
@@ -5,6 +6,7 @@ import {
   IsString,
   ValidateNested,
   IsArray,
+  IsDateString,
 } from 'class-validator';
 import { Transform, Type } from 'class-transformer';
 import { IShipment } from '../../types/models.interface';
@@ -16,6 +18,10 @@ import {
   TotalVolumeDto,
   TimestampDto,
 } from './create-shipment-dto-classes';
+
+type MaybeString = string | null;
+type MaybeNumber = number | null;
+type MaybeDate = Date | string | null;
 
 export class CreateShipmentDto implements Partial<IShipment> {
   @IsNotEmpty({ message: 'Housebill number cannot be empty' })
@@ -40,8 +46,8 @@ export class CreateShipmentDto implements Partial<IShipment> {
 
   @IsOptional()
   @IsString({ message: 'Product type must be a string' })
-  @Transform(({ value }) => value?.trim() || null)
-  ProductType?: string | null;
+  @Transform(({ value }) => value?.trim())
+  readonly ProductType?: MaybeString;
 
   @IsOptional()
   @IsNumber({}, { message: 'Total packages must be a number' })
@@ -66,129 +72,129 @@ export class CreateShipmentDto implements Partial<IShipment> {
   @IsOptional()
   @IsString({ message: 'Broker name must be a string' })
   @Transform(({ value }) => value?.trim())
-  brokerName?: string | null;
+  readonly brokerName?: MaybeString;
 
   @IsOptional()
   @IsString({ message: 'Incoterms must be a string' })
   @Transform(({ value }) => value?.trim())
-  incoterms?: string | null;
+  readonly incoterms?: MaybeString;
 
   @IsOptional()
-  @IsString({ message: 'Shipment date must be a string' })
+  @IsDateString({}, { message: 'Shipment date must be a valid date string' })
   @Transform(({ value }) => value?.trim())
-  shipmentDate?: string | null;
+  readonly shipmentDate?: MaybeDate;
 
   @IsOptional()
   @IsString({ message: 'Booking must be a string' })
   @Transform(({ value }) => value?.trim())
-  booking?: string | null;
+  readonly booking?: MaybeString;
 
   @IsOptional()
   @IsString({ message: 'MAWB must be a string' })
   @Transform(({ value }) => value?.trim())
-  mawb?: string | null;
+  readonly mawb?: MaybeString;
 
   @IsOptional()
   @IsString({ message: 'HAWB must be a string' })
   @Transform(({ value }) => value?.trim())
-  hawb?: string | null;
+  readonly hawb?: MaybeString;
 
   @IsOptional()
   @IsString({ message: 'Flight must be a string' })
   @Transform(({ value }) => value?.trim())
-  flight?: string | null;
+  readonly flight?: MaybeString;
 
   @IsOptional()
   @IsString({ message: 'Airport of departure must be a string' })
   @Transform(({ value }) => value?.trim())
-  airportOfDeparture?: string | null;
+  readonly airportOfDeparture?: MaybeString;
 
   @IsOptional()
-  @IsString({ message: 'ETD must be a string' })
+  @IsDateString({}, { message: 'ETD must be a valid date string' })
   @Transform(({ value }) => value?.trim())
-  etd?: string | null;
+  readonly etd?: MaybeDate;
 
   @IsOptional()
-  @IsString({ message: 'ATD must be a string' })
+  @IsDateString({}, { message: 'ATD must be a valid date string' })
   @Transform(({ value }) => value?.trim())
-  atd?: string | null;
+  readonly atd?: MaybeDate;
 
   @IsOptional()
   @IsString({ message: 'Airport of arrival must be a string' })
   @Transform(({ value }) => value?.trim())
-  airportOfArrival?: string | null;
+  readonly airportOfArrival?: MaybeString;
 
   @IsOptional()
-  @IsString({ message: 'ETA must be a string' })
+  @IsDateString({}, { message: 'ETA must be a valid date string' })
   @Transform(({ value }) => value?.trim())
-  eta?: string | null;
+  readonly eta?: MaybeDate;
 
   @IsOptional()
-  @IsString({ message: 'ATA must be a string' })
+  @IsDateString({}, { message: 'ATA must be a valid date string' })
   @Transform(({ value }) => value?.trim())
-  ata?: string | null;
+  readonly ata?: MaybeDate;
 
   @IsOptional()
   @IsString({ message: 'Vessel must be a string' })
   @Transform(({ value }) => value?.trim())
-  vessel?: string | null;
+  readonly vessel?: MaybeString;
 
   @IsOptional()
   @IsString({ message: 'Port of loading must be a string' })
   @Transform(({ value }) => value?.trim())
-  portOfLoading?: string | null;
+  readonly portOfLoading?: MaybeString;
 
   @IsOptional()
   @IsString({ message: 'MBL must be a string' })
   @Transform(({ value }) => value?.trim())
-  mbl?: string | null;
+  readonly mbl?: MaybeString;
 
   @IsOptional()
   @IsString({ message: 'HBL must be a string' })
   @Transform(({ value }) => value?.trim())
-  hbl?: string | null;
+  readonly hbl?: MaybeString;
 
   @IsOptional()
-  @IsString({ message: 'Pickup date must be a string' })
+  @IsDateString({}, { message: 'Pickup date must be a valid date string' })
   @Transform(({ value }) => value?.trim())
-  pickupDate?: string | null;
+  readonly pickupDate?: MaybeDate;
 
   @IsOptional()
   @IsString({ message: 'Container number must be a string' })
   @Transform(({ value }) => value?.trim())
-  containerNumber?: string | null;
+  readonly containerNumber?: MaybeString;
 
   @IsOptional()
   @IsString({ message: 'Port of unloading must be a string' })
   @Transform(({ value }) => value?.trim())
-  portOfUnloading?: string | null;
+  readonly portOfUnloading?: MaybeString;
 
   @IsOptional()
   @IsString({ message: 'Final destination must be a string' })
   @Transform(({ value }) => value?.trim())
-  finalDestination?: string | null;
+  readonly finalDestination?: MaybeString;
 
   @IsOptional()
   @IsString({ message: 'International carrier must be a string' })
   @Transform(({ value }) => value?.trim())
-  internationalCarrier?: string | null;
+  readonly internationalCarrier?: MaybeString;
 
   @IsOptional()
   @IsString({ message: 'Voyage must be a string' })
   @Transform(({ value }) => value?.trim())
-  voyage?: string | null;
+  readonly voyage?: MaybeString;
 
   @IsOptional()
   @IsString({ message: 'Port of receipt must be a string' })
   @Transform(({ value }) => value?.trim())
-  portOfReceipt?: string | null;
+  readonly portOfReceipt?: MaybeString;
 
   @IsOptional()
   @IsString({ message: 'Goods description must be a string' })
   @Transform(({ value }) => value?.trim())
-  goodsDescription?: string | null;
+  readonly goodsDescription?: MaybeString;
 
   @IsOptional()
   @IsArray()
-  containers?: Array<any> | null;
+  readonly containers?: Array<any> | null;
 }
