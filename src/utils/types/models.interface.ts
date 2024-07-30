@@ -15,6 +15,7 @@ export interface IUser {
 export interface IConnector {
   id: MaybeString;
   type: string;
+  memoryParser?: {};
 }
 
 export interface IShipment {
@@ -84,6 +85,7 @@ export interface ICarrier {
   url: string;
   accountNumber?: MaybeString;
   apiKey?: MaybeString;
+  memoryParser?: {};
 }
 
 // Beginning of the Step region
