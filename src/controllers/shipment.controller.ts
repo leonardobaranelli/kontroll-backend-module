@@ -41,7 +41,7 @@ export default class ShipmentController {
   public static getByCarrierAndId = async (
     req: Request,
     res: Response,
-  ): Promise<void> => {
+  ): Promise<IShipmentPublic | null> => {
     const carrier = req.params.carrier as string;
     const shipmentId = req.params.shipmentId as string;
 
@@ -53,8 +53,10 @@ export default class ShipmentController {
         shipment,
         `Shipment with id ${shipmentId} retrieved successfully`,
       );
+      return shipment;
     } catch (error: any) {
       sendErrorResponse(res, error, error.statusCode || 400);
+      return null;
     }
   };
 
