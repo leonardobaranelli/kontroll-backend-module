@@ -46,12 +46,18 @@ export class DestinationDto {
 
 export class DateAndTimesDto {
   @IsOptional()
-  @IsDateString({}, { message: 'Scheduled departure must be a valid date string' })
+  @IsDateString(
+    {},
+    { message: 'Scheduled departure must be a valid date string' },
+  )
   @Transform(({ value }) => value?.trim() || null)
   ScheduledDeparture?: MaybeDate;
 
   @IsOptional()
-  @IsDateString({}, { message: 'Scheduled Arrival must be a valid date string' })
+  @IsDateString(
+    {},
+    { message: 'Scheduled Arrival must be a valid date string' },
+  )
   @Transform(({ value }) => value?.trim() || null)
   ScheduledArrival?: MaybeDate;
 
@@ -61,11 +67,10 @@ export class DateAndTimesDto {
   ShipmentDate?: MaybeDate;
 }
 
-
 export class TotalWeightDto {
   @IsOptional()
   @IsNumber({}, { message: 'Weight value must be a number' })
-  @Transform(({ value }) => value === '' ? null : Number(value))
+  @Transform(({ value }) => (value === '' ? null : Number(value)))
   '*body': MaybeNumber;
 
   @IsOptional()
@@ -77,7 +82,7 @@ export class TotalWeightDto {
 export class TotalVolumeDto {
   @IsOptional()
   @IsNumber({}, { message: 'Volume value must be a number' })
-  @Transform(({ value }) => value === '' ? null : Number(value))
+  @Transform(({ value }) => (value === '' ? null : Number(value)))
   '*body': MaybeNumber;
 
   @IsOptional()
@@ -98,7 +103,10 @@ export class TimestampDto {
   TimestampDescription?: MaybeString;
 
   @IsOptional()
-  @IsDateString({}, { message: 'Timestamp date time must be a valid date string' })
+  @IsDateString(
+    {},
+    { message: 'Timestamp date time must be a valid date string' },
+  )
   @Transform(({ value }) => value?.trim() || null)
   TimestampDateTime?: MaybeDate;
 
