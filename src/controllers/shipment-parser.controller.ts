@@ -36,11 +36,7 @@ export default class ShipmentParserController {
     }
   }
 
-  public static async getMemoryShipments(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ) {
+  public static async getMemoryShipments(res: Response, next: NextFunction) {
     try {
       const shipments = await ShipmentParserService.getMemoryShipments();
       res.status(200).json(shipments);
@@ -49,11 +45,7 @@ export default class ShipmentParserController {
     }
   }
 
-  public static async clearMemoryShipments(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ) {
+  public static async clearMemoryShipments(res: Response, next: NextFunction) {
     try {
       await ShipmentParserService.clearMemoryShipments();
       res.status(204).send();

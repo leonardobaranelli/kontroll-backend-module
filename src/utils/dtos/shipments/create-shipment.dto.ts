@@ -23,11 +23,11 @@ type MaybeString = string | null;
 type MaybeNumber = number | null;
 type MaybeDate = Date | string | null;
 
-export class CreateShipmentDto implements Partial<IShipment> {
+export class CreateShipmentDto implements Omit<IShipment, 'id'> {
   @IsNotEmpty({ message: 'Housebill number cannot be empty' })
   @IsString({ message: 'Housebill number must be a string' })
   @Transform(({ value }) => value.trim())
-  HousebillNumber!: string;
+  HousebillNumber: string = '';
 
   @IsOptional()
   @ValidateNested()
@@ -50,8 +50,8 @@ export class CreateShipmentDto implements Partial<IShipment> {
   readonly ProductType?: MaybeString;
 
   @IsOptional()
-  @IsNumber({}, { message: 'Total packages must be a number' })
-  TotalPackages?: number | null;
+  @IsNumber({}, { message: 'Total packages must be a valid number' })
+  readonly TotalPackages?: MaybeNumber;
 
   @IsOptional()
   @ValidateNested()

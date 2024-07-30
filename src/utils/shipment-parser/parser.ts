@@ -14,11 +14,74 @@ import { formatShipmentData } from './formatter';
 const apiDocumentationLink =
   'https://developer.dhl.com/api-reference/shipment-tracking#get-started-section/';
 
+function getStandardStructure(): string {
+  return `{
+    "HousebillNumber": "String", // This would be the tracking number
+    "Origin": {
+      "LocationCode": "String", // Origin location code in ISO 3166 code
+      "LocationName": "String", // Origin location name
+      "CountryCode": "String" // Origin country code in ISO 3166 code
+    },
+    "Destination": {
+      "LocationCode": "String", // Destination location code in ISO 3166 code
+      "LocationName": "String", // Destination location name
+      "CountryCode": "String" // Destination country code in ISO 3166 code
+    },
+    "DateAndTimes": {
+      "ScheduledDeparture": "String", // Scheduled or estimated departure date from origin
+      "ScheduledArrival": "String", // Scheduled or estimated arrival date at destination
+      "ShipmentDate": "String" // Shipment date
+    },
+    "ProductType": "String", // Product type - Optional
+    "TotalPackages": "Number", // Total packages in the shipment - Optional
+    "TotalWeight": {
+      "*body": "Number", // Total weight - Only the quantity
+      "@uom": "String" // Total weight - Unit of measure (KG, LB, etc.)
+    },
+    "TotalVolume": {
+      "*body": "Number", // Total volume - Only the quantity
+      "@uom": "String" // Total volume - Unit of measure (m³, ft³, etc.)
+    },
+    "Timestamp": [ // Array of events
+      {
+        "TimestampCode": "String", // Event code
+        "TimestampDescription": "String", // Event description
+        "TimestampDateTime": "Date", // Event occurrence date
+        "TimestampLocation": "String" // Event location
+      }
+    ],
+    "brokerName": "String", // Carrier name
+    "incoterms": "String", // Delivery terms
+    "shipmentDate": "String", // Shipment date
+    "booking": "String", // Booking number
+    "mawb": "String", // Master Air Waybill number (MAWB)
+    "hawb": "String", // House Air Waybill number (HAWB)
+    "flight": "String", // Flight number
+    "airportOfDeparture": "String", // Departure airport name
+    "etd": "String", // Estimated Time of Departure (ETD)
+    "atd": "String", // Actual Time of Departure (ATD)
+    "airportOfArrival": "String", // Arrival airport name
+    "eta": "String", // Estimated Time of Arrival (ETA)
+    "ata": "String", // Actual Time of Arrival (ATA)
+    "vessel": "String", // Vessel name
+    "portOfLoading": "String", // Port of loading name
+    "mbl": "String", // Master Bill of Lading number (MBL)
+    "hbl": "String", // House Bill of Lading number (HBL)
+    "pickupDate": "String", // Pickup date
+    "containerNumber": "String", // Container number
+    "portOfUnloading": "String", // Port of unloading name
+    "finalDestination": "String", // Final destination name
+    "internationalCarrier": "String", // International carrier name
+    "voyage": "String", // Voyage number
+    "portOfReceipt": "String", // Port of receipt name
+    "goodsDescription": "String", // Goods description
+    "containers": [] // List of containers associated with the shipment
+  }`;
+}
+
 async function parseJsonWithOpenAI(
   inputJson: ShipmentInput,
 ): Promise<IShipment> {
-  console.log('Preparing OpenAI request...');
-
   const prompt = `
   As a helpful assistant for the Kontroll application, your task is to parse the provided JSON data and convert it into the standard shipment tracking structure. Ensure the output is a valid JSON object with correct data types and that any optional fields missing in the input are set to null. 
   
@@ -28,7 +91,8 @@ async function parseJsonWithOpenAI(
   ${JSON.stringify(inputJson, null, 2)}
   
   The standard structure for shipment tracking is as follows:
-  ${JSON.stringify({}, null, 2)}
+  ${getStandardStructure()} 
+
   
   Your response should only contain the JSON object. Do not include any other text. Ensure that the output is a valid JSON format.
   
@@ -36,8 +100,6 @@ async function parseJsonWithOpenAI(
   
   API documentation for reference: ${apiDocumentationLink}
   `;
-
-  console.log('Sending request to OpenAI...');
 
   try {
     const response = await axios.post(
@@ -61,8 +123,6 @@ async function parseJsonWithOpenAI(
       },
     );
 
-    console.log('Received response from OpenAI');
-
     const responseText = response.data.choices[0].message.content.trim();
     const jsonMatch = responseText.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
@@ -75,7 +135,6 @@ async function parseJsonWithOpenAI(
 
     return removeSpecificNullFields(formattedData);
   } catch (error: any) {
-    console.error('Error in OpenAI API call:', error.message);
     throw new Error(`Failed to parse JSON with OpenAI: ${error.message}`);
   }
 }
@@ -111,75 +170,48 @@ function removeSpecificNullFields(obj: Partial<IShipment>): IShipment {
   ];
 
   const result: IShipment = {
-    HousebillNumber: '',
-    Origin: {
+    HousebillNumber: obj.HousebillNumber || '',
+    Origin: obj.Origin || {
       LocationCode: '',
       LocationName: '',
       CountryCode: '',
     },
-    Destination: {
+    Destination: obj.Destination || {
       LocationCode: '',
       LocationName: '',
       CountryCode: '',
     },
-    DateAndTimes: {
+    DateAndTimes: obj.DateAndTimes || {
       ScheduledDeparture: null,
       ScheduledArrival: null,
       ShipmentDate: null,
     },
-    ProductType: null,
-    TotalPackages: null,
-    TotalWeight: {
-      '*body': 0,
-      '@uom': '',
+    ProductType: obj.ProductType || null,
+    TotalPackages: obj.TotalPackages || null,
+    TotalWeight: obj.TotalWeight || {
+      '*body': null,
+      '@uom': null,
     },
-    TotalVolume: {
-      '*body': 0,
-      '@uom': '',
+    TotalVolume: obj.TotalVolume || {
+      '*body': null,
+      '@uom': null,
     },
-    Timestamp: [
-      {
-        TimestampCode: '',
-        TimestampDescription: '',
-        TimestampDateTime: '',
-        TimestampLocation: '',
-      },
-    ],
-    // Add the missing properties
-    brokerName: null,
-    incoterms: null,
-    shipmentDate: null,
-    booking: null,
-    mawb: null,
-    hawb: null,
-    flight: null,
-    airportOfDeparture: null,
-    etd: null,
-    atd: null,
-    airportOfArrival: null,
-    eta: null,
-    ata: null,
-    vessel: null,
-    portOfLoading: null,
-    mbl: null,
-    hbl: null,
-    pickupDate: null,
-    containerNumber: null,
-    portOfUnloading: null,
-    finalDestination: null,
-    internationalCarrier: null,
-    voyage: null,
-    portOfReceipt: null,
-    goodsDescription: null,
-    containers: null,
+    Timestamp: obj.Timestamp || [],
   };
 
-  for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      const value = obj[key as keyof IShipment];
-      if (value !== null || !optionalFields.includes(key as keyof IShipment)) {
-        (result as any)[key] = value;
-      }
+  if (!result.HousebillNumber) {
+    throw new Error('HousebillNumber is required');
+  }
+
+  for (const key of optionalFields) {
+    const value = obj[key];
+    if (
+      value !== null &&
+      value !== undefined &&
+      value !== '' &&
+      !(Array.isArray(value) && value.length === 0)
+    ) {
+      (result as any)[key] = value;
     }
   }
 
@@ -225,7 +257,6 @@ function generateMappingDictionary(inputJson: any, parsedData: any): any {
       for (const key in output) {
         const newOutputPath = outputPath ? `${outputPath}.${key}` : key;
         if (output[key] === value) {
-          console.log(`Debug: Match found: ${inputPath} -> ${newOutputPath}`);
           mapping[inputPath] = newOutputPath;
         }
         if (typeof output[key] === 'object' && output[key] !== null) {
@@ -236,14 +267,12 @@ function generateMappingDictionary(inputJson: any, parsedData: any): any {
   }
 
   findMatchingValues(inputJson, parsedData);
-  console.log(`Debug: Final mapping:`, mapping);
   return mapping;
 }
 
 function saveMappingDictionary(mapping: any) {
   const filePath = path.join(__dirname, '..', '..', 'mappingDictionary.json');
   fs.writeFileSync(filePath, JSON.stringify(mapping, null, 2));
-  console.log(`Mapping dictionary saved to ${filePath}`);
 }
 
 export async function parseShipmentData(
@@ -267,14 +296,6 @@ export async function parseShipmentData(
       parsedData = formatShipmentData(result.data);
     }
 
-    // Generate and save the mapping dictionary
-    console.log(
-      '\n\n--------------------------------------------------------------------------------',
-    );
-    console.log('Generating mapping dictionary...');
-    console.log(
-      '--------------------------------------------------------------------------------\n\n',
-    );
     const mappingDictionary = generateMappingDictionary(input, parsedData);
     saveMappingDictionary(mappingDictionary);
 
@@ -283,7 +304,6 @@ export async function parseShipmentData(
       data: parsedData,
     };
   } catch (error: any) {
-    console.error('Error parsing shipment:', error);
     return {
       success: false,
       error: `Error parsing shipment: ${error.message}`,

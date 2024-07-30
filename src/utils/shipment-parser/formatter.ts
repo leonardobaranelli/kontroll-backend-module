@@ -1,55 +1,37 @@
-import { IShipment } from '../../utils/types/models.interface';
-import { formatDate } from './date';
+import { IShipment } from '../types/models.interface';
 
-export function formatShipmentData(parsedShipment: IShipment): IShipment {
+export function formatShipmentData(
+  parsedShipment: Partial<IShipment>,
+): IShipment {
+  if (!parsedShipment.HousebillNumber) {
+    console.warn('HousebillNumber is missing in the parsed shipment data');
+  }
+
   return {
-    HousebillNumber: parsedShipment.HousebillNumber,
-    Origin: parsedShipment.Origin,
-    Destination: parsedShipment.Destination,
+    ...parsedShipment,
+    HousebillNumber: parsedShipment.HousebillNumber || '',
     DateAndTimes: {
-      ScheduledDeparture: parsedShipment.DateAndTimes.ScheduledDeparture
-        ? formatDate(parsedShipment.DateAndTimes.ScheduledDeparture)
+      ScheduledDeparture: parsedShipment.DateAndTimes?.ScheduledDeparture
+        ? formatDate(parsedShipment.DateAndTimes.ScheduledDeparture as string)
         : null,
-      ScheduledArrival: parsedShipment.DateAndTimes.ScheduledArrival
-        ? formatDate(parsedShipment.DateAndTimes.ScheduledArrival)
+      ScheduledArrival: parsedShipment.DateAndTimes?.ScheduledArrival
+        ? formatDate(parsedShipment.DateAndTimes.ScheduledArrival as string)
         : null,
-      ShipmentDate: parsedShipment.DateAndTimes.ShipmentDate
-        ? formatDate(parsedShipment.DateAndTimes.ShipmentDate)
+      ShipmentDate: parsedShipment.DateAndTimes?.ShipmentDate
+        ? formatDate(parsedShipment.DateAndTimes.ShipmentDate as string)
         : null,
     },
-    ProductType: parsedShipment.ProductType,
-    TotalPackages: parsedShipment.TotalPackages,
-    TotalWeight: parsedShipment.TotalWeight,
-    TotalVolume: parsedShipment.TotalVolume,
-    Timestamp: parsedShipment.Timestamp.map((timestamp) => ({
-      ...timestamp,
-      TimestampDateTime: formatDate(timestamp.TimestampDateTime),
-    })),
-    brokerName: parsedShipment.brokerName,
-    incoterms: parsedShipment.incoterms,
-    shipmentDate: parsedShipment.shipmentDate,
-    booking: parsedShipment.booking,
-    mawb: parsedShipment.mawb,
-    hawb: parsedShipment.hawb,
-    flight: parsedShipment.flight,
-    airportOfDeparture: parsedShipment.airportOfDeparture,
-    etd: parsedShipment.etd,
-    atd: parsedShipment.atd,
-    airportOfArrival: parsedShipment.airportOfArrival,
-    eta: parsedShipment.eta,
-    ata: parsedShipment.ata,
-    vessel: parsedShipment.vessel,
-    portOfLoading: parsedShipment.portOfLoading,
-    mbl: parsedShipment.mbl,
-    hbl: parsedShipment.hbl,
-    pickupDate: parsedShipment.pickupDate,
-    containerNumber: parsedShipment.containerNumber,
-    portOfUnloading: parsedShipment.portOfUnloading,
-    finalDestination: parsedShipment.finalDestination,
-    internationalCarrier: parsedShipment.internationalCarrier,
-    voyage: parsedShipment.voyage,
-    portOfReceipt: parsedShipment.portOfReceipt,
-    goodsDescription: parsedShipment.goodsDescription,
-    containers: parsedShipment.containers,
+    Timestamp:
+      parsedShipment.Timestamp?.map((timestamp) => ({
+        ...timestamp,
+        TimestampDateTime: timestamp.TimestampDateTime
+          ? formatDate(timestamp.TimestampDateTime as string)
+          : null,
+      })) || [],
   };
+}
+
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toISOString();
 }
