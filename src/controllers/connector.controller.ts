@@ -2,58 +2,53 @@ import { Request, Response } from 'express';
 import { validateOrReject } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 import {
- sendSuccessResponse,
- sendErrorResponse,
+  sendSuccessResponse,
+  sendErrorResponse,
 } from './helpers/commons/handlers/responses.handler';
 import { CreateConnectorDto, UpdateConnectorDto } from '../utils/dtos';
 import ConnectorService from '../services/connector.service';
 import { isErrorArray } from './helpers/commons/is-error-array.helper';
 import { IConnectorPublic } from '../utils/types/utilities.interface';
 
-
 export default class ConnectorController {
- public static getAll = async (
-   _req: Request,
-   res: Response,
- ): Promise<void> => {
-   try {
-     const connectors: IConnectorPublic[] =
-       await ConnectorService.getAllConnectors();
-     sendSuccessResponse(res, connectors, 'Connectors retrieved successfully');
-   } catch (error: any) {
-     sendErrorResponse(res, error, error.statusCode || 400);
-   }
- };
+  public static getAll = async (
+    _req: Request,
+    res: Response,
+  ): Promise<void> => {
+    try {
+      const connectors: IConnectorPublic[] =
+        await ConnectorService.getAllConnectors();
+      sendSuccessResponse(res, connectors, 'Connectors retrieved successfully');
+    } catch (error: any) {
+      sendErrorResponse(res, error, error.statusCode || 400);
+    }
+  };
 
+  public static getByType = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
+    const type = req.params.type as string;
 
- public static getByType = async (
-   req: Request,
-   res: Response,
- ): Promise<void> => {
-   const type = req.params.type as string;
+    try {
+      const connector: IConnectorPublic[] | null =
+        await ConnectorService.getConnectorByType(type);
+      sendSuccessResponse(
+        res,
+        connector,
+        `Connector with type ${type} retrieved successfully`,
+      );
+    } catch (error: any) {
+      sendErrorResponse(res, error, error.statusCode || 400);
+    }
+  };
 
-
-   try {
-     const connector: IConnectorPublic[] | null =
-       await ConnectorService.getConnectorByType(type);
-     sendSuccessResponse(
-       res,
-       connector,
-       `Connector with type ${type} retrieved successfully`,
-     );
-   } catch (error: any) {
-     sendErrorResponse(res, error, error.statusCode || 400);
-   }
- };
-
-
- public static getById = async (
-   req: Request,
-   res: Response,
+  public static getById = async (
+    req: Request,
+    res: Response,
   ): Promise<void> => {
     const connectorId = req.params.id as string;
- 
- 
+
     try {
       const connector: IConnectorPublic | null =
         await ConnectorService.getConnectorById(connectorId);
@@ -62,19 +57,16 @@ export default class ConnectorController {
       sendErrorResponse(res, error, error.statusCode || 400);
     }
   };
- 
- 
+
   public static create = async (req: Request, res: Response): Promise<void> => {
     const connectorData: CreateConnectorDto = plainToClass(
       CreateConnectorDto,
       req.body,
     ) as CreateConnectorDto;
- 
- 
+
     try {
       await validateOrReject(connectorData);
- 
- 
+
       const newConnector: IConnectorPublic | null =
         await ConnectorService.createConnector(connectorData);
       sendSuccessResponse(
@@ -103,8 +95,7 @@ export default class ConnectorController {
       UpdateConnectorDto,
       req.body,
     ) as UpdateConnectorDto;
- 
- 
+
     try {
       const updatedConnector: IConnectorPublic | null =
         await ConnectorService.updateConnectorByType(type, newData);
@@ -117,8 +108,7 @@ export default class ConnectorController {
       sendErrorResponse(res, error, error.statusCode || 400);
     }
   };
- 
- 
+
   public static updateById = async (
     req: Request,
     res: Response,
@@ -128,8 +118,7 @@ export default class ConnectorController {
       UpdateConnectorDto,
       req.body,
     ) as UpdateConnectorDto;
- 
- 
+
     try {
       const updatedConnector: IConnectorPublic | null =
         await ConnectorService.updateConnectorById(connectorId, newData);
@@ -142,8 +131,7 @@ export default class ConnectorController {
       sendErrorResponse(res, error, error.statusCode || 400);
     }
   };
- 
- 
+
   public static deleteAll = async (
     _req: Request,
     res: Response,
@@ -155,15 +143,13 @@ export default class ConnectorController {
       sendErrorResponse(res, error, error.statusCode || 400);
     }
   };
- 
- 
+
   public static deleteByType = async (
     req: Request,
     res: Response,
   ): Promise<void> => {
     const type: string = req.params.type;
- 
- 
+
     try {
       await ConnectorService.deleteConnectorByType(type);
       sendSuccessResponse(
@@ -175,15 +161,13 @@ export default class ConnectorController {
       sendErrorResponse(res, error, error.statusCode || 400);
     }
   };
- 
- 
+
   public static deleteById = async (
     req: Request,
     res: Response,
   ): Promise<void> => {
     const connectorId: string = req.params.id;
- 
- 
+
     try {
       await ConnectorService.deleteConnectorById(connectorId);
       sendSuccessResponse(
@@ -195,20 +179,12 @@ export default class ConnectorController {
       sendErrorResponse(res, error, error.statusCode || 400);
     }
   };
- }
- 
- 
- 
- 
- 
- import { IConnector } from '@/utils/types/models.interface';
- 
- 
- export class ConnectorFirebase implements IConnector {
+}
+
+import { IConnector } from '@/utils/types/models.interface';
+
+export class ConnectorFirebase implements IConnector {
   id!: string;
   type!: string;
   users?: string[];
- }
- 
- 
-   
+}
