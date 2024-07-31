@@ -90,7 +90,6 @@ export class TotalVolumeDto {
   @Transform(({ value }) => value?.trim() || null)
   '@uom': MaybeString;
 }
-
 export class TimestampDto {
   @IsOptional()
   @IsString({ message: 'Timestamp code must be a string' })

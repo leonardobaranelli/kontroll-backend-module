@@ -57,11 +57,11 @@ export class Shipment extends Model<Shipment> implements IShipment {
 
   @AllowNull(true)
   @Column(DataType.STRING)
-  ProductType?: MaybeString;
+  ProductType!: string | null;
 
   @AllowNull(true)
   @Column(DataType.INTEGER)
-  TotalPackages?: MaybeNumber;
+  TotalPackages!: number | null;
 
   @AllowNull(true)
   @Column(DataType.JSONB)

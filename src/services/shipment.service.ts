@@ -123,8 +123,9 @@ export default class ShipmentService {
 
     try {
       // Aquí deberíamos buscar el envío en los conectores
-      const existingShipment =
-        await this.searchShipmentInConnectors(HousebillNumber);
+      const existingShipment = await this.searchShipmentInConnectors(
+        HousebillNumber,
+      );
 
       if (existingShipment) {
         const error: IError = new Error(
