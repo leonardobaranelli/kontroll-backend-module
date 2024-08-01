@@ -1,14 +1,17 @@
-import { Carrier } from '../models/carrier.model';
+// import admin from 'firebase-admin';
+import { CarrierFirebase } from '../models/firebase/carrier.model';
+import { getCarriersCollection } from '../config/database/firestore/firestore.config';
+//import { Carrier } from '../models/carrier.model';
 import {
   carrierConfig,
   StepKey,
 } from './helpers/carrier/dhl-global-forwarding/dhl-g-f-config.helper';
 import {
   ICarrierPublic,
-  AbstractCarrierPublic,
+  // AbstractCarrierPublic,
   IError,
 } from '../utils/types/utilities.interface';
-import { getAttributes } from './helpers/commons/get-attributes.helper';
+//import { getAttributes } from './helpers/commons/get-attributes.helper';
 import { CreateStep2DTO, CreateStep3DTO, CreateStep4DTO } from '../utils/dtos';
 import { validateOrReject } from 'class-validator';
 import { plainToClass } from 'class-transformer';
@@ -18,16 +21,29 @@ export default class CarrierService {
 
   public static async getAllCarriers(): Promise<ICarrierPublic[]> {
     try {
-      const getAllCarriers: ICarrierPublic[] = await Carrier.findAll({
-        attributes: getAttributes(AbstractCarrierPublic),
-      });
+      const carriersCollection = getCarriersCollection();
+      const snapshot = await carriersCollection.get();
 
-      if (getAllCarriers.length === 0) {
+      if (snapshot.empty) {
         const error: IError = new Error('There are no carriers available');
         error.statusCode = 404;
         throw error;
       }
-      return getAllCarriers;
+
+      const allConnectors: ICarrierPublic[] = snapshot.docs.map((doc) => {
+        const data = doc.data() as CarrierFirebase;
+        return {
+          id: doc.id,
+          name: data.name,
+          url: data.url,
+          accountNUmber: data.accountNumber || [],
+          apiKey: data.apiKey,
+          connectors: data.connectors,
+          steps: data.steps,
+        } as ICarrierPublic;
+      });
+
+      return allConnectors;
     } catch (error) {
       throw error;
     }
@@ -122,7 +138,8 @@ export default class CarrierService {
     state: any,
   ): Promise<void> {
     try {
-      await Carrier.create({
+      const carriersCollection = getCarriersCollection()
+      await carriersCollection.add({
         name: state.name,
         url: state.url,
         accountNumber: state.accountNumber,
@@ -156,12 +173,21 @@ export default class CarrierService {
 
   public static async deleteAllCarriers(): Promise<void> {
     try {
-      const deletedRows: number = await Carrier.destroy({ where: {} });
-      if (deletedRows === 0) {
-        const error: IError = new Error('No carriers to delete');
-        error.statusCode = 404;
-        throw error;
+      const carriersCollection = getCarriersCollection();
+      const snapshot = await carriersCollection.get();
+
+      if (snapshot.empty) {
+        console.log('No carriers to delete');
+        return;
       }
+
+      const batch = carriersCollection.firestore.batch();
+      snapshot.docs.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+
+      await batch.commit();
+      console.log('All carriers deleted succesfully');
     } catch (error) {
       throw error;
     }
@@ -169,12 +195,21 @@ export default class CarrierService {
 
   public static async deleteCarrierById(id: string): Promise<void> {
     try {
-      const deletedRows: number = await Carrier.destroy({ where: { id } });
-      if (deletedRows === 0) {
-        const error: IError = new Error(`Carrier with ID ${id} not found`);
-        error.statusCode = 404;
-        throw error;
+      const carriersCollection = getCarriersCollection();
+      const snapshot = await carriersCollection.where('id', '==', id).get();
+
+      if (snapshot.empty) {
+        console.log(`No carrier with ID ${id} found`);
+        return;
       }
+
+      const batch = carriersCollection.firestore.batch();
+      snapshot.docs.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+
+      await batch.commit();
+      console.log(`Carrier with ID ${id} deleted succesfully`);
     } catch (error) {
       throw error;
     }

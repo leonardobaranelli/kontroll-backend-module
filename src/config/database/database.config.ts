@@ -1,7 +1,7 @@
 import {
   authenticateDatabase as authenticateSequelize,
   synchronizeDatabase as synchronizeSequelize,
-} from './sequelize/sequelize.config';
+} from './sequelize/sequelize.config'; 
 import {
   initializeFirestore,
   verifyFirestoreConnection,
