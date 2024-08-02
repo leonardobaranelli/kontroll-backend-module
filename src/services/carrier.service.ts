@@ -138,7 +138,7 @@ export default class CarrierService {
     state: any,
   ): Promise<void> {
     try {
-      const carriersCollection = getCarriersCollection()
+      const carriersCollection = getCarriersCollection();
       await carriersCollection.add({
         name: state.name,
         url: state.url,

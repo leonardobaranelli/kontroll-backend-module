@@ -1,5 +1,11 @@
 import { IShipment } from '../types/models.interface';
 
+interface TimestampEntry {
+  TimestampDateTime: string | null;
+
+  [key: string]: any;
+}
+
 export function formatShipmentData(
   parsedShipment: Partial<IShipment>,
 ): IShipment {
@@ -7,9 +13,33 @@ export function formatShipmentData(
     console.warn('HousebillNumber is missing in the parsed shipment data');
   }
 
-  return {
-    ...parsedShipment,
+  let formattedTimestamp: TimestampEntry[] = [];
+  if (
+    parsedShipment.Timestamp &&
+    typeof parsedShipment.Timestamp === 'object'
+  ) {
+    formattedTimestamp = Object.entries(parsedShipment.Timestamp).map(
+      ([, value]) => ({
+        ...value,
+        TimestampDateTime: value.TimestampDateTime
+          ? formatDate(value.TimestampDateTime as string)
+          : null,
+      }),
+    );
+  }
+
+  const formattedShipment: IShipment = {
     HousebillNumber: parsedShipment.HousebillNumber || '',
+    Origin: parsedShipment.Origin || {
+      LocationCode: '',
+      LocationName: '',
+      CountryCode: '',
+    },
+    Destination: parsedShipment.Destination || {
+      LocationCode: '',
+      LocationName: '',
+      CountryCode: '',
+    },
     DateAndTimes: {
       ScheduledDeparture: parsedShipment.DateAndTimes?.ScheduledDeparture
         ? formatDate(parsedShipment.DateAndTimes.ScheduledDeparture as string)
@@ -21,14 +51,54 @@ export function formatShipmentData(
         ? formatDate(parsedShipment.DateAndTimes.ShipmentDate as string)
         : null,
     },
-    Timestamp:
-      parsedShipment.Timestamp?.map((timestamp) => ({
-        ...timestamp,
-        TimestampDateTime: timestamp.TimestampDateTime
-          ? formatDate(timestamp.TimestampDateTime as string)
-          : null,
-      })) || [],
+    ProductType: parsedShipment.ProductType || null,
+    TotalPackages: parsedShipment.TotalPackages || null,
+    TotalWeight: parsedShipment.TotalWeight || { '*body': null, '@uom': null },
+    TotalVolume: parsedShipment.TotalVolume || { '*body': null, '@uom': null },
+    Timestamp: formattedTimestamp,
   };
+
+  // Add optional fields only if they are not null
+  const optionalFields = [
+    'brokerName',
+    'incoterms',
+    'shipmentDate',
+    'booking',
+    'mawb',
+    'hawb',
+    'flight',
+    'airportOfDeparture',
+    'etd',
+    'atd',
+    'airportOfArrival',
+    'eta',
+    'ata',
+    'vessel',
+    'portOfLoading',
+    'mbl',
+    'hbl',
+    'pickupDate',
+    'containerNumber',
+    'portOfUnloading',
+    'finalDestination',
+    'internationalCarrier',
+    'voyage',
+    'portOfReceipt',
+    'goodsDescription',
+    'containers',
+  ];
+
+  for (const field of optionalFields) {
+    if (
+      field in parsedShipment &&
+      parsedShipment[field as keyof IShipment] != null
+    ) {
+      (formattedShipment as any)[field] =
+        parsedShipment[field as keyof IShipment];
+    }
+  }
+
+  return formattedShipment;
 }
 
 function formatDate(dateString: string): string {

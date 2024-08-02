@@ -51,4 +51,18 @@ export default class AiParserController {
       sendErrorResponse(res, error);
     }
   };
+
+  public static parseShipmentWithMemory = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
+    const { carrier, trackingId } = req.params;
+    try {
+      const parsedShipment: IShipment =
+        await AiParserService.memoryParseShipment(carrier, trackingId);
+      sendSuccessResponse(res, parsedShipment, 'Shipment parsed successfully');
+    } catch (error: any) {
+      sendErrorResponse(res, error);
+    }
+  };
 }
