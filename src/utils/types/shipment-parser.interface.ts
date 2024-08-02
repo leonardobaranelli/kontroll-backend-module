@@ -8,6 +8,7 @@ export interface ParserResult {
   success: boolean;
   data?: IShipment;
   error?: string;
+  mappingDictionary?: Record<string, string>;
 }
 
 export interface ParserOptions {

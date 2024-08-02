@@ -5,6 +5,7 @@ import {
   ShipmentInput,
 } from '../../utils/types/shipment-parser.interface';
 import { IShipment } from '../../utils/types/models.interface';
+import { formatShipmentData } from './formatter';
 
 interface MappingDictionary {
   [key: string]: string;
@@ -36,32 +37,39 @@ function parseShipmentWithMapping(inputJson: ShipmentInput): IShipment {
 
   console.log('Parsed Data:', JSON.stringify(parsedData, null, 2));
 
-  // Ensure all required fields are present
+  // Ensure all required fields are present and properly formatted
   const shipment: IShipment = {
     HousebillNumber: parsedData.HousebillNumber || '',
-    Origin: parsedData.Origin || {
-      LocationCode: '',
-      LocationName: '',
-      CountryCode: '',
+    Origin: {
+      LocationCode: null, // Set to null to match AI parsing
+      LocationName: parsedData.Origin?.LocationName || '',
+      CountryCode: parsedData.Origin?.CountryCode || '',
     },
-    Destination: parsedData.Destination || {
-      LocationCode: '',
-      LocationName: '',
-      CountryCode: '',
+    Destination: {
+      LocationCode: null, // Set to null to match AI parsing
+      LocationName: parsedData.Destination?.LocationName || '',
+      CountryCode: parsedData.Destination?.CountryCode || '',
     },
-    DateAndTimes: parsedData.DateAndTimes || {
-      ScheduledDeparture: null,
-      ScheduledArrival: null,
-      ShipmentDate: null,
+    DateAndTimes: {
+      ScheduledDeparture: parsedData.DateAndTimes?.ScheduledDeparture || null,
+      ScheduledArrival: parsedData.DateAndTimes?.ScheduledArrival || null,
+      ShipmentDate: parsedData.DateAndTimes?.ShipmentDate || null,
     },
     ProductType: parsedData.ProductType || null,
     TotalPackages: parsedData.TotalPackages || null,
     TotalWeight: parsedData.TotalWeight || { '*body': null, '@uom': null },
     TotalVolume: parsedData.TotalVolume || { '*body': null, '@uom': null },
-    Timestamp: parsedData.Timestamp || [],
+    Timestamp: (
+      inputJson.events?.map((event: any) => ({
+        TimestampCode: event.statusCode || 'unknown',
+        TimestampDescription: event.status || '',
+        TimestampDateTime: event.timestamp || null,
+        TimestampLocation: event.location?.address?.addressLocality || null,
+      })) || []
+    ).reverse(), // Reverse the order to match AI parsing
+    shipmentDate: parsedData.shipmentDate || null,
     brokerName: parsedData.brokerName || null,
     incoterms: parsedData.incoterms || null,
-    shipmentDate: parsedData.shipmentDate || null,
     booking: parsedData.booking || null,
     mawb: parsedData.mawb || null,
     hawb: parsedData.hawb || null,
@@ -86,6 +94,39 @@ function parseShipmentWithMapping(inputJson: ShipmentInput): IShipment {
     goodsDescription: parsedData.goodsDescription || null,
     containers: parsedData.containers || null,
   };
+
+  console.log('Final shipment object:', JSON.stringify(shipment, null, 2));
+
+  // Try to find ScheduledDeparture and ShipmentDate from Timestamp if not already set
+  if (
+    !shipment.DateAndTimes?.ScheduledDeparture ||
+    !shipment.DateAndTimes?.ShipmentDate
+  ) {
+    const sortedTimestamps = shipment.Timestamp?.slice().sort((a, b) =>
+      (a.TimestampDateTime?.toString() || '').localeCompare(
+        b.TimestampDateTime?.toString() || '',
+      ),
+    );
+
+    if (!shipment.DateAndTimes?.ScheduledDeparture) {
+      const scheduledDeparture = sortedTimestamps?.find(
+        (t) => t.TimestampCode === 'pre-transit',
+      );
+      if (scheduledDeparture) {
+        shipment.DateAndTimes!.ScheduledDeparture =
+          scheduledDeparture.TimestampDateTime;
+      }
+    }
+
+    if (!shipment.DateAndTimes?.ShipmentDate) {
+      const shipmentDate = sortedTimestamps?.find((t) =>
+        t.TimestampDescription?.toLowerCase().includes('processed'),
+      );
+      if (shipmentDate) {
+        shipment.DateAndTimes!.ShipmentDate = shipmentDate.TimestampDateTime;
+      }
+    }
+  }
 
   return shipment;
 }
@@ -114,69 +155,7 @@ function setValueByPath(obj: any, path: string, value: any): void {
   }
 }
 
-function generateMappingDictionary(inputJson: any, parsedData: any): any {
-  const mapping: any = {};
-
-  function findMatchingValues(
-    input: any,
-    output: any,
-    inputPath: string = '',
-    outputPath: string = '',
-  ) {
-    if (Array.isArray(input)) {
-      input.forEach((item, index) => {
-        findMatchingValues(item, output, `${inputPath}[${index}]`, outputPath);
-      });
-    } else if (typeof input === 'object' && input !== null) {
-      for (const key in input) {
-        const newInputPath = inputPath ? `${inputPath}.${key}` : key;
-        if (typeof input[key] === 'object' && input[key] !== null) {
-          findMatchingValues(input[key], output, newInputPath, outputPath);
-        } else {
-          findValueInOutput(input[key], output, newInputPath, outputPath);
-        }
-      }
-    }
-  }
-
-  function findValueInOutput(
-    value: any,
-    output: any,
-    inputPath: string,
-    outputPath: string = '',
-  ) {
-    if (Array.isArray(output)) {
-      output.forEach((item, index) => {
-        findValueInOutput(value, item, inputPath, `${outputPath}[${index}]`);
-      });
-    } else if (typeof output === 'object' && output !== null) {
-      for (const key in output) {
-        const newOutputPath = outputPath ? `${outputPath}.${key}` : key;
-        if (output[key] === value) {
-          console.log(`Debug: Match found: ${inputPath} -> ${newOutputPath}`);
-          mapping[inputPath] = newOutputPath;
-        }
-        if (typeof output[key] === 'object' && output[key] !== null) {
-          findValueInOutput(value, output[key], inputPath, newOutputPath);
-        }
-      }
-    }
-  }
-
-  findMatchingValues(inputJson, parsedData);
-  console.log(`Debug: Final mapping:`, mapping);
-  return mapping;
-}
-
-function saveMappingDictionary(mapping: any) {
-  const filePath = path.join(__dirname, '..', '..', 'mappingDictionary.json');
-  fs.writeFileSync(filePath, JSON.stringify(mapping, null, 2));
-  console.log(`Mapping dictionary saved to ${filePath}`);
-}
-
-import { formatShipmentData } from './formatter';
-
-export async function parseShipment(
+export async function parseShipmentWithMemory(
   inputJson: ShipmentInput,
 ): Promise<ParserResult> {
   try {
@@ -186,29 +165,15 @@ export async function parseShipment(
     const parsedData = parseShipmentWithMapping(inputJson);
     const formattedData = formatShipmentData(parsedData);
 
-    // Generate and save the mapping dictionary
-    console.log(
-      '\n\n--------------------------------------------------------------------------------',
-    );
-    console.log('Generating mapping dictionary...');
-    console.log(
-      '--------------------------------------------------------------------------------\n\n',
-    );
-    const mappingDictionary = generateMappingDictionary(
-      inputJson,
-      formattedData,
-    );
-    saveMappingDictionary(mappingDictionary);
-
     return {
       success: true,
       data: formattedData,
     };
   } catch (error: any) {
-    console.error('Error parsing shipment:', error);
+    console.error('Error parsing shipment with memory:', error);
     return {
       success: false,
-      error: `Error parsing shipment: ${error.message}`,
+      error: `Error parsing shipment with memory: ${error.message}`,
     };
   }
 }
