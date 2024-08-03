@@ -6,7 +6,7 @@ import {
   ParserOptions,
 } from '../utils/types/shipment-parser.interface';
 import { parseShipmentData } from '../utils/shipment-parser/parser';
-import { parseShipment as parseShipmentWithMemory } from '../utils/shipment-parser/memory-parser';
+import { parseShipmentWithMemory } from '../utils/shipment-parser/memory-parser';
 import { validateShipmentData } from '../utils/shipment-parser/validator';
 import { formatShipmentData } from '../utils/shipment-parser/formatter';
 
@@ -19,7 +19,8 @@ export default class ShipmentParserService {
   ): Promise<ParserResult> {
     try {
       let parserResult: ParserResult;
-
+      console.log('Use OpenAI: ', options.useOpenAI);
+      console.log('Input: ', input);
       if (options.useOpenAI) {
         parserResult = await parseShipmentData(input, options);
       } else {

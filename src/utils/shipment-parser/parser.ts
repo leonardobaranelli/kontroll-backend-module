@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
+import { encode } from 'gpt-3-encoder';
 import {
   ParserResult,
   ShipmentInput,
@@ -8,98 +9,134 @@ import {
 } from '../../utils/types/shipment-parser.interface';
 import { IShipment } from '../../utils/types/models.interface';
 import { config } from '../../config/shipment-parser/shipment-parser.config';
-import { parseShipment as parseShipmentWithMemory } from './memory-parser';
 import { formatShipmentData } from './formatter';
-
-const apiDocumentationLink =
-  'https://developer.dhl.com/api-reference/shipment-tracking#get-started-section/';
 
 function getStandardStructure(): string {
   return `{
-    "HousebillNumber": "String", // This would be the tracking number
+    "HousebillNumber": "String", // The unique tracking number or house bill number for the shipment. This serves as the primary identifier for tracking the shipment.
     "Origin": {
-      "LocationCode": "String", // Origin location code in ISO 3166 code
-      "LocationName": "String", // Origin location name
-      "CountryCode": "String" // Origin country code in ISO 3166 code
+      "LocationCode": "String", // The ISO 3166 location code for the origin location. This code uniquely identifies the city or region where the shipment originated.
+      "LocationName": "String", // The name of the origin location, typically the city or region name.
+      "CountryCode": "String" // The ISO 3166 country code for the origin country. This code uniquely identifies the country where the shipment originated.
     },
     "Destination": {
-      "LocationCode": "String", // Destination location code in ISO 3166 code
-      "LocationName": "String", // Destination location name
-      "CountryCode": "String" // Destination country code in ISO 3166 code
+      "LocationCode": "String", // The ISO 3166 location code for the destination location. This code uniquely identifies the city or region where the shipment is being delivered.
+      "LocationName": "String", // The name of the destination location, typically the city or region name.
+      "CountryCode": "String" // The ISO 3166 country code for the destination country. This code uniquely identifies the country where the shipment is being delivered.
     },
     "DateAndTimes": {
-      "ScheduledDeparture": "String", // Scheduled or estimated departure date from origin
-      "ScheduledArrival": "String", // Scheduled or estimated arrival date at destination
-      "ShipmentDate": "String" // Shipment date
+      "ScheduledDeparture": "String", // The scheduled or estimated departure date and time from the origin. This indicates when the shipment is expected to leave the origin.
+      "ScheduledArrival": "String", // The scheduled or estimated arrival date and time at the destination. This indicates when the shipment is expected to arrive at the destination.
+      "ShipmentDate": "String" // The actual date and time when the shipment was dispatched. This is the date when the shipment was handed over to the carrier.
     },
-    "ProductType": "String", // Product type - Optional
-    "TotalPackages": "Number", // Total packages in the shipment - Optional
+    "ProductType": "String", // The type of product being shipped. This is an optional field that describes the nature of the goods in the shipment.
+    "TotalPackages": "Number", // The total number of packages included in the shipment. This is an optional field.
     "TotalWeight": {
-      "*body": "Number", // Total weight - Only the quantity
-      "@uom": "String" // Total weight - Unit of measure (KG, LB, etc.)
+      "*body": "Number", // The total weight of the shipment, including all packages. This is only the numerical value.
+      "@uom": "String" // The unit of measure for the weight (e.g., KG for kilograms, LB for pounds).
     },
     "TotalVolume": {
-      "*body": "Number", // Total volume - Only the quantity
-      "@uom": "String" // Total volume - Unit of measure (m³, ft³, etc.)
+      "*body": "Number", // The total volume of the shipment, including all packages. This is only the numerical value.
+      "@uom": "String" // The unit of measure for the volume (e.g., m³ for cubic meters, ft³ for cubic feet).
     },
-    "Timestamp": [ // Array of events
+    "Timestamp": [ // An array of events that occurred during the shipment's transit. Each event provides details about a significant moment in the shipment's journey.
       {
-        "TimestampCode": "String", // Event code
-        "TimestampDescription": "String", // Event description
-        "TimestampDateTime": "Date", // Event occurrence date
-        "TimestampLocation": "String" // Event location
+        "TimestampCode": "String", // The code representing the type of event (e.g., PU for Picked Up, DL for Delivered).
+        "TimestampDescription": "String", // A description of the event (e.g., "Shipment picked up from the origin").
+        "TimestampDateTime": "Date", // The date and time when the event occurred.
+        "TimestampLocation": "String" // The location where the event took place, typically the city or region name.
       }
     ],
-    "brokerName": "String", // Carrier name
-    "incoterms": "String", // Delivery terms
-    "shipmentDate": "String", // Shipment date
-    "booking": "String", // Booking number
-    "mawb": "String", // Master Air Waybill number (MAWB)
-    "hawb": "String", // House Air Waybill number (HAWB)
-    "flight": "String", // Flight number
-    "airportOfDeparture": "String", // Departure airport name
-    "etd": "String", // Estimated Time of Departure (ETD)
-    "atd": "String", // Actual Time of Departure (ATD)
-    "airportOfArrival": "String", // Arrival airport name
-    "eta": "String", // Estimated Time of Arrival (ETA)
-    "ata": "String", // Actual Time of Arrival (ATA)
-    "vessel": "String", // Vessel name
-    "portOfLoading": "String", // Port of loading name
-    "mbl": "String", // Master Bill of Lading number (MBL)
-    "hbl": "String", // House Bill of Lading number (HBL)
-    "pickupDate": "String", // Pickup date
-    "containerNumber": "String", // Container number
-    "portOfUnloading": "String", // Port of unloading name
-    "finalDestination": "String", // Final destination name
-    "internationalCarrier": "String", // International carrier name
-    "voyage": "String", // Voyage number
-    "portOfReceipt": "String", // Port of receipt name
-    "goodsDescription": "String", // Goods description
-    "containers": [] // List of containers associated with the shipment
+    "brokerName": "String", // The name of the carrier or freight forwarder responsible for transporting the shipment.
+    "incoterms": "String", // The international commercial terms (Incoterms) that define the responsibilities of buyers and sellers in the shipment process.
+    "shipmentDate": "String", // The actual date when the shipment was dispatched.
+    "booking": "String", // The booking number associated with the shipment.
+    "mawb": "String", // The Master Air Waybill number for the shipment. This is used for air freight.
+    "hawb": "String", // The House Air Waybill number for the shipment. This is used for air freight.
+    "flight": "String", // The flight number if the shipment is transported by air.
+    "airportOfDeparture": "String", // The name of the airport where the shipment departs.
+    "etd": "String", // The estimated time of departure from the origin.
+    "atd": "String", // The actual time of departure from the origin.
+    "airportOfArrival": "String", // The name of the airport where the shipment arrives.
+    "eta": "String", // The estimated time of arrival at the destination.
+    "ata": "String", // The actual time of arrival at the destination.
+    "vessel": "String", // The name of the vessel if the shipment is transported by sea.
+    "portOfLoading": "String", // The name of the port where the shipment is loaded onto the vessel.
+    "mbl": "String", // The Master Bill of Lading number for the shipment. This is used for sea freight.
+    "hbl": "String", // The House Bill of Lading number for the shipment. This is used for sea freight.
+    "pickupDate": "String", // The date when the shipment was picked up from the origin.
+    "containerNumber": "String", // The number of the container if the shipment is transported in a container.
+    "portOfUnloading": "String", // The name of the port where the shipment is unloaded from the vessel.
+    "finalDestination": "String", // The final destination of the shipment.
+    "internationalCarrier": "String", // The name of the international carrier transporting the shipment.
+    "voyage": "String", // The voyage number if the shipment is transported by sea.
+    "portOfReceipt": "String", // The name of the port where the carrier received the shipment.
+    "goodsDescription": "String", // A description of the goods being shipped.
+    "containers": [] // A list of containers associated with the shipment. Each container can have its own set of details and identifiers.
   }`;
 }
 
-async function parseJsonWithOpenAI(
-  inputJson: ShipmentInput,
-): Promise<IShipment> {
-  const prompt = `
-  As a helpful assistant for the Kontroll application, your task is to parse the provided JSON data and convert it into the standard shipment tracking structure. Ensure the output is a valid JSON object with correct data types and that any optional fields missing in the input are set to null. 
-  
-  The output must be exclusively JSON without any additional text.
-  
-  Here is the input JSON:
-  ${JSON.stringify(inputJson, null, 2)}
-  
-  The standard structure for shipment tracking is as follows:
-  ${getStandardStructure()} 
+function countTokens(text: string): number {
+  return encode(text).length;
+}
 
+async function parseJsonWithOpenAI(inputJson: ShipmentInput) {
+  const prompt = `### Instruction ###
+  You are a highly capable JSON parsing assistant for the Kontroll application. Your tasks are:
   
-  Your response should only contain the JSON object. Do not include any other text. Ensure that the output is a valid JSON format.
+  1. **Parse the provided JSON data**: Convert the input JSON into the standard shipment tracking structure as defined below. Ensure to deeply analyze and parse all nested structures.
   
-  If the fields ScheduledDeparture, ScheduledArrival, and ShipmentDate are not present in the input JSON, you should look for them in the events.
+  2. **Create a mapping dictionary**: Show how each input field maps to the corresponding output field in the standard structure.
   
-  API documentation for reference: ${apiDocumentationLink}
+  ### Input JSON ###
+  \`\`\`json
+  ${JSON.stringify(inputJson, null, 2)}
+  \`\`\`
+  
+  ### Standard Structure for Shipment Tracking ###
+  \`\`\`json
+  ${getStandardStructure()}
+  \`\`\`
+  
+  ### Response Format ###
+  \`\`\`json
+  {
+    "parsedData": {
+      // Parsed JSON object here, following the standard structure
+    },
+    "mappingDictionary": {
+      // Mapping key-value pairs here, where keys are input paths and values are output paths
+    }
+  }
+  \`\`\`
+  
+  ### Instructions ###
+  - Ensure the output is a valid JSON object with correct data types.
+  - Any optional fields missing in the input should be set to null.
+  - HouseBillNumber is the main identifier for the shipment, so it should be mapped to the shipment or tracking field in the output which is higher on the structure of the JSON.
+  - If fields like ScheduledDeparture, ScheduledArrival, and ShipmentDate are not present in the input JSON, look for them in the events array and use the most relevant event dates to populate these fields.
+  - For arrays, map each relevant field from the input to the corresponding output structure using the index notation for the array elements.
+  - For nested objects, use dot notation to specify the path to each field.
+  - Identify and map all relevant date and time fields, and ensure they are formatted consistently in the output.
+  - Ensure that all weight and volume fields are correctly mapped, including their units of measure.
+  - Map event-related fields such as timestamps, event codes, and descriptions to the corresponding fields in the output structure.
+  - Be thorough and ensure no fields from the standard structure are left unmapped. Include mappings for all fields present in both the input and output, even if they are null or empty.
+  - **Analyze deeply nested structures**: Ensure that all nested objects and arrays are thoroughly analyzed and mapped to the corresponding fields in the standard structure.
+  - **Iterate over all keys and arrays**: Dynamically iterate over all keys and arrays to ensure a comprehensive mapping.
+
+  ### Mapping Dictionary Guidelines ###
+  1. Use dot notation for nested objects and [] for array indices.
+  2. Include mappings for ALL fields present in both the input and output, even if they are null or empty.
+  3. Pay special attention to fields like ProductType, TotalPackages, TotalWeight, TotalVolume, and all timestamp-related fields.
+  4. If a field in the standard structure doesn't have a direct correspondence in the input, map it to null or the most appropriate alternative.
+  5. For arrays like Timestamp, map each relevant field from the input to the corresponding output structure.
+  6. Ensure all fields from the input are mapped to the output, even if the output field is null.
+  
+  Ensure no fields from the standard structure are left unmapped. Your response should be concise, clear, and formatted correctly as JSON without any additional text or comments.
   `;
+  const promptTokens = countTokens(prompt);
+  console.log(`Prompt: ${prompt}`);
+  console.log(`Prompt tokens: ${promptTokens}`);
 
   try {
     const response = await axios.post(
@@ -109,11 +146,13 @@ async function parseJsonWithOpenAI(
         messages: [
           {
             role: 'system',
-            content: 'You are a helpful assistant that parses JSON data.',
+            content:
+              'You are a helpful assistant that parses JSON data and creates mapping dictionaries. Always respond with valid JSON only, without any additional formatting or text.',
           },
           { role: 'user', content: prompt },
         ],
-        temperature: 0.7,
+        temperature: 0.3,
+        top_p: 0.9,
       },
       {
         headers: {
@@ -124,19 +163,90 @@ async function parseJsonWithOpenAI(
     );
 
     const responseText = response.data.choices[0].message.content.trim();
-    const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) {
-      throw new Error('No valid JSON found in the response');
+    const responseTokens = countTokens(responseText);
+    console.log(`Response tokens: ${responseTokens}`);
+    console.log(`Total tokens: ${promptTokens + responseTokens}`);
+
+    const cleanedResponse = responseText.replace(/```json\n|\n```/g, '');
+
+    let parsedResponse;
+    try {
+      parsedResponse = JSON.parse(cleanedResponse);
+    } catch (parseError: any) {
+      console.error('Error parsing OpenAI response:', cleanedResponse);
+      throw new Error(`Invalid JSON in OpenAI response: ${parseError.message}`);
     }
 
-    const parsedJson = jsonMatch[0];
-    const parsedData = JSON.parse(parsedJson);
-    const formattedData = formatShipmentData(parsedData);
+    if (!parsedResponse.parsedData || !parsedResponse.mappingDictionary) {
+      console.error('Incomplete OpenAI response:', parsedResponse);
+      throw new Error(
+        'OpenAI response is missing parsedData or mappingDictionary',
+      );
+    }
 
-    return removeSpecificNullFields(formattedData);
+    const formattedData = formatShipmentData(parsedResponse.parsedData);
+    const finalData = removeSpecificNullFields(formattedData);
+    let enhancedMappingDictionary;
+    try {
+      const cleanMappingDictionary = Object.fromEntries(
+        Object.entries(parsedResponse.mappingDictionary)
+          .filter(([_, v]) => v != null && v !== 'null')
+          .map(([k, v]) => [k, String(v)]),
+      );
+      enhancedMappingDictionary = enhanceMappingDictionary(
+        cleanMappingDictionary,
+      );
+    } catch (error: any) {
+      console.error('Error enhancing mapping dictionary:', error);
+      enhancedMappingDictionary = parsedResponse.mappingDictionary;
+    }
+
+    return {
+      parsedData: finalData,
+      mappingDictionary: enhancedMappingDictionary,
+    };
   } catch (error: any) {
+    console.error('Error in parseJsonWithOpenAI:', error);
     throw new Error(`Failed to parse JSON with OpenAI: ${error.message}`);
   }
+}
+
+function enhanceMappingDictionary(
+  mappingDictionary: Record<string, string>,
+): Record<string, string> {
+  const enhancedMapping: Record<string, string> = {};
+  let standardStructure;
+
+  try {
+    standardStructure = JSON.parse(getStandardStructure());
+  } catch (error) {
+    console.error('Error parsing standard structure:', error);
+    return mappingDictionary;
+  }
+
+  function recursivelyCheckFields(obj: any, path: string = '') {
+    for (const [key, value] of Object.entries(obj)) {
+      const fullPath = path ? `${path}.${key}` : key;
+      if (
+        typeof value === 'object' &&
+        value !== null &&
+        !Array.isArray(value)
+      ) {
+        recursivelyCheckFields(value, fullPath);
+      } else if (!mappingDictionary[fullPath]) {
+        enhancedMapping[fullPath] = 'null';
+      }
+    }
+  }
+
+  recursivelyCheckFields(standardStructure);
+  for (const [key, value] of Object.entries(mappingDictionary)) {
+    if (value !== null && value !== 'null') {
+      enhancedMapping[key] = value;
+    }
+  }
+
+  return enhancedMapping;
 }
 
 function removeSpecificNullFields(obj: Partial<IShipment>): IShipment {
@@ -218,58 +328,6 @@ function removeSpecificNullFields(obj: Partial<IShipment>): IShipment {
   return result;
 }
 
-function generateMappingDictionary(inputJson: any, parsedData: any): any {
-  const mapping: any = {};
-
-  function findMatchingValues(
-    input: any,
-    output: any,
-    inputPath: string = '',
-    outputPath: string = '',
-  ) {
-    if (Array.isArray(input)) {
-      input.forEach((item, index) => {
-        findMatchingValues(item, output, `${inputPath}[${index}]`, outputPath);
-      });
-    } else if (typeof input === 'object' && input !== null) {
-      for (const key in input) {
-        const newInputPath = inputPath ? `${inputPath}.${key}` : key;
-        if (typeof input[key] === 'object' && input[key] !== null) {
-          findMatchingValues(input[key], output, newInputPath, outputPath);
-        } else {
-          findValueInOutput(input[key], output, newInputPath, outputPath);
-        }
-      }
-    }
-  }
-
-  function findValueInOutput(
-    value: any,
-    output: any,
-    inputPath: string,
-    outputPath: string = '',
-  ) {
-    if (Array.isArray(output)) {
-      output.forEach((item, index) => {
-        findValueInOutput(value, item, inputPath, `${outputPath}[${index}]`);
-      });
-    } else if (typeof output === 'object' && output !== null) {
-      for (const key in output) {
-        const newOutputPath = outputPath ? `${outputPath}.${key}` : key;
-        if (output[key] === value) {
-          mapping[inputPath] = newOutputPath;
-        }
-        if (typeof output[key] === 'object' && output[key] !== null) {
-          findValueInOutput(value, output[key], inputPath, newOutputPath);
-        }
-      }
-    }
-  }
-
-  findMatchingValues(inputJson, parsedData);
-  return mapping;
-}
-
 function saveMappingDictionary(mapping: any) {
   const filePath = path.join(__dirname, '..', '..', 'mappingDictionary.json');
   fs.writeFileSync(filePath, JSON.stringify(mapping, null, 2));
@@ -283,30 +341,24 @@ export async function parseShipmentData(
     if (Object.keys(input).length === 0) {
       throw new Error('Input JSON is empty');
     }
+    console.log('Using OpenAI in parsing function ', options?.useOpenAI);
 
-    let parsedData: IShipment;
-
-    if (options?.useOpenAI) {
-      parsedData = await parseJsonWithOpenAI(input);
-    } else {
-      const result = await parseShipmentWithMemory(input);
-      if (!result.success || !result.data) {
-        throw new Error(result.error || 'No data returned from parser');
-      }
-      parsedData = formatShipmentData(result.data);
+    if (!options?.useOpenAI) {
+      throw new Error('OpenAI option is not enabled');
     }
 
-    const mappingDictionary = generateMappingDictionary(input, parsedData);
+    const { parsedData, mappingDictionary } = await parseJsonWithOpenAI(input);
     saveMappingDictionary(mappingDictionary);
 
     return {
       success: true,
       data: parsedData,
+      mappingDictionary: mappingDictionary,
     };
   } catch (error: any) {
     return {
       success: false,
-      error: `Error parsing shipment: ${error.message}`,
+      error: `Error parsing shipment with OpenAI: ${error.message}`,
     };
   }
 }
