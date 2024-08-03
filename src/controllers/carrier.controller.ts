@@ -4,11 +4,13 @@ import {
   sendErrorResponse,
 } from './helpers/commons/handlers/responses.handler';
 import CarrierService from '../services/carrier.service';
-import DevCarrierService from '../services/dev-carrier-service';
+import DevCarrierService from '../services/new-carrier-service';
+import KnownCarrierService from '../services/known-carrier.service';
 import { ICarrierPublic } from '../utils/types/utilities.interface';
 import { StepKey } from '../services/helpers/carrier/dhl-global-forwarding/dhl-g-f-config.helper';
 import { verifyStepRequest } from './helpers/carrier/dhl-global-forwarding/verify-step-request.helper';
 import { devVerifyStepRequest } from './helpers/carrier/custom/verify-step-request.helper';
+import { verifyKnownStepRequest } from './helpers/carrier/known/verify-known-step-request.helper';
 
 export default class CarrierController {
   public static getAll = async (
@@ -21,6 +23,29 @@ export default class CarrierController {
       sendSuccessResponse(res, connectors, 'Carriers retrieved successfully');
     } catch (error: any) {
       sendErrorResponse(res, error, error.statusCode || 400);
+    }
+  };
+
+  public static createKnown = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
+    try {
+      verifyKnownStepRequest(req, res, async () => {
+        const { step, data } = req.body as {
+          step: StepKey;
+          data: any;
+        };
+
+        const result = await KnownCarrierService.createKnownViaSteps(
+          step,
+          data,
+          req.sessionID,
+        );
+        sendSuccessResponse(res, result, 'Step completed successfully');
+      });
+    } catch (error: any) {
+      sendErrorResponse(res, error);
     }
   };
 
