@@ -67,6 +67,7 @@ export default class KnownCarrierService {
 
       await step.action(data, state);
 
+
       const allRequerimentsCaptured = this.areAllRequirementsCaptured(
         state.requeriments,
         state.userInputs,
