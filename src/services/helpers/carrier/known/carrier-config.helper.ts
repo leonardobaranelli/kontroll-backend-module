@@ -1,5 +1,3 @@
-import { carrierStepsData } from './get-steps.helper';
-
 interface StepConfig {
   action: (data: any, state: any) => void | Promise<void>;
   message: (state: any) => string | Promise<string>;
@@ -31,15 +29,15 @@ export const generateCarrierSteps = (
 
   const config: Record<string, StepConfig> = {};
 
-  for (let i = 0; i <= numberOfSteps; i++) {
-    const stepIndex = i + 2;
+  for (let i = 0; i < numberOfSteps; i++) {
+    const stepIndex = i + 1;
     const stepData = dataOnSteps[i];
 
     let stepsDetails;
     let form;
     let nextStep;
 
-    if (stepIndex === numberOfSteps + 2) {
+    if (stepIndex === numberOfSteps) {
       stepsDetails = {
         step: 'complete',
         stepTitle: 'We got it!',
@@ -79,15 +77,12 @@ export const generateCarrierSteps = (
 
     config[`step${stepIndex}`] = {
       action: async (data: any, state: any) => {
-        if (stepIndex === 2) state.name = data.name;
+        if (stepIndex === 1) state.name = data.name;
       },
       message: async (state: any) => {
-        if (stepIndex === 2) {
-          const result = await carrierStepsData(state.name);
-          return result
-            ? `Requirements via documentation to carrier ${state.name} found!`
-            : `No documentation found for carrier ${state.name}.`;
-        } else if (stepIndex === numberOfSteps + 2) {
+        if (stepIndex === 1) {
+          return `Requirements via documentation to carrier ${state.name} found!`;
+        } else if (stepIndex === numberOfSteps) {
           return `Connection with the ${state.name} carrier established correctly`;
         }
         return `Step ${stepIndex} completed!`;

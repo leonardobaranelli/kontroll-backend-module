@@ -111,4 +111,13 @@ export interface IStep {
   stepsDetails: IStepDetails;
   form: IForm;
 }
+
+export type StepKey =
+  | 'step1'
+  | 'step2'
+  | 'step3'
+  | 'step4'
+  | 'step5'
+  | 'step6'
+  | 'step7';
 // End of the Step region
