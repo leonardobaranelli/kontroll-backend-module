@@ -1,5 +1,5 @@
 import { carrierStepsData } from './helpers/carrier/get-steps.helper';
-import { generateCarrierConfig } from './helpers/carrier/carrier-config.helper';
+import { generateCarrierSteps } from './helpers/carrier/carrier-config.helper';
 
 export default class DevCarrierService {
   private static stateStore: { [sessionID: string]: any } = {};
@@ -7,7 +7,7 @@ export default class DevCarrierService {
   private static async loadCarrierData(carrierName: string) {
     const { dataOnSteps, numberOfSteps } = await carrierStepsData(carrierName);
     return {
-      carrierConfig: generateCarrierConfig(numberOfSteps, dataOnSteps),
+      carrierConfig: generateCarrierSteps(numberOfSteps, dataOnSteps),
       numberOfSteps,
     };
   }
