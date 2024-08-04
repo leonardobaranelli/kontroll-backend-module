@@ -4,13 +4,11 @@ import {
   sendErrorResponse,
 } from './helpers/commons/handlers/responses.handler';
 import CarrierService from '../services/carrier.service';
-import DevCarrierService from '../services/new-carrier-service';
-import KnownCarrierService from '../services/known-carrier.service';
 import { ICarrierPublic } from '../utils/types/utilities.interface';
-import { StepKey } from '../services/helpers/carrier/dhl-global-forwarding/dhl-g-f-config.helper';
-import { verifyStepRequest } from './helpers/carrier/dhl-global-forwarding/verify-step-request.helper';
-import { devVerifyStepRequest } from './helpers/carrier/custom/verify-step-request.helper';
+import { StepKey } from '../utils/types/models.interface';
+import { devVerifyStepRequest } from './helpers/carrier/dev/dev-verify-step-request.helper';
 import { verifyKnownStepRequest } from './helpers/carrier/known/verify-known-step-request.helper';
+import { verifyStepRequest } from './helpers/carrier/new/verify-step-request.helper';
 
 export default class CarrierController {
   public static getAll = async (
@@ -37,7 +35,7 @@ export default class CarrierController {
           data: any;
         };
 
-        const result = await KnownCarrierService.createKnownViaSteps(
+        const result = await CarrierService.createKnown(
           step,
           data,
           req.sessionID,
@@ -49,7 +47,10 @@ export default class CarrierController {
     }
   };
 
-  public static create = async (req: Request, res: Response): Promise<void> => {
+  public static createNew = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
     try {
       verifyStepRequest(req, res, async () => {
         const { step, data } = req.body as {
@@ -57,7 +58,7 @@ export default class CarrierController {
           data: any;
         };
 
-        const result = await CarrierService.handleStep(
+        const result = await CarrierService.createNew(
           step,
           data,
           req.sessionID,
@@ -80,7 +81,7 @@ export default class CarrierController {
           data: any;
         };
 
-        const result = await DevCarrierService.devHandleStep(
+        const result = await CarrierService.devHandleStep(
           step,
           data,
           req.sessionID,

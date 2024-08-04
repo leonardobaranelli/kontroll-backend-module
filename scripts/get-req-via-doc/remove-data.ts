@@ -3,7 +3,7 @@ import * as path from 'path';
 
 const baseDirectoryPath = path.join(
   __dirname,
-  '../../src/core/carriers/get-req-via-doc/',
+  '../../src/core/carriers/new/dev/get-req-via-doc/',
 );
 
 const folders = [

@@ -16,29 +16,44 @@ export const verifyKnownStepRequest = (
     const errorMessage = {
       error:
         'Invalid structure. Please ensure the request body follows this format:',
-      requestExample1ToStep1: {
+      requestStep1toExample1: {
         step: 'step1',
         data: {
           name: 'dhl global forwarding',
+        },
+      },
+      requestStep2toExample1: {
+        step: 'step2',
+        data: {
           'api-key': 'the api key',
         },
       },
-      requestExample1ToStep2: {
-        step: 'step2',
+      requestStep3toExample1: {
+        step: 'step3',
         data: {
           shipmentID: 'a shipmentID',
         },
       },
-      requestExample2ToStep1: {
+      requestStep1toExample2: {
         step: 'step1',
         data: {
           name: 'dhl express',
+        },
+      },
+      requestStep2toExample2: {
+        step: 'step2',
+        data: {
           siteID: 'the site ID',
+        },
+      },
+      requestStep3toExample2: {
+        step: 'step3',
+        data: {
           password: 'the passowrd',
         },
       },
-      requestExample2ToStep2: {
-        step: 'step2',
+      requestStep4toExample2: {
+        step: 'step4',
         data: {
           shipmentID: 'a shipmentID',
         },

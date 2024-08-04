@@ -3,7 +3,7 @@ import * as path from 'path';
 
 const directoryPath = path.join(
   __dirname,
-  '../../src/storage/carriers/data-on-steps',
+  '../../src/storage/carriers/new/dev/data-on-steps',
 );
 
 fs.readdir(directoryPath, (err, files) => {
