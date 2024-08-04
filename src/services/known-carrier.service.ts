@@ -67,7 +67,13 @@ export default class KnownCarrierService {
 
       await step.action(data, state);
 
-      if (step.next === 'complete') {
+
+      const allRequerimentsCaptured = this.areAllRequirementsCaptured(
+        state.requeriments,
+        state.userInputs,
+      );
+
+      if (step.next === 'complete' && allRequerimentsCaptured) {
         const axiosResponses = await this.performQueries(sessionID, true);
         await this.completeProcess(sessionID, state);
         return {
@@ -79,13 +85,11 @@ export default class KnownCarrierService {
         };
       } else {
         await this.updateState(sessionID, step.next, state);
-        const axiosResponses = await this.performQueries(sessionID, true);
         return {
           message: await step.message(state),
           nextStep: step.next,
           stepsDetails: step.stepsDetails,
           form: step.form,
-          axiosResponses,
         };
       }
     } catch (error) {
@@ -128,6 +132,58 @@ export default class KnownCarrierService {
     return this.stateStore[sessionID] || {};
   }
 
+  private static areAllRequirementsCaptured(
+    requirements: any,
+    userInputs: any[],
+  ): boolean {
+    const requiredKeys = new Set<string>();
+
+    if (requirements?.paramas && typeof requirements.paramas === 'object') {
+      Object.keys(requirements.paramas).forEach((key) => requiredKeys.add(key));
+    }
+
+    if (requirements?.header && typeof requirements.header === 'object') {
+      Object.keys(requirements.header).forEach((key) => requiredKeys.add(key));
+    }
+
+    if (
+      requirements?.body &&
+      typeof requirements.body === 'object' &&
+      Object.keys(requirements.body).length > 0
+    ) {
+      this.extractKeysFromBody(requirements.body, requiredKeys);
+    }
+
+    const capturedKeys = new Set<string>();
+    if (userInputs) {
+      userInputs.forEach((input) => {
+        Object.keys(input.data).forEach((key) => capturedKeys.add(key));
+      });
+    }
+
+    for (const key of requiredKeys) {
+      if (!capturedKeys.has(key)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  private static extractKeysFromBody(body: any, keySet: Set<string>): void {
+    if (typeof body === 'object' && body !== null) {
+      for (const key in body) {
+        if (body.hasOwnProperty(key)) {
+          if (typeof body[key] === 'object') {
+            this.extractKeysFromBody(body[key], keySet);
+          } else {
+            keySet.add(key);
+          }
+        }
+      }
+    }
+  }
+
   public static async performQueries(sessionID: string, query: boolean) {
     const state = this.getState(sessionID);
     const { requeriments } = state;
@@ -140,43 +196,79 @@ export default class KnownCarrierService {
 
     if (query) {
       const userInputs = state.userInputs || [];
-      let apiKey: string | undefined;
-      let shipmentID: string | undefined;
+      const replacements: { [key: string]: string | undefined } = {};
 
       for (const input of userInputs) {
-        if (input.data['DHL-API-Key']) {
-          apiKey = input.data['DHL-API-Key'];
-        }
-        if (input.data['ShipmentID']) {
-          shipmentID = input.data['ShipmentID'];
+        for (const key in input.data) {
+          replacements[key] = input.data[key];
         }
       }
 
-      if (apiKey && shipmentID) {
-        const { url, method, requeriments: reqDetails } = requeriments;
-        const finalUrl = url.replace('{ShipmentID}', shipmentID);
+      const { url, method, requeriments: reqDetails } = requeriments;
+      let finalUrl = url;
 
-        const options: any = {
-          method,
-          url: finalUrl,
-          headers: { ...reqDetails.header, 'DHL-API-Key': apiKey },
-          params: reqDetails.paramas || {},
-        };
+      for (const key in replacements) {
+        if (replacements.hasOwnProperty(key)) {
+          finalUrl = finalUrl.replace(`{${key}}`, replacements[key] as string);
+        }
+      }
 
-        if (reqDetails.body && reqDetails.body !== 'null') {
+      const options: any = {
+        method,
+        url: finalUrl,
+        headers: reqDetails?.header ? { ...reqDetails.header } : {},
+        params: reqDetails?.paramas ? { ...reqDetails.paramas } : {},
+      };
+
+      for (const key in options.headers) {
+        if (options.headers[key] === 'value' && replacements[key]) {
+          options.headers[key] = replacements[key];
+        }
+      }
+
+      for (const param in options.params) {
+        if (options.params[param] === 'value' && replacements[param]) {
+          options.params[param] = replacements[param];
+        }
+      }
+
+      if (reqDetails?.body) {
+        if (
+          typeof reqDetails.body === 'string' &&
+          reqDetails.body.trim().startsWith('<?xml')
+        ) {
           options.data = reqDetails.body;
+          for (const key in replacements) {
+            if (replacements.hasOwnProperty(key)) {
+              options.data = options.data.replace(
+                new RegExp(`{${key}}`, 'g'),
+                replacements[key] as string,
+              );
+            }
+          }
+          options.headers['Content-Type'] = 'text/xml';
+        } else if (typeof reqDetails.body === 'object') {
+          options.data = reqDetails.body;
+          for (const key in replacements) {
+            if (replacements.hasOwnProperty(key)) {
+              options.data = JSON.parse(
+                JSON.stringify(options.data).replace(
+                  new RegExp(`{${key}}`, 'g'),
+                  replacements[key] as string,
+                ),
+              );
+            }
+          }
         }
+      }
 
-        try {
-          const response = await axios(options);
-          console.log(`Axios response:`, response.data);
-          results.push({ response: response.data });
-        } catch (error) {
-          console.log(`Axios error:`, error);
-          results.push({ error });
-        }
-      } else {
-        console.log('Required API key or ShipmentID not found in user inputs.');
+      try {
+        const response = await axios(options);
+        console.log(`Axios response:`, response.data);
+        results.push({ response: response.data });
+      } catch (error) {
+        console.log(`Axios error:`, error);
+        results.push({ error });
       }
     }
 
