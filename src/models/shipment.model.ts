@@ -6,10 +6,9 @@ import {
   PrimaryKey,
   Default,
   AllowNull,
-  BelongsToMany,
+  //BelongsToMany,
 } from 'sequelize-typescript';
-import { Connector } from './connector.model';
-import { ConnectorShipment } from './pivot-tables/connector-shipment.model';
+// import { ConnectorShipment } from './pivot-tables/connector-shipment.model';
 import { IShipment } from '../utils/types/models.interface';
 
 type MaybeString = string | null;
@@ -190,6 +189,6 @@ export class Shipment extends Model<Shipment> implements IShipment {
   @Column(DataType.JSONB)
   containers?: Array<any> | null;
 
-  @BelongsToMany(() => Connector, () => ConnectorShipment)
-  connectors!: Connector[];
+  //@BelongsToMany(() => Connector, () => ConnectorShipment)
+  //connectors!: Connector[];
 }

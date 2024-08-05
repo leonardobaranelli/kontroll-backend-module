@@ -1,4 +1,4 @@
-import { CarrierFirebase } from '../models/firebase/carrier.model';
+import { Carrier } from '../models/carrier.model';
 import { getCarriersCollection } from '../config/database/firestore/firestore.config';
 import { loadCarrierData } from '../core/carriers/create-by-steps/new/dev-get-req-via-doc/load-carrier-data';
 import { loadKnownCarrierData } from '../core/carriers/create-by-steps/known/load-carrier-data';
@@ -213,7 +213,7 @@ export default class CarrierService {
       }
 
       const allConnectors: ICarrierPublic[] = snapshot.docs.map((doc) => {
-        const data = doc.data() as CarrierFirebase;
+        const data = doc.data() as Carrier;
         return {
           id: doc.id,
           name: data.name,

@@ -1,0 +1,450 @@
+{
+  "link": {
+    "text": "tips on writing great answers",
+    "url": "https://stackoverflow.com/help/how-to-answer"
+  },
+  "content": "Skip to main content\nStack Overflow\nProducts\nLog in\nSign up\n The 2024 Developer Survey results are live!\nSee the results\nHome\nQuestions\nTags\nUsers\nCompanies\nLABS\nJobs\nDiscussions\nCOLLECTIVES\n\nCommunities for your favorite technologies. Explore all Collectives\n\nTEAMS\n\nNow available on Stack Overflow for Teams! AI features where you work: search, IDE, and chat.\n\nLearn more Explore Teams\nStack Overflow\nHelp center\nAnswering\nHow do I write a good answer?\n\nThanks for taking the time to write an answer. It’s because of helpful people like yourself that we’re able to learn together as a community. Here are a few tips on how to make your answer great:\n\nRead the question carefully\n\nWhat is the question asking for? Make sure your answer provides that – or at least a viable alternative. Your answer can say “don’t do that,” but it should also say “try this instead.” Any answer that fully addresses at least part of the question is helpful and can get the asker going in the right direction. State any limitations, assumptions or simplifications in your answer. Brevity is acceptable, but fuller explanations are better.\n\nProvide context for links\n\nLinks to external resources are encouraged, but please add context around the link so your fellow users will have some idea what it is and why it’s there. Always quote the most relevant part of an important link, in case the external resource is unreachable or goes permanently offline. Links to other websites should always be helpful, but avoid making it necessary to click on them as much as possible.\n\nHave the same problem?\n\nHelp us find a solution by researching the problem. So long as you fully answer at least a part of the original question, then you can contribute the results of your research and anything additional you’ve tried. That way, even if you can’t figure it out, the next person has more to go on. You can also vote up the question or set a bounty on it so the question gets more attention.\n\nWrite to the best of your ability\n\nWe don't expect every answer to be perfect, but answers with correct spelling, punctuation, and grammar are easier to read. They also tend to get upvoted more frequently. Remember, you can always go back at any time and edit your answer to improve it.\n\nPay it forward\n\nSaying “thanks” is appreciated, but it doesn’t answer the question. Instead, vote up the answers that helped you the most! If these answers were helpful to you, please consider saying thank you in a more constructive way – by contributing your own answers to questions your peers have asked here.\n\nAnswer well-asked questions\n\nNot all questions can or should be answered here. Save yourself some frustration and avoid trying to answer questions which...\n\n...are unclear or lacking specific details that can uniquely identify the problem.\n...solicit opinions rather than facts.\n...have already been asked and answered many times before.\n...require too much guidance for you to answer in full, or request answers to multiple questions.\n...are not about programming as defined in the help center.\n\nDon't forget that you can edit the question you're answering to improve the clarity and focus – this can reduce the chances of the question being closed or deleted.\n\nAlways be polite and have fun\n\nIt’s fine to disagree and express concern, but please be civil. There’s always a real human being on the other end of that network connection, however misguided they may appear to be.\n\nAsking\nPrivileges\nBadges\nOur model\nReputation & Moderation\nAnswering\nHow do I write a good answer?\nWhat does it mean when an answer is \"accepted\"?\nWhy and how are some answers deleted?\nHow to reference material written by others\nWhy can I only answer once every 30 minutes?\nWhy are answers no longer being accepted from my account?\nCan I answer my own question?\nMy Account\nReview Queues\nCollectives on Stack Overflow\nStaging Ground\nDiscussions\nStack Overflow Jobs\nSTACK OVERFLOW\nQuestions\nHelp\nChat\nPRODUCTS\nTeams\nAdvertising\nCollectives\nTalent\nCOMPANY\nAbout\nPress\nWork Here\nLegal\nPrivacy Policy\nTerms of Service\nContact Us\nCookie Settings\nCookie Policy\nSTACK EXCHANGE NETWORK\nTechnology\nCulture & recreation\nLife & arts\nScience\nProfessional\nBusiness\nAPI\nData\nBlog\nFacebook\nTwitter\nLinkedIn\nInstagram\n\nSite design / logo © 2024 Stack Exchange Inc; user contributions licensed under CC BY-SA. rev 2024.7.31.13445",
+  "requirements": {},
+  "pageLinks": [
+    {
+      "text": "terms of service",
+      "url": "https://stackoverflow.com/legal/terms-of-service/public"
+    },
+    {
+      "text": "privacy policy",
+      "url": "https://stackoverflow.com/legal/privacy-policy"
+    },
+    {
+      "text": "log in",
+      "url": "https://stackoverflow.com/users/login"
+    },
+    {
+      "text": "skip to main content",
+      "url": "https://stackoverflow.com/help/how-to-answer#content"
+    },
+    {
+      "text": "",
+      "url": "https://stackoverflow.com/help/how-to-answer#"
+    },
+    {
+      "text": "stack overflow",
+      "url": "https://stackoverflow.com/"
+    },
+    {
+      "text": "about",
+      "url": "https://stackoverflow.co/"
+    },
+    {
+      "text": "products",
+      "url": "https://stackoverflow.com/help/how-to-answer#"
+    },
+    {
+      "text": "overflowai",
+      "url": "https://stackoverflow.co/teams/ai/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav-bar&utm_content=overflowai"
+    },
+    {
+      "text": "stack overflow for teamswhere developers & technologists share private knowledge with coworkers",
+      "url": "https://stackoverflow.co/teams/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav&utm_content=stack-overflow-for-teams"
+    },
+    {
+      "text": "advertising & talentreach devs & technologists worldwide about your product, service or employer brand",
+      "url": "https://stackoverflow.co/advertising/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav&utm_content=stack-overflow-advertising"
+    },
+    {
+      "text": "overflowaigenai features for teams",
+      "url": "https://stackoverflow.co/teams/ai/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav&utm_content=overflow-ai"
+    },
+    {
+      "text": "overflowapitrain & fine-tune llms",
+      "url": "https://stackoverflow.co/api-solutions/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav&utm_content=overflow-api"
+    },
+    {
+      "text": "labsthe future of collective knowledge sharing",
+      "url": "https://stackoverflow.co/labs/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav&utm_content=labs"
+    },
+    {
+      "text": "about the company",
+      "url": "https://stackoverflow.co/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav&utm_content=about-the-company"
+    },
+    {
+      "text": "visit the blog",
+      "url": "https://stackoverflow.blog/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav&utm_content=blog"
+    },
+    {
+      "text": "current community",
+      "url": "https://stackoverflow.com/"
+    },
+    {
+      "text": "stack overflow",
+      "url": "https://stackoverflow.com/"
+    },
+    {
+      "text": "help",
+      "url": "https://stackoverflow.com/help"
+    },
+    {
+      "text": "chat",
+      "url": "https://chat.stackoverflow.com/?tab=site&host=stackoverflow.com"
+    },
+    {
+      "text": "meta stack overflow",
+      "url": "https://meta.stackoverflow.com/"
+    },
+    {
+      "text": "sign up",
+      "url": "https://stackoverflow.com/users/signup?ssrc=site_switcher&returnurl=https%3a%2f%2fstackoverflow.com%2fhelp%2fhow-to-answer"
+    },
+    {
+      "text": "log in",
+      "url": "https://stackoverflow.com/users/login?ssrc=site_switcher&returnurl=https%3a%2f%2fstackoverflow.com%2fhelp%2fhow-to-answer"
+    },
+    {
+      "text": "more stack exchange communities",
+      "url": "https://stackexchange.com/sites"
+    },
+    {
+      "text": "company blog",
+      "url": "https://stackoverflow.blog/"
+    },
+    {
+      "text": "log in",
+      "url": "https://stackoverflow.com/users/login?ssrc=head&returnurl=https%3a%2f%2fstackoverflow.com%2fhelp%2fhow-to-answer"
+    },
+    {
+      "text": "sign up",
+      "url": "https://stackoverflow.com/users/signup?ssrc=head&returnurl=https%3a%2f%2fstackoverflow.com%2fhelp%2fhow-to-answer"
+    },
+    {
+      "text": "see the results",
+      "url": "https://survey.stackoverflow.co/2024/?utm_medium=referral&utm_source=stackexchange-community&utm_campaign=dev-survey-2024&utm_content=announcement-banner"
+    },
+    {
+      "text": "",
+      "url": "https://stackoverflow.com/help/how-to-answer#"
+    },
+    {
+      "text": "home",
+      "url": "https://stackoverflow.com/"
+    },
+    {
+      "text": "questions",
+      "url": "https://stackoverflow.com/questions"
+    },
+    {
+      "text": "tags",
+      "url": "https://stackoverflow.com/tags"
+    },
+    {
+      "text": "users",
+      "url": "https://stackoverflow.com/users"
+    },
+    {
+      "text": "companies",
+      "url": "https://stackoverflow.com/jobs/companies?so_medium=stackoverflow&so_source=SiteNav"
+    },
+    {
+      "text": "labs",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "jobs",
+      "url": "https://stackoverflow.com/jobs?source=so-left-nav"
+    },
+    {
+      "text": "discussions",
+      "url": "https://stackoverflow.com/beta/discussions"
+    },
+    {
+      "text": "collectives",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "explore all collectives",
+      "url": "https://stackoverflow.com/collectives-all"
+    },
+    {
+      "text": "learn more",
+      "url": "https://stackoverflow.co/teams/ai/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=side-bar&utm_content=overflowai-learn-more"
+    },
+    {
+      "text": "explore teams",
+      "url": "https://stackoverflow.co/teams/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=side-bar&utm_content=explore-teams"
+    },
+    {
+      "text": "teams",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "explore teams",
+      "url": "https://stackoverflow.co/teams/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=side-bar&utm_content=explore-teams-compact"
+    },
+    {
+      "text": "learn more about collectives",
+      "url": "https://stackoverflow.com/collectives"
+    },
+    {
+      "text": "learn more about teams",
+      "url": "https://stackoverflow.co/teams/"
+    },
+    {
+      "text": "learn more about labs",
+      "url": "https://stackoverflow.co/labs/"
+    },
+    {
+      "text": "stack overflow",
+      "url": "https://stackoverflow.com/"
+    },
+    {
+      "text": "help center",
+      "url": "https://stackoverflow.com/help"
+    },
+    {
+      "text": "answering",
+      "url": "https://stackoverflow.com/help/answering"
+    },
+    {
+      "text": "set a bounty",
+      "url": "https://stackoverflow.com/help/bounty"
+    },
+    {
+      "text": "well-asked",
+      "url": "https://stackoverflow.com/help/how-to-ask"
+    },
+    {
+      "text": "opinions",
+      "url": "https://stackoverflow.com/help/dont-ask"
+    },
+    {
+      "text": "already been asked",
+      "url": "https://stackoverflow.com/search"
+    },
+    {
+      "text": "defined in the help center",
+      "url": "https://stackoverflow.com/help/on-topic"
+    },
+    {
+      "text": "edit the question you're answering",
+      "url": "https://stackoverflow.com/help/editing"
+    },
+    {
+      "text": "deleted",
+      "url": "https://stackoverflow.com/help/deleted-questions"
+    },
+    {
+      "text": "please be civil",
+      "url": "https://stackoverflow.com/help/behavior"
+    },
+    {
+      "text": "asking",
+      "url": "https://stackoverflow.com/help/asking"
+    },
+    {
+      "text": "privileges",
+      "url": "https://stackoverflow.com/help/privileges"
+    },
+    {
+      "text": "badges",
+      "url": "https://stackoverflow.com/help/badges"
+    },
+    {
+      "text": "our model",
+      "url": "https://stackoverflow.com/help/stackexchange"
+    },
+    {
+      "text": "reputation & moderation",
+      "url": "https://stackoverflow.com/help/reputation"
+    },
+    {
+      "text": "answering",
+      "url": "https://stackoverflow.com/help/answering"
+    },
+    {
+      "text": "how do i write a good answer?",
+      "url": "https://stackoverflow.com/help/how-to-answer"
+    },
+    {
+      "text": "what does it mean when an answer is \"accepted\"?",
+      "url": "https://stackoverflow.com/help/accepted-answer"
+    },
+    {
+      "text": "why and how are some answers deleted?",
+      "url": "https://stackoverflow.com/help/deleted-answers"
+    },
+    {
+      "text": "how to reference material written by others",
+      "url": "https://stackoverflow.com/help/referencing"
+    },
+    {
+      "text": "why can i only answer once every 30 minutes?",
+      "url": "https://stackoverflow.com/help/answering-limit"
+    },
+    {
+      "text": "why are answers no longer being accepted from my account?",
+      "url": "https://stackoverflow.com/help/answer-bans"
+    },
+    {
+      "text": "can i answer my own question?",
+      "url": "https://stackoverflow.com/help/self-answer"
+    },
+    {
+      "text": "my account",
+      "url": "https://stackoverflow.com/help/account"
+    },
+    {
+      "text": "review queues",
+      "url": "https://stackoverflow.com/help/review-queues"
+    },
+    {
+      "text": "collectives on stack overflow",
+      "url": "https://stackoverflow.com/help/collectives"
+    },
+    {
+      "text": "staging ground",
+      "url": "https://stackoverflow.com/help/staging-ground"
+    },
+    {
+      "text": "discussions",
+      "url": "https://stackoverflow.com/help/discussions"
+    },
+    {
+      "text": "stack overflow jobs",
+      "url": "https://stackoverflow.com/help/stack-overflow-jobs"
+    },
+    {
+      "text": "",
+      "url": "https://stackoverflow.com/"
+    },
+    {
+      "text": "stack overflow",
+      "url": "https://stackoverflow.com/"
+    },
+    {
+      "text": "questions",
+      "url": "https://stackoverflow.com/questions"
+    },
+    {
+      "text": "help",
+      "url": "https://stackoverflow.com/help"
+    },
+    {
+      "text": "chat",
+      "url": "https://chat.stackoverflow.com/?tab=site&host=stackoverflow.com"
+    },
+    {
+      "text": "products",
+      "url": "https://stackoverflow.co/"
+    },
+    {
+      "text": "teams",
+      "url": "https://stackoverflow.co/teams/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=footer&utm_content=teams"
+    },
+    {
+      "text": "advertising",
+      "url": "https://stackoverflow.co/advertising/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=footer&utm_content=advertising"
+    },
+    {
+      "text": "collectives",
+      "url": "https://stackoverflow.co/collectives/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=footer&utm_content=collectives"
+    },
+    {
+      "text": "talent",
+      "url": "https://stackoverflow.co/advertising/employer-branding/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=footer&utm_content=talent"
+    },
+    {
+      "text": "company",
+      "url": "https://stackoverflow.co/"
+    },
+    {
+      "text": "about",
+      "url": "https://stackoverflow.co/"
+    },
+    {
+      "text": "press",
+      "url": "https://stackoverflow.co/company/press/"
+    },
+    {
+      "text": "work here",
+      "url": "https://stackoverflow.co/company/work-here/"
+    },
+    {
+      "text": "legal",
+      "url": "https://stackoverflow.com/legal"
+    },
+    {
+      "text": "privacy policy",
+      "url": "https://stackoverflow.com/legal/privacy-policy"
+    },
+    {
+      "text": "terms of service",
+      "url": "https://stackoverflow.com/legal/terms-of-service/public"
+    },
+    {
+      "text": "contact us",
+      "url": "https://stackoverflow.com/contact"
+    },
+    {
+      "text": "cookie policy",
+      "url": "https://stackoverflow.com/legal/cookie-policy"
+    },
+    {
+      "text": "stack exchange network",
+      "url": "https://stackexchange.com/"
+    },
+    {
+      "text": "technology",
+      "url": "https://stackexchange.com/sites#technology"
+    },
+    {
+      "text": "culture & recreation",
+      "url": "https://stackexchange.com/sites#culturerecreation"
+    },
+    {
+      "text": "life & arts",
+      "url": "https://stackexchange.com/sites#lifearts"
+    },
+    {
+      "text": "science",
+      "url": "https://stackexchange.com/sites#science"
+    },
+    {
+      "text": "professional",
+      "url": "https://stackexchange.com/sites#professional"
+    },
+    {
+      "text": "business",
+      "url": "https://stackexchange.com/sites#business"
+    },
+    {
+      "text": "api",
+      "url": "https://api.stackexchange.com/"
+    },
+    {
+      "text": "data",
+      "url": "https://data.stackexchange.com/"
+    },
+    {
+      "text": "blog",
+      "url": "https://stackoverflow.blog/?blb=1"
+    },
+    {
+      "text": "facebook",
+      "url": "https://www.facebook.com/officialstackoverflow/"
+    },
+    {
+      "text": "twitter",
+      "url": "https://twitter.com/stackoverflow"
+    },
+    {
+      "text": "linkedin",
+      "url": "https://linkedin.com/company/stack-overflow"
+    },
+    {
+      "text": "instagram",
+      "url": "https://www.instagram.com/thestackoverflow"
+    },
+    {
+      "text": "cc by-sa",
+      "url": "https://stackoverflow.com/help/licensing"
+    }
+  ]
+}

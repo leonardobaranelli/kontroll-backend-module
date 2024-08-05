@@ -1,0 +1,194 @@
+{
+  "link": {
+    "text": "cookie settings",
+    "url": "https://developer.dhl.com/#cookiepref"
+  },
+  "content": "Skip to main content\nMAIN NAVIGATION\nAPIs \nDocumentation\nHelp Center\nEN \nRegister\nLogin\nDHL FOR DEVELOPERS\nMODERN REST APIS, SIMPLY DELIVERED\n\n \n\nSign up\n \nBrowse our APIs\nOUR SERVICES\n\nDig into our API reference documentation and quickstarts.\n\nTRACKING\n\nReceive your shipment status\n\nBrowse Tracking APIs\n\nSHIPPING\n\nCreate your shipments including labels\n\nBrowse Shipping APIs\n\nFURTHER SERVICES\n\nBrowse our whole API catalog\n\nBrowse All Services\n\nABOUT DHL API DEVELOPER PORTAL\n\nThe DHL Developer Portal is DPDHL's single point of contact for access to APIs from all its business divisions, allowing to signing up for them and making them easy to consume. \n\nCheck the API Catalog to see the APIs already released on this portal. Further APIs from other DPDHL divisions will be added in the coming months. \n\n \n\nSign up\n \nLearn more\nNEED HELP?\n\nProblems to register in the portal?\nWhat standards do the DHL APIs follow?\nCheck the frequently asked questions\n\nHelp Center\nFind Content\nSearch\nSearch\nAPIs of our divisions\nDHL eCommerce\nDHL Express\nDHL Global Forwarding\nDHL Freight\nDHL Supply Chain\nPost & Parcel Germany\nDevelopers\nAPI Catalog\nDocumentation\nAPI Status\nFOOTER MENU\nImprint\nPrivacy Notice\nTerms of Use\nCookie Settings\n2024 © DHL International GmbH. All rights reserved.",
+  "requirements": {},
+  "pageLinks": [
+    {
+      "text": "skip to main content",
+      "url": "https://developer.dhl.com/#main-content"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/"
+    },
+    {
+      "text": "api developer portal",
+      "url": "https://developer.dhl.com/"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/search"
+    },
+    {
+      "text": "apis",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "tracking apis",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_service%3A3"
+    },
+    {
+      "text": "shipping apis",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_service%3A40"
+    },
+    {
+      "text": "browse all services",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "documentation",
+      "url": "https://developer.dhl.com/documentation"
+    },
+    {
+      "text": "help center",
+      "url": "https://developer.dhl.com/help-center"
+    },
+    {
+      "text": "de",
+      "url": "https://developer.dhl.com/?lang=de"
+    },
+    {
+      "text": "en",
+      "url": "https://developer.dhl.com/?lang=en"
+    },
+    {
+      "text": "ja",
+      "url": "https://developer.dhl.com/?lang=ja"
+    },
+    {
+      "text": "ko",
+      "url": "https://developer.dhl.com/?lang=ko"
+    },
+    {
+      "text": "th",
+      "url": "https://developer.dhl.com/?lang=th"
+    },
+    {
+      "text": "zh-hans",
+      "url": "https://developer.dhl.com/?lang=zh-hans"
+    },
+    {
+      "text": "zh-hant",
+      "url": "https://developer.dhl.com/?lang=zh-hant"
+    },
+    {
+      "text": "register",
+      "url": "https://developer.dhl.com/user/register"
+    },
+    {
+      "text": "login",
+      "url": "https://developer.dhl.com/user/login?destination=/node/102"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/search"
+    },
+    {
+      "text": "register",
+      "url": "https://developer.dhl.com/user/register"
+    },
+    {
+      "text": "login",
+      "url": "https://developer.dhl.com/user/login?destination=/node/102"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/search"
+    },
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "sign up",
+      "url": "https://developer.dhl.com/user/register"
+    },
+    {
+      "text": "browse our apis",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "browse tracking apis",
+      "url": "https://developer.dhl.com/api-catalog?f[0]=api_catalog_service%3A3"
+    },
+    {
+      "text": "browse shipping apis",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_service%3A40"
+    },
+    {
+      "text": "browse all services",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "api catalog",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "sign up",
+      "url": "https://developer.dhl.com/user/register"
+    },
+    {
+      "text": "learn more",
+      "url": "https://developer.dhl.com/documentation"
+    },
+    {
+      "text": "help center",
+      "url": "https://developer.dhl.com/help-center"
+    },
+    {
+      "text": "dhl ecommerce",
+      "url": "https://developer.dhl.com/dhl-ecommerce"
+    },
+    {
+      "text": "dhl express",
+      "url": "https://developer.dhl.com/dhl-express"
+    },
+    {
+      "text": "dhl global forwarding",
+      "url": "https://developer.dhl.com/dhl-global-forwarding"
+    },
+    {
+      "text": "dhl freight",
+      "url": "https://developer.dhl.com/dhl-freight"
+    },
+    {
+      "text": "dhl supply chain",
+      "url": "https://developer.dhl.com/dhl-supply-chain"
+    },
+    {
+      "text": "post & parcel germany",
+      "url": "https://developer.dhl.com/post-and-parcel-germany"
+    },
+    {
+      "text": "api catalog",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "documentation",
+      "url": "https://developer.dhl.com/documentation"
+    },
+    {
+      "text": "api status",
+      "url": "https://status.api.dhl.com/"
+    },
+    {
+      "text": "imprint",
+      "url": "https://developer.dhl.com/imprint"
+    },
+    {
+      "text": "privacy notice",
+      "url": "https://developer.dhl.com/privacy-notice"
+    },
+    {
+      "text": "terms of use",
+      "url": "https://developer.dhl.com/terms-use"
+    },
+    {
+      "text": "cookie settings",
+      "url": "https://developer.dhl.com/#cookiepref"
+    }
+  ]
+}

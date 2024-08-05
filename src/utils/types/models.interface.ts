@@ -2,22 +2,6 @@ type MaybeString = string | null;
 type MaybeNumber = number | null;
 type MaybeDate = Date | string | null;
 
-export interface IUser {
-  id: MaybeString;
-  name: string;
-  lastName: string;
-  username: string;
-  password: string;
-  avatarUrl?: MaybeString;
-  role?: 'user' | 'admin';
-}
-
-export interface IConnector {
-  id: MaybeString;
-  type: string;
-  memoryParser?: {};
-}
-
 export interface IShipment {
   HousebillNumber: string;
   Origin?: {
