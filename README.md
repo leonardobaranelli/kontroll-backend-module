@@ -12,8 +12,6 @@
 
    ```bash
    PORT = 3001
-   #DATABASE_TYPE=firestore
-   DATABASE_TYPE=sequelize
 
    # DB credentials example
    DB_NAME = kontroll-local
@@ -23,6 +21,9 @@
 
    JWT_SECRET =
    SESSION_SECRET = this-one-can-be-empty
+
+   OPENAI_API_KEY = api-key-to-use-shipment-parser-functionality
+   OPENAI_MODEL = gpt-4o-mini
    ```
 
 3. #### Then (on the root of the directory too), run the following command to install the dependencies:
@@ -37,7 +38,7 @@ You also have to install a python server, that is used to process some tasks in 
 4. #### Navigate to the server directory:
 
    ```bash
-   cd src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/spacy
+   cd src/core/carriers/create-by-steps/new/dev-get-req-via-doc/automated-system/4b-process-links/2-process-content/spacy
    ```
 
 5. #### Create a virtual environment:
@@ -57,7 +58,7 @@ You also have to install a python server, that is used to process some tasks in 
    On Windows:
 
    ```bash
-    venv/scripts/activate
+    venv\Scripts\activate
    ```
 
    On Linux or Mac:
@@ -102,26 +103,25 @@ Run the main server and the auxiliary python server (both must be running simult
    On Windows:
 
    ```bash
-    src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/spacy/venv/scripts/activate
+    src/core/carriers/create-by-steps/new/dev-get-req-via-doc/automated-system/4b-process-links\2-process-content\spacy\venv\Scripts\activate
    ```
 
    On Linux or Mac:
 
    ```bash
-    source src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/spacy/venv/bin/activate
+    source src/core/carriers/create-by-steps/new/dev-get-req-via-doc/automated-system/4b-process-links/2-process-content/spacy/venv/bin/activate
    ```
 
 3. #### <span style="color:#32CD99">Run the python server:</span>
 
-   ```bash
-   python src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/spacy/nlp_server.py
-   ```
+   ````bash
+   python src/core/carriers/create-by-steps/new/dev-get-req-via-doc/automated-system/4b-process-links/2-process-content/spacy/nlp_server.py   ```
 
    or
 
    ```bash
-   python3 src/core/carriers/get-req-via-doc/4b-process-links/2-process-content/spacy/nlp_server.py
-   ```
+   python3 src/core/carriers/create-by-steps/new/dev-get-req-via-doc/automated-system/4b-process-links/2-process-content/spacy/nlp_server.py
+   ````
 
 #### <span style="color:#32CD99">[EXTRA] to clean the data on steps on the local storage you can run:</span>
 

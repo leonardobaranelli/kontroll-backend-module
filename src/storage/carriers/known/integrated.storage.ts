@@ -4,7 +4,7 @@ export const integrated = [
     query: 1,
     url: 'https://api.dhl.com/dgff/transportation/shipment-tracking',
     method: 'get',
-    requeriments: {
+    requirements: {
       params: {
         shipmentID: 'value',
       },
@@ -19,7 +19,7 @@ export const integrated = [
     query: 1,
     url: 'https://xmlpi-ea.dhl.com/XMLShippingServlet?isUTF8Support=true',
     method: 'post',
-    requeriments: {
+    requirements: {
       params: {},
       header: {
         'Content-Type': 'application/x-www-form-urlencoded',

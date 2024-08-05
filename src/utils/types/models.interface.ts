@@ -83,12 +83,18 @@ export interface ICarrier {
   id: MaybeString;
   name: string;
   url: string;
-  accountNumber?: MaybeString;
-  apiKey?: MaybeString;
   memoryParser?: {};
 }
 
 // Beginning of the Step region
+export interface StepConfig {
+  action: (data: any, state: any) => void | Promise<void>;
+  message: (state: any) => string | Promise<string>;
+  stepsDetails: IStepDetails;
+  form: IForm;
+  next: string;
+}
+
 export interface IStepDetails {
   step: number;
   stepTitle: string;
@@ -99,6 +105,7 @@ export interface IStepDetails {
 }
 
 export interface IForm {
+  expectedFieldName: string;
   instruction: string;
   label: string;
   title: string;
@@ -119,5 +126,6 @@ export type StepKey =
   | 'step4'
   | 'step5'
   | 'step6'
-  | 'step7';
+  | 'step7'
+  | 'step8';
 // End of the Step region
