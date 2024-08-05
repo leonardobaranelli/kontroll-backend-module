@@ -1,0 +1,246 @@
+{
+  "link": {
+    "text": "api catalog",
+    "url": "https://developer.fedex.com/api/en-us/catalog.html"
+  },
+  "content": "FedEx Developer Portal will experience interruption from 07/13/2024, 9:00 PM CT - 07/14/2024, 2:00 AM CT.\nWe apologize for any inconvenience such as slow response or technical difficulties. Thank you for your patience!\n\nMenu\n Developer Portal\nAPI Catalog\nFILTERS:\nAPI\nWEBHOOK\n\n\nAPI\nAPI Authorization\n\nLeverage the FedEx OAuth 2.0 token authentication method to authorize the application and authenticate API requests.\n\nOVERVIEW\nDOCS\nAPI\nAddress Validation API\n\nValidate recipient addresses.\n\nOVERVIEW\nDOCS\nAPI\nConsolidation API\n\nCreate FedEx® International DirectDistribution shipments for consolidated customs clearance.\n\nOVERVIEW\nDOCS\nAPI\nFedEx Locations Search API\n\nFind the addresses of the nearest FedEx package pickup and dropoff locations.\n\nOVERVIEW\nDOCS\nAPI\nFreight LTL API\n\nGet rate estimates, process shipments and manage pickups for FedEx Freight® LTL shipments.\n\nOVERVIEW\nDOCS\nAPI\nGlobal Trade API\n\nGet regulatory documents and advisories for your shipments.\n\nOVERVIEW\nDOCS\nAPI\nGround End of Day Close API\n\nReconcile shipping information for your FedEx Ground® shipments and print various reports.\n\nOVERVIEW\nDOCS\nAPI\nOpen Ship API\n\nCreate and enter information for a shipment as it is received throughout the day.\n\nOVERVIEW\nDOCS\nAPI\nPickup Request API\n\nManage everything related to courier shipment pickups.\n\nOVERVIEW\nDOCS\nAPI\nPostal Code Validation API\n\nValidate postal codes along with city, country and Origin-Destinations lookups.\n\nOVERVIEW\nDOCS\nAPI\nRates and Transit Times API\n\nRequest pre-ship rating information to determine costs.\n\nOVERVIEW\nDOCS\nAPI\nService Availability API\n\nDetermine the FedEx® service type, delivery date and transit time between an origin and destination.\n\nOVERVIEW\nDOCS\nAPI\nShip API\n\nProcess and submit shipping requests to produce a shipping label.\n\nOVERVIEW\nDOCS\nAPI\nTrack API\n\nUse FedEx® Tracking options to obtain timely and accurate tracking information.\n\nOVERVIEW\nDOCS\nAPI\nTrade Documents Upload API\n\nElectronically submit your trade documentation without printing to optimize the customs clearance process.\n\nOVERVIEW\nDOCS\nWEBHOOK\nShipment Visibility Webhook\n\nSubscribe to get near real-time tracking updates.\nSubscribers are charged a monthly fee, based on count of track numbers\n\nOVERVIEW\nDOCS\n\nAre you an existing Web Services or FedEx Ship Manager Server Customer? If so, you can still access the Developer Resource Center.\n\n © FedEx Corporate Services Inc. All rights reserved.\nIntegration Solutions Support FedEx.com Terms of Use Security & Privacy\n United States \nEnglish",
+  "requirements": {},
+  "pageLinks": [
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "developer portal",
+      "url": ""
+    },
+    {
+      "text": "sign up or log in",
+      "url": "https://developer.fedex.com/api/en-us/catalog.html#"
+    },
+    {
+      "text": "sign up or log in",
+      "url": ""
+    },
+    {
+      "text": "getting started",
+      "url": "https://developer.fedex.com/api/en-us/get-started.html"
+    },
+    {
+      "text": "api catalog",
+      "url": "https://developer.fedex.com/api/en-us/catalog.html"
+    },
+    {
+      "text": "guides",
+      "url": "https://developer.fedex.com/api/en-us/guides.html"
+    },
+    {
+      "text": "announcements",
+      "url": "https://developer.fedex.com/api/en-us/announcements.html"
+    },
+    {
+      "text": "api certification",
+      "url": "https://developer.fedex.com/api/en-us/certification.html"
+    },
+    {
+      "text": "api status",
+      "url": "https://developer.fedex.com/api/en-us/dashboard.html"
+    },
+    {
+      "text": "support",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "other products",
+      "url": ""
+    },
+    {
+      "text": "fedex web services®",
+      "url": "https://www.fedex.com/en-us/developer/web-services.html"
+    },
+    {
+      "text": "fedex ship manager®  server",
+      "url": "https://www.fedex.com/en-us/developer/ship-manager-server.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/authorization.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/authorization/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/address-validation.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/address-validation/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/consolidation.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/consolidation/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/locations.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/locations/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/ltl-freight.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/ltl-freight/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/global-trade.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/global-trade/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/close.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/close/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/open-ship.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/open-ship/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/pickup.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/pickup/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/postal-code.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/postal-code/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/rate.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/rate/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/service-availability.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/service-availability/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/ship.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/ship/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/track.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/track/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/upload-documents.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/upload-documents/v1/docs.html"
+    },
+    {
+      "text": "overview",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook.html#/api"
+    },
+    {
+      "text": "docs",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook/v1/docs.html"
+    },
+    {
+      "text": "developer resource center",
+      "url": "https://www.fedex.com/en-us/developer.html"
+    },
+    {
+      "text": "integration solutions",
+      "url": "https://www.fedex.com/en-us/integration.html"
+    },
+    {
+      "text": "support",
+      "url": "https://www.fedex.com/en-us/integration/support.html"
+    },
+    {
+      "text": "fedex.com",
+      "url": "https://www.fedex.com/en-us/home.html"
+    },
+    {
+      "text": "terms of use",
+      "url": "https://www.fedex.com/en-us/terms-of-use.html"
+    },
+    {
+      "text": "security & privacy",
+      "url": "https://www.fedex.com/en-us/trust-center.html"
+    },
+    {
+      "text": "united states",
+      "url": ""
+    },
+    {
+      "text": "english",
+      "url": "https://developer.fedex.com/api/en-us/catalog.html"
+    },
+    {
+      "text": "spanish",
+      "url": "https://developer.fedex.com/api/es-us/catalog.html"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/catalog.html#"
+    },
+    {
+      "text": "contact support",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/home.html"
+    }
+  ]
+}

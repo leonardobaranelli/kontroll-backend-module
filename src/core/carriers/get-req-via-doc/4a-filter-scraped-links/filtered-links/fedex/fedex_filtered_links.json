@@ -1,0 +1,1298 @@
+[
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/home.html#"
+  },
+  {
+    "text": "getting started",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html"
+  },
+  {
+    "text": "api catalog",
+    "url": "https://developer.fedex.com/api/en-us/catalog.html"
+  },
+  {
+    "text": "guides",
+    "url": "https://developer.fedex.com/api/en-us/guides.html"
+  },
+  {
+    "text": "announcements",
+    "url": "https://developer.fedex.com/api/en-us/announcements.html"
+  },
+  {
+    "text": "api certification",
+    "url": "https://developer.fedex.com/api/en-us/certification.html"
+  },
+  {
+    "text": "api status",
+    "url": "https://developer.fedex.com/api/en-us/dashboard.html"
+  },
+  {
+    "text": "support",
+    "url": "https://developer.fedex.com/api/en-us/support.html"
+  },
+  {
+    "text": "fedex web services®",
+    "url": "https://www.fedex.com/en-us/developer/web-services.html"
+  },
+  {
+    "text": "fedex ship manager®  server",
+    "url": "https://www.fedex.com/en-us/developer/ship-manager-server.html"
+  },
+  {
+    "text": "explore the benefits",
+    "url": "https://developer.fedex.com/api/en-us/webhookmarketing.html"
+  },
+  {
+    "text": "add shipping account",
+    "url": "https://developer.fedex.com/api/en-us/organization.html#/organization/accounts"
+  },
+  {
+    "text": "invite & manage users",
+    "url": "https://developer.fedex.com/api/en-us/organization.html#/organization/users"
+  },
+  {
+    "text": "webhooks documentation",
+    "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook.html"
+  },
+  {
+    "text": "quotas & rate limits guide",
+    "url": "https://developer.fedex.com/api/en-us/guides/ratelimits.html"
+  },
+  {
+    "text": "virtualization guide",
+    "url": "https://developer.fedex.com/api/en-us/guides/sandboxvirtualization.html"
+  },
+  {
+    "text": "add biling account",
+    "url": "https://developer.fedex.com/api/en-us/organization/add-billingaccount.html"
+  },
+  {
+    "text": "manage webhook projects",
+    "url": "https://developer.fedex.com/api/en-us/project.html#/myprojects"
+  },
+  {
+    "text": "integration best practices",
+    "url": "https://developer.fedex.com/api/en-us/guides/best-practices.html"
+  },
+  {
+    "text": "create organization",
+    "url": "https://developer.fedex.com/api/en-us/organization/create.html#/createorganization"
+  },
+  {
+    "text": "explore fedex compatible",
+    "url": "https://www.fedex.com/en-us/compatible.html"
+  },
+  {
+    "text": "explore solutions",
+    "url": "https://www.fedex.com/en-us/compatible/find-a-solution.html"
+  },
+  {
+    "text": "review best practices",
+    "url": "https://developer.fedex.com/api/en-us/integration.html"
+  },
+  {
+    "text": "developer resource center",
+    "url": "https://www.fedex.com/en-us/developer.html"
+  },
+  {
+    "text": "integration solutions",
+    "url": "https://www.fedex.com/en-us/integration.html"
+  },
+  {
+    "text": "support",
+    "url": "https://www.fedex.com/en-us/integration/support.html"
+  },
+  {
+    "text": "fedex.com",
+    "url": "https://www.fedex.com/en-us/home.html"
+  },
+  {
+    "text": "terms of use",
+    "url": "https://www.fedex.com/en-us/terms-of-use.html"
+  },
+  {
+    "text": "security & privacy",
+    "url": "https://www.fedex.com/en-us/trust-center.html"
+  },
+  {
+    "text": "english",
+    "url": "https://developer.fedex.com/api/en-us/home.html"
+  },
+  {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/home.html"
+  },
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/organization.html#"
+  },
+  {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/organization.html#/organization/accounts"
+  },
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/announcements.html#"
+  },
+  {
+    "text": "announcements",
+    "url": "https://developer.fedex.com/api//announcements.html"
+  },
+  {
+    "text": "important updates to planned service interruptions",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Important_updates_to_planned_service_interruption.html"
+  },
+  {
+    "text": "new details for fedex international deferred freight services",
+    "url": "https://developer.fedex.com/api/en-us/announcements/New_details_for_FDF_services.html"
+  },
+  {
+    "text": "fedex service outages scheduled for july 2024",
+    "url": "https://developer.fedex.com/api/en-us/announcements/July_2024-Interruption_and_Outage_Announcement.html"
+  },
+  {
+    "text": "fedex api & fedex developer portal (fdp) july 2024 release notes",
+    "url": "https://developer.fedex.com/api/en-us/announcements/July_2024-Release_Notes.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for july 2024",
+    "url": "https://developer.fedex.com/api/en-us/announcements/July_2024-Interruption_Announcement.html"
+  },
+  {
+    "text": "new fedex express domestic services - announcement",
+    "url": "https://developer.fedex.com/api/en-us/announcements/FedEx_Express_Domestic_Services-Announcement.html"
+  },
+  {
+    "text": "fedex service outage scheduled for june 15, 2024",
+    "url": "https://developer.fedex.com/api/en-us/announcements/June_15th_2024-Outage_Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for may 2024",
+    "url": "https://developer.fedex.com/api/en-us/announcements/May_2024-Interruption_Announcement.html"
+  },
+  {
+    "text": "removal of vulnerable tls ciphers - urgent announcement",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Removal_of_Vulnerable_TLS_Ciphers-Announcement.html"
+  },
+  {
+    "text": "fedex developer portal interruptions scheduled for may 4, 2024",
+    "url": "https://developer.fedex.com/api/en-us/announcements/May_4th_2024-Interruption_Announcement.html"
+  },
+  {
+    "text": "fedex developer portal interruptions scheduled for april 2024",
+    "url": "https://developer.fedex.com/api/en-us/announcements/April_2024-Interruption-Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for february 20, 2024",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Feb_2024-Interruption_Announcement.html"
+  },
+  {
+    "text": "fedex api & fedex developer portal (fdp) february 2024 release notes",
+    "url": "https://developer.fedex.com/api/en-us/announcements/February_2024-Release_Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for february 2024",
+    "url": "https://developer.fedex.com/api/en-us/announcements/February_2024-Interruption_Announcement.html"
+  },
+  {
+    "text": "fedex developer portal interruptions scheduled for january 2024",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Jan_2024-Interruption_Announcement.html"
+  },
+  {
+    "text": "fedex barcode (fdx1d) announcement",
+    "url": "https://developer.fedex.com/api/en-us/announcements/FedEx_Barcode(FDX1D)-Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for january 2024",
+    "url": "https://developer.fedex.com/api/en-us/announcements/January_2024-Interruption_Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for november 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/November_2023-Interruption_Announcement.html"
+  },
+  {
+    "text": "fedex service outage scheduled for october 28, 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/October_2023-Outage_Announcement.html"
+  },
+  {
+    "text": "fedex api & fedex developer portal (fdp) october 2023 release notes",
+    "url": "https://developer.fedex.com/api/en-us/announcements/October_2023-Release_Announcement.html"
+  },
+  {
+    "text": "fedex apis – new quotas & rate limits announcement",
+    "url": "https://developer.fedex.com/api/en-us/announcements/New_Quotas_and_Rate_limits-Announcement.html"
+  },
+  {
+    "text": "fedex apis – new virtualized sandbox announcement",
+    "url": "https://developer.fedex.com/api/en-us/announcements/New_Virtualized_Sandbox-Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for october 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/October_2023-Interruptions_Announcement.html"
+  },
+  {
+    "text": "fedex developer portal outage scheduled for september 23, 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Sep_23-Outage_Announcement.html"
+  },
+  {
+    "text": "fedex developer portal outage scheduled for september 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/September_2023-Outage_Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for september 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/September_2023-Interruption_Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for august 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/August_2023-Interruption_Announcement.html"
+  },
+  {
+    "text": "fedex apis – c.o.d/e.c.o.d retirement announcement (u.s and canada only)",
+    "url": "https://developer.fedex.com/api/en-us/announcements/COD_Retirement_Announcement.html"
+  },
+  {
+    "text": "fedex developer portal outage scheduled for august 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/August_2023-Outage_Announcement.html"
+  },
+  {
+    "text": "fedex api & fedex developer portal (fdp) july 2023 release notes",
+    "url": "https://developer.fedex.com/api/en-us/announcements/July_2023-Release_Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for july 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/July_2023-Interruption_and_Outage_Announcement.html"
+  },
+  {
+    "text": "fedex apis – test response virtualization environment announcement",
+    "url": "https://developer.fedex.com/api/en-us/announcements/July_2023-Virtualization_Announcement.html"
+  },
+  {
+    "text": "fedex service outage scheduled for june 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/June_2023-Service_Outage_Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for june 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/June_2023-Interruption_Announcement.html"
+  },
+  {
+    "text": "fedex developer portal outage scheduled for june 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/June_2023-Outage_Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for may 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/May_2023-Interruption_Announcement.html"
+  },
+  {
+    "text": "fedex api & fedex developer portal (fdp) april 2023 release notes",
+    "url": "https://developer.fedex.com/api/en-us/announcements/April_2023-Release_Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for april 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/April_2023_Interruption_and_Outage_Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for february 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/February_2023_Interruption_Announcement.html"
+  },
+  {
+    "text": "fedex api & fedex developer portal (fdp) january 2023 release notes",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Jan_2023-Release_Announcement.html"
+  },
+  {
+    "text": "fedex api & fedex developer portal (fdp) january 2023 northern ireland brexit shipping requirements announcement",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Jan_2023-Brexit_Shipping_Announcement.html"
+  },
+  {
+    "text": "fedex service outage scheduled for january 2023",
+    "url": "https://developer.fedex.com/api/en-us/announcements/January_2023_Outage_Announcement.html"
+  },
+  {
+    "text": "fedex service outage scheduled for november 2022",
+    "url": "https://developer.fedex.com/api/en-us/announcements/November_2022_Outage_Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for october 2022",
+    "url": "https://developer.fedex.com/api/en-us/announcements/October_2022_Interruption_Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for october 2022",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Oct_2022_Interruption_Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for september 2022",
+    "url": "https://developer.fedex.com/api/en-us/announcements/sep-2022-interruption-announcement.html"
+  },
+  {
+    "text": "fedex api & fedex developer portal (fdp) august 2022 ca export declaration announcement",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Aug_2022-CA_Export_Declaration_Announcements.html"
+  },
+  {
+    "text": "fedex api & fedex developer portal (fdp) august 2022 release notes",
+    "url": "https://developer.fedex.com/api/en-us/announcements/August_2022-ReleaseAnnouncements.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for august 2022",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Aug_2022_Interruption_Announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for june 2022",
+    "url": "https://developer.fedex.com/api/en-us/announcements/June2022-API_Interruptions.html"
+  },
+  {
+    "text": "fedex api & fedex developer portal (fdp) may 2022 release notes",
+    "url": "https://developer.fedex.com/api/en-us/announcements/May2022-ReleaseAnnouncements.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for may 2022",
+    "url": "https://developer.fedex.com/api/en-us/announcements/May_21_2022-API_Interruptions.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for april 2022",
+    "url": "https://developer.fedex.com/api/en-us/announcements/28April2022-API_Interruptions.html"
+  },
+  {
+    "text": "fedex api & fedex developer portal (fdp) april 2022 release notes",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Apr2022-ReleaseAnnouncements.html"
+  },
+  {
+    "text": "fedex ground economy label enhancements",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Apr2022-FGEAnnouncements.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for april 2022",
+    "url": "https://developer.fedex.com/api/en-us/announcements/April2022-API_Interruptions.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for march 2022",
+    "url": "https://developer.fedex.com/api/en-us/announcements/FedExAnnouncements_03022022.html"
+  },
+  {
+    "text": "fedex api & fedex developer portal (fdp) february 2022 release notes",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Feb2022-ReleaseAnnouncements.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for february 2022",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Feb2022-API_Interruptions.html"
+  },
+  {
+    "text": "fedex api shipment issue - united kingdom and northern ireland",
+    "url": "https://developer.fedex.com/api/en-us/announcements/January2022_FedEx_Announcement_UK_NI.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for january 2022",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Announcements20220118.html"
+  },
+  {
+    "text": "fedex api & fedex developer portal(fdp) october 2021 release notes",
+    "url": "https://developer.fedex.com/api/en-us/announcements/Sep-25-2021-announcement.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for sep 2021",
+    "url": "https://developer.fedex.com/api/en-us/announcements/sep-2021-announcements.html"
+  },
+  {
+    "text": "fedex service interruptions scheduled for july 2021",
+    "url": "https://developer.fedex.com/api/en-us/announcements/july-2021-interruptions.html"
+  },
+  {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/announcements.html"
+  },
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/catalog.html#"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/authorization.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/authorization/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/address-validation.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/address-validation/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/consolidation.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/consolidation/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/locations.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/locations/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/ltl-freight.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/ltl-freight/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/global-trade.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/global-trade/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/close.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/close/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/open-ship.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/open-ship/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/pickup.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/pickup/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/postal-code.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/postal-code/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/rate.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/rate/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/service-availability.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/service-availability/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/ship.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/ship/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/track.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/track/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/upload-documents.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/upload-documents/v1/docs.html"
+  },
+  {
+    "text": "overview",
+    "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook.html#/api"
+  },
+  {
+    "text": "docs",
+    "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook/v1/docs.html"
+  },
+  {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/catalog.html"
+  },
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#"
+  },
+  {
+    "text": "step 1: develop and test fedex apis with your web-enabled application created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#21"
+  },
+  {
+    "text": "step 2: move your project to production created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#22"
+  },
+  {
+    "text": "step 3: fill out the label cover sheet created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#24"
+  },
+  {
+    "text": "label cover sheet",
+    "url": "https://developer.fedex.com/api/content/dam/fedex-com/irc/common/API-Webservices-combined-Coversheet-2.0.6.docx"
+  },
+  {
+    "text": "step 4: generate and submit test labels to the label analysis group created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#25"
+  },
+  {
+    "text": "label@fedex.com",
+    "url": "mailto:label@fedex.com"
+  },
+  {
+    "text": "step 5: label evaluation created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#26"
+  },
+  {
+    "text": "step 6: enable the application created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#27"
+  },
+  {
+    "text": "step 7: replace url and credentials created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#28"
+  },
+  {
+    "text": "latin america  created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#29"
+  },
+  {
+    "text": "caribbean created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#30"
+  },
+  {
+    "text": "oceana and pacific created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#31"
+  },
+  {
+    "text": "apacfedexapi@fedex.com",
+    "url": "mailto:apacfedexapi@fedex.com"
+  },
+  {
+    "text": "europe created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#32"
+  },
+  {
+    "text": "validationmtp@fedex.com",
+    "url": "mailto:validationmtp@fedex.com"
+  },
+  {
+    "text": "middle east created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#33"
+  },
+  {
+    "text": "meisawebservices@fedex.com",
+    "url": "mailto:meisawebservices@fedex.com"
+  },
+  {
+    "text": "asia & india subcontinent created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#34"
+  },
+  {
+    "text": "africa created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/certification.html#35"
+  },
+  {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/certification.html"
+  },
+  {
+    "text": "english",
+    "url": "https://developer.fedex.com/api/en-us/organization.html#/organization/settings"
+  },
+  {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/organization.html#/organization/settings"
+  },
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/webhookmarketing.html#"
+  },
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#"
+  },
+  {
+    "text": "create organization",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#/api"
+  },
+  {
+    "text": "browse apis",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#step1"
+  },
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#step2"
+  },
+  {
+    "text": "create or join an organization",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#step3"
+  },
+  {
+    "text": "add a shipping account",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#step4"
+  },
+  {
+    "text": "add users to your organization",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#step5"
+  },
+  {
+    "text": "sign up",
+    "url": "https://www.fedex.com/register/#/contact?cu=https://developer.fedex.com/api/en-us/welcome.html"
+  },
+  {
+    "text": "organization administration guidelines.",
+    "url": "https://developer.fedex.com/api/en-us/guides/organization.html"
+  },
+  {
+    "text": "fedex sales representative",
+    "url": "https://www.fedex.com/register/#/contact?locale=en-us"
+  },
+  {
+    "text": "end user license agreement (eula)",
+    "url": "https://developer.fedex.com/api/en-us/legal/eula.html"
+  },
+  {
+    "text": "manage organization",
+    "url": "https://developer.fedex.com/api/en-us/organization.html#/organization/"
+  },
+  {
+    "text": "manage organization",
+    "url": "https://developer.fedex.com/api/en-us/organization.html#/organization"
+  },
+  {
+    "text": "create a project to get credentials",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#cstep1"
+  },
+  {
+    "text": "integrate apis & test your implementation",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#cstep2"
+  },
+  {
+    "text": "move your project to production",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#cstep3"
+  },
+  {
+    "text": "complete your certification",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#cstep4"
+  },
+  {
+    "text": "fedex developer portal license agreement",
+    "url": "https://developer.fedex.com/api/en-us/legal/fdpla.html"
+  },
+  {
+    "text": "learn about pricing",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c3step1"
+  },
+  {
+    "text": "complete billing and shipping account set up",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c3step2"
+  },
+  {
+    "text": "create a valid (call back) url in your destination application/platform",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c3step3"
+  },
+  {
+    "text": "generate security token",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c3step4"
+  },
+  {
+    "text": "test webhook url",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c3step5"
+  },
+  {
+    "text": "validate destination (call back) url",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c3step6"
+  },
+  {
+    "text": "create a webhook project to receive configured payload notifications",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c3step7"
+  },
+  {
+    "text": "fedex creates compatible provider organization.",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c4step1"
+  },
+  {
+    "text": "accept invite.",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c4step2"
+  },
+  {
+    "text": "invite users to your organization.",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c4step3"
+  },
+  {
+    "text": "select apis you need for your solution.",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c4step4"
+  },
+  {
+    "text": "fedex creates project(s).",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c4step5"
+  },
+  {
+    "text": "integrate apis into your application and certify to the compatible program.",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c4step6"
+  },
+  {
+    "text": "fedex moves project(s) into production.",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c4step7"
+  },
+  {
+    "text": "generate production secret key.",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html#c4step8"
+  },
+  {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/get-started.html"
+  },
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/guides.html#"
+  },
+  {
+    "text": "more on versioning",
+    "url": "https://developer.fedex.com/api/en-us/guides/versioning.html"
+  },
+  {
+    "text": "learn about migration",
+    "url": "https://developer.fedex.com/api/en-us/guides/migrate.html"
+  },
+  {
+    "text": "more on reference guide",
+    "url": "https://developer.fedex.com/api/en-us/guides/api-reference.html"
+  },
+  {
+    "text": "learn about pricing",
+    "url": "https://developer.fedex.com/api/en-us/guides/pricing-guide.html"
+  },
+  {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/guides.html"
+  },
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/guides/best-practices.html#"
+  },
+  {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/guides/best-practices.html"
+  },
+  {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/organization.html#/organization/users"
+  },
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/guides/ratelimits.html#"
+  },
+  {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/guides/ratelimits.html"
+  },
+  {
+    "text": "shipping",
+    "url": "https://developer.fedex.com/api/en-us/integration.html#"
+  },
+  {
+    "text": "create a shipment",
+    "url": "https://www.fedex.com/shipping/shipEntryAction.do?method=doEntry&link=1&locale=en_US&urlparams=us&sType=F"
+  },
+  {
+    "text": "shipping rates & delivery times",
+    "url": "https://www.fedex.com/ratefinder/home?cc=US&language=en&locId=express"
+  },
+  {
+    "text": "shipping rates & delivery times",
+    "url": "https://www.fedex.com/en-us/online/rating.html"
+  },
+  {
+    "text": "schedule & manage pickups",
+    "url": "https://www.fedex.com/en-us/shipping/schedule-manage-pickups.html"
+  },
+  {
+    "text": "packing & shipping supplies",
+    "url": "https://www.fedex.com/en-us/shipping/packing-supplies.html"
+  },
+  {
+    "text": "international shipping guide",
+    "url": "https://www.fedex.com/en-us/shipping/international.html"
+  },
+  {
+    "text": "in-store shipping services",
+    "url": "https://www.fedex.com/en-us/shipping/store/shipping-services.html"
+  },
+  {
+    "text": "all shipping services",
+    "url": "https://www.fedex.com/en-us/shipping.html"
+  },
+  {
+    "text": "advanced shipment tracking",
+    "url": "http://www.fedex.com/us/fedextracking/"
+  },
+  {
+    "text": "manage your delivery",
+    "url": "https://www.fedex.com/apps/fdmenrollment/"
+  },
+  {
+    "text": "all tracking services",
+    "url": "https://www.fedex.com/en-us/tracking.html"
+  },
+  {
+    "text": "explore print products",
+    "url": "https://www.fedex.com/en-us/printing/online-printing.html"
+  },
+  {
+    "text": "get coupons & deals",
+    "url": "https://www.fedex.com/en-us/coupon-offers.html"
+  },
+  {
+    "text": "view all products & services",
+    "url": "https://www.fedex.com/en-us/printing.html"
+  },
+  {
+    "text": "all location types",
+    "url": "https://www.fedex.com/en-us/shipping/store/all-location-types.html"
+  },
+  {
+    "text": "new customer center",
+    "url": "https://www.fedex.com/en-us/get-started.html"
+  },
+  {
+    "text": "small business center",
+    "url": "https://www.fedex.com/en-us/small-business.html"
+  },
+  {
+    "text": "fedex service guide",
+    "url": "https://www.fedex.com/en-us/service-guide.html"
+  },
+  {
+    "text": "account management tools",
+    "url": "https://www.fedex.com/en-us/create-account/account-management.html"
+  },
+  {
+    "text": "file a claim",
+    "url": "https://www.fedex.com/en-us/customer-support/claims.html"
+  },
+  {
+    "text": "view & pay bill",
+    "url": "https://www.fedex.com/en-us/billing-online.html"
+  },
+  {
+    "text": "customer support",
+    "url": "https://www.fedex.com/en-us/customer-support.html"
+  },
+  {
+    "text": "door tag",
+    "url": "https://www.fedex.com/en-us/search.html?q=door%20tag&sp_k=en_us"
+  },
+  {
+    "text": "insight",
+    "url": "https://www.fedex.com/us/fcl/pckgenvlp/insight/"
+  },
+  {
+    "text": "supplies",
+    "url": "https://www.fedex.com/en-us/search.html?q=supplies&sp_k=en_us"
+  },
+  {
+    "text": "claims",
+    "url": "https://www.fedex.com/en-us/customer-support/claims.html?search=true"
+  },
+  {
+    "text": "learn about apis",
+    "url": "https://developer.fedex.com/api/en-us/integration/api.html"
+  },
+  {
+    "text": "browse our offerings",
+    "url": "https://developer.fedex.com/api/en-us/integration/features.html"
+  },
+  {
+    "text": "learn about migration",
+    "url": "https://developer.fedex.com/api/en-us/integration/migrate.html"
+  },
+  {
+    "text": "frequently asked questions",
+    "url": "https://developer.fedex.com/api/en-us/integration/faq.html"
+  },
+  {
+    "text": "integration support",
+    "url": "https://developer.fedex.com/api/en-us/integration/support.html"
+  },
+  {
+    "text": "newsroom",
+    "url": "https://newsroom.fedex.com/"
+  },
+  {
+    "text": "fedex logistics",
+    "url": "https://www.fedex.com/en-us/logistics.html"
+  },
+  {
+    "text": "irc",
+    "url": "https://www.fedex.com/?location=home"
+  },
+  {
+    "text": "global navigation",
+    "url": "https://developer.fedex.com/content/fedex-com/irc/global-navigation.html"
+  },
+  {
+    "text": "site map",
+    "url": "https://www.fedex.com/en-us/sitemap.html"
+  },
+  {
+    "text": "fedex.com/us/securityupgrade/.",
+    "url": "http://www.fedex.com/us/securityupgrade/"
+  },
+  {
+    "text": "registrarse o iniciar sesión",
+    "url": "https://developer.fedex.com/api/es-us/home.html#"
+  },
+  {
+    "text": "estado de la api",
+    "url": "https://developer.fedex.com/api/es-us/dashboard.html"
+  },
+  {
+    "text": "soporte",
+    "url": "https://developer.fedex.com/api/es-us/support.html"
+  },
+  {
+    "text": "fedex.com",
+    "url": "https://www.fedex.com/en-us/home%253Cbr%2520/%253E.html"
+  },
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/support.html#"
+  },
+  {
+    "text": "what is an api and what are the benefits? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#10"
+  },
+  {
+    "text": "what is an api?",
+    "url": "https://www.fedex.com/en-us/integration/api.html"
+  },
+  {
+    "text": "are fedex apis an off-the-shelf solution? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#12"
+  },
+  {
+    "text": "can fedex help me implement apis? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#13"
+  },
+  {
+    "text": "can i have multiple apis within one project? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#14"
+  },
+  {
+    "text": "what are the rate limits for each api project? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#16"
+  },
+  {
+    "text": "what are the quota limits for track api projects? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#17"
+  },
+  {
+    "text": "where can i review my activity, usage, and requests for track api projects? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#18"
+  },
+  {
+    "text": "do i need to agree to any terms to use fedex apis? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#19"
+  },
+  {
+    "text": "are there certification requirements for fedex apis? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#20"
+  },
+  {
+    "text": "i have business units that operate outside the united states. will apis still work for me? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#21"
+  },
+  {
+    "text": "what is a webhook and what are the benefits? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#wb-1"
+  },
+  {
+    "text": "is fedex shipment visibility webhook an off-the-shelf solution? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#82"
+  },
+  {
+    "text": "what are the different ways of subscribing to shipment visibility webhook?  created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#83"
+  },
+  {
+    "text": "which shipments are supported through fedex shipment visibility webhook? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#84"
+  },
+  {
+    "text": "what events are available for subscription via fedex shipment visibility webhook? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#85"
+  },
+  {
+    "text": "what are the pre-requisites to creating fedex shipment visibility webhook? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#86"
+  },
+  {
+    "text": "can fedex help me implement webhook? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#87"
+  },
+  {
+    "text": "do i need to agree to any terms to use fedex shipment visibility webhook? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#88"
+  },
+  {
+    "text": "order form",
+    "url": "https://developer.fedex.com/api/en-us/legal/orderform.html"
+  },
+  {
+    "text": "i have business units that operate outside the united states.  will fedex shipment visibility webhook still work for me?  created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#89"
+  },
+  {
+    "text": "what kind of authentication does fedex shipping visibility webhook provide to you? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#91"
+  },
+  {
+    "text": "how can i test my webhook? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#92"
+  },
+  {
+    "text": "how can i create a webhook?   created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#99"
+  },
+  {
+    "text": "what are some best practices to follow to set up webhook? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#94"
+  },
+  {
+    "text": "how are failed events handled by fedex?  created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#95"
+  },
+  {
+    "text": "what are some of the ways in which one can configure a webhook? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#96"
+  },
+  {
+    "text": "what is the list of ip addresses that i need to whitelist to allow fedex requests?  created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#97"
+  },
+  {
+    "text": "what events are sent in each category? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#98"
+  },
+  {
+    "text": "what are the terms of the webhook project and how do i cancel it?  created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#100"
+  },
+  {
+    "text": "master platform subscription agreement",
+    "url": "https://developer.fedex.com/api/en-us/legal/FedexMasterAgreement.html"
+  },
+  {
+    "text": "what are the key limitations that i need to be aware of in regard to webhook? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#101"
+  },
+  {
+    "text": "how to get started? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#102"
+  },
+  {
+    "text": "how do i pay for my bill? do i need a fedex account number?  created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#201"
+  },
+  {
+    "text": "how is the fedex account number used for billing on fedex developer portal, different from shipping account?  created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#202"
+  },
+  {
+    "text": "how can i create a new fedex account number?   created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#203"
+  },
+  {
+    "text": "can i use one fedex account number to pay for multiple projects on fedex developer portal?  created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#204"
+  },
+  {
+    "text": "how do i find my invoice? how often am i charged?  created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#205"
+  },
+  {
+    "text": "when does the billing cycle close for a month for paid projects?  created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#206"
+  },
+  {
+    "text": "how do i understand my bill and associated charges?  created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#207"
+  },
+  {
+    "text": "can i sign up for paperless billing?  created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#209"
+  },
+  {
+    "text": "how are webhook projects invoiced? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#210"
+  },
+  {
+    "text": "if i pause my webhook project, will i still receive a monthly invoice? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#211"
+  },
+  {
+    "text": "if i cancel my webhook project, will i still receive a monthly invoice? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#212"
+  },
+  {
+    "text": "some ques created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#bill-1"
+  },
+  {
+    "text": "is signing up for the fedex developer portal different from creating a fedex account? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#29"
+  },
+  {
+    "text": "do i need a fedex account for integrations? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#30"
+  },
+  {
+    "text": "create a personal or business account",
+    "url": "https://developer.fedex.com/api/en-us/organization/add-account.html#/addaccount"
+  },
+  {
+    "text": "where can i find my fedex account number? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#31"
+  },
+  {
+    "text": "fedex.com",
+    "url": "https://www.fedex.com/register/#/create-shipping-account/account-type"
+  },
+  {
+    "text": "can i add more than one account to the fedex developer portal? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#32"
+  },
+  {
+    "text": "who can add accounts to an organization? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#33"
+  },
+  {
+    "text": "do i have to set up a sandbox account that’s separate from my production accounts? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#34"
+  },
+  {
+    "text": "are there best practices to use with fedex apis and webhook? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#35"
+  },
+  {
+    "text": "does fedex have a testing environment? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#36"
+  },
+  {
+    "text": "where can i find sample code? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#37"
+  },
+  {
+    "text": "is there a limit to how many transactions i can send at a time? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#38"
+  },
+  {
+    "text": "can i track multiple tracking numbers with a single request? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#39"
+  },
+  {
+    "text": "what is the difference between fedex web services and fedex apis? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#40"
+  },
+  {
+    "text": "why migrate",
+    "url": "https://www.fedex.com/en-us/integration/migrate.html"
+  },
+  {
+    "text": "i’m currently using fedex wsdls. will fedex apis affect my current integrations? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#41"
+  },
+  {
+    "text": "what if i’m not ready to migrate from fedex web services and fedex ship manager® server? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#42"
+  },
+  {
+    "text": "can i print my pick ticket on the same paper as my fedex shipping label? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#43"
+  },
+  {
+    "text": "how do i decode the label buffer? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#44"
+  },
+  {
+    "text": "can i fax my labels to the fedex label certification team? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#45"
+  },
+  {
+    "text": "can i use my own words for the reference field on a test label? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#46"
+  },
+  {
+    "text": "what certification requirements are involved with fedex apis? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#234"
+  },
+  {
+    "text": "can i join more than one organization? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#47"
+  },
+  {
+    "text": "user id",
+    "url": "https://www.fedex.com/secure-login/en-us/#/login-credentials"
+  },
+  {
+    "text": "settings",
+    "url": "https://developer.fedex.com/api/en-us/settings.html"
+  },
+  {
+    "text": "i ship with fedex and have developed web services integrations with fedex on my own. what kind of assistance can i expect? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#web-ser-support"
+  },
+  {
+    "text": "i'm a third party developer or using a solution developed by third party ready to migrate my fedex integration to restful apis. what kind of assistance can i expect ? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#256"
+  },
+  {
+    "text": "i am a compatible solution provider with fedex and need assistance with web services to fedex restful api migration. what kind of assistance can i expect? created with sketch.",
+    "url": "https://developer.fedex.com/api/en-us/support.html#web-ser-support-2"
+  },
+  {
+    "text": "1.800.gofedex 1.800.463.339",
+    "url": "tel:1.800.GOFEDEX%201.800.463.339"
+  },
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/guides/sandboxvirtualization.html#"
+  },
+  {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/guides/sandboxvirtualization.html"
+  },
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook.html#"
+  },
+  {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/catalog/shipment-visibility-webhook.html"
+  }
+]

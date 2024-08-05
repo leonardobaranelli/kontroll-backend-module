@@ -1,0 +1,242 @@
+{
+  "link": {
+    "text": "zh-hant",
+    "url": "https://developer.dhl.com/?lang=zh-hant"
+  },
+  "content": "Skip to main content\nMAIN NAVIGATION\nAPIs \nDocumentation\nHelp Center\nZH-HANT \nRegister\nLogin\nDHL FOR DEVELOPERS\nMODERN REST APIS, SIMPLY DELIVERED\n\n \n\nSign up\n \nBrowse our APIs\nOUR SERVICES\n\nDig into our API reference documentation and quickstarts.\n\nTRACKING\n\nReceive your shipment status\n\nBrowse Tracking APIs\n\nSHIPPING\n\nCreate your shipments including labels\n\nBrowse Shipping APIs\n\nFURTHER SERVICES\n\nBrowse our whole API catalog\n\nBrowse All Services\n\nABOUT DHL API DEVELOPER PORTAL\n\nThe DHL Developer Portal is DPDHL's single point of contact for access to APIs from all its business divisions, allowing to signing up for them and making them easy to consume. \n\nCheck the API Catalog to see the APIs already released on this portal. Further APIs from other DPDHL divisions will be added in the coming months. \n\n \n\nSign up\n \nLearn more\nNEED HELP?\n\nProblems to register in the portal?\nWhat standards do the DHL APIs follow?\nCheck the frequently asked questions\n\nHelp Center\nFind Content\nSearch\nSearch\nAPIs of our divisions\nDHL eCommerce\nDHL Express\nDHL Global Forwarding\nDHL Freight\nDHL Supply Chain\nPost & Parcel Germany\nDevelopers\nAPI Catalog\nDocumentation\nAPI Status\nFOOTER MENU\nImprint\nPrivacy Notice\nTerms of Use\nCookie Settings\n2024 © DHL International GmbH. All rights reserved.\n隐私偏好中心\n您访问任何网站时，网站都可能在您的浏览器上存储或检索信息，大多数是以 Cookie 的形式进行。此信息可能与您、您的偏好、您的设备相关，或者该信息被用于使网站按照您期望的方式工作。这些信息通常不会直接识别您，但它可为您提供更多个性化的 Web 体验。您可以选择不允许使用某些类型的 Cookie。单击不同类别标题以了解更多信息并更改默认设置。但是，您应该知道，阻止某些类型的 Cookie 可能会影响您的网站体验和我们能够提供的服务。 更多信息\n全部允许\nConfirm My Choices\nManage Consent Preferences\n绝对必要的 Cookie\n始终处于活动状态\n\n网站运行离不开这些 Cookie 且您不能在系统中将其关闭。通常仅根据您所做出的操作（即服务请求）来设置这些 Cookie，如设置隐私偏好、登录或填充表格。您可以将您的浏览器设置为阻止或向您提示这些 Cookie，但可能会导致某些网站功能无法工作。\n\nCookies Details‎\n性能 Cookie\n\n使用 Cookie，我们可以计算访问量和流量来源，以便衡量和提高我们网站的性能。Cookie 有助于我们了解哪些页面最受欢迎、哪些最不受欢迎，并查看访问者如何浏览网站。这些 Cookie 收集的所有信息都聚合在一起，因此是匿名处理方式。如果您不允许使用这些 Cookie，我们将不知道您何时访问了我们的网站。\n\nCookies Details‎\n功能 Cookie\n\n这些 Cookie 允许提供增强功能和个性化内容，如视频和实时聊天。我们或我们已将其服务添加至我们页面上的第三方提供者可以进行设置。如果您不允许使用这些 Cookie，则可能无法实现部分或全部功能的正常工作。\n\nCookies Details‎\n定向 Cookie\n\n这些 Cookie 由广告合作伙伴通过我们的网站进行设置。这些公司可能利用 Cookie 构建您的兴趣分布图并向您展示其他网站上的相关广告。它们只需识别您的浏览器和设备便可发挥作用。如果您不允许使用这些 Cookie，您将不能体验不同网站上的定向广告。\n\nCookies Details‎\nConfirm My Choices",
+  "requirements": {},
+  "pageLinks": [
+    {
+      "text": "skip to main content",
+      "url": "https://developer.dhl.com/?lang=zh-hant#main-content"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/?lang=zh-hant"
+    },
+    {
+      "text": "api developer portal",
+      "url": "https://developer.dhl.com/?lang=zh-hant"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/search?lang=zh-hant"
+    },
+    {
+      "text": "apis",
+      "url": "https://developer.dhl.com/api-catalog?lang=zh-hant"
+    },
+    {
+      "text": "tracking apis",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_service%3A3&lang=zh-hant"
+    },
+    {
+      "text": "shipping apis",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_service%3A40&lang=zh-hant"
+    },
+    {
+      "text": "browse all services",
+      "url": "https://developer.dhl.com/api-catalog?lang=zh-hant"
+    },
+    {
+      "text": "documentation",
+      "url": "https://developer.dhl.com/documentation?lang=zh-hant"
+    },
+    {
+      "text": "help center",
+      "url": "https://developer.dhl.com/help-center?lang=zh-hant"
+    },
+    {
+      "text": "de",
+      "url": "https://developer.dhl.com/?lang=de"
+    },
+    {
+      "text": "en",
+      "url": "https://developer.dhl.com/?lang=en"
+    },
+    {
+      "text": "ja",
+      "url": "https://developer.dhl.com/?lang=ja"
+    },
+    {
+      "text": "ko",
+      "url": "https://developer.dhl.com/?lang=ko"
+    },
+    {
+      "text": "th",
+      "url": "https://developer.dhl.com/?lang=th"
+    },
+    {
+      "text": "zh-hans",
+      "url": "https://developer.dhl.com/?lang=zh-hans"
+    },
+    {
+      "text": "zh-hant",
+      "url": "https://developer.dhl.com/?lang=zh-hant"
+    },
+    {
+      "text": "register",
+      "url": "https://developer.dhl.com/user/register?lang=zh-hant"
+    },
+    {
+      "text": "login",
+      "url": "https://developer.dhl.com/user/login?destination=/node/102&lang=zh-hant"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/search?lang=zh-hant"
+    },
+    {
+      "text": "register",
+      "url": "https://developer.dhl.com/user/register?lang=zh-hant"
+    },
+    {
+      "text": "login",
+      "url": "https://developer.dhl.com/user/login?destination=/node/102&lang=zh-hant"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/search?lang=zh-hant"
+    },
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "sign up",
+      "url": "https://developer.dhl.com/user/register"
+    },
+    {
+      "text": "browse our apis",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "browse tracking apis",
+      "url": "https://developer.dhl.com/api-catalog?f[0]=api_catalog_service%3A3"
+    },
+    {
+      "text": "browse shipping apis",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_service%3A40"
+    },
+    {
+      "text": "browse all services",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "api catalog",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "sign up",
+      "url": "https://developer.dhl.com/user/register"
+    },
+    {
+      "text": "learn more",
+      "url": "https://developer.dhl.com/documentation"
+    },
+    {
+      "text": "help center",
+      "url": "https://developer.dhl.com/help-center"
+    },
+    {
+      "text": "dhl ecommerce",
+      "url": "https://developer.dhl.com/dhl-ecommerce"
+    },
+    {
+      "text": "dhl express",
+      "url": "https://developer.dhl.com/dhl-express"
+    },
+    {
+      "text": "dhl global forwarding",
+      "url": "https://developer.dhl.com/dhl-global-forwarding"
+    },
+    {
+      "text": "dhl freight",
+      "url": "https://developer.dhl.com/dhl-freight"
+    },
+    {
+      "text": "dhl supply chain",
+      "url": "https://developer.dhl.com/dhl-supply-chain"
+    },
+    {
+      "text": "post & parcel germany",
+      "url": "https://developer.dhl.com/post-and-parcel-germany"
+    },
+    {
+      "text": "api catalog",
+      "url": "https://developer.dhl.com/api-catalog?lang=zh-hant"
+    },
+    {
+      "text": "documentation",
+      "url": "https://developer.dhl.com/documentation?lang=zh-hant"
+    },
+    {
+      "text": "api status",
+      "url": "https://status.api.dhl.com/"
+    },
+    {
+      "text": "imprint",
+      "url": "https://developer.dhl.com/imprint?lang=zh-hant"
+    },
+    {
+      "text": "privacy notice",
+      "url": "https://developer.dhl.com/privacy-notice?lang=zh-hant"
+    },
+    {
+      "text": "terms of use",
+      "url": "https://developer.dhl.com/terms-use?lang=zh-hant"
+    },
+    {
+      "text": "cookie settings",
+      "url": "https://developer.dhl.com/?lang=zh-hant#cookiepref"
+    },
+    {
+      "text": "更多信息",
+      "url": "https://www.dhl.com/cn-zh/home/footer/local-privacy-notice.html"
+    },
+    {
+      "text": "cookies details‎",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "cookies details‎",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "cookies details‎",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "cookies details‎",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "",
+      "url": "https://onetrust.com/poweredbyonetrust"
+    },
+    {
+      "text": "back buttonback",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "filter icon",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "clear filters",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "view privacy notice",
+      "url": "https://developer.dhl.com/?lang=zh-hant#"
+    },
+    {
+      "text": "require opt-out",
+      "url": "https://developer.dhl.com/?lang=zh-hant#"
+    },
+    {
+      "text": "",
+      "url": "https://onetrust.com/poweredbyonetrust"
+    }
+  ]
+}
