@@ -154,7 +154,6 @@ export interface ICarrierPublic {
   id: MaybeString;
   name: string;
   url: string;
-  accountNumber?: MaybeString;
   memoryParser?: {};
 }
 
@@ -166,13 +165,10 @@ export class AbstractCarrierPublic {
   name!: string;
   @Property()
   url!: string;
-  @Property()
-  accountNumber?: MaybeString;
 
   constructor() {
     this.id = '';
     this.name = '';
     this.url = '';
-    this.accountNumber = '';
   }
 }

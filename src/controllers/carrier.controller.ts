@@ -70,7 +70,7 @@ export default class CarrierController {
     }
   };
 
-  public static devCreate = async (
+  public static devGetReqViaDoc = async (
     req: Request,
     res: Response,
   ): Promise<void> => {
@@ -81,7 +81,7 @@ export default class CarrierController {
           data: any;
         };
 
-        const result = await CarrierService.devHandleStep(
+        const result = await CarrierService.devGetReqViaDoc(
           step,
           data,
           req.sessionID,

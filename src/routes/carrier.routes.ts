@@ -8,7 +8,7 @@ const router = Express.Router();
 router.post('/known', CarrierController.createKnown);
 router.post('/new', CarrierController.createNew);
 
-router.post('/dev', CarrierController.devCreate);
+router.post('/dev', CarrierController.devGetReqViaDoc);
 
 //GET
 router.get('/', CarrierController.getAll);

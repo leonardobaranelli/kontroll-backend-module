@@ -14,8 +14,6 @@ import { ICarrier } from '../utils/types/models.interface';
 import { Step } from './step.model';
 import { CarrierStep } from './pivot-tables/carrier-step.model';
 
-type MaybeString = string | null;
-
 @Table({
   tableName: 'carrier',
   timestamps: false,
@@ -33,14 +31,6 @@ export class Carrier extends Model<ICarrier> implements ICarrier {
   @AllowNull(false)
   @Column(DataType.STRING)
   url!: string;
-
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  accountNumber?: MaybeString;
-
-  @AllowNull(true)
-  @Column(DataType.STRING)
-  apiKey?: MaybeString;
 
   @AllowNull(true)
   @Column(DataType.JSON)
