@@ -5,10 +5,10 @@ import {
   ParserResult,
   ParserOptions,
 } from '../utils/types/shipment-parser.interface';
-import { parseShipmentData } from '../utils/shipment-parser/parser';
-import { parseShipmentWithMemory } from '../utils/shipment-parser/memory-parser';
-import { validateShipmentData } from '../utils/shipment-parser/validator';
-import { formatShipmentData } from '../utils/shipment-parser/formatter';
+import { parseShipmentData } from '../core/shipment-parser/parser';
+import { parseShipmentWithMemory } from '../core/shipment-parser/memory-parser';
+import { validateShipmentData } from '../core/shipment-parser/validator';
+import { formatShipmentData } from '../core/shipment-parser/formatter';
 
 export default class ShipmentParserService {
   private static memoryShipments: IShipment[] = [];

@@ -1,4 +1,4 @@
-import { IShipment } from '../types/models.interface';
+import { IShipment } from '../../utils/types/models.interface';
 
 interface TimestampEntry {
   TimestampDateTime: string | null;
