@@ -41,13 +41,7 @@ folders.forEach((folder) => {
             );
           }
         });
-      } else if (
-        folder === '3-scrape-links/scraped-links' ||
-        folder === '4a-filter-scraped-links/filtered-links' ||
-        folder ===
-          '4b-process-links/1-extract-content-from-scraped-links/extracted-content' ||
-        folder === '4b-process-links/2-process-content/extracted-steps'
-      ) {
+      } else {
         fs.stat(filePath, (err, stats) => {
           if (err) {
             return console.error(
