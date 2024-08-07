@@ -28,10 +28,12 @@
     "express-session": "^1.18.0",
     "firebase-admin": "^12.2.0",
     "fs": "^0.0.1-security",
+    "gpt-3-encoder": "^1.1.4",
     "iso-3166-1": "^2.1.1",
     "iso-3166-2": "^1.0.0",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
+    "kontroll-backend-module": "file:",
     "morgan": "^1.10.0",
     "node-fetch": "^3.3.2",
     "pg": "^8.12.0",
@@ -39,7 +41,8 @@
     "puppeteer": "^22.13.1",
     "reflect-metadata": "^0.2.2",
     "sequelize": "^6.37.3",
-    "sequelize-typescript": "^2.1.6"
+    "sequelize-typescript": "^2.1.6",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.7",
@@ -51,6 +54,7 @@
     "@types/node": "^20.4.5",
     "@types/node-fetch": "^2.6.4",
     "@types/supertest": "^2.0.12",
+    "@types/uuid": "^10.0.0",
     "jest": "^29.6.2",
     "nodemon": "^3.1.4",
     "supertest": "^6.3.3",
@@ -61,8 +65,8 @@
   "nodemonConfig": {
     "ignore": [
       "scripts/*",
-      "src/core/carriers/get-req-via-doc/*",
-      "src/storage/carriers/data-on-steps/*"
+      "src/core/carriers/*",
+      "src/storage/carriers/*"
     ]
   }
 }

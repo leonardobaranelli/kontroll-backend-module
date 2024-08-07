@@ -1,0 +1,260 @@
+{
+  "link": {
+    "text": "post & parcel germany",
+    "url": "https://developer.dhl.com/post-and-parcel-germany"
+  },
+  "content": "Skip to main content\nMain navigation\nAPIs \nDocumentation\nHelp Center\nEN \nRegister\nLogin\nPost & DHL Germany\nAPIs for developers\n\n \n\nBrowse our Post APIs       Browse our Parcel APIs\n\nWith Deutsche Post & DHL APIs, you can quickly and easily use our solutions for logistics and dialog marketing and extend your web services with useful information. Using our APIs, you can create shipping labels and Internet stamps, query shipment status or integrate our services into your online store.\n\nEasy-to-use step-by-step instructions guide you through the entire connection process. Detailed documentations, code examples and extensive FAQs on the respective API pages will help you with the integration.\nFor more in-depth questions, you can also contact our support team.\n\nParcel APIs\n\nAuthentication API (Post & Parcel Germany)\nAvailable\n\nPOST & PARCEL GERMANY: For Business Customers of Parcel Germany.\n\nRegion: Germany\nUsed for: Account\nDHL Parcel DE Pickup (Post & Parcel Germany)\nAvailable\n\nBest for:\n\nPlace free or chargeable pick-up orders via web service.\nRegion: Germany\nUsed for: Transportation\nDHL Parcel DE Returns (Post & Parcel Germany)\nAvailable\n\nBest for:\n\nCreation of return labels to be used by end customers\nReturns sender countries: bgr, dnk, deu, est, fin, fra, grc, gbr, irl, ita, hrv, lva, ltu, lux, mlt, nld, aut, pol, prt, rou, swe, che, svk, svn, esp, cze, hun, cyp\nDetermination of receiver configuration for your account\nRegion: Germany\nUsed for: Shipping\nDHL Parcel DE Shipping (Post & Parcel Germany)\nAvailable\n\nBest for:\n\nBusiness customers of Post & Parcel Germany\nCreate and manage shipment labes for domestic and international Parcels\nRegion: Germany\nUsed for: Shipping\nDHL Parcel DE Tracking (Post & Parcel Germany)\nAvailable\n\nBest for:\n\nWith the DHL shipment tracking API pivate and business customers can query the shipment status and history of shipments at any time.\n\nRegion: Germany\nUsed for: Tracking\nParcel DE Postnumber (Post & Parcel Germany)\nAvailable\n\nBest for:\n\nValidate postnumbers to ensure deliverability of shipments to the corresponding person at Packstation parcel lockers.\nRegion: Germany\nUsed for: Address, Shipping\nPost APIs\n\nDATAFACTORY AUTOCOMPLETE 2.0 (Post & Parcel Germany)\nPlanned\n\nAutomatic completion of postal data\n\nBest for:\n\nMore user friendly than ever with fast and convenient address entry\nAccurate address data from initial contact\nFewer returns thanks to correct postal data\nSimplified generation of routing codes with DHL-compliant data\nRegion: Germany\nUsed for: Address\nDeutsche Post International (Post & Parcel Germany)\nAvailable\n\nBest for:\n\nCreating labels for international mail, lightweight items and merchandise\nEuropean Business Customers sending worldwide\nRegion: Europe\nUsed for: Shipping, Tracking\nDeutsche Post INTERNETMARKE (Post & Parcel Germany)\nAvailable\n\nThe INTERNETMARKE is the online-postage for mail products of Deutsche Post AG.\n\nBest for:\n\nCreation, purchase and payment of the following mail products:\n\npostcards and letter mails domestic (with additional services Prio, registered mail, registered mail with personal delivery and return slip) \npostcards and letter mails international (with additional services registered mail, personal delivery)\ndomestic shipments of books and goods \nUsed for: Shipping\nMail Communication Tracking Push (Post & Parcel Germany)\nAvailable\n\nBest for:\n\nBusiness Customers using Mail Communication Services (discounted rate) (Verfolgen Brief Teilleistungen)\nSubscribing to DPDHL Mail Communication Tracking Push API\nRegister for Push API subscription\nProvide your client URL and business customer portal user\nStart receiving daily mail shipment status pushed from DPDHL to your endpoint\nRegion: Germany\nUsed for: Tracking\nOrder Management (AM)\nAvailable\n\nBest for:\n\nBusiness customers of Deutsche Post AG\nElectronic order management of Deutsche Post AG's commercial and logistics processes (Mail)\nRegion: Germany\nUsed for: Shipping\nPrint-Mailing Automation API\nAvailable\n\nThis API is used for creating and managing Print-Mailing campaigns as well as automated, trigger-based sending of recipient information through 3rd party Marketing Automation Systems.\n\nThe Print-Mailing API features:\n\nCreating and managing campaigns\nDesigning campaigns with a maximum of individualization\nHigh quality printing\nBest in class delivery by Deutsche Post\nRegion: Germany\nUsed for: Shipping, Advertising\nPrint-Mailing Dispatch Preparation API\nAvailable\n\nThis API is used for dispatching Dialogue Marketing print mailings.\n\nCalculate and optimize prices\nCreate shipping documents\nFranking\nPlace and change your order\nUse an easy way for dispatch preparation in your software\nRegion: Germany\nUsed for: Shipping, Advertising\nPrint-Mailing Targeting API\nAvailable\n\nThis API is used for planning Dialogue Marketing print mailings.\n\nPlan new target groups and\nSelect target areas.\nGet possible options for your print mailing directly and\nReceive relevant recipient data for the dispatch preparation.\nRegion: Germany\nUsed for: Shipping, Advertising\nGroup APIs\nShipment Tracking - Unified\nRecommended\n\nBest for:\n\nProviding access to the shipment status at any time\nIntegrating all types of DHL shipments\nMultiple shipments (e.g. eCommerce, Express, Freight, Letter, Parcel, etc.)\nRegion: Global\nUsed for: Tracking\nDuty and Tax Calculator - Unified\nAvailable\n\nPurpose\n\nCalculates the duties, taxes and governmental fees for any international shipment, taking into consideration country de minimis values and preferential tariff rates that may apply. The Duty and Tax Calculator API does not provide shipping rates, but instead uses the shipping rate charged to the consignee as an input.\n\nWorks with\nAny carrier, not just DHL, and have a Worldwide scope (if you are a DHL Express customer, please use the DHL Express - MyDHL API)\n\nFree 30-day trial\nGet immediate access and 30 days of free calculations (API calls).\n\nRegion: Global\nUsed for: Additional Services\nLooking for other Post and DHL Germany APIs?\n\nYou can also find the documentation for older Post & DHL APIs here in the Group API Developer Portal (GDP). Access to this can be provided to you free of charge. Please register for GDP and then contact our support team. \n\nOn this info page you will find brief instructions and FAQs after switching to the new Group API Developer Portal in 2023.\n\nDo you have further questions? Please refer to the latest FAQs:\n\nI'm not sure which API to use.\n\nWhat happens to Post and DHL Entwicklerportal?\n\nHow do I get informed about IT-service and API incidents?\n\nHow do I use the Postman Test Collection\n\nFind Content\nSearch\nSearch\nAPIs of our divisions\nDHL eCommerce\nDHL Express\nDHL Global Forwarding\nDHL Freight\nDHL Supply Chain\nPost & Parcel Germany\nDevelopers\nAPI Catalog\nDocumentation\nAPI Status\nFooter menu\nImprint\nPrivacy Notice\nTerms of Use\nCookie Settings\n2024 © DHL International GmbH. All rights reserved.",
+  "requirements": {
+    "endpoint": 1
+  },
+  "pageLinks": [
+    {
+      "text": "skip to main content",
+      "url": "https://developer.dhl.com/post-and-dhl-germany#main-content"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/"
+    },
+    {
+      "text": "api developer portal",
+      "url": "https://developer.dhl.com/"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/search"
+    },
+    {
+      "text": "apis",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "tracking apis",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_service%3A3"
+    },
+    {
+      "text": "shipping apis",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_service%3A40"
+    },
+    {
+      "text": "browse all services",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "documentation",
+      "url": "https://developer.dhl.com/documentation"
+    },
+    {
+      "text": "help center",
+      "url": "https://developer.dhl.com/help-center"
+    },
+    {
+      "text": "de",
+      "url": "https://developer.dhl.com/post-and-dhl-germany?lang=de"
+    },
+    {
+      "text": "en",
+      "url": "https://developer.dhl.com/post-and-dhl-germany?lang=en"
+    },
+    {
+      "text": "ja",
+      "url": "https://developer.dhl.com/post-and-dhl-germany?lang=ja"
+    },
+    {
+      "text": "ko",
+      "url": "https://developer.dhl.com/post-and-dhl-germany?lang=ko"
+    },
+    {
+      "text": "th",
+      "url": "https://developer.dhl.com/post-and-dhl-germany?lang=th"
+    },
+    {
+      "text": "zh-hans",
+      "url": "https://developer.dhl.com/post-and-dhl-germany?lang=zh-hans"
+    },
+    {
+      "text": "zh-hant",
+      "url": "https://developer.dhl.com/post-and-dhl-germany?lang=zh-hant"
+    },
+    {
+      "text": "register",
+      "url": "https://developer.dhl.com/user/register"
+    },
+    {
+      "text": "login",
+      "url": "https://developer.dhl.com/user/login?destination=/node/173"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/search"
+    },
+    {
+      "text": "register",
+      "url": "https://developer.dhl.com/user/register"
+    },
+    {
+      "text": "login",
+      "url": "https://developer.dhl.com/user/login?destination=/node/173"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/search"
+    },
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "browse our post apis",
+      "url": "https://developer.dhl.com/post-and-dhl-germany#post"
+    },
+    {
+      "text": "browse our parcel apis",
+      "url": "https://developer.dhl.com/post-and-dhl-germany#parcel"
+    },
+    {
+      "text": "support team",
+      "url": "https://support-developer.dhl.com/support/home"
+    },
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "authentication api (post & parcel germany)",
+      "url": "https://developer.dhl.com/api-reference/authentication-api-post-parcel-germany"
+    },
+    {
+      "text": "dhl parcel de pickup (post & parcel germany)",
+      "url": "https://developer.dhl.com/api-reference/dhl-parcel-de-pickup-post-parcel-germany"
+    },
+    {
+      "text": "dhl parcel de returns (post & parcel germany)",
+      "url": "https://developer.dhl.com/api-reference/dhl-parcel-de-returns-post-parcel-germany"
+    },
+    {
+      "text": "dhl parcel de shipping (post & parcel germany)",
+      "url": "https://developer.dhl.com/api-reference/parcel-de-shipping-post-parcel-germany-v2"
+    },
+    {
+      "text": "dhl parcel de tracking (post & parcel germany)",
+      "url": "https://developer.dhl.com/api-reference/dhl-parcel-de-shipment-tracking-post-parcel-germany"
+    },
+    {
+      "text": "parcel de postnumber (post & parcel germany)",
+      "url": "https://developer.dhl.com/api-reference/parcel-de-postnumber-post-parcel-germany"
+    },
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "datafactory autocomplete 2.0  (post & parcel germany)",
+      "url": "https://developer.dhl.com/api-reference/datafactory-autocomplete-20-post-parcel-germany"
+    },
+    {
+      "text": "deutsche post international (post & parcel germany)",
+      "url": "https://developer.dhl.com/api-reference/deutsche-post-international-post-parcel-germany"
+    },
+    {
+      "text": "deutsche post internetmarke (post & parcel germany)",
+      "url": "https://developer.dhl.com/api-reference/deutsche-post-internetmarke-post-parcel-germany"
+    },
+    {
+      "text": "mail communication tracking push (post & parcel germany)",
+      "url": "https://developer.dhl.com/api-reference/mail-communication-tracking-push-post-parcel-germany"
+    },
+    {
+      "text": "order management (am)",
+      "url": "https://developer.dhl.com/api-reference/order-management-am"
+    },
+    {
+      "text": "print-mailing automation api",
+      "url": "https://developer.dhl.com/api-reference/print-mailing-automation-api"
+    },
+    {
+      "text": "print-mailing dispatch preparation api",
+      "url": "https://developer.dhl.com/api-reference/print-mailing-dispatch-preparation-api"
+    },
+    {
+      "text": "print-mailing targeting api",
+      "url": "https://developer.dhl.com/api-reference/print-mailing-targeting-api"
+    },
+    {
+      "text": "shipment tracking - unified",
+      "url": "https://developer.dhl.com/api-reference/shipment-tracking"
+    },
+    {
+      "text": "duty and tax calculator - unified",
+      "url": "https://developer.dhl.com/api-reference/duty-and-tax-calculator?language_content_entity=en"
+    },
+    {
+      "text": "dhl express - mydhl api",
+      "url": "https://developer.dhl.com/api-reference/dhl-express-mydhl-api#get-started-section/"
+    },
+    {
+      "text": "get immediate access",
+      "url": "https://developer.dhl.com/stripe/product/duty-and-tax-calculator"
+    },
+    {
+      "text": "support team",
+      "url": "https://support-developer.dhl.com/en/support/home"
+    },
+    {
+      "text": "info page",
+      "url": "https://developer.dhl.com/informationen-zur-abschaltung-des-post-dhl-entwicklerportals"
+    },
+    {
+      "text": "dhl ecommerce",
+      "url": "https://developer.dhl.com/dhl-ecommerce"
+    },
+    {
+      "text": "dhl express",
+      "url": "https://developer.dhl.com/dhl-express"
+    },
+    {
+      "text": "dhl global forwarding",
+      "url": "https://developer.dhl.com/dhl-global-forwarding"
+    },
+    {
+      "text": "dhl freight",
+      "url": "https://developer.dhl.com/dhl-freight"
+    },
+    {
+      "text": "dhl supply chain",
+      "url": "https://developer.dhl.com/dhl-supply-chain"
+    },
+    {
+      "text": "post & parcel germany",
+      "url": "https://developer.dhl.com/post-and-parcel-germany"
+    },
+    {
+      "text": "api catalog",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "documentation",
+      "url": "https://developer.dhl.com/documentation"
+    },
+    {
+      "text": "api status",
+      "url": "https://status.api.dhl.com/"
+    },
+    {
+      "text": "imprint",
+      "url": "https://developer.dhl.com/imprint"
+    },
+    {
+      "text": "privacy notice",
+      "url": "https://developer.dhl.com/privacy-notice"
+    },
+    {
+      "text": "terms of use",
+      "url": "https://developer.dhl.com/terms-use"
+    },
+    {
+      "text": "cookie settings",
+      "url": "https://developer.dhl.com/post-and-dhl-germany#cookiepref"
+    }
+  ]
+}

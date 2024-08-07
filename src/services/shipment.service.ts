@@ -12,7 +12,7 @@ export default class ShipmentService {
   private static getIdFieldForCarrier(carrier: string): string {
     const carrierIdFields: { [key: string]: string } = {
       dhl: 'id',
-      fedex: 'transactionId',
+      fedex: 'trackingNumber',
       kandn: 'shipmentNumber',
       sch: 'ShipmentId',
     };
@@ -91,15 +91,28 @@ export default class ShipmentService {
       let shipmentDoc = null;
       for (const doc of snapshot.docs) {
         const data = doc.data();
-        if (data[idField] === shipmentId) {
-          shipmentDoc = data;
-          break;
+        if (carrier === 'fedex') {
+          const completeTrackResults = data.output?.completeTrackResults;
+          if (Array.isArray(completeTrackResults)) {
+            for (const result of completeTrackResults) {
+              if (result.trackingNumber === shipmentId) {
+                shipmentDoc = result;
+                break;
+              }
+            }
+          }
         } else {
-          const shipments = data.shipments || [];
-          shipmentDoc = shipments.find(
-            (shipment: any) => shipment[idField] === shipmentId,
-          );
+          if (data[idField] === shipmentId) {
+            shipmentDoc = data;
+            break;
+          } else {
+            const shipments = data.shipments || [];
+            shipmentDoc = shipments.find(
+              (shipment: any) => shipment[idField] === shipmentId,
+            );
+          }
         }
+        if (shipmentDoc) break;
       }
 
       if (!shipmentDoc) {

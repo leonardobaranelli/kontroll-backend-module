@@ -2,22 +2,6 @@ type MaybeString = string | null;
 type MaybeNumber = number | null;
 type MaybeDate = Date | string | null;
 
-export interface IUser {
-  id: MaybeString;
-  name: string;
-  lastName: string;
-  username: string;
-  password: string;
-  avatarUrl?: MaybeString;
-  role?: 'user' | 'admin';
-}
-
-export interface IConnector {
-  id: MaybeString;
-  type: string;
-  memoryParser?: {};
-}
-
 export interface IShipment {
   HousebillNumber: string;
   Origin?: {
@@ -83,12 +67,18 @@ export interface ICarrier {
   id: MaybeString;
   name: string;
   url: string;
-  accountNumber?: MaybeString;
-  apiKey?: MaybeString;
   memoryParser?: {};
 }
 
 // Beginning of the Step region
+export interface StepConfig {
+  action: (data: any, state: any) => void | Promise<void>;
+  message: (state: any) => string | Promise<string>;
+  stepsDetails: IStepDetails;
+  form: IForm;
+  next: string;
+}
+
 export interface IStepDetails {
   step: number;
   stepTitle: string;
@@ -99,6 +89,7 @@ export interface IStepDetails {
 }
 
 export interface IForm {
+  expectedFieldName: string;
   instruction: string;
   label: string;
   title: string;
@@ -111,4 +102,14 @@ export interface IStep {
   stepsDetails: IStepDetails;
   form: IForm;
 }
+
+export type StepKey =
+  | 'step1'
+  | 'step2'
+  | 'step3'
+  | 'step4'
+  | 'step5'
+  | 'step6'
+  | 'step7'
+  | 'step8';
 // End of the Step region

@@ -5,8 +5,10 @@ import { checkIdParam } from '../middlewares/route-params.middleware';
 const router = Express.Router();
 
 //POST
-router.post('/', CarrierController.create);
-router.post('/dev', CarrierController.devCreate);
+router.post('/known', CarrierController.createKnown);
+router.post('/new', CarrierController.createNew);
+
+router.post('/dev', CarrierController.devGetReqViaDoc);
 
 //GET
 router.get('/', CarrierController.getAll);

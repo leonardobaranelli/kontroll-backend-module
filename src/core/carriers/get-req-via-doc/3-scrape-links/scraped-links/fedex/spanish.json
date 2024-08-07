@@ -1,0 +1,238 @@
+{
+  "link": {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/home.html"
+  },
+  "content": "Menú\n Developer Portal\n\nAre you joining from FedEx Web Services? Welcome!\n\nStarting on August 31, 2024, you will no longer be able to use FedEx Web Services Tracking, Address Validation, and Validate Postal Codes. This is because SOAP based FedEx Web Services is now in development containment and has been replaced with FedEx RESTful APIs. You can learn more about how to upgrade your integration to FedEx APIs here on the FedEx Developer Portal.\n\nSean cuales sean tus necesidades, quedarán cubiertas con nuestras soluciones\n\nLas API y los webhooks de FedEx ofrecen una manera simple y económica de conservar a tus clientes en tu sitio web y de agregar rapidez y eficiencia a tus procesos de envío.\n\nSimplifica procesos\nAccede a soluciones de integración personalizadas, independientes de la interfaz.\nAumenta la eficiencia\nAdministra las devoluciones con facilidad y reduce los costos de servicio de atención al cliente.\nApoya a los clientes\nPermite a los clientes rastrear el estado de sus pedidos, desde tu aplicación.\nAprovecha las soluciones de FedEx con nuestro paquete completo de webhooks y API\nAPI\n\nSaca información de las soluciones logísticas de FedEx y pásala a tus aplicaciones para comparar tarifas, crear etiquetas, procesar devoluciones y más. \n\nLAS API MÁS POPULARES\n\n• API de rastreo\n\n• API de envío\n\n• Tarifas y tiempos en tránsito\n\nEXPLORA EL CATÁLOGO DE LAS API\nPREMIUM\nWebhook de visibilidad de envío\n\nObtén actualizaciones push casi en tiempo real sobre los envíos en tránsito para las cuentas y números de rastreo ubicados en EE. UU. Los eventos que se pueden rastrear incluyen la fecha de entrega estimada y el plazo, la imagen de la prueba de la entrega y más. A los suscriptores se les cobra una tarifa mensual con base en la cantidad de números de rastreo.\n\n\n\n\n\nPRÓXIMAMENTE\n\nWebhooks con base en el número de rastreo\nOBTÉN INFORMACIÓN SOBRE LOS BENEFICIOS\n\nEXPLORAR LA DOCUMENTACIÓN\n\nHaz la prueba antes de comprometerte e integra con facilidad\nPrueba\n\nExplora la documentación del webhook de Visibilidad de envío y nuestras soluciones API. Luego prueba nuestro espacio de entorno aislado, sin necesidad de tener cuenta.\nDocumentación del webhook de Visibilidad de envío\nCatálogo de API\n\nInformación\n\nRevisa nuestra guía de cuotas y límites de tarifas y las prácticas recomendadas de integración para obtener información más detallada sobre las soluciones.\nGuía de cuotas y límites de tarifas\nPrácticas recomendadas de integración\n\nIntegra\n\n¿Listo para integrar? Sigue nuestra guía de inicio paso a paso. Comienza por crear una organización en el FedEx Developer Portal.\nGuía de inicio\nCrear una organización\n\nAsegúrate de que la integración es una buena opción para tu negocio\n\nFedEx Compatible\n\nIf your shipping application is intended for resale, become a member of FedEx® Compatible to integrate FedEx functionality into your solution.\n\nEXPLORE FEDEX COMPATIBLE\n\nSolutions to support your business\n\nNot sure if you're ready to integrate with FedEx solutions? Learn more about how integrating can support your business.\n\nEXPLORE SOLUTIONS\n¿Todavía tienes preguntas? Nosotros tenemos las respuestas\n¿Qué es una Interfaz de programación de la aplicación (API) y qué beneficios ofrece?\n¿Necesito una cuenta FedEx para las integraciones?\nVER TODAS LAS PREGUNTAS FRECUENTES\n\n¿Es usted un cliente actual de los Servicios web o del servidor FedEx Ship Manager? Si es así, aún puede acceder al Centro de recursos para desarrolladores.\n\n © FedEx Corporate Services Inc. Todos los derechos reservados.\nSoluciones de integración Soporte FedEx.com Términos de uso Seguridad y privacidad\n United States \nSpanish",
+  "requirements": {},
+  "pageLinks": [
+    {
+      "text": "developer portal",
+      "url": ""
+    },
+    {
+      "text": "registrarse o iniciar sesión",
+      "url": "https://developer.fedex.com/api/es-us/home.html#"
+    },
+    {
+      "text": "sign up or log in",
+      "url": ""
+    },
+    {
+      "text": "cómo empezar",
+      "url": "https://developer.fedex.com/api/es-us/get-started.html"
+    },
+    {
+      "text": "catálogo de las api",
+      "url": "https://developer.fedex.com/api/es-us/catalog.html"
+    },
+    {
+      "text": "guías",
+      "url": "https://developer.fedex.com/api/es-us/guides.html"
+    },
+    {
+      "text": "anuncios",
+      "url": "https://developer.fedex.com/api/es-us/announcements.html"
+    },
+    {
+      "text": "certificación api",
+      "url": "https://developer.fedex.com/api/es-us/certification.html"
+    },
+    {
+      "text": "estado de la api",
+      "url": "https://developer.fedex.com/api/es-us/dashboard.html"
+    },
+    {
+      "text": "soporte",
+      "url": "https://developer.fedex.com/api/es-us/support.html"
+    },
+    {
+      "text": "otros productos",
+      "url": ""
+    },
+    {
+      "text": "servicios web de fedex®",
+      "url": "https://www.fedex.com/en-us/developer/web-services.html"
+    },
+    {
+      "text": "servidor de fedex ship manager®",
+      "url": "https://www.fedex.com/en-us/developer/ship-manager-server.html"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/organization.html#/organization/settings"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/es-us/home.html"
+    },
+    {
+      "text": "add shipping account",
+      "url": "https://developer.fedex.com/api/en-us/organization.html#/organization/accounts"
+    },
+    {
+      "text": "manage shipping accounts",
+      "url": "https://developer.fedex.com/api/en-us/organization.html#/organization/accounts"
+    },
+    {
+      "text": "invite & manage users",
+      "url": "https://developer.fedex.com/api/en-us/organization.html#/organization/users"
+    },
+    {
+      "text": "api catlog",
+      "url": "https://developer.fedex.com/api/en-us/catalog.html"
+    },
+    {
+      "text": "webhooks documentation",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook.html"
+    },
+    {
+      "text": "quotas & rate limits guide",
+      "url": "https://developer.fedex.com/api/en-us/guides/ratelimits.html"
+    },
+    {
+      "text": "virtualization guide",
+      "url": "https://developer.fedex.com/api/en-us/guides/sandboxvirtualization.html"
+    },
+    {
+      "text": "add biling account",
+      "url": "https://developer.fedex.com/api/en-us/organization/add-billingaccount.html"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/organization.html#/organization/billingaccounts"
+    },
+    {
+      "text": "learn about tracking webhooks",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook.html"
+    },
+    {
+      "text": "manage webhook projects",
+      "url": "https://developer.fedex.com/api/en-us/project.html#/myprojects"
+    },
+    {
+      "text": "create webhook project",
+      "url": "https://developer.fedex.com/api/en-us/project.html#/myprojects"
+    },
+    {
+      "text": "view webhook project",
+      "url": "https://developer.fedex.com/api/en-us/project.html#/myprojects"
+    },
+    {
+      "text": "explore api catlog",
+      "url": "https://developer.fedex.com/api/en-us/catalog.html"
+    },
+    {
+      "text": "manage api projects",
+      "url": "https://developer.fedex.com/api/en-us/project.html#/myprojects"
+    },
+    {
+      "text": "create api project",
+      "url": "https://developer.fedex.com/api/en-us/project.html#/myprojects"
+    },
+    {
+      "text": "view api projects",
+      "url": "https://developer.fedex.com/api/en-us/project.html#/myprojects"
+    },
+    {
+      "text": "documentación del webhook de visibilidad de envío",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook.html"
+    },
+    {
+      "text": "catálogo de api",
+      "url": "https://developer.fedex.com/api/es-us/catalog.html"
+    },
+    {
+      "text": "guía de cuotas y límites de tarifas",
+      "url": "https://developer.fedex.com/api/es-us/guides/ratelimits.html"
+    },
+    {
+      "text": "prácticas recomendadas de integración",
+      "url": "https://developer.fedex.com/api/es-us/guides/best-practices.html"
+    },
+    {
+      "text": "guía de inicio",
+      "url": "https://developer.fedex.com/api/es-us/get-started.html"
+    },
+    {
+      "text": "crear una organización",
+      "url": "https://developer.fedex.com/api/en-us/organization/create.html#/createorganization"
+    },
+    {
+      "text": "explore fedex compatible",
+      "url": "https://www.fedex.com/en-us/compatible.html"
+    },
+    {
+      "text": "explore solutions",
+      "url": "https://www.fedex.com/en-us/compatible/find-a-solution.html"
+    },
+    {
+      "text": "explore guide",
+      "url": "https://developer.fedex.com/api/en-us/guides.html"
+    },
+    {
+      "text": "review best practices",
+      "url": "https://developer.fedex.com/api/en-us/integration.html"
+    },
+    {
+      "text": "leer más",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "leer más",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "ver todas las preguntas frecuentes",
+      "url": "https://developer.fedex.com/api/es-us/support.html"
+    },
+    {
+      "text": "centro de recursos para desarrolladores",
+      "url": "https://www.fedex.com/en-us/developer.html"
+    },
+    {
+      "text": "soluciones de integración",
+      "url": "https://www.fedex.com/en-us/integration.html"
+    },
+    {
+      "text": "soporte",
+      "url": "https://www.fedex.com/en-us/integration/support.html"
+    },
+    {
+      "text": "fedex.com",
+      "url": "https://www.fedex.com/en-us/home%253Cbr%2520/%253E.html"
+    },
+    {
+      "text": "términos de uso",
+      "url": "https://www.fedex.com/en-us/terms-of-use.html"
+    },
+    {
+      "text": "seguridad y privacidad",
+      "url": "https://www.fedex.com/en-us/trust-center.html"
+    },
+    {
+      "text": "united states",
+      "url": ""
+    },
+    {
+      "text": "english",
+      "url": "https://developer.fedex.com/api/en-us/home.html"
+    },
+    {
+      "text": "spanish",
+      "url": "https://developer.fedex.com/api/es-us/home.html"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/es-us/home.html#"
+    },
+    {
+      "text": "comunicarse con soporte",
+      "url": "https://developer.fedex.com/api/es-us/support.html"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/es-us/home.html"
+    }
+  ]
+}

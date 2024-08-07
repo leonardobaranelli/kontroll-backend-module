@@ -1,9 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import 'colors';
 
 const baseDirectoryPath = path.join(
   __dirname,
-  '../../src/core/carriers/get-req-via-doc/',
+  '../../src/core/carriers/create-by-steps/new/dev-get-req-via-doc/automated-system/',
 );
 
 const folders = [
@@ -21,7 +22,7 @@ folders.forEach((folder) => {
 
   fs.readdir(directoryPath, (err, files) => {
     if (err) {
-      return console.error(`Unable to scan directory ${folder}: ` + err);
+      return console.error(`Unable to scan directory ${folder}: `.red + err);
     }
 
     files.forEach((file) => {
@@ -30,28 +31,41 @@ folders.forEach((folder) => {
       if (path.extname(file) === '.json') {
         fs.unlink(filePath, (err) => {
           if (err) {
-            console.error(`Failed to delete file ${file} in ${folder}:`, err);
+            console.error(
+              `Failed to delete file ${file} in ${folder}:`.red,
+              err,
+            );
           } else {
-            console.log(`Successfully deleted file ${file} in ${folder}`);
+            console.log(
+              `Successfully deleted file ${file} in ${folder}\n`.green,
+            );
           }
         });
       } else if (
         folder === '3-scrape-links/scraped-links' ||
-        '4a-filter-scraped-links/filtered-links' ||
-        '4b-process-links/1-extract-content-from-scraped-links/extracted-content' ||
-        '4b-process-links/2-process-content/extracted-steps'
+        folder === '4a-filter-scraped-links/filtered-links' ||
+        folder ===
+          '4b-process-links/1-extract-content-from-scraped-links/extracted-content' ||
+        folder === '4b-process-links/2-process-content/extracted-steps'
       ) {
         fs.stat(filePath, (err, stats) => {
           if (err) {
-            return console.error(`Failed to get stats of ${filePath}: ` + err);
+            return console.error(
+              `Failed to get stats of ${filePath}: `.red + err,
+            );
           }
 
           if (stats.isDirectory()) {
-            fs.rmdir(filePath, { recursive: true }, (err) => {
+            fs.rm(filePath, { recursive: true, force: true }, (err) => {
               if (err) {
-                console.error(`Failed to delete directory ${filePath}: `, err);
+                console.error(
+                  `Failed to delete directory ${filePath}: `.red,
+                  err,
+                );
               } else {
-                console.log(`Successfully deleted directory ${filePath}`);
+                console.log(
+                  `Successfully deleted directory ${filePath}\n`.green,
+                );
               }
             });
           }
