@@ -1,0 +1,162 @@
+{
+  "link": {
+    "text": "integration best practices",
+    "url": "https://developer.fedex.com/api/en-us/guides/best-practices.html"
+  },
+  "content": "FedEx Developer Portal will experience interruption from 07/13/2024, 9:00 PM CT - 07/14/2024, 2:00 AM CT.\nWe apologize for any inconvenience such as slow response or technical difficulties. Thank you for your patience!\n\nMenu\n Developer Portal\n\nFedEx APIs Integration Best Practices\n\nThis is a quick reference guide intended to help API consumers understand ways to improve integration experience with FedEx and ensure the quality of integration solution in terms of design, speed and security.\n\nTo efficiently integrate with FedEx APIs, developers should follow these integration best practices:\n\nAPI URIs\n\nThere are separate API URIs for test and production. \nDevelopers should use the test URIs for development and integration testing and the production URI for production.\n\nListed are the API URIs:\n\nTest: https://apis-sandbox.fedex.com/\n\nProduction: https://apis.fedex.com/\n\nCredential management\n\nAPI Key and Secret Key\n\nYour API Key and Secret Key are used to identify your application and need to be used in OAuth token request.\nYour API Key and Secret Key should be treated very securely. Do not distribute API Key or Secret Key via email or distributed code including client-side JavaScript.\nYour application will be compromised if your API Key or Secret Key are stolen. If you suspect that your credentials are stolen or compromised, please recreate the Secret Key immediately.\nAvoid logging sensitive information such as Secret Key.\nDo not hardcode the API Key and Secret Key in your code.\nYour application should be dynamically able to update the API Key and Secret Key.\nThe client credentials should be stored in a vault/a safe place so that it cannot be compromised.\n\nOAuth token\n\nThe access token should be stored on the web application server only and must not be exposed to the browser.\nDo not hardcode the token in your applications.\nSecure the access tokens to avoid compromising them.\nAvoid making multiple calls to the OAuth token API for a new access token. It is recommended to cache the access token until the HTTP error code 401 is observed. Regenerate the OAuth token at that time.\nDo not expose the token to the end user or application.\nUse HTTPS for any API transaction.\n\nCoding practices\n\nTo maintain compliance with the latest and most secure data encryption communication protocol, it is recommended to use Transport Layer Security (TLS) version 1.2 or higher.\nDo not forget to set the right API headers needed for each API request. You will find the header information under each API documentation page. \nThe ’Content-Type’ in HTTP POST should be ‘application/json’.\nPlease refer to the sample code to get started with each API. Each API endpoint is accompanied by several samples that will help you understand required elements, formats and other details.\nWhen users or developers send many decimals in their values, it can cause odd errors. For weight and currency value/amount, only two explicit decimal places are allowed. Dimensions – such as length, width and height – do not support decimals.\n\nExample: Weight: 45.26, currency value/amount: 100.52, length: 10, width: 25, height:15.\n\nAvoid sending empty elements.\n\nExample: “Streetlines”:””\n\nOnly send data necessary to process the request.\n\nFor example, for a U.S. domestic shipment, avoid sending the commercial invoice and commodity data that may only be required for international shipments.\n\nWhen developing, determine how to react if a non-required reply element, such as a rate, is not returned. Evaluate the transaction reply for missing elements before using data.\n\nFor example, it is possible to ship a package if the rating is not functional. Test the transaction reply for missing elements before using data.\n\nIn general, avoid hard dependencies on FedEx API integration when applicable.\nIn order to reduce latency and get accurate results, the following should be used:\n\nFiltering - Use this to narrow down the search with the parameters you are looking for.\nSorting - Use this to sort the results by a certain parameter in ascending or descending order.\nValidate that required fields – such as recipient postal code and package weight – have data before sending the transaction. Validate the data is appropriate for the field in question. This will minimize transaction errors.\n\n\nFor example, for US postal codes, verify that the field is all numeric and is in the form of a 5-digit or a ZIP+4 postal code format.\n\nTo avoid adverse impact on the FedEx system availability and reliability:\n\nDo not run performance testing in the test or production environment.\nHave coding logic in place to keep the same transaction from failing repeatedly.\nThe throttling limit is set to 1400 transaction over 10 seconds. If this limit is reached in the first few seconds, HTTP error code 429 Too many requests will be returned and transactions will be restricted until 10 seconds is reached; transactions will then resume again.\n\n\nFor example, if we receive 1400 requests in the first four seconds, an HTTP error code 429 Too many requests - ‘We have received too many requests in a short duration. Please wait a while to try again.’ will be returned and transactions will be restricted for the next six seconds and then resume again.\n\nDo not hardcode business rules like service types, package types, weight limits, etc. for shipments since they are subject to change.\n\nError handling\n\nEach API response will contain an HTTP status code and response payload. Some responses will be accompanied with an error, warning or note, as applicable. Warnings and notes are not indications of a failure; however, the error or warning message should be logged and examined. Proper error handling will ensure that your integration with FedEx goes smoothly and could help avoid breakage.\n\nHTTP status codes\n\n200 OK\nYour request was processed successfully. This is a standard response for successful HTTP requests.\n\nNote: The API response can contain notes and warnings that provide informative content. Please be sure to log and parse the messages.\n\n400 Bad request\nWe received a bad request that we are unable to process. Please modify your request and try again.\n\nNote: Please review the error code and message to fix the request and try again. Code only to error codes and not error messages since messages are subject to change dynamically.\n\n401 Unauthorized\nWe could not authenticate your credentials. Please make sure to cross-check your API keys and try again.\n\n403 Forbidden\nWe could not authorize your credentials. Please check your permissions and try again.\n\n404 Not found\nThe resource you requested is no longer available. Please modify your request and try again.\n\n405 Method not allowed\nWe received a requested method that is not supported. You should only use the methods provided for each endpoint.\n\nFor example, to create a shipment you must use POST method as described in an API’s documentation.\n\n409 Conflict\n{provide reason of conflict}. Please modify your request and try again.\n\n415 Unsupported media type\nWe do not support the content type in your request. Please modify the format and try again.\n\n422 Unprocessable entity\nWe understood the format of your request, but we were unable to process the entity. Please modify your request and try again.\n\n429 Too many requests\nWe have received too many requests in a short duration. Please make sure to review the Transaction Quotas & Rate-limits.\n\n500 Failure\nWe encountered an unexpected error and are working to resolve the issue. We apologize for any inconvenience. Please check back later and watch out for any communication from FedEx.\n\n503 Service unavailable\nThe service is currently unavailable, and we are working to resolve the issue. We apologize for any inconvenience. Please check back later and watch out for any communication from FedEx.\n\nRate\n\nThere are two ways to get a rate quote:\n\nRate for a specific serviceType - The results will be filtered by the serviceType value indicated. This will decrease the size of the reply and reduce the transaction response time.\n\n\nExample: STANDARD_OVERNIGHT\n\nRate shop – If no serviceType is indicated, then all the applicable services and corresponding rates will be returned.\nUse the Service Availability API to determine which services, package options and special services are available for a given origin-destination pair, and pass the serviceType and package option in the Rate request.\n\n\nFor example, STANDARD_OVERNIGHT (among others) is not available between all postal codes.\n\nFor a special service to be applied on a shipment, the special service type and its details must be included. \n\nNote: Some special services do not have details.\nView the Rate API documentation.\n\nShip\n\nUse the Service Availability API to determine which services are available for a given origin-destination pair and pass the serviceType and package option in the Ship request.\nFor a special service to be applied on a shipment, the special service type and its details must be included.\n\nNote: Some special services do not have details.\nPerform the close for FedEx Ground at the end of the shipping day before the shipment is picked up.\n\nView the Ship API documentation.\n\n\nTrack\n\nLimit the number of tracking numbers in a single-track request to 30. This will decrease the size of the reply and reduce the transaction response time.\nLimit the number of times a package is tracked to what is necessary for business needs.\nFor batch tracking, remove any packages that have returned a track status of “delivered” from batch.\nView the Track API documentation.\n\nAddress Validation\n\nFedEx provides Address Validation as a suggestion and not a final determination. The end user needs to make a final determination of whether an address is usable from the data provided and their business needs. A process must be in place to handle addresses that cannot be validated so orders can still be processed.\nTo ensure a better shipping experience, do not make the shipping process dependent on optional services such as Address Validation.\n\nFor example, if Address Validation API is unavailable at the time of order entry or shipping, a contingency should be in place to complete the shipment.\n\nView the Address Validation API documentation.\n\n\nFedEx Locations Search\n\nNarrow your search by providing specific attributes (i.e., type of location, services offered, etc.) to get suitable location options and faster response time.\nView the FedEx Locations Search API documentation.\n\n\nPickup Request\n\nDo not input past ready time, past date or a date that is too far in the future for scheduling a pickup.\nAnonymous pickups are not allowed.\n\nView the Pickup Request API documentation.\n\n\nService Availability\n\nTo get results for multiple operating companies like FedEx Express (FDXE), FedEx Ground (FDXG), FedEx Freight (FXFR) and FedEx Ground® Economy, either omit the carrierCodes element or send separate service availability requests since multiple carrier codes cannot be specified.\nPlease ensure that you have preapproval for individual skids of 151 lbs. or more and skids exceeding 2,200 lbs.\n\nIf you specify SATURDAY_DELIVERY for variable options, you will get both Saturday delivery options and regular options for all services where Saturday delivery is an option. Do not specify SATURDAY_DELIVERY for special services, or it will only return any applicable Saturday delivery options.\nView the Service Availability API documentation.\n\nCustomer support\n\nIf you have questions or need assistance, we’re here to help! Please go to our Support page for resources and information on ways to contact us.\n\nAre you an existing Web Services or FedEx Ship Manager Server Customer? If so, you can still access the Developer Resource Center.\n\n © FedEx Corporate Services Inc. All rights reserved.\nIntegration Solutions Support FedEx.com Terms of Use Security & Privacy\n United States \nEnglish",
+  "requirements": {
+    "api key": 7,
+    "credential": 1,
+    "endpoint": 2
+  },
+  "pageLinks": [
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "developer portal",
+      "url": ""
+    },
+    {
+      "text": "sign up or log in",
+      "url": "https://developer.fedex.com/api/en-us/guides/best-practices.html#"
+    },
+    {
+      "text": "sign up or log in",
+      "url": ""
+    },
+    {
+      "text": "getting started",
+      "url": "https://developer.fedex.com/api/en-us/get-started.html"
+    },
+    {
+      "text": "api catalog",
+      "url": "https://developer.fedex.com/api/en-us/catalog.html"
+    },
+    {
+      "text": "guides",
+      "url": "https://developer.fedex.com/api/en-us/guides.html"
+    },
+    {
+      "text": "announcements",
+      "url": "https://developer.fedex.com/api/en-us/announcements.html"
+    },
+    {
+      "text": "api certification",
+      "url": "https://developer.fedex.com/api/en-us/certification.html"
+    },
+    {
+      "text": "api status",
+      "url": "https://developer.fedex.com/api/en-us/dashboard.html"
+    },
+    {
+      "text": "support",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "other products",
+      "url": ""
+    },
+    {
+      "text": "fedex web services®",
+      "url": "https://www.fedex.com/en-us/developer/web-services.html"
+    },
+    {
+      "text": "fedex ship manager®  server",
+      "url": "https://www.fedex.com/en-us/developer/ship-manager-server.html"
+    },
+    {
+      "text": "guides",
+      "url": "https://developer.fedex.com/api/en-us/guides.html"
+    },
+    {
+      "text": "transaction quotas & rate-limits",
+      "url": "https://developer.fedex.com/api/en-us/guides/ratelimits.html"
+    },
+    {
+      "text": "rate api documentation",
+      "url": "https://developer.fedex.com/api/en-us/catalog/rate/v1/docs.html"
+    },
+    {
+      "text": "ship api documentation",
+      "url": "https://developer.fedex.com/api/en-us/catalog/ship/v1/docs.html"
+    },
+    {
+      "text": "track api documentation",
+      "url": "https://developer.fedex.com/api/en-us/catalog/track/v1/docs.html"
+    },
+    {
+      "text": "address validation api documentation",
+      "url": "https://developer.fedex.com/api/en-us/catalog/address-validation/v1/docs.html"
+    },
+    {
+      "text": "fedex locations search api documentation",
+      "url": "https://developer.fedex.com/api/en-us/catalog/locations/v1/docs.html"
+    },
+    {
+      "text": "pickup request api documentation",
+      "url": "https://developer.fedex.com/api/en-us/catalog/pickup/v1/docs.html"
+    },
+    {
+      "text": "service availability api documentation",
+      "url": "https://developer.fedex.com/api/en-us/catalog/service-availability/v1/docs.html"
+    },
+    {
+      "text": "support",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "developer resource center",
+      "url": "https://www.fedex.com/en-us/developer.html"
+    },
+    {
+      "text": "integration solutions",
+      "url": "https://www.fedex.com/en-us/integration.html"
+    },
+    {
+      "text": "support",
+      "url": "https://www.fedex.com/en-us/integration/support.html"
+    },
+    {
+      "text": "fedex.com",
+      "url": "https://www.fedex.com/en-us/home.html"
+    },
+    {
+      "text": "terms of use",
+      "url": "https://www.fedex.com/en-us/terms-of-use.html"
+    },
+    {
+      "text": "security & privacy",
+      "url": "https://www.fedex.com/en-us/trust-center.html"
+    },
+    {
+      "text": "united states",
+      "url": ""
+    },
+    {
+      "text": "english",
+      "url": "https://developer.fedex.com/api/en-us/guides/best-practices.html"
+    },
+    {
+      "text": "spanish",
+      "url": "https://developer.fedex.com/api/es-us/guides/best-practices.html"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/guides/best-practices.html#"
+    },
+    {
+      "text": "contact support",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/home.html"
+    }
+  ]
+}

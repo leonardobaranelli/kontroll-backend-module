@@ -78,6 +78,7 @@ export interface StepConfig {
 }
 // End of the Carrier region
 
+// Beginning of the Shipment region
 export interface IShipment {
   HousebillNumber: string;
   Origin?: {
@@ -138,6 +139,13 @@ export interface IShipment {
   goodsDescription?: MaybeString;
   containers?: Array<any> | null;
 }
+
+export interface IParsingDictionary {
+  id: MaybeString;
+  carrier: MaybeString;
+  dictionary: JSON;
+}
+// End of the Shipment region
 
 // Auxiliary
 export type StepKey =

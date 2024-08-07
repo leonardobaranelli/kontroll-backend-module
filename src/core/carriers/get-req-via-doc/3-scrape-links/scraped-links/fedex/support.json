@@ -1,0 +1,682 @@
+{
+  "link": {
+    "text": "support",
+    "url": "https://developer.fedex.com/api/en-us/support.html"
+  },
+  "content": "Menu\n Developer Portal\nSupport\n\nFind answers to frequently asked questions and any other support you might need.\n\n \n\nFAQs\n\nAPIs\nWebhook\nBilling\nAccounts\nFor Developers\nCertification\nMigration\nEXPAND ALL COLLAPSE ALL\nWhat is an API and what are the benefits?\nAre FedEx APIs an off-the-shelf solution?\nCan FedEx help me implement APIs?\nCan I have multiple APIs within one project?\nWhat are the rate limits for each API project?\nWhat are the quota limits for Track API projects?\nWhere can I review my activity, usage, and requests for Track API projects?\nDo I need to agree to any terms to use FedEx APIs?\nAre there certification requirements for FedEx APIs?\nI have business units that operate outside the United States. Will APIs still work for me?\nBACK TO TOP\n\n \n\nCan’t find what you need here? Explore our Integrated Solutions Support page for more resources.\n\nPhone support\n\nTechnical Support\n\nCALL: 1.877.339.2774\n\nSupport hours are Monday through Friday, 7AM to 9PM, and Saturday 7AM to 3PM CST.\n\nCustomer Service - FedEx Express, FedEx Ground & International Shipping Assistance:\n\nCALL: 1.800.GOFEDEX 1.800.463.339\n\n(For international, when prompted, please say \"International Services\".)\n\nCustomer Service - FedEx Express Freight:\n\nCALL: 1.866.393.4585\n\nAre you an existing FedEx Web Services customer?\n\n\n\n\nIf you’re not ready to try out our new FedEx APIs, you can still access documentation and WSDLs for FedEx Web Services within the Developer Resource Center.\n\nACCESS NOW\n\nAre you an existing Web Services or FedEx Ship Manager Server Customer? If so, you can still access the Developer Resource Center.\n\n © FedEx Corporate Services Inc. All rights reserved.\nIntegration Solutions Support FedEx.com Terms of Use Security & Privacy\n United States \nEnglish",
+  "requirements": {},
+  "pageLinks": [
+    {
+      "text": "developer portal",
+      "url": ""
+    },
+    {
+      "text": "sign up or log in",
+      "url": "https://developer.fedex.com/api/en-us/support.html#"
+    },
+    {
+      "text": "sign up or log in",
+      "url": ""
+    },
+    {
+      "text": "getting started",
+      "url": "https://developer.fedex.com/api/en-us/get-started.html"
+    },
+    {
+      "text": "api catalog",
+      "url": "https://developer.fedex.com/api/en-us/catalog.html"
+    },
+    {
+      "text": "guides",
+      "url": "https://developer.fedex.com/api/en-us/guides.html"
+    },
+    {
+      "text": "announcements",
+      "url": "https://developer.fedex.com/api/en-us/announcements.html"
+    },
+    {
+      "text": "api certification",
+      "url": "https://developer.fedex.com/api/en-us/certification.html"
+    },
+    {
+      "text": "api status",
+      "url": "https://developer.fedex.com/api/en-us/dashboard.html"
+    },
+    {
+      "text": "support",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "other products",
+      "url": ""
+    },
+    {
+      "text": "fedex web services®",
+      "url": "https://www.fedex.com/en-us/developer/web-services.html"
+    },
+    {
+      "text": "fedex ship manager®  server",
+      "url": "https://www.fedex.com/en-us/developer/ship-manager-server.html"
+    },
+    {
+      "text": "apis",
+      "url": "https://developer.fedex.com/api/en-us/support.html#"
+    },
+    {
+      "text": "webhook",
+      "url": "https://developer.fedex.com/api/en-us/support.html#"
+    },
+    {
+      "text": "billing",
+      "url": "https://developer.fedex.com/api/en-us/support.html#"
+    },
+    {
+      "text": "accounts",
+      "url": "https://developer.fedex.com/api/en-us/support.html#"
+    },
+    {
+      "text": "for developers",
+      "url": "https://developer.fedex.com/api/en-us/support.html#"
+    },
+    {
+      "text": "certification",
+      "url": "https://developer.fedex.com/api/en-us/support.html#"
+    },
+    {
+      "text": "migration",
+      "url": "https://developer.fedex.com/api/en-us/support.html#"
+    },
+    {
+      "text": "expand all",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "collapse all",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "what is an api and what are the benefits? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#10"
+    },
+    {
+      "text": "api catalog",
+      "url": "https://developer.fedex.com/api/en-us/catalog.html"
+    },
+    {
+      "text": "what is an api?",
+      "url": "https://www.fedex.com/en-us/integration/api.html"
+    },
+    {
+      "text": "are fedex apis an off-the-shelf solution? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#12"
+    },
+    {
+      "text": "fedex®compatible",
+      "url": "https://www.fedex.com/en-us/compatible.html"
+    },
+    {
+      "text": "can fedex help me implement apis? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#13"
+    },
+    {
+      "text": "support",
+      "url": "https://www.fedex.com/en-us/integration/support.html"
+    },
+    {
+      "text": "can i have multiple apis within one project? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#14"
+    },
+    {
+      "text": "what are the rate limits for each api project? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#16"
+    },
+    {
+      "text": "what are the quota limits for track api projects? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#17"
+    },
+    {
+      "text": "transaction quota and rate limits",
+      "url": "https://developer.fedex.com/api/en-us/guides/ratelimits.html"
+    },
+    {
+      "text": "where can i review my activity, usage, and requests for track api projects? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#18"
+    },
+    {
+      "text": "do i need to agree to any terms to use fedex apis? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#19"
+    },
+    {
+      "text": "developer portal license agreement (dpla)",
+      "url": "https://developer.fedex.com/api/en-us/legal/fdpla.html"
+    },
+    {
+      "text": "end user license agreement",
+      "url": "https://developer.fedex.com/api/en-us/legal/eula.html"
+    },
+    {
+      "text": "are there certification requirements for fedex apis? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#20"
+    },
+    {
+      "text": "certification",
+      "url": "https://developer.fedex.com/api/en-us/certification.html"
+    },
+    {
+      "text": "i have business units that operate outside the united states. will apis still work for me? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#21"
+    },
+    {
+      "text": "support",
+      "url": "https://www.fedex.com/en-us/integration/support.html"
+    },
+    {
+      "text": "back to top",
+      "url": "https://developer.fedex.com/api/en-us/support.html#"
+    },
+    {
+      "text": "expand all",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "collapse all",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "what is a webhook and what are the benefits? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#wb-1"
+    },
+    {
+      "text": "what is a webhook?",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook/v1/docs.html"
+    },
+    {
+      "text": "is fedex shipment visibility webhook an off-the-shelf solution? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#82"
+    },
+    {
+      "text": "fedex compatible solutions.",
+      "url": "https://www.fedex.com/en-us/compatible.html"
+    },
+    {
+      "text": "what are the different ways of subscribing to shipment visibility webhook?  created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#83"
+    },
+    {
+      "text": "which shipments are supported through fedex shipment visibility webhook? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#84"
+    },
+    {
+      "text": "what events are available for subscription via fedex shipment visibility webhook? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#85"
+    },
+    {
+      "text": "click here",
+      "url": "https://developer.fedex.com/api/en-us/guides/api-reference.html"
+    },
+    {
+      "text": "what are the pre-requisites to creating fedex shipment visibility webhook? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#86"
+    },
+    {
+      "text": "user login",
+      "url": "https://developer.fedex.com/api/en-us/get-started.html#step2"
+    },
+    {
+      "text": "organization’ profile",
+      "url": "https://developer.fedex.com/api/en-us/get-started.html#step3"
+    },
+    {
+      "text": "billing",
+      "url": "https://developer.fedex.com/api/en-us/get-started.html"
+    },
+    {
+      "text": "shipping",
+      "url": "https://developer.fedex.com/api/en-us/get-started.html"
+    },
+    {
+      "text": "can fedex help me implement webhook? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#87"
+    },
+    {
+      "text": "do i need to agree to any terms to use fedex shipment visibility webhook? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#88"
+    },
+    {
+      "text": "fedex developer license agreement",
+      "url": "https://developer.fedex.com/api/en-us/legal/fdpla.html"
+    },
+    {
+      "text": "end user license agreement",
+      "url": "https://developer.fedex.com/api/en-us/legal/eula.html"
+    },
+    {
+      "text": "order form",
+      "url": "https://developer.fedex.com/api/en-us/legal/orderform.html"
+    },
+    {
+      "text": "i have business units that operate outside the united states.  will fedex shipment visibility webhook still work for me?  created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#89"
+    },
+    {
+      "text": "what kind of authentication does fedex shipping visibility webhook provide to you? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#91"
+    },
+    {
+      "text": "how can i test my webhook? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#92"
+    },
+    {
+      "text": "try this webhook",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook/v1/docs.html"
+    },
+    {
+      "text": "how can i create a webhook?   created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#99"
+    },
+    {
+      "text": "getting started guide",
+      "url": "https://developer.fedex.com/api/en-us/get-started.html"
+    },
+    {
+      "text": "what are some best practices to follow to set up webhook? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#94"
+    },
+    {
+      "text": "best practices section",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook/v1/docs.html"
+    },
+    {
+      "text": "how are failed events handled by fedex?  created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#95"
+    },
+    {
+      "text": "retry section",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook/v1/docs.html"
+    },
+    {
+      "text": "what are some of the ways in which one can configure a webhook? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#96"
+    },
+    {
+      "text": "configuration options",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook/v1/docs.html"
+    },
+    {
+      "text": "what is the list of ip addresses that i need to whitelist to allow fedex requests?  created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#97"
+    },
+    {
+      "text": "what events are sent in each category? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#98"
+    },
+    {
+      "text": "shipment visibility webhook statuses and status code",
+      "url": "https://developer.fedex.com/api/en-us/guides/api-reference.html"
+    },
+    {
+      "text": "what are some of the business rules that i need to be aware of before integrating with webhook? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#99"
+    },
+    {
+      "text": "what are the terms of the webhook project and how do i cancel it?  created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#100"
+    },
+    {
+      "text": "master platform subscription agreement",
+      "url": "https://developer.fedex.com/api/en-us/legal/FedexMasterAgreement.html"
+    },
+    {
+      "text": "what are the key limitations that i need to be aware of in regard to webhook? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#101"
+    },
+    {
+      "text": "what additional information you receive via subscription by account number vs. tracking number? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#98"
+    },
+    {
+      "text": "how to add tracking numbers to webhook project?  created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#97"
+    },
+    {
+      "text": "how to get started? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#102"
+    },
+    {
+      "text": "getting started guide",
+      "url": "https://developer.fedex.com/api/en-us/get-started.html"
+    },
+    {
+      "text": "integrated solutions support",
+      "url": "https://www.fedex.com/en-us/integration/support.html"
+    },
+    {
+      "text": "expand all",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "collapse all",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "how do i pay for my bill? do i need a fedex account number?  created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#201"
+    },
+    {
+      "text": "how is the fedex account number used for billing on fedex developer portal, different from shipping account?  created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#202"
+    },
+    {
+      "text": "how can i create a new fedex account number?   created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#203"
+    },
+    {
+      "text": "can i use one fedex account number to pay for multiple projects on fedex developer portal?  created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#204"
+    },
+    {
+      "text": "how do i find my invoice? how often am i charged?  created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#205"
+    },
+    {
+      "text": "when does the billing cycle close for a month for paid projects?  created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#206"
+    },
+    {
+      "text": "how do i understand my bill and associated charges?  created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#207"
+    },
+    {
+      "text": "can i sign up for paperless billing?  created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#209"
+    },
+    {
+      "text": "how are webhook projects invoiced? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#210"
+    },
+    {
+      "text": "if i pause my webhook project, will i still receive a monthly invoice? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#211"
+    },
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "if i cancel my webhook project, will i still receive a monthly invoice? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#212"
+    },
+    {
+      "text": "some ques created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#bill-1"
+    },
+    {
+      "text": "expand all",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "collapse all",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "is signing up for the fedex developer portal different from creating a fedex account? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#29"
+    },
+    {
+      "text": "sign up here",
+      "url": "https://www.fedex.com/register/#/contact?cu=https://developer.fedex.com/api/en-us/welcome.html"
+    },
+    {
+      "text": "do i need a fedex account for integrations? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#30"
+    },
+    {
+      "text": "create a personal or business account",
+      "url": "https://developer.fedex.com/api/en-us/organization/add-account.html#/addaccount"
+    },
+    {
+      "text": "where can i find my fedex account number? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#31"
+    },
+    {
+      "text": "fedex.com",
+      "url": "https://www.fedex.com/register/#/create-shipping-account/account-type"
+    },
+    {
+      "text": "can i add more than one account to the fedex developer portal? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#32"
+    },
+    {
+      "text": "who can add accounts to an organization? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#33"
+    },
+    {
+      "text": "do i have to set up a sandbox account that’s separate from my production accounts? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#34"
+    },
+    {
+      "text": "expand all",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "collapse all",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "are there best practices to use with fedex apis and webhook? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#35"
+    },
+    {
+      "text": "best practices guide",
+      "url": "https://developer.fedex.com/api/en-us/guides/best-practices.html"
+    },
+    {
+      "text": "does fedex have a testing environment? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#36"
+    },
+    {
+      "text": "where can i find sample code? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#37"
+    },
+    {
+      "text": "is there a limit to how many transactions i can send at a time? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#38"
+    },
+    {
+      "text": "fedex api versioning and throttling management",
+      "url": "https://developer.fedex.com/api/en-us/guides/versioning.html"
+    },
+    {
+      "text": "transaction quota and rate limits",
+      "url": "https://developer.fedex.com/api/en-us/guides/ratelimits.html"
+    },
+    {
+      "text": "can i track multiple tracking numbers with a single request? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#39"
+    },
+    {
+      "text": "what is the difference between fedex web services and fedex apis? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#40"
+    },
+    {
+      "text": "why migrate",
+      "url": "https://www.fedex.com/en-us/integration/migrate.html"
+    },
+    {
+      "text": "i’m currently using fedex wsdls. will fedex apis affect my current integrations? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#41"
+    },
+    {
+      "text": "why migrate",
+      "url": "https://www.fedex.com/en-us/integration/migrate.html"
+    },
+    {
+      "text": "what if i’m not ready to migrate from fedex web services and fedex ship manager® server? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#42"
+    },
+    {
+      "text": "developer resource center.",
+      "url": "https://www.fedex.com/en-us/developer.html"
+    },
+    {
+      "text": "are there best practices to use with fedex apis and webhook? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#35"
+    },
+    {
+      "text": "best practices guide",
+      "url": "https://developer.fedex.com/api/en-us/guides/best-practices.html"
+    },
+    {
+      "text": "expand all",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "collapse all",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "can i print my pick ticket on the same paper as my fedex shipping label? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#43"
+    },
+    {
+      "text": "support",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "how do i decode the label buffer? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#44"
+    },
+    {
+      "text": "can i fax my labels to the fedex label certification team? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#45"
+    },
+    {
+      "text": "can i use my own words for the reference field on a test label? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#46"
+    },
+    {
+      "text": "what certification requirements are involved with fedex apis? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#234"
+    },
+    {
+      "text": "here",
+      "url": "https://developer.fedex.com/api/en-us/certification.html"
+    },
+    {
+      "text": "here",
+      "url": "https://developer.fedex.com/api/en-us/certification.html"
+    },
+    {
+      "text": "expand all",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "collapse all",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "can i join more than one organization? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#47"
+    },
+    {
+      "text": "user id",
+      "url": "https://www.fedex.com/secure-login/en-us/#/login-credentials"
+    },
+    {
+      "text": "manage organization",
+      "url": "https://developer.fedex.com/api/en-us/organization.html#/organization/users"
+    },
+    {
+      "text": "settings",
+      "url": "https://developer.fedex.com/api/en-us/settings.html"
+    },
+    {
+      "text": "i ship with fedex and have developed web services integrations with fedex on my own. what kind of assistance can i expect? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#web-ser-support"
+    },
+    {
+      "text": "getting started | fedex developer portal",
+      "url": "https://developer.fedex.com/api/en-us/get-started.html"
+    },
+    {
+      "text": "i'm a third party developer or using a solution developed by third party ready to migrate my fedex integration to restful apis. what kind of assistance can i expect ? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#256"
+    },
+    {
+      "text": "form",
+      "url": "https://forms.office.com/r/PjYYE1JjXq"
+    },
+    {
+      "text": "i am a compatible solution provider with fedex and need assistance with web services to fedex restful api migration. what kind of assistance can i expect? created with sketch.",
+      "url": "https://developer.fedex.com/api/en-us/support.html#web-ser-support-2"
+    },
+    {
+      "text": "integrated solutions support",
+      "url": "https://www.fedex.com/en-us/integration/support.html"
+    },
+    {
+      "text": "1.877.339.2774",
+      "url": "tel:1.877.339.2774"
+    },
+    {
+      "text": "1.800.gofedex 1.800.463.339",
+      "url": "tel:1.800.GOFEDEX%201.800.463.339"
+    },
+    {
+      "text": "1.866.393.4585",
+      "url": "tel:1.866.393.4585"
+    },
+    {
+      "text": "access now",
+      "url": "https://www.fedex.com/en-us/developer.html"
+    },
+    {
+      "text": "developer resource center",
+      "url": "https://www.fedex.com/en-us/developer.html"
+    },
+    {
+      "text": "integration solutions",
+      "url": "https://www.fedex.com/en-us/integration.html"
+    },
+    {
+      "text": "support",
+      "url": "https://www.fedex.com/en-us/integration/support.html"
+    },
+    {
+      "text": "fedex.com",
+      "url": "https://www.fedex.com/en-us/home.html"
+    },
+    {
+      "text": "terms of use",
+      "url": "https://www.fedex.com/en-us/terms-of-use.html"
+    },
+    {
+      "text": "security & privacy",
+      "url": "https://www.fedex.com/en-us/trust-center.html"
+    },
+    {
+      "text": "united states",
+      "url": ""
+    },
+    {
+      "text": "english",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "spanish",
+      "url": "https://developer.fedex.com/api/es-us/support.html"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/support.html#"
+    },
+    {
+      "text": "contact support",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/home.html"
+    }
+  ]
+}

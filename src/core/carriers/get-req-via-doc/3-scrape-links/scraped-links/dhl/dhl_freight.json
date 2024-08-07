@@ -1,0 +1,286 @@
+{
+  "link": {
+    "text": "dhl freight",
+    "url": "https://developer.dhl.com/dhl-freight"
+  },
+  "content": "Skip to main content\nMAIN NAVIGATION\nAPIs \nDocumentation\nHelp Center\nEN \nRegister\nLogin\nSearch API\nclear all filters\nRecommended\nDivision\nDHL eCommerce\nDHL Express\nDHL Freight\nDHL Global Forwarding\nDHL Supply Chain\nPost & Parcel Germany\nService type\nFinance\nTracking\nRegion\nBROWSE APIS\nShipment Tracking - Unified\n\nBest for:\n\nProviding access to the shipment status at any time\nIntegrating all types of DHL shipments\nMultiple shipments (e.g. eCommerce, Express, Freight, Letter, Parcel, etc.)\nRegion: Global\nUsed for: Tracking\nFreight Sales Invoice Push API\n\nSales Invoice Push API enables customers to receive invoice data from DHL Freight. \n\nBest for receiving:\n\nSales Invoice\nCredit Notes\nCorrection Invoice\n\nPush API is a three step process. \n\nRegister for Push API subscription\nProvide your URL callback details (POST /subscription/invoice)\nStart to receive messages pushed from DHL to your API\n\nOther HTTP methods such as GET & PATCH are created for supporting you with fetching subscription details & modifying configurations.\n\nRegion: Global, (except Sweden Domestic & Germany)\nUsed for: Finance\nFind Content\nSearch\nSearch\nAPIs of our divisions\nDHL eCommerce\nDHL Express\nDHL Global Forwarding\nDHL Freight\nDHL Supply Chain\nPost & Parcel Germany\nDevelopers\nAPI Catalog\nDocumentation\nAPI Status\nFOOTER MENU\nImprint\nPrivacy Notice\nTerms of Use\nCookie Settings\n2024 © DHL International GmbH. All rights reserved.\nPrivacy Preference Center\n\"Cookies\" are small files that enable us to store information related to your device and you, the user, specifically, while you visit one of our websites. Cookies help us to determine how frequently our internet pages are accessed as well as the number of users. And they help us configure our offers so that they are as convenient and efficient as possible for you. Privacy Notice\nAccept All\nConfirm Selection\nManage Consent Preferences\nStrictly Necessary Cookies\nAlways Active\n\nThese cookies are used to ensure that our website operates correctly and they cannot be deactivated in your systems.\n\nCookies Details‎\nPerformance Cookies\n\nThese cookies collect information about the way our website is used, such as the Internet browser and operating system used, domain name of the website from which you accessed our site, number of visits, average time spent on the site and pages viewed.\n\nCookies Details‎\nFunctional Cookies\n\nThese cookies allow the website to remember choices you make and provide enhanced, more personal features. For example, these cookies can be used to remember and store the last tracking number that you entered when using a tracking application. Information these cookies collect may be anonymized and they cannot track your browsing activity on other websites.\n\nCookies Details‎\nAnalytics Cookies\n\nWe use analytical cookies to improve the quality of our website and its content, and to ensure that our partners’ embedded services work properly.\n\nCookies Details‎\nConfirm Selection",
+  "requirements": {},
+  "pageLinks": [
+    {
+      "text": "skip to main content",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A113#main-content"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/"
+    },
+    {
+      "text": "api developer portal",
+      "url": "https://developer.dhl.com/"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/search"
+    },
+    {
+      "text": "apis",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "tracking apis",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_service%3A3"
+    },
+    {
+      "text": "shipping apis",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_service%3A40"
+    },
+    {
+      "text": "browse all services",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "documentation",
+      "url": "https://developer.dhl.com/documentation"
+    },
+    {
+      "text": "help center",
+      "url": "https://developer.dhl.com/help-center"
+    },
+    {
+      "text": "de",
+      "url": "https://developer.dhl.com/api-catalog?lang=de"
+    },
+    {
+      "text": "en",
+      "url": "https://developer.dhl.com/api-catalog?lang=en"
+    },
+    {
+      "text": "ja",
+      "url": "https://developer.dhl.com/api-catalog?lang=ja"
+    },
+    {
+      "text": "ko",
+      "url": "https://developer.dhl.com/api-catalog?lang=ko"
+    },
+    {
+      "text": "th",
+      "url": "https://developer.dhl.com/api-catalog?lang=th"
+    },
+    {
+      "text": "zh-hans",
+      "url": "https://developer.dhl.com/api-catalog?lang=zh-hans"
+    },
+    {
+      "text": "zh-hant",
+      "url": "https://developer.dhl.com/api-catalog?lang=zh-hant"
+    },
+    {
+      "text": "register",
+      "url": "https://developer.dhl.com/user/register"
+    },
+    {
+      "text": "login",
+      "url": "https://developer.dhl.com/user/login?destination=/api-catalog"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/search"
+    },
+    {
+      "text": "register",
+      "url": "https://developer.dhl.com/user/register"
+    },
+    {
+      "text": "login",
+      "url": "https://developer.dhl.com/user/login?destination=/api-catalog"
+    },
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/search"
+    },
+    {
+      "text": "clear all filters",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "dhl freight",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "recommended",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A113#dhl-api-catalog-featured-api"
+    },
+    {
+      "text": "recommended",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A113&f%5B1%5D=api_catalog_featured_api%3A1"
+    },
+    {
+      "text": "division",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A113#dhl-api-catalog-dhl-division"
+    },
+    {
+      "text": "dhl ecommerce",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A41&f%5B1%5D=api_catalog_dhl_division%3A113"
+    },
+    {
+      "text": "dhl express",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A48&f%5B1%5D=api_catalog_dhl_division%3A113"
+    },
+    {
+      "text": "dhl freight",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "dhl global forwarding",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A12&f%5B1%5D=api_catalog_dhl_division%3A113"
+    },
+    {
+      "text": "dhl supply chain",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A19&f%5B1%5D=api_catalog_dhl_division%3A113"
+    },
+    {
+      "text": "post & parcel germany",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A38&f%5B1%5D=api_catalog_dhl_division%3A113"
+    },
+    {
+      "text": "service type",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A113#dhl-api-catalog-service"
+    },
+    {
+      "text": "finance",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A113&f%5B1%5D=api_catalog_service%3A166"
+    },
+    {
+      "text": "tracking",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A113&f%5B1%5D=api_catalog_service%3A3"
+    },
+    {
+      "text": "region",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A113#dhl-api-catalog-region"
+    },
+    {
+      "text": "(except sweden domestic & germany)",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A113&f%5B1%5D=api_catalog_region%3A127"
+    },
+    {
+      "text": "global",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A113&f%5B1%5D=api_catalog_region%3A2"
+    },
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "shipment tracking - unified",
+      "url": "https://developer.dhl.com/api-reference/shipment-tracking"
+    },
+    {
+      "text": "freight sales invoice push api",
+      "url": "https://developer.dhl.com/api-reference/freight-sales-invoice-push-api"
+    },
+    {
+      "text": "dhl ecommerce",
+      "url": "https://developer.dhl.com/dhl-ecommerce"
+    },
+    {
+      "text": "dhl express",
+      "url": "https://developer.dhl.com/dhl-express"
+    },
+    {
+      "text": "dhl global forwarding",
+      "url": "https://developer.dhl.com/dhl-global-forwarding"
+    },
+    {
+      "text": "dhl freight",
+      "url": "https://developer.dhl.com/dhl-freight"
+    },
+    {
+      "text": "dhl supply chain",
+      "url": "https://developer.dhl.com/dhl-supply-chain"
+    },
+    {
+      "text": "post & parcel germany",
+      "url": "https://developer.dhl.com/post-and-parcel-germany"
+    },
+    {
+      "text": "api catalog",
+      "url": "https://developer.dhl.com/api-catalog"
+    },
+    {
+      "text": "documentation",
+      "url": "https://developer.dhl.com/documentation"
+    },
+    {
+      "text": "api status",
+      "url": "https://status.api.dhl.com/"
+    },
+    {
+      "text": "imprint",
+      "url": "https://developer.dhl.com/imprint"
+    },
+    {
+      "text": "privacy notice",
+      "url": "https://developer.dhl.com/privacy-notice"
+    },
+    {
+      "text": "terms of use",
+      "url": "https://developer.dhl.com/terms-use"
+    },
+    {
+      "text": "cookie settings",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A113#cookiepref"
+    },
+    {
+      "text": "privacy notice",
+      "url": "https://www.dhl.com/global-en/home/footer/global-privacy-notice.html"
+    },
+    {
+      "text": "cookies details‎",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "cookies details‎",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "cookies details‎",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "cookies details‎",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "",
+      "url": "https://onetrust.com/poweredbyonetrust"
+    },
+    {
+      "text": "back buttonback",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "filter icon",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "clear filters",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "view privacy notice",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A113#"
+    },
+    {
+      "text": "require opt-out",
+      "url": "https://developer.dhl.com/api-catalog?f%5B0%5D=api_catalog_dhl_division%3A113#"
+    },
+    {
+      "text": "",
+      "url": "https://onetrust.com/poweredbyonetrust"
+    },
+    {
+      "text": "privacy notice",
+      "url": "https://www.dhl.com/global-en/home/footer/global-privacy-notice.html"
+    }
+  ]
+}

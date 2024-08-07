@@ -1,6 +1,7 @@
 import { Property } from '../decorators/property.decorator';
 import { IEndpoint } from './models.interface';
 import { IStep } from './models.interface';
+import { IShipment } from './models.interface';
 
 type MaybeString = string | null;
 type MaybeNumber = number | null;
@@ -38,6 +39,20 @@ export class AbstractCarrierPublic {
     this.endpoints = [];
     this.steps = [];
   }
+
+export interface ShipmentInput {
+  [key: string]: any;
+}
+
+export interface ParserResult {
+  success: boolean;
+  data?: IShipment;
+  error?: string;
+  mappingDictionary?: Record<string, string>;
+}
+
+export interface ParserOptions {
+  useOpenAI: boolean;
 }
 
 export interface IShipmentPublic {

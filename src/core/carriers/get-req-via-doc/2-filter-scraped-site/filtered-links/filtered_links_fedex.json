@@ -1,0 +1,134 @@
+[
+  {
+    "text": "developer portal",
+    "url": "https://developer.fedex.com/api/en-us/home.html"
+  },
+  {
+    "text": "sign up or log in",
+    "url": "https://developer.fedex.com/api/en-us/home.html#"
+  },
+  {
+    "text": "getting started",
+    "url": "https://developer.fedex.com/api/en-us/get-started.html"
+  },
+  {
+    "text": "api catalog",
+    "url": "https://developer.fedex.com/api/en-us/catalog.html"
+  },
+  {
+    "text": "guides",
+    "url": "https://developer.fedex.com/api/en-us/guides.html"
+  },
+  {
+    "text": "announcements",
+    "url": "https://developer.fedex.com/api/en-us/announcements.html"
+  },
+  {
+    "text": "api certification",
+    "url": "https://developer.fedex.com/api/en-us/certification.html"
+  },
+  {
+    "text": "api status",
+    "url": "https://developer.fedex.com/api/en-us/dashboard.html"
+  },
+  {
+    "text": "support",
+    "url": "https://developer.fedex.com/api/en-us/support.html"
+  },
+  {
+    "text": "fedex web services®",
+    "url": "https://www.fedex.com/en-us/developer/web-services.html"
+  },
+  {
+    "text": "fedex ship manager®  server",
+    "url": "https://www.fedex.com/en-us/developer/ship-manager-server.html"
+  },
+  {
+    "text": "",
+    "url": "https://developer.fedex.com/api/en-us/organization.html#/organization/settings"
+  },
+  {
+    "text": "explore the benefits",
+    "url": "https://developer.fedex.com/api/en-us/webhookmarketing.html"
+  },
+  {
+    "text": "add shipping account",
+    "url": "https://developer.fedex.com/api/en-us/organization.html#/organization/accounts"
+  },
+  {
+    "text": "invite & manage users",
+    "url": "https://developer.fedex.com/api/en-us/organization.html#/organization/users"
+  },
+  {
+    "text": "webhooks documentation",
+    "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook.html"
+  },
+  {
+    "text": "quotas & rate limits guide",
+    "url": "https://developer.fedex.com/api/en-us/guides/ratelimits.html"
+  },
+  {
+    "text": "virtualization guide",
+    "url": "https://developer.fedex.com/api/en-us/guides/sandboxvirtualization.html"
+  },
+  {
+    "text": "add biling account",
+    "url": "https://developer.fedex.com/api/en-us/organization/add-billingaccount.html"
+  },
+  {
+    "text": "",
+    "url": "https://developer.fedex.com/api/en-us/organization.html#/organization/billingaccounts"
+  },
+  {
+    "text": "manage webhook projects",
+    "url": "https://developer.fedex.com/api/en-us/project.html#/myprojects"
+  },
+  {
+    "text": "integration best practices",
+    "url": "https://developer.fedex.com/api/en-us/guides/best-practices.html"
+  },
+  {
+    "text": "create organization",
+    "url": "https://developer.fedex.com/api/en-us/organization/create.html#/createorganization"
+  },
+  {
+    "text": "explore fedex compatible",
+    "url": "https://www.fedex.com/en-us/compatible.html"
+  },
+  {
+    "text": "explore solutions",
+    "url": "https://www.fedex.com/en-us/compatible/find-a-solution.html"
+  },
+  {
+    "text": "review best practices",
+    "url": "https://developer.fedex.com/api/en-us/integration.html"
+  },
+  {
+    "text": "developer resource center",
+    "url": "https://www.fedex.com/en-us/developer.html"
+  },
+  {
+    "text": "integration solutions",
+    "url": "https://www.fedex.com/en-us/integration.html"
+  },
+  {
+    "text": "support",
+    "url": "https://www.fedex.com/en-us/integration/support.html"
+  },
+  {
+    "text": "fedex.com",
+    "url": "https://www.fedex.com/en-us/home.html"
+  },
+  {
+    "text": "terms of use",
+    "url": "https://www.fedex.com/en-us/terms-of-use.html"
+  },
+  {
+    "text": "security & privacy",
+    "url": "https://www.fedex.com/en-us/trust-center.html"
+  },
+  {
+    "text": "spanish",
+    "url": "https://developer.fedex.com/api/es-us/home.html"
+  }
+]

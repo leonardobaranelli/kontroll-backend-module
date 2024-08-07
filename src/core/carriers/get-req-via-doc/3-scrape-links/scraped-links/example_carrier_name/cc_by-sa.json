@@ -1,0 +1,474 @@
+{
+  "link": {
+    "text": "cc by-sa",
+    "url": "https://stackoverflow.com/help/licensing"
+  },
+  "content": "Skip to main content\nStack Overflow\nProducts\nLog in\nSign up\n The 2024 Developer Survey results are live!\nSee the results\nHome\nQuestions\nTags\nUsers\nCompanies\nLABS\nJobs\nDiscussions\nCOLLECTIVES\n\nCommunities for your favorite technologies. Explore all Collectives\n\nTEAMS\n\nNow available on Stack Overflow for Teams! AI features where you work: search, IDE, and chat.\n\nLearn more Explore Teams\nStack Overflow\nHelp center\nMy Account\nWhat is the license for the content I post?\n\nAs noted in the Stack Exchange Terms of Service and in the footer of every page, all publicly accessible user contributions are licensed under Creative Commons Attribution-ShareAlike license as follows:\n\nContent contributed before 2011-04-08 (UTC) is distributed under the terms of CC BY-SA 2.5.\nContent contributed from 2011-04-08 up to but not including 2018-05-02 (UTC) is distributed under the terms of CC BY-SA 3.0.\nContent contributed on or after 2018-05-02 (UTC) is distributed under the terms of CC BY-SA 4.0.\n\nThe license applicable for each Question and Answer revision is available on the post timeline. See this post for more information.\n\nPlease read the terms of service and the full legal text of the license carefully for more details on how your content can be used and for how you can use publicly accessible content contributed to the site by other users.\n\nAsking\nPrivileges\nBadges\nOur model\nReputation & Moderation\nAnswering\nMy Account\nI accidentally created two accounts; how do I merge them?\nHow do I add or remove login credentials from my account?\nI lost my password; how do I reset it?\nHow do I delete my account?\nHow do I access a data dump for a Stack Exchange site?\nWhy have I been limited to one question per week?\nHow do I report a possible security vulnerability?\nHow do I use Saves?\nWhen does Stack Exchange ask for my cookie consent?\nWhy should I create an account?\nWhat is the license for the content I post?\nHow do I create an account?\nWhy has my post been blocked due to \"spam and abuse from my network\"?\nReview Queues\nCollectives on Stack Overflow\nStaging Ground\nDiscussions\nStack Overflow Jobs\nSTACK OVERFLOW\nQuestions\nHelp\nChat\nPRODUCTS\nTeams\nAdvertising\nCollectives\nTalent\nCOMPANY\nAbout\nPress\nWork Here\nLegal\nPrivacy Policy\nTerms of Service\nContact Us\nCookie Settings\nCookie Policy\nSTACK EXCHANGE NETWORK\nTechnology\nCulture & recreation\nLife & arts\nScience\nProfessional\nBusiness\nAPI\nData\nBlog\nFacebook\nTwitter\nLinkedIn\nInstagram\n\nSite design / logo © 2024 Stack Exchange Inc; user contributions licensed under CC BY-SA. rev 2024.7.31.13445\n\nBy clicking “Accept all cookies”, you agree Stack Exchange can store cookies on your device and disclose information in accordance with our Cookie Policy.\nAccept all cookies\nNecessary cookies only\nCustomize settings",
+  "requirements": {},
+  "pageLinks": [
+    {
+      "text": "terms of service",
+      "url": "https://stackoverflow.com/legal/terms-of-service/public"
+    },
+    {
+      "text": "privacy policy",
+      "url": "https://stackoverflow.com/legal/privacy-policy"
+    },
+    {
+      "text": "log in",
+      "url": "https://stackoverflow.com/users/login"
+    },
+    {
+      "text": "skip to main content",
+      "url": "https://stackoverflow.com/help/licensing#content"
+    },
+    {
+      "text": "",
+      "url": "https://stackoverflow.com/help/licensing#"
+    },
+    {
+      "text": "stack overflow",
+      "url": "https://stackoverflow.com/"
+    },
+    {
+      "text": "about",
+      "url": "https://stackoverflow.co/"
+    },
+    {
+      "text": "products",
+      "url": "https://stackoverflow.com/help/licensing#"
+    },
+    {
+      "text": "overflowai",
+      "url": "https://stackoverflow.co/teams/ai/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav-bar&utm_content=overflowai"
+    },
+    {
+      "text": "stack overflow for teamswhere developers & technologists share private knowledge with coworkers",
+      "url": "https://stackoverflow.co/teams/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav&utm_content=stack-overflow-for-teams"
+    },
+    {
+      "text": "advertising & talentreach devs & technologists worldwide about your product, service or employer brand",
+      "url": "https://stackoverflow.co/advertising/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav&utm_content=stack-overflow-advertising"
+    },
+    {
+      "text": "overflowaigenai features for teams",
+      "url": "https://stackoverflow.co/teams/ai/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav&utm_content=overflow-ai"
+    },
+    {
+      "text": "overflowapitrain & fine-tune llms",
+      "url": "https://stackoverflow.co/api-solutions/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav&utm_content=overflow-api"
+    },
+    {
+      "text": "labsthe future of collective knowledge sharing",
+      "url": "https://stackoverflow.co/labs/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav&utm_content=labs"
+    },
+    {
+      "text": "about the company",
+      "url": "https://stackoverflow.co/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav&utm_content=about-the-company"
+    },
+    {
+      "text": "visit the blog",
+      "url": "https://stackoverflow.blog/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=top-nav&utm_content=blog"
+    },
+    {
+      "text": "current community",
+      "url": "https://stackoverflow.com/"
+    },
+    {
+      "text": "stack overflow",
+      "url": "https://stackoverflow.com/"
+    },
+    {
+      "text": "help",
+      "url": "https://stackoverflow.com/help"
+    },
+    {
+      "text": "chat",
+      "url": "https://chat.stackoverflow.com/?tab=site&host=stackoverflow.com"
+    },
+    {
+      "text": "meta stack overflow",
+      "url": "https://meta.stackoverflow.com/"
+    },
+    {
+      "text": "sign up",
+      "url": "https://stackoverflow.com/users/signup?ssrc=site_switcher&returnurl=https%3a%2f%2fstackoverflow.com%2fhelp%2flicensing"
+    },
+    {
+      "text": "log in",
+      "url": "https://stackoverflow.com/users/login?ssrc=site_switcher&returnurl=https%3a%2f%2fstackoverflow.com%2fhelp%2flicensing"
+    },
+    {
+      "text": "more stack exchange communities",
+      "url": "https://stackexchange.com/sites"
+    },
+    {
+      "text": "company blog",
+      "url": "https://stackoverflow.blog/"
+    },
+    {
+      "text": "log in",
+      "url": "https://stackoverflow.com/users/login?ssrc=head&returnurl=https%3a%2f%2fstackoverflow.com%2fhelp%2flicensing"
+    },
+    {
+      "text": "sign up",
+      "url": "https://stackoverflow.com/users/signup?ssrc=head&returnurl=https%3a%2f%2fstackoverflow.com%2fhelp%2flicensing"
+    },
+    {
+      "text": "see the results",
+      "url": "https://survey.stackoverflow.co/2024/?utm_medium=referral&utm_source=stackexchange-community&utm_campaign=dev-survey-2024&utm_content=announcement-banner"
+    },
+    {
+      "text": "",
+      "url": "https://stackoverflow.com/help/licensing#"
+    },
+    {
+      "text": "home",
+      "url": "https://stackoverflow.com/"
+    },
+    {
+      "text": "questions",
+      "url": "https://stackoverflow.com/questions"
+    },
+    {
+      "text": "tags",
+      "url": "https://stackoverflow.com/tags"
+    },
+    {
+      "text": "users",
+      "url": "https://stackoverflow.com/users"
+    },
+    {
+      "text": "companies",
+      "url": "https://stackoverflow.com/jobs/companies?so_medium=stackoverflow&so_source=SiteNav"
+    },
+    {
+      "text": "labs",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "jobs",
+      "url": "https://stackoverflow.com/jobs?source=so-left-nav"
+    },
+    {
+      "text": "discussions",
+      "url": "https://stackoverflow.com/beta/discussions"
+    },
+    {
+      "text": "collectives",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "explore all collectives",
+      "url": "https://stackoverflow.com/collectives-all"
+    },
+    {
+      "text": "learn more",
+      "url": "https://stackoverflow.co/teams/ai/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=side-bar&utm_content=overflowai-learn-more"
+    },
+    {
+      "text": "explore teams",
+      "url": "https://stackoverflow.co/teams/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=side-bar&utm_content=explore-teams"
+    },
+    {
+      "text": "teams",
+      "url": "javascript:void(0)"
+    },
+    {
+      "text": "explore teams",
+      "url": "https://stackoverflow.co/teams/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=side-bar&utm_content=explore-teams-compact"
+    },
+    {
+      "text": "learn more about collectives",
+      "url": "https://stackoverflow.com/collectives"
+    },
+    {
+      "text": "learn more about teams",
+      "url": "https://stackoverflow.co/teams/"
+    },
+    {
+      "text": "learn more about labs",
+      "url": "https://stackoverflow.co/labs/"
+    },
+    {
+      "text": "stack overflow",
+      "url": "https://stackoverflow.com/"
+    },
+    {
+      "text": "help center",
+      "url": "https://stackoverflow.com/help"
+    },
+    {
+      "text": "my account",
+      "url": "https://stackoverflow.com/help/account"
+    },
+    {
+      "text": "terms of service",
+      "url": "https://stackoverflow.com/legal/terms-of-service/public#licensing"
+    },
+    {
+      "text": "creative commons attribution-sharealike",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "text": "cc by-sa 2.5",
+      "url": "https://creativecommons.org/licenses/by-sa/2.5/"
+    },
+    {
+      "text": "cc by-sa 3.0",
+      "url": "https://creativecommons.org/licenses/by-sa/3.0/"
+    },
+    {
+      "text": "cc by-sa 4.0",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "text": "post timeline",
+      "url": "https://meta.stackexchange.com/a/342316"
+    },
+    {
+      "text": "this post",
+      "url": "https://meta.stackexchange.com/questions/347758/creative-commons-licensing-ui-and-data-updates"
+    },
+    {
+      "text": "asking",
+      "url": "https://stackoverflow.com/help/asking"
+    },
+    {
+      "text": "privileges",
+      "url": "https://stackoverflow.com/help/privileges"
+    },
+    {
+      "text": "badges",
+      "url": "https://stackoverflow.com/help/badges"
+    },
+    {
+      "text": "our model",
+      "url": "https://stackoverflow.com/help/stackexchange"
+    },
+    {
+      "text": "reputation & moderation",
+      "url": "https://stackoverflow.com/help/reputation"
+    },
+    {
+      "text": "answering",
+      "url": "https://stackoverflow.com/help/answering"
+    },
+    {
+      "text": "my account",
+      "url": "https://stackoverflow.com/help/account"
+    },
+    {
+      "text": "i accidentally created two accounts; how do i merge them?",
+      "url": "https://stackoverflow.com/help/merging-accounts"
+    },
+    {
+      "text": "how do i add or remove login credentials from my account?",
+      "url": "https://stackoverflow.com/help/edit-credentials"
+    },
+    {
+      "text": "i lost my password; how do i reset it?",
+      "url": "https://stackoverflow.com/help/reset-password"
+    },
+    {
+      "text": "how do i delete my account?",
+      "url": "https://stackoverflow.com/help/deleting-account"
+    },
+    {
+      "text": "how do i access a data dump for a stack exchange site?",
+      "url": "https://stackoverflow.com/help/data-dumps"
+    },
+    {
+      "text": "why have i been limited to one question per week?",
+      "url": "https://stackoverflow.com/help/question-limited"
+    },
+    {
+      "text": "how do i report a possible security vulnerability?",
+      "url": "https://stackoverflow.com/help/security-reports"
+    },
+    {
+      "text": "how do i use saves?",
+      "url": "https://stackoverflow.com/help/saves"
+    },
+    {
+      "text": "when does stack exchange ask for my cookie consent?",
+      "url": "https://stackoverflow.com/help/cookie-reconsent"
+    },
+    {
+      "text": "why should i create an account?",
+      "url": "https://stackoverflow.com/help/why-register"
+    },
+    {
+      "text": "what is the license for the content i post?",
+      "url": "https://stackoverflow.com/help/licensing"
+    },
+    {
+      "text": "how do i create an account?",
+      "url": "https://stackoverflow.com/help/creating-accounts"
+    },
+    {
+      "text": "why has my post been blocked due to \"spam and abuse from my network\"?",
+      "url": "https://stackoverflow.com/help/abuse-block"
+    },
+    {
+      "text": "review queues",
+      "url": "https://stackoverflow.com/help/review-queues"
+    },
+    {
+      "text": "collectives on stack overflow",
+      "url": "https://stackoverflow.com/help/collectives"
+    },
+    {
+      "text": "staging ground",
+      "url": "https://stackoverflow.com/help/staging-ground"
+    },
+    {
+      "text": "discussions",
+      "url": "https://stackoverflow.com/help/discussions"
+    },
+    {
+      "text": "stack overflow jobs",
+      "url": "https://stackoverflow.com/help/stack-overflow-jobs"
+    },
+    {
+      "text": "",
+      "url": "https://stackoverflow.com/"
+    },
+    {
+      "text": "stack overflow",
+      "url": "https://stackoverflow.com/"
+    },
+    {
+      "text": "questions",
+      "url": "https://stackoverflow.com/questions"
+    },
+    {
+      "text": "help",
+      "url": "https://stackoverflow.com/help"
+    },
+    {
+      "text": "chat",
+      "url": "https://chat.stackoverflow.com/?tab=site&host=stackoverflow.com"
+    },
+    {
+      "text": "products",
+      "url": "https://stackoverflow.co/"
+    },
+    {
+      "text": "teams",
+      "url": "https://stackoverflow.co/teams/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=footer&utm_content=teams"
+    },
+    {
+      "text": "advertising",
+      "url": "https://stackoverflow.co/advertising/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=footer&utm_content=advertising"
+    },
+    {
+      "text": "collectives",
+      "url": "https://stackoverflow.co/collectives/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=footer&utm_content=collectives"
+    },
+    {
+      "text": "talent",
+      "url": "https://stackoverflow.co/advertising/employer-branding/?utm_medium=referral&utm_source=stackoverflow-community&utm_campaign=footer&utm_content=talent"
+    },
+    {
+      "text": "company",
+      "url": "https://stackoverflow.co/"
+    },
+    {
+      "text": "about",
+      "url": "https://stackoverflow.co/"
+    },
+    {
+      "text": "press",
+      "url": "https://stackoverflow.co/company/press/"
+    },
+    {
+      "text": "work here",
+      "url": "https://stackoverflow.co/company/work-here/"
+    },
+    {
+      "text": "legal",
+      "url": "https://stackoverflow.com/legal"
+    },
+    {
+      "text": "privacy policy",
+      "url": "https://stackoverflow.com/legal/privacy-policy"
+    },
+    {
+      "text": "terms of service",
+      "url": "https://stackoverflow.com/legal/terms-of-service/public"
+    },
+    {
+      "text": "contact us",
+      "url": "https://stackoverflow.com/contact"
+    },
+    {
+      "text": "cookie policy",
+      "url": "https://stackoverflow.com/legal/cookie-policy"
+    },
+    {
+      "text": "stack exchange network",
+      "url": "https://stackexchange.com/"
+    },
+    {
+      "text": "technology",
+      "url": "https://stackexchange.com/sites#technology"
+    },
+    {
+      "text": "culture & recreation",
+      "url": "https://stackexchange.com/sites#culturerecreation"
+    },
+    {
+      "text": "life & arts",
+      "url": "https://stackexchange.com/sites#lifearts"
+    },
+    {
+      "text": "science",
+      "url": "https://stackexchange.com/sites#science"
+    },
+    {
+      "text": "professional",
+      "url": "https://stackexchange.com/sites#professional"
+    },
+    {
+      "text": "business",
+      "url": "https://stackexchange.com/sites#business"
+    },
+    {
+      "text": "api",
+      "url": "https://api.stackexchange.com/"
+    },
+    {
+      "text": "data",
+      "url": "https://data.stackexchange.com/"
+    },
+    {
+      "text": "blog",
+      "url": "https://stackoverflow.blog/?blb=1"
+    },
+    {
+      "text": "facebook",
+      "url": "https://www.facebook.com/officialstackoverflow/"
+    },
+    {
+      "text": "twitter",
+      "url": "https://twitter.com/stackoverflow"
+    },
+    {
+      "text": "linkedin",
+      "url": "https://linkedin.com/company/stack-overflow"
+    },
+    {
+      "text": "instagram",
+      "url": "https://www.instagram.com/thestackoverflow"
+    },
+    {
+      "text": "cc by-sa",
+      "url": "https://stackoverflow.com/help/licensing"
+    },
+    {
+      "text": "cookie policy",
+      "url": "https://stackoverflow.com/legal/cookie-policy"
+    }
+  ]
+}
