@@ -32,12 +32,12 @@ async function startServer(): Promise<void> {
   try {
     await initDatabase();
   } catch (error) {
-    console.error('Error setting up database:', error);
+    console.error('Error setting up database:'.red, error);
     return;
   }
 
   app.listen(PORT, () => {
-    console.log(`Server is running on port: ${PORT}`);
+    console.log(`Server is running on port: ${PORT}`.cyan);
   });
 }
 

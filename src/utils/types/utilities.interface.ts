@@ -39,6 +39,7 @@ export class AbstractCarrierPublic {
     this.endpoints = [];
     this.steps = [];
   }
+}
 
 export interface ShipmentInput {
   [key: string]: any;
