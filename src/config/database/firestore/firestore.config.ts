@@ -1,10 +1,15 @@
 import admin from 'firebase-admin';
 import serviceAccount from './serviceAccountKey.json';
 
+let initialized = false;
+
 function initializeFirestore() {
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
-  });
+  if (!admin.apps.length && !initialized) {
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+    });
+    initialized = true;
+  }
 }
 
 async function verifyFirestoreConnection(): Promise<void> {
@@ -14,26 +19,29 @@ async function verifyFirestoreConnection(): Promise<void> {
       .collection('test')
       .doc('testDoc')
       .set({ test: 'testValue' });
-    console.log('Connection to Firestore has been established successfully.');
+    console.log(
+      'Connection to Firestore has been established successfully.'.green,
+    );
   } catch (error) {
-    console.error('Unable to connect to Firestore:', error);
+    console.error('Unable to connect to Firestore:'.red, error);
     throw error;
   }
 }
 
 function getParsingDictionariesCollection() {
+  initializeFirestore();
   return admin.firestore().collection('parsingDictionaries');
 }
 
 function getCarriersCollection() {
+  initializeFirestore();
   return admin.firestore().collection('carriers');
 }
 
 function cleanData(data: any) {
-  const cleanedData = JSON.parse(
+  return JSON.parse(
     JSON.stringify(data, (_key, value) => (value === undefined ? null : value)),
   );
-  return cleanedData;
 }
 
 async function addDocument(collectionName: string, data: any) {
