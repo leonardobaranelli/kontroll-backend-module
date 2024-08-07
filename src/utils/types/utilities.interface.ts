@@ -1,4 +1,6 @@
 import { Property } from '../decorators/property.decorator';
+import { IEndpoint } from './models.interface';
+import { IStep } from './models.interface';
 
 type MaybeString = string | null;
 type MaybeNumber = number | null;
@@ -6,6 +8,36 @@ type MaybeDate = Date | string | null;
 
 export interface IError extends Error {
   statusCode?: number;
+}
+
+export interface ICarrierPublic {
+  id: string;
+  userId: string;
+  name: string;
+  endpoints: IEndpoint[];
+  steps?: IStep[];
+}
+
+// Public Carrier with metadata
+export class AbstractCarrierPublic {
+  @Property()
+  id!: string;
+  @Property()
+  userId: string;
+  @Property()
+  name!: string;
+  @Property()
+  endpoints!: IEndpoint[];
+  @Property()
+  steps?: IStep[];
+
+  constructor() {
+    this.id = '';
+    this.name = '';
+    this.userId = '';
+    this.endpoints = [];
+    this.steps = [];
+  }
 }
 
 export interface IShipmentPublic {
@@ -103,28 +135,5 @@ export class AbstractShipmentPublic {
     this.status = null;
     this.provider = null;
     this.courier = null;
-  }
-}
-
-export interface ICarrierPublic {
-  id: MaybeString;
-  name: string;
-  url: string;
-  memoryParser?: {};
-}
-
-// Public Carrier with metadata
-export class AbstractCarrierPublic {
-  @Property()
-  id!: string;
-  @Property()
-  name!: string;
-  @Property()
-  url!: string;
-
-  constructor() {
-    this.id = '';
-    this.name = '';
-    this.url = '';
   }
 }
