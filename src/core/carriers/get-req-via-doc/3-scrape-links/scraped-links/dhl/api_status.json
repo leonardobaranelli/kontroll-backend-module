@@ -1,0 +1,186 @@
+{
+  "link": {
+    "text": "api status",
+    "url": "https://status.api.dhl.com/"
+  },
+  "content": "API Service Status\nSubscribe to updates\nAll systems operational\nNeed further help? Create a support ticket.\nAPI Gateway\nOperational\nhttps://api.dhl.com\n30 days ago\n100% Uptime\nToday\nAPI Developer Portal\nOperational\nhttps://developer.dhl.com\n30 days ago\n100% Uptime\nToday\n\n\nDependencies\nDHL Group APIs\nOperational\nPost & Paket Deutschland\nOperational\nDHL Global Forwarding\nOperational\nDHL eCommerce Europe\nOperational\nScheduled maintenances\nAuftragsmanagement - Wartung from 2024-08-01 00:00 to 2024-08-01 01:00\n[Scheduled] \n\nGeplante Wartungsarbeit im System „Auftragsmanagement Brief“ (kurz: AM).\nWährend der Wartungsarbeit wird AM zeitweise nicht erreichbar sein bzw. bestehende Verbindungen zu AM werden verloren gehen.\n\nPost Deutschland (Deutsche Post)\nAM.exchange – synchrone Kommunikation\nAM.portal\nAuftragsmanagement\nAM.GK-P\nPosted at July 30, 2024 · 00:00\nPast Incidents\nAuftragsmanagement - Abweichung vom normalen Verhalten\n[Resolved]\nDie AM Störung wurde vor wenigen Minuten behoben\nAufträge können wieder eingestellt werden\nBitte entschuldigen sie die Unannehmlichkeiten\nPost Deutschland (Deutsche Post)\nAM.exchange – synchrone Kommunikation\nAM.portal\nAuftragsmanagement\nAM.GK-P\nPosted at July 31, 2024 · 16:32\nDialogmarketing Suite - Wartung from 2024-07-31 03:00 to 2024-07-31 05:00\n[Resolved] \n\nDiese Wartung wurde wie geplant abgeschlossen.\n\nPost Deutschland (Deutsche Post)\nDialogmarketing Suite\nPrint-Mailing Automation API\nDispatch Preparation API\nTargeting API\nPosted at July 31, 2024 · 05:00\nIncident & maintenance history\nThis page is automatically updated every 60 seconds\n\n\nImprint Privacy Notice Terms of Use\n\n\n\n\n\n2024 © DHL International GmbH. All rights reserved.",
+  "requirements": {},
+  "pageLinks": [
+    {
+      "text": "api service status",
+      "url": "https://status.api.dhl.com/"
+    },
+    {
+      "text": "subscribe    to updates",
+      "url": "https://status.api.dhl.com/#subscribe"
+    },
+    {
+      "text": "support ticket",
+      "url": "https://support-developer.dhl.com/support/home"
+    },
+    {
+      "text": "https://api.dhl.com",
+      "url": "https://api.dhl.com/"
+    },
+    {
+      "text": "https://developer.dhl.com",
+      "url": "https://developer.dhl.com/"
+    },
+    {
+      "text": "",
+      "url": "https://status.api.dhl.com/#dependency-20"
+    },
+    {
+      "text": "dhl group apis",
+      "url": "https://dpdhl-group-apis.status.api.dhl.com/"
+    },
+    {
+      "text": "",
+      "url": "https://status.api.dhl.com/#dependency-19"
+    },
+    {
+      "text": "post & paket deutschland",
+      "url": "https://post-paket-deutschland.status.api.dhl.com/"
+    },
+    {
+      "text": "",
+      "url": "https://status.api.dhl.com/#service-4489"
+    },
+    {
+      "text": "",
+      "url": "https://status.api.dhl.com/#service-7692"
+    },
+    {
+      "text": "weiterführende informationen",
+      "url": "https://developer.dhl.com/api-reference/parcel-de-shipping-post-parcel-germany-v2?language_content_entity=de"
+    },
+    {
+      "text": "weiterführende informationen",
+      "url": "https://www.dhl.de/de/privatkunden/pakete-versenden/online-frankieren.html"
+    },
+    {
+      "text": "weiterführende informationen",
+      "url": "https://entwickler.dhl.de/group/ep/wsapis/paketsteuerung-"
+    },
+    {
+      "text": "",
+      "url": "https://status.api.dhl.com/#service-4492"
+    },
+    {
+      "text": "weiterführende informationen",
+      "url": "https://developer.dhl.com/api-reference/dhl-paket-de-retoure-post-paket-deutschland?language_content_entity=de"
+    },
+    {
+      "text": "",
+      "url": "https://status.api.dhl.com/#service-4718"
+    },
+    {
+      "text": "weiterführende informationen",
+      "url": "https://developer.dhl.com/api-reference/dhl-parcel-de-shipment-tracking-post-parcel-germany?language_content_entity=de#get-started-section/"
+    },
+    {
+      "text": "",
+      "url": "https://status.api.dhl.com/#service-8431"
+    },
+    {
+      "text": "weiterführende informationen",
+      "url": "https://developer.dhl.com/api-reference/dhl-parcel-de-pickup-post-parcel-germany?language_content_entity=de#get-started-section/"
+    },
+    {
+      "text": "weiterführende informationen",
+      "url": "https://developer.dhl.com/api-reference/myaccount-api-post-parcel-germany?language_content_entity=de#get-started-section/"
+    },
+    {
+      "text": "weiterführende informationen",
+      "url": "https://developer.dhl.com/api-reference/dhl-paket-de-postnummern-post-paket-deutschland?language_content_entity=de#get-started-section/"
+    },
+    {
+      "text": "",
+      "url": "https://status.api.dhl.com/#service-4493"
+    },
+    {
+      "text": "",
+      "url": "https://status.api.dhl.com/#service-4691"
+    },
+    {
+      "text": "weiterführende informationen",
+      "url": "https://auftragsmanagement.deutschepost.de/"
+    },
+    {
+      "text": "weiterführende informationen",
+      "url": "https://developer.dhl.com/api-reference/auftragsmanagement-am?language_content_entity=de"
+    },
+    {
+      "text": "",
+      "url": "https://status.api.dhl.com/#service-4723"
+    },
+    {
+      "text": "weiterführende informationen",
+      "url": "https://developer.dhl.com/api-reference/internetmarke-soap-post-paket-deutschland?language_content_entity=de#get-started-section/"
+    },
+    {
+      "text": "",
+      "url": "https://status.api.dhl.com/#service-6961"
+    },
+    {
+      "text": "",
+      "url": "https://status.api.dhl.com/#service-7168"
+    },
+    {
+      "text": "weiterführende informationen",
+      "url": "https://www.packet.deutschepost.com/webapp/"
+    },
+    {
+      "text": "weiterführende informationen",
+      "url": "https://developer.dhl.com/api-reference/deutsche-post-international-post-parcel-germany"
+    },
+    {
+      "text": "weiterführende informationen",
+      "url": "https://developer.dhl.com/api-reference/deutsche-post-international-post-parcel-germany"
+    },
+    {
+      "text": "",
+      "url": "https://status.api.dhl.com/#dependency-78"
+    },
+    {
+      "text": "dhl global forwarding",
+      "url": "https://dgf-status.api.dhl.com/"
+    },
+    {
+      "text": "",
+      "url": "https://status.api.dhl.com/#dependency-43"
+    },
+    {
+      "text": "dhl ecommerce europe",
+      "url": "https://status-dec-cdex-europe.statuspal.eu/"
+    },
+    {
+      "text": "scheduled maintenance      auftragsmanagement - wartungfrom        2024-08-01 00:00to          2024-08-01 01:00              [scheduled] geplante wartungsarbeit im system „auftragsmanagement brief“ (kurz: am).  während der wartungsarbeit wird am zeitweise nicht erreichbar sein bzw. bestehende verbindungen zu am werden verloren gehen.                        post deutschland (deutsche post)          am.exchange – synchrone kommunikation          am.portal          auftragsmanagement          am.gk-p            posted at        july 30, 2024 · 00:00",
+      "url": "https://post-paket-deutschland.status.api.dhl.com/incidents/172343"
+    },
+    {
+      "text": "minor incident      auftragsmanagement - abweichung vom normalen verhalten              [resolved]   die am störung wurde vor wenigen minuten behoben    aufträge können wieder eingestellt werden    bitte entschuldigen sie die unannehmlichkeiten                          post deutschland (deutsche post)          am.exchange – synchrone kommunikation          am.portal          auftragsmanagement          am.gk-p            posted at        july 31, 2024 · 16:32",
+      "url": "https://post-paket-deutschland.status.api.dhl.com/incidents/172553"
+    },
+    {
+      "text": "scheduled maintenance      dialogmarketing suite - wartungfrom        2024-07-31 03:00to          2024-07-31 05:00              [resolved] diese wartung wurde wie geplant abgeschlossen.                        post deutschland (deutsche post)          dialogmarketing suite          print-mailing automation api          dispatch preparation api          targeting api            posted at        july 31, 2024 · 05:00",
+      "url": "https://post-paket-deutschland.status.api.dhl.com/incidents/171829"
+    },
+    {
+      "text": "incident & maintenance history",
+      "url": "https://status.api.dhl.com/incidents"
+    },
+    {
+      "text": "imprint",
+      "url": "https://developer.dhl.com/imprint"
+    },
+    {
+      "text": "privacy notice",
+      "url": "https://developer.dhl.com/privacy-notice"
+    },
+    {
+      "text": "terms of use",
+      "url": "https://developer.dhl.com/terms-use"
+    }
+  ]
+}

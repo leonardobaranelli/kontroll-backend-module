@@ -1,0 +1,245 @@
+{
+  "link": {
+    "text": "help center",
+    "url": "https://developer.dhl.com/help-center"
+  },
+  "content": "API Developer Portal - Help Center\nWelcome\nLogin\nHelp Center Home\nKnowledge Base\nHow can we help you today?\n \nLogin\nto submit a new ticket\n Check Ticket Status\nKnowledge base\nFAQs\nGeneral 11\nWhat is a Unified API?\nWhat is the DHL Group?\nWhat is DHL Express?\nWhat is DHL Global Forwarding?\nWhat is DHL eCommerce?\nSee all 11 articles\nAPI access and usage conditions 9\nI'm new to APIs. Is there a place where I can check how the API works?\nMy API request is still pending, how long does it take to approve my API request?\nDo I need to be a DPDHL customer to use DPDHL APIs?\nI am a DPDHL customer, where can I find my DPDHL account number?\nIs there a fee for using DPDHL's APIs?\nSee all 9 articles\nDeveloper Portal registration and usage 5\nProblems registering in the portal?\nWhat's a Developer App?\nHow to create an App?\nWhich APIs have the self-service API onboarding available?\nIs it possible to change email address registered in the Developer Portal?\nShipping APIs (Which API you should use) 3\nFor Parcels/Packages\nFor Mails/letters\nFor Freight/Cargo\nShipment Tracking Unified API 32\nIs it possible to track more than one tracking number in one API call?\nProof of delivery (POD) does not appear in the body response when calling the Shipment Tracking - Unified API\nHow to add my API Key on Postman to test the Shipment Tracking - Unified API?\nI receive an \"Unauthorized\" response when I make a request to Shipment Tracking - Unified API on a web browser\nWhat are the different status codes available in the DHL Shipment tracking - Unified API?\nSee all 32 articles\nMyDHL Express API 9\nI have a DHL Express account number. How can I use the Express API?\nI do not have a DHL Express account number. How can i use the Express API?\nI’m not a DHL Express customer, Can I test the MyDHL Express API?\nI tried to test the MyDHL Express API on the developer portal but didn’t work?\nHow to authorize a MyDHL Express API call using the API key on Postman?\nSee all 9 articles\nLocation Finder - Unified API 10\nI'm getting a 200 empty response that says \"locations\": []\nWhat is the difference between the locationType parameter options?\nWhen extracting locations through the API for customer parcel drop-off points, we encounter duplicated locations, how can I remove them?\nCan I validate postal codes through this API?\nCan I have a higher quota than 500 calls per day?\nSee all 10 articles\nHelp Center Home Knowledge Base\nImprint | Privacy Notice | Terms of Use\n\n2022 © DHL International GmbH. All rights reserved.",
+  "requirements": {
+    "api key": 2,
+    "account number": 3
+  },
+  "pageLinks": [
+    {
+      "text": "",
+      "url": "https://developer.dhl.com/"
+    },
+    {
+      "text": "login",
+      "url": "https://support-developer.dhl.com/support/login"
+    },
+    {
+      "text": "",
+      "url": "https://support-developer.dhl.com/support/home#"
+    },
+    {
+      "text": "help center home",
+      "url": "https://support-developer.dhl.com/support/home"
+    },
+    {
+      "text": "knowledge base",
+      "url": "https://support-developer.dhl.com/support/solutions"
+    },
+    {
+      "text": "login",
+      "url": "https://support-developer.dhl.com/support/login"
+    },
+    {
+      "text": "check ticket status",
+      "url": "https://support-developer.dhl.com/support/tickets"
+    },
+    {
+      "text": "faqs",
+      "url": "https://support-developer.dhl.com/support/solutions/47000013319"
+    },
+    {
+      "text": "general 11",
+      "url": "https://support-developer.dhl.com/support/solutions/folders/47000019340"
+    },
+    {
+      "text": "what is a unified api?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001175751-what-is-a-unified-api-"
+    },
+    {
+      "text": "what is the dhl group?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47000191438-what-is-the-dhl-group-"
+    },
+    {
+      "text": "what is dhl express?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001175748-what-is-dhl-express-"
+    },
+    {
+      "text": "what is dhl global forwarding?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001175747-what-is-dhl-global-forwarding-"
+    },
+    {
+      "text": "what is dhl ecommerce?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001175749-what-is-dhl-ecommerce-"
+    },
+    {
+      "text": "see all 11 articles",
+      "url": "https://support-developer.dhl.com/support/solutions/folders/47000019340"
+    },
+    {
+      "text": "api access and usage conditions 9",
+      "url": "https://support-developer.dhl.com/support/solutions/folders/47000019341"
+    },
+    {
+      "text": "i'm new to apis. is there a place where i can check how the api works?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001197223-i-m-new-to-apis-is-there-a-place-where-i-can-check-how-the-api-works-"
+    },
+    {
+      "text": "my api request is still pending, how long does it take to approve my api request?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001223990-my-api-request-is-still-pending-how-long-does-it-take-to-approve-my-api-request-"
+    },
+    {
+      "text": "do i need to be a dpdhl customer to use dpdhl apis?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47000191453-do-i-need-to-be-a-dpdhl-customer-to-use-dpdhl-apis-"
+    },
+    {
+      "text": "i am a dpdhl customer, where can i find my dpdhl account number?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001197219-i-am-a-dpdhl-customer-where-can-i-find-my-dpdhl-account-number-"
+    },
+    {
+      "text": "is there a fee for using dpdhl's apis?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001175782-is-there-a-fee-for-using-dpdhl-s-apis-"
+    },
+    {
+      "text": "see all 9 articles",
+      "url": "https://support-developer.dhl.com/support/solutions/folders/47000019341"
+    },
+    {
+      "text": "developer portal registration and usage 5",
+      "url": "https://support-developer.dhl.com/support/solutions/folders/47000135096"
+    },
+    {
+      "text": "problems registering in the portal?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001175791-problems-registering-in-the-portal-"
+    },
+    {
+      "text": "what's a developer app?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001177009-what-s-a-developer-app-"
+    },
+    {
+      "text": "how to create an app?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001177011-how-to-create-an-app-"
+    },
+    {
+      "text": "which apis have the self-service api onboarding available?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001177010-which-apis-have-the-self-service-api-onboarding-available-"
+    },
+    {
+      "text": "is it possible to change email address registered in the developer portal?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001197216-is-it-possible-to-change-email-address-registered-in-the-developer-portal-"
+    },
+    {
+      "text": "shipping apis (which api you should use) 3",
+      "url": "https://support-developer.dhl.com/support/solutions/folders/47000775607"
+    },
+    {
+      "text": "for parcels/packages",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001224394-for-parcels-packages"
+    },
+    {
+      "text": "for mails/letters",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001224395-for-mails-letters"
+    },
+    {
+      "text": "for freight/cargo",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001224398-for-freight-cargo"
+    },
+    {
+      "text": "shipment tracking unified api 32",
+      "url": "https://support-developer.dhl.com/support/solutions/folders/47000779436"
+    },
+    {
+      "text": "is it possible to track more than one tracking number in one api call?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001197242-is-it-possible-to-track-more-than-one-tracking-number-in-one-api-call-"
+    },
+    {
+      "text": "proof of delivery (pod) does not appear in the body response when calling the shipment tracking - unified api",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001197244-proof-of-delivery-pod-does-not-appear-in-the-body-response-when-calling-the-shipment-tracking-uni"
+    },
+    {
+      "text": "how to add my api key on postman to test the shipment tracking - unified api?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001224413-how-to-add-my-api-key-on-postman-to-test-the-shipment-tracking-unified-api-"
+    },
+    {
+      "text": "i receive an \"unauthorized\" response when i make a request to shipment tracking - unified api on a web browser",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001209322-i-receive-an-unauthorized-response-when-i-make-a-request-to-shipment-tracking-unified-api-on-a-we"
+    },
+    {
+      "text": "what are the different status codes available in the dhl shipment tracking - unified api?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001197243-what-are-the-different-status-codes-available-in-the-dhl-shipment-tracking-unified-api-"
+    },
+    {
+      "text": "see all 32 articles",
+      "url": "https://support-developer.dhl.com/support/solutions/folders/47000779436"
+    },
+    {
+      "text": "mydhl express api 9",
+      "url": "https://support-developer.dhl.com/support/solutions/folders/47000779434"
+    },
+    {
+      "text": "i have a dhl express account number. how can i use the express api?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001197224-i-have-a-dhl-express-account-number-how-can-i-use-the-express-api-"
+    },
+    {
+      "text": "i do not have a dhl express account number. how can i use the express api?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001197225-i-do-not-have-a-dhl-express-account-number-how-can-i-use-the-express-api-"
+    },
+    {
+      "text": "i’m not a dhl express customer, can i test the mydhl express api?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001224422-i-m-not-a-dhl-express-customer-can-i-test-the-mydhl-express-api-"
+    },
+    {
+      "text": "i tried to test the mydhl express api on the developer portal but didn’t work?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001224420-i-tried-to-test-the-mydhl-express-api-on-the-developer-portal-but-didn-t-work-"
+    },
+    {
+      "text": "how to authorize a mydhl express api call using the api key on postman?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001224429-how-to-authorize-a-mydhl-express-api-call-using-the-api-key-on-postman-"
+    },
+    {
+      "text": "see all 9 articles",
+      "url": "https://support-developer.dhl.com/support/solutions/folders/47000779434"
+    },
+    {
+      "text": "location finder - unified api 10",
+      "url": "https://support-developer.dhl.com/support/solutions/folders/47000787269"
+    },
+    {
+      "text": "i'm getting a 200 empty response that says \"locations\": []",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001259680-i-m-getting-a-200-empty-response-that-says-locations-"
+    },
+    {
+      "text": "what is the difference between the locationtype parameter options?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001253732-what-is-the-difference-between-the-locationtype-parameter-options-"
+    },
+    {
+      "text": "when extracting locations through the api for customer parcel drop-off points, we encounter duplicated locations, how can i remove them?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001253053-when-extracting-locations-through-the-api-for-customer-parcel-drop-off-points-we-encounter-duplicate"
+    },
+    {
+      "text": "can i validate postal codes through this api?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001253011-can-i-validate-postal-codes-through-this-api-"
+    },
+    {
+      "text": "can i have a higher quota than 500 calls per day?",
+      "url": "https://support-developer.dhl.com/support/solutions/articles/47001253006-can-i-have-a-higher-quota-than-500-calls-per-day-"
+    },
+    {
+      "text": "see all 10 articles",
+      "url": "https://support-developer.dhl.com/support/solutions/folders/47000787269"
+    },
+    {
+      "text": "help center home",
+      "url": "https://support-developer.dhl.com/support/home"
+    },
+    {
+      "text": "knowledge base",
+      "url": "https://support-developer.dhl.com/support/solutions"
+    },
+    {
+      "text": "imprint",
+      "url": "https://developer.dhl.com/imprint"
+    },
+    {
+      "text": "privacy notice",
+      "url": "https://developer.dhl.com/privacy-notice"
+    },
+    {
+      "text": "terms of use",
+      "url": "https://developer.dhl.com/terms-use"
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "link": {
+    "text": "webhooks documentation",
+    "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook.html"
+  },
+  "content": "FedEx Developer Portal will experience interruption from 07/13/2024, 9:00 PM CT - 07/14/2024, 2:00 AM CT.\nWe apologize for any inconvenience such as slow response or technical difficulties. Thank you for your patience!\n\nMenu\n Developer Portal\nShipment Visibility Webhook\n+ CREATE A WEBHOOK\nDOCUMENTATION\nDetails\nOverview\n\nOur Shipment Visibility Webhook is a premium integration capability that enables you to subscribe any FedEx account number or tracking number to receive near real time in-transit shipment events, from label creation to delivery of packages, including Picture Proof of Delivery. Subscriptions are currently available for US-based shipment accounts only.\n\nPricing\n\nSubscribers are charged a monthly fee for each webhook project, based on track number count. Learn more about pricing and subscription details in the Pricing Guide.\n\nSEE PRICING GUIDE\n\nCustomer Benefits\n\nImprove recipient confidence with proactive notifications for in-transit changes to Estimated Delivery Date and day of delivery Time Window.\nReduce customer service costs for WISMO (where is my order) calls as well as delivery disputes by providing FedEx Picture Proof of Delivery.\nEnhance customer experience by providing near real time notifications on shipment status.\nGain operational efficiencies by receiving real time push update on shipments, instead of continuous polling to check for track updates on every shipment.\nVERSION\nv1\nLAST UPDATED\n02/17/2024\nKey Features\n\nGet Near Real-time Tracking Event Updates\n\nTracking event updates pushed in near real-time with a choice to get entire tracking event history or just that event-specific information.\n\nGet Estimated Delivery Date and Time Window Updates\n\nGet updates pushed when estimated delivery date or estimated delivery time window changes.\n\nPicture Proof of Delivery\n\nGet signature or picture record as applicable for your shipment when they are received by the recipient.\n\nSubscribe by tracking number or account number\n\nTracking number\n\nWhen you subscribe by tracking number, we’ll push near real-time tracking event updates that are matched to the tracking numbers that you provide through API endpoints.\n\nAccount number\n\nWhen you subscribe by account number, we’ll push near real-time tracking event updates for every shipment matched with your subscribed accounts (inbound, outbound, or bill to third party).\n\nStill have questions? We’ve got answers\n\nWhat is a webhook and what are the benefits?\nAre FedEx webhooks an off-the-shelf solution?\nDoes FedEx charge a fee for their webhooks?\n\n \n\nVIEW ALL FAQS\n\nAre you an existing Web Services or FedEx Ship Manager Server Customer? If so, you can still access the Developer Resource Center.\n\n © FedEx Corporate Services Inc. All rights reserved.\nIntegration Solutions Support FedEx.com Terms of Use Security & Privacy\n United States \nEnglish",
+  "requirements": {
+    "account number": 4
+  },
+  "pageLinks": [
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "developer portal",
+      "url": ""
+    },
+    {
+      "text": "sign up or log in",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook.html#"
+    },
+    {
+      "text": "sign up or log in",
+      "url": ""
+    },
+    {
+      "text": "getting started",
+      "url": "https://developer.fedex.com/api/en-us/get-started.html"
+    },
+    {
+      "text": "api catalog",
+      "url": "https://developer.fedex.com/api/en-us/catalog.html"
+    },
+    {
+      "text": "guides",
+      "url": "https://developer.fedex.com/api/en-us/guides.html"
+    },
+    {
+      "text": "announcements",
+      "url": "https://developer.fedex.com/api/en-us/announcements.html"
+    },
+    {
+      "text": "api certification",
+      "url": "https://developer.fedex.com/api/en-us/certification.html"
+    },
+    {
+      "text": "api status",
+      "url": "https://developer.fedex.com/api/en-us/dashboard.html"
+    },
+    {
+      "text": "support",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "other products",
+      "url": ""
+    },
+    {
+      "text": "fedex web services®",
+      "url": "https://www.fedex.com/en-us/developer/web-services.html"
+    },
+    {
+      "text": "fedex ship manager®  server",
+      "url": "https://www.fedex.com/en-us/developer/ship-manager-server.html"
+    },
+    {
+      "text": "api catalog",
+      "url": "https://developer.fedex.com/api/en-us/catalog.html"
+    },
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "manage orgnaization",
+      "url": ""
+    },
+    {
+      "text": "",
+      "url": ""
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/webhook/create.html#/createwebhook"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/webhook/create.html#/createwebhook"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/webhook/create.html#/createwebhook"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/webhook/create.html#/createwebhook"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/webhook/create.html#/createwebhook"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/webhook/create.html#/createwebhook"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/webhook/create.html#/createwebhook"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/webhook/create.html#/createwebhook"
+    },
+    {
+      "text": "details",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook.html#/api"
+    },
+    {
+      "text": "see pricing guide",
+      "url": "https://developer.fedex.com/api/en-us/guides/pricing-guide.html"
+    },
+    {
+      "text": "see pricing guide",
+      "url": "https://developer.fedex.com/api/en-us/guides/pricing-guide.html"
+    },
+    {
+      "text": "what is a webhook?",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook/v1/docs.html"
+    },
+    {
+      "text": "read more",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "fedex compatible solutions.",
+      "url": "https://www.fedex.com/en-us/compatible.html"
+    },
+    {
+      "text": "read more",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "read more",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "view all faqs",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "developer resource center",
+      "url": "https://www.fedex.com/en-us/developer.html"
+    },
+    {
+      "text": "integration solutions",
+      "url": "https://www.fedex.com/en-us/integration.html"
+    },
+    {
+      "text": "support",
+      "url": "https://www.fedex.com/en-us/integration/support.html"
+    },
+    {
+      "text": "fedex.com",
+      "url": "https://www.fedex.com/en-us/home.html"
+    },
+    {
+      "text": "terms of use",
+      "url": "https://www.fedex.com/en-us/terms-of-use.html"
+    },
+    {
+      "text": "security & privacy",
+      "url": "https://www.fedex.com/en-us/trust-center.html"
+    },
+    {
+      "text": "united states",
+      "url": ""
+    },
+    {
+      "text": "english",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook.html"
+    },
+    {
+      "text": "spanish",
+      "url": "https://developer.fedex.com/api/es-us/catalog/shipment-visibility-webhook.html"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/catalog/shipment-visibility-webhook.html#"
+    },
+    {
+      "text": "contact support",
+      "url": "https://developer.fedex.com/api/en-us/support.html"
+    },
+    {
+      "text": "",
+      "url": "https://developer.fedex.com/api/en-us/home.html"
+    }
+  ]
+}

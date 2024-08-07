@@ -103,6 +103,12 @@ export interface IStep {
   form: IForm;
 }
 
+export interface IParsingDictionary {
+  id: MaybeString;
+  carrier: MaybeString;
+  dictionary: JSON;
+}
+
 export type StepKey =
   | 'step1'
   | 'step2'

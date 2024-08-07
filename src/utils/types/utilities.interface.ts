@@ -1,4 +1,5 @@
 import { Property } from '../decorators/property.decorator';
+import { IShipment } from './models.interface';
 
 type MaybeString = string | null;
 type MaybeNumber = number | null;
@@ -6,6 +7,21 @@ type MaybeDate = Date | string | null;
 
 export interface IError extends Error {
   statusCode?: number;
+}
+
+export interface ShipmentInput {
+  [key: string]: any;
+}
+
+export interface ParserResult {
+  success: boolean;
+  data?: IShipment;
+  error?: string;
+  mappingDictionary?: Record<string, string>;
+}
+
+export interface ParserOptions {
+  useOpenAI: boolean;
 }
 
 export interface IShipmentPublic {
