@@ -1,5 +1,8 @@
 import { Carrier } from '../models/carrier.model';
-import { getCarriersCollection } from '../config/database/firestore/firestore.config';
+import {
+  getCarriersCollection,
+  cleanData,
+} from '../config/database/firestore/firestore.config';
 import { loadCarrierData } from '../core/carriers/create-by-steps/new/dev-get-req-via-doc/load-carrier-data';
 import { loadKnownCarrierData } from '../core/carriers/create-by-steps/known/load-carrier-data';
 import { ICarrierPublic, IError } from '../utils/types/utilities.interface';
@@ -34,16 +37,17 @@ export default class CarrierService {
 
   private static async completeProcess(
     sessionID: string,
-    _state: any,
+    state: any,
   ): Promise<void> {
     try {
-      // const carriersCollection = getCarriersCollection();
-      // await carriersCollection.add({
-      //   name: state.name,
-      //   url: state.url,
-      //   accountNumber: state.accountNumber,
-      //   apiKey: state.apiKey,
-      // });
+      const carriersCollection = getCarriersCollection();
+      const cleanedState = cleanData({
+        userId: 'admin',
+        name: state.name,
+        endpoints: state.endpoints,
+        steps: state.steps,
+      });
+      await carriersCollection.add(cleanedState);
       delete this.stateStore[sessionID];
     } catch (error) {
       console.error('Error in completeProcess:', error);
@@ -216,9 +220,9 @@ export default class CarrierService {
         const data = doc.data() as Carrier;
         return {
           id: doc.id,
+          userId: data.userId,
           name: data.name,
-          url: data.url,
-          connectors: data.connectors,
+          endpoints: data.endpoints,
           steps: data.steps,
         } as ICarrierPublic;
       });

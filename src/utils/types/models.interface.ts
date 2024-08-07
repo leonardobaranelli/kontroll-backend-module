@@ -2,6 +2,83 @@ type MaybeString = string | null;
 type MaybeNumber = number | null;
 type MaybeDate = Date | string | null;
 
+// Beginning of the Carrier region
+export interface ICarrier {
+  id: string;
+  userId: string;
+  name: string;
+  endpoints: IEndpoint[];
+  steps?: IStep[];
+}
+
+export interface IEndpoint {
+  name: string;
+  url: string;
+  query: IQuery;
+}
+
+export interface IQuery {
+  method: 'POST' | 'GET';
+  params?: IParam[];
+  auth?: IAuth;
+  header?: IHeader[];
+  body?: IBody;
+}
+
+export interface IParam {
+  name?: string;
+  value?: string;
+}
+
+export interface IAuth {
+  type?: 'basic' | 'bearer';
+  value?: string;
+}
+
+export interface IHeader {
+  name?: string;
+  value?: string;
+}
+
+export interface IBody {
+  language?: 'json' | 'xml';
+  value?: string;
+}
+
+export interface IStepDetails {
+  step: number;
+  stepTitle: string;
+  details1: string;
+  details2: string;
+  details3: string;
+  details4: string;
+}
+
+export interface IForm {
+  expectedFieldName: string;
+  instruction: string;
+  label: string;
+  title: string;
+  placeholder: string;
+}
+
+export interface IStep {
+  id: string;
+  carrierId: string;
+  stepsDetails: IStepDetails;
+  form: IForm;
+}
+
+export interface StepConfig {
+  action: (data: any, state: any) => void | Promise<void>;
+  message: (state: any) => string | Promise<string>;
+  stepsDetails: IStepDetails;
+  form: IForm;
+  next: string;
+}
+// End of the Carrier region
+
+// Beginning of the Shipment region
 export interface IShipment {
   HousebillNumber: string;
   Origin?: {
@@ -63,52 +140,14 @@ export interface IShipment {
   containers?: Array<any> | null;
 }
 
-export interface ICarrier {
-  id: MaybeString;
-  name: string;
-  url: string;
-  memoryParser?: {};
-}
-
-// Beginning of the Step region
-export interface StepConfig {
-  action: (data: any, state: any) => void | Promise<void>;
-  message: (state: any) => string | Promise<string>;
-  stepsDetails: IStepDetails;
-  form: IForm;
-  next: string;
-}
-
-export interface IStepDetails {
-  step: number;
-  stepTitle: string;
-  details1: string;
-  details2: string;
-  details3: string;
-  details4: string;
-}
-
-export interface IForm {
-  expectedFieldName: string;
-  instruction: string;
-  label: string;
-  title: string;
-  placeholder: string;
-}
-
-export interface IStep {
-  id: string;
-  carrierId: string;
-  stepsDetails: IStepDetails;
-  form: IForm;
-}
-
 export interface IParsingDictionary {
   id: MaybeString;
   carrier: MaybeString;
   dictionary: JSON;
 }
+// End of the Shipment region
 
+// Auxiliary
 export type StepKey =
   | 'step1'
   | 'step2'
@@ -117,5 +156,6 @@ export type StepKey =
   | 'step5'
   | 'step6'
   | 'step7'
-  | 'step8';
-// End of the Step region
+  | 'step8'
+  | 'step9'
+  | 'step10';
