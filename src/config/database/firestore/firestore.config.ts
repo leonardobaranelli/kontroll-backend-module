@@ -21,6 +21,10 @@ async function verifyFirestoreConnection(): Promise<void> {
   }
 }
 
+function getParsingDictionariesCollection() {
+  return admin.firestore().collection('parsingDictionaries');
+}
+
 function getConnectorsCollection() {
   return admin.firestore().collection('connectors');
 }
@@ -34,6 +38,7 @@ export {
   verifyFirestoreConnection,
   getConnectorsCollection,
   getCarriersCollection,
+  getParsingDictionariesCollection,
 };
 
 /*

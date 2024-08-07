@@ -4,7 +4,7 @@ import {
   ShipmentInput,
   ParserResult,
   ParserOptions,
-} from '../utils/types/shipment-parser.interface';
+} from '../utils/types/utilities.interface';
 import { parseShipmentData } from '../core/shipment-parser/parser';
 import { parseShipmentWithMemory } from '../core/shipment-parser/memory-parser';
 import { validateShipmentData } from '../core/shipment-parser/utils/validator';

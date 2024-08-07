@@ -3,7 +3,7 @@ import path from 'path';
 import {
   ParserResult,
   ShipmentInput,
-} from '../../utils/types/shipment-parser.interface';
+} from '../../utils/types/utilities.interface';
 import { IShipment } from '../../utils/types/models.interface';
 import { formatShipmentData } from './utils/formatter';
 

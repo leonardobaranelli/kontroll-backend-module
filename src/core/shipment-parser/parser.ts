@@ -6,7 +6,7 @@ import {
   ParserResult,
   ShipmentInput,
   ParserOptions,
-} from '../../utils/types/shipment-parser.interface';
+} from '../../utils/types/utilities.interface';
 import { IShipment } from '../../utils/types/models.interface';
 import { config } from '../../config/shipment-parser/shipment-parser.config';
 import { formatShipmentData } from './utils/formatter';
