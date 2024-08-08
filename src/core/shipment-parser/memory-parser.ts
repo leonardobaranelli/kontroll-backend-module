@@ -39,91 +39,109 @@ function parseShipmentWithMapping(inputJson: ShipmentInput): IShipment {
 
   // Ensure all required fields are present and properly formatted
   const shipment: IShipment = {
-    HousebillNumber: parsedData.HousebillNumber || '',
-    Origin: {
-      LocationCode: null, // Set to null to match AI parsing
-      LocationName: parsedData.Origin?.LocationName || '',
-      CountryCode: parsedData.Origin?.CountryCode || '',
+    id: parsedData.id || '',
+    carrierId: parsedData.carrierId || '',
+    shipmentContent: {
+      HousebillNumber: parsedData.shipmentContent?.HousebillNumber || '',
+      Origin: {
+        LocationCode: null, // Set to null to match AI parsing
+        LocationName: parsedData.shipmentContent?.Origin?.LocationName || '',
+        CountryCode: parsedData.shipmentContent?.Origin?.CountryCode || '',
+      },
+      Destination: {
+        LocationCode: null, // Set to null to match AI parsing
+        LocationName:
+          parsedData.shipmentContent?.Destination?.LocationName || '',
+        CountryCode: parsedData.shipmentContent?.Destination?.CountryCode || '',
+      },
+      DateAndTimes: {
+        ScheduledDeparture:
+          parsedData.shipmentContent?.DateAndTimes?.ScheduledDeparture || null,
+        ScheduledArrival:
+          parsedData.shipmentContent?.DateAndTimes?.ScheduledArrival || null,
+        ShipmentDate:
+          parsedData.shipmentContent?.DateAndTimes?.ShipmentDate || null,
+      },
+      ProductType: parsedData.shipmentContent?.ProductType || null,
+      TotalPackages: parsedData.shipmentContent?.TotalPackages || null,
+      TotalWeight: parsedData.shipmentContent?.TotalWeight || {
+        '*body': null,
+        '@uom': null,
+      },
+      TotalVolume: parsedData.shipmentContent?.TotalVolume || {
+        '*body': null,
+        '@uom': null,
+      },
+      Timestamp: (
+        inputJson.events?.map((event: any) => ({
+          TimestampCode: event.statusCode || 'unknown',
+          TimestampDescription: event.status || '',
+          TimestampDateTime: event.timestamp || null,
+          TimestampLocation: event.location?.address?.addressLocality || null,
+        })) || []
+      ).reverse(), // Reverse the order to match AI parsing
+      shipmentDate: parsedData.shipmentContent?.shipmentDate || null,
+      brokerName: parsedData.shipmentContent?.brokerName || null,
+      incoterms: parsedData.shipmentContent?.incoterms || null,
+      booking: parsedData.shipmentContent?.booking || null,
+      mawb: parsedData.shipmentContent?.mawb || null,
+      hawb: parsedData.shipmentContent?.hawb || null,
+      flight: parsedData.shipmentContent?.flight || null,
+      airportOfDeparture:
+        parsedData.shipmentContent?.airportOfDeparture || null,
+      etd: parsedData.shipmentContent?.etd || null,
+      atd: parsedData.shipmentContent?.atd || null,
+      airportOfArrival: parsedData.shipmentContent?.airportOfArrival || null,
+      eta: parsedData.shipmentContent?.eta || null,
+      ata: parsedData.shipmentContent?.ata || null,
+      vessel: parsedData.shipmentContent?.vessel || null,
+      portOfLoading: parsedData.shipmentContent?.portOfLoading || null,
+      mbl: parsedData.shipmentContent?.mbl || null,
+      hbl: parsedData.shipmentContent?.hbl || null,
+      pickupDate: parsedData.shipmentContent?.pickupDate || null,
+      containerNumber: parsedData.shipmentContent?.containerNumber || null,
+      portOfUnloading: parsedData.shipmentContent?.portOfUnloading || null,
+      finalDestination: parsedData.shipmentContent?.finalDestination || null,
+      internationalCarrier:
+        parsedData.shipmentContent?.internationalCarrier || null,
+      voyage: parsedData.shipmentContent?.voyage || null,
+      portOfReceipt: parsedData.shipmentContent?.portOfReceipt || null,
+      goodsDescription: parsedData.shipmentContent?.goodsDescription || null,
+      containers: parsedData.shipmentContent?.containers || null,
     },
-    Destination: {
-      LocationCode: null, // Set to null to match AI parsing
-      LocationName: parsedData.Destination?.LocationName || '',
-      CountryCode: parsedData.Destination?.CountryCode || '',
-    },
-    DateAndTimes: {
-      ScheduledDeparture: parsedData.DateAndTimes?.ScheduledDeparture || null,
-      ScheduledArrival: parsedData.DateAndTimes?.ScheduledArrival || null,
-      ShipmentDate: parsedData.DateAndTimes?.ShipmentDate || null,
-    },
-    ProductType: parsedData.ProductType || null,
-    TotalPackages: parsedData.TotalPackages || null,
-    TotalWeight: parsedData.TotalWeight || { '*body': null, '@uom': null },
-    TotalVolume: parsedData.TotalVolume || { '*body': null, '@uom': null },
-    Timestamp: (
-      inputJson.events?.map((event: any) => ({
-        TimestampCode: event.statusCode || 'unknown',
-        TimestampDescription: event.status || '',
-        TimestampDateTime: event.timestamp || null,
-        TimestampLocation: event.location?.address?.addressLocality || null,
-      })) || []
-    ).reverse(), // Reverse the order to match AI parsing
-    shipmentDate: parsedData.shipmentDate || null,
-    brokerName: parsedData.brokerName || null,
-    incoterms: parsedData.incoterms || null,
-    booking: parsedData.booking || null,
-    mawb: parsedData.mawb || null,
-    hawb: parsedData.hawb || null,
-    flight: parsedData.flight || null,
-    airportOfDeparture: parsedData.airportOfDeparture || null,
-    etd: parsedData.etd || null,
-    atd: parsedData.atd || null,
-    airportOfArrival: parsedData.airportOfArrival || null,
-    eta: parsedData.eta || null,
-    ata: parsedData.ata || null,
-    vessel: parsedData.vessel || null,
-    portOfLoading: parsedData.portOfLoading || null,
-    mbl: parsedData.mbl || null,
-    hbl: parsedData.hbl || null,
-    pickupDate: parsedData.pickupDate || null,
-    containerNumber: parsedData.containerNumber || null,
-    portOfUnloading: parsedData.portOfUnloading || null,
-    finalDestination: parsedData.finalDestination || null,
-    internationalCarrier: parsedData.internationalCarrier || null,
-    voyage: parsedData.voyage || null,
-    portOfReceipt: parsedData.portOfReceipt || null,
-    goodsDescription: parsedData.goodsDescription || null,
-    containers: parsedData.containers || null,
   };
 
   console.log('Final shipment object:', JSON.stringify(shipment, null, 2));
 
   // Try to find ScheduledDeparture and ShipmentDate from Timestamp if not already set
   if (
-    !shipment.DateAndTimes?.ScheduledDeparture ||
-    !shipment.DateAndTimes?.ShipmentDate
+    !shipment.shipmentContent?.DateAndTimes?.ScheduledDeparture ||
+    !shipment.shipmentContent?.DateAndTimes?.ShipmentDate
   ) {
-    const sortedTimestamps = shipment.Timestamp?.slice().sort((a, b) =>
-      (a.TimestampDateTime?.toString() || '').localeCompare(
-        b.TimestampDateTime?.toString() || '',
-      ),
+    const sortedTimestamps = shipment.shipmentContent?.Timestamp?.slice().sort(
+      (a, b) =>
+        (a.TimestampDateTime?.toString() || '').localeCompare(
+          b.TimestampDateTime?.toString() || '',
+        ),
     );
 
-    if (!shipment.DateAndTimes?.ScheduledDeparture) {
+    if (!shipment.shipmentContent?.DateAndTimes?.ScheduledDeparture) {
       const scheduledDeparture = sortedTimestamps?.find(
         (t) => t.TimestampCode === 'pre-transit',
       );
       if (scheduledDeparture) {
-        shipment.DateAndTimes!.ScheduledDeparture =
+        shipment.shipmentContent!.DateAndTimes!.ScheduledDeparture =
           scheduledDeparture.TimestampDateTime;
       }
     }
 
-    if (!shipment.DateAndTimes?.ShipmentDate) {
+    if (!shipment.shipmentContent?.DateAndTimes?.ShipmentDate) {
       const shipmentDate = sortedTimestamps?.find((t) =>
         t.TimestampDescription?.toLowerCase().includes('processed'),
       );
       if (shipmentDate) {
-        shipment.DateAndTimes!.ShipmentDate = shipmentDate.TimestampDateTime;
+        shipment.shipmentContent!.DateAndTimes!.ShipmentDate =
+          shipmentDate.TimestampDateTime;
       }
     }
   }

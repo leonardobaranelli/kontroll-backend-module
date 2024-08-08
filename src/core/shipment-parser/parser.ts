@@ -13,6 +13,9 @@ import { formatShipmentData } from './utils/formatter';
 
 function getStandardStructure(): string {
   return `{
+  "id": "String",
+  "carrierId": "String",
+  "shipmentContent": {
     "HousebillNumber": "String", // The unique tracking number or house bill number for the shipment. This serves as the primary identifier for tracking the shipment.
     "Origin": {
       "LocationCode": "String", // The ISO 3166 location code for the origin location. This code uniquely identifies the city or region where the shipment originated.
@@ -73,7 +76,8 @@ function getStandardStructure(): string {
     "portOfReceipt": "String", // The name of the port where the carrier received the shipment.
     "goodsDescription": "String", // A description of the goods being shipped.
     "containers": [] // A list of containers associated with the shipment. Each container can have its own set of details and identifiers.
-  }`;
+  }
+}`;
 }
 
 function countTokens(text: string): number {
@@ -250,7 +254,7 @@ function enhanceMappingDictionary(
 }
 
 function removeSpecificNullFields(obj: Partial<IShipment>): IShipment {
-  const optionalFields: Array<keyof IShipment> = [
+  const optionalFields: Array<keyof IShipment['shipmentContent']> = [
     'brokerName',
     'incoterms',
     'shipmentDate',
@@ -280,41 +284,45 @@ function removeSpecificNullFields(obj: Partial<IShipment>): IShipment {
   ];
 
   const result: IShipment = {
-    HousebillNumber: obj.HousebillNumber || '',
-    Origin: obj.Origin || {
-      LocationCode: '',
-      LocationName: '',
-      CountryCode: '',
+    id: obj.id || '',
+    carrierId: obj.carrierId || '',
+    shipmentContent: {
+      HousebillNumber: obj.shipmentContent?.HousebillNumber || '',
+      Origin: obj.shipmentContent?.Origin || {
+        LocationCode: '',
+        LocationName: '',
+        CountryCode: '',
+      },
+      Destination: obj.shipmentContent?.Destination || {
+        LocationCode: '',
+        LocationName: '',
+        CountryCode: '',
+      },
+      DateAndTimes: obj.shipmentContent?.DateAndTimes || {
+        ScheduledDeparture: null,
+        ScheduledArrival: null,
+        ShipmentDate: null,
+      },
+      ProductType: obj.shipmentContent?.ProductType || null,
+      TotalPackages: obj.shipmentContent?.TotalPackages || null,
+      TotalWeight: obj.shipmentContent?.TotalWeight || {
+        '*body': null,
+        '@uom': null,
+      },
+      TotalVolume: obj.shipmentContent?.TotalVolume || {
+        '*body': null,
+        '@uom': null,
+      },
+      Timestamp: obj.shipmentContent?.Timestamp || [],
     },
-    Destination: obj.Destination || {
-      LocationCode: '',
-      LocationName: '',
-      CountryCode: '',
-    },
-    DateAndTimes: obj.DateAndTimes || {
-      ScheduledDeparture: null,
-      ScheduledArrival: null,
-      ShipmentDate: null,
-    },
-    ProductType: obj.ProductType || null,
-    TotalPackages: obj.TotalPackages || null,
-    TotalWeight: obj.TotalWeight || {
-      '*body': null,
-      '@uom': null,
-    },
-    TotalVolume: obj.TotalVolume || {
-      '*body': null,
-      '@uom': null,
-    },
-    Timestamp: obj.Timestamp || [],
   };
 
-  if (!result.HousebillNumber) {
+  if (!result.shipmentContent?.HousebillNumber) {
     throw new Error('HousebillNumber is required');
   }
 
   for (const key of optionalFields) {
-    const value = obj[key];
+    const value = obj.shipmentContent?.[key];
     if (
       value !== null &&
       value !== undefined &&

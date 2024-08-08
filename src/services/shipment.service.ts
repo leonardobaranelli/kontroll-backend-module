@@ -1,12 +1,13 @@
 import admin from 'firebase-admin';
-import { Shipment } from '../models/shipment.model';
+// import { Shipment } from '../models/shipment.model';
 import { CreateShipmentDto, UpdateShipmentDto } from '../utils/dtos';
 import {
   IShipmentPublic,
-  AbstractShipmentPublic,
+  // AbstractShipmentPublic,
   IError,
 } from '../utils/types/utilities.interface';
-import { getAttributes } from './helpers/commons/get-attributes.helper';
+// import { getAttributes } from './helpers/commons/get-attributes.helper';
+import { getShipmentsCollection } from '../config/database/firestore/firestore.config';
 
 export default class ShipmentService {
   private static getIdFieldForCarrier(carrier: string): string {
@@ -132,7 +133,7 @@ export default class ShipmentService {
   public static async createShipment(
     shipmentData: CreateShipmentDto,
   ): Promise<IShipmentPublic> {
-    const { HousebillNumber } = shipmentData;
+    const { HousebillNumber } = shipmentData.shipmentContent;
 
     try {
       // Aquí deberíamos buscar el envío en los conectores
@@ -186,13 +187,14 @@ export default class ShipmentService {
   public static async updateShipmentByNumber(
     HousebillNumber: string,
     newData: UpdateShipmentDto,
-  ): Promise<IShipmentPublic> {
+  ): Promise<IShipmentPublic | null> {
     try {
-      const [updatedRows]: [number] = await Shipment.update(newData, {
-        where: { HousebillNumber },
-      });
+      const shipmentsCollection = getShipmentsCollection();
+      const snapshot = await shipmentsCollection
+        .where('shipmentContent.HousebillNumber', '==', HousebillNumber)
+        .get();
 
-      if (updatedRows === 0) {
+      if (snapshot.empty) {
         const error: IError = new Error(
           `Shipment with number ${HousebillNumber} not found`,
         );
@@ -200,20 +202,36 @@ export default class ShipmentService {
         throw error;
       }
 
-      const updatedShipment: IShipmentPublic | null = await Shipment.findOne({
-        where: { HousebillNumber },
-        attributes: getAttributes(AbstractShipmentPublic),
+      let updatedShipmentByNumber: IShipmentPublic | null = null;
+      snapshot.forEach(async (doc) => {
+        const shipmentDataToSave = this.toPlainObject(newData);
+        await doc.ref.set(shipmentDataToSave, { merge: true });
+        const updatedDoc = await doc.ref.get();
+        updatedShipmentByNumber = updatedDoc.data() as IShipmentPublic;
       });
-
-      return updatedShipment as IShipmentPublic;
+      return updatedShipmentByNumber;
     } catch (error) {
       throw error;
     }
   }
 
+  private static toPlainObject(dto: UpdateShipmentDto): Record<string, any> {
+    return Object.fromEntries(
+      Object.entries(dto).filter(([_, value]) => value !== undefined),
+    );
+  }
+
   public static async deleteAllShipments(): Promise<void> {
     try {
-      await Shipment.destroy({ where: {} });
+      const shipmentsCollection = getShipmentsCollection();
+      const snapshot = await shipmentsCollection.get();
+      const batch = shipmentsCollection.firestore.batch();
+      snapshot.docs.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+
+      await batch.commit();
+      console.log('All connectors deleted succesfully');
     } catch (error) {
       throw error;
     }
@@ -223,13 +241,25 @@ export default class ShipmentService {
     HousebillNumber: string,
   ): Promise<void> {
     try {
-      const shipments: Shipment[] | null = await Shipment.findAll({
-        where: { HousebillNumber },
-      });
-      if (shipments.length === 0) {
-        throw new Error(`No shipments with number ${HousebillNumber} found`);
+      const shipmentsCollection = getShipmentsCollection();
+      const snapshot = await shipmentsCollection
+        .where('shipmentContent.HousebillNumber', '==', HousebillNumber)
+        .get();
+
+      if (snapshot.empty) {
+        console.log(
+          `No connector with Housebill number ${HousebillNumber} found`,
+        );
+        return;
       }
-      await Shipment.destroy({ where: { HousebillNumber } });
+
+      const batch = shipmentsCollection.firestore.batch();
+      snapshot.docs.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+
+      await batch.commit();
+      console.log(`Shipment deleted successfully`);
     } catch (error) {
       throw error;
     }
