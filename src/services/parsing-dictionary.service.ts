@@ -10,7 +10,7 @@ export default class ParsingDictionaryService {
     try {
       const snapshot = await this.collection.get();
       return snapshot.docs.map(
-        (doc) => ({ id: doc.id, ...doc.data() } as IParsingDictionary),
+        (doc) => ({ id: doc.id, ...doc.data() }) as IParsingDictionary,
       );
     } catch (error) {
       console.error('Error getting all parsing dictionaries:', error);

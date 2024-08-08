@@ -38,6 +38,11 @@ function getCarriersCollection() {
   return admin.firestore().collection('carriers');
 }
 
+function getShipmentsCollection() {
+  initializeFirestore();
+  return admin.firestore().collection('parsed-shipments');
+}
+
 function cleanData(data: any) {
   return JSON.parse(
     JSON.stringify(data, (_key, value) => (value === undefined ? null : value)),
@@ -59,6 +64,7 @@ export {
   verifyFirestoreConnection,
   getCarriersCollection,
   getParsingDictionariesCollection,
+  getShipmentsCollection,
   cleanData,
   addDocument,
 };
