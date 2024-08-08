@@ -15,6 +15,8 @@ export const config = {
     apiKey: process.env.OPENAI_API_KEY,
     model: process.env.OPENAI_MODEL,
     apiEndpoint: 'https://api.openai.com/v1/chat/completions',
+    temperature: 0.3,
+    top_p: 0.9,
   },
 };
 

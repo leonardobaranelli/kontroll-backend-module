@@ -16,7 +16,6 @@ export default class AiParserController {
 
     try {
       console.log('Placeholder: Parsing and creating shipment:', shipmentData);
-
       // Placeholder response
       const placeholderShipment: IShipmentPublic = {
         HousebillNumber: 'placeholder-housebill-number',
@@ -36,6 +35,7 @@ export default class AiParserController {
       );
     }
   };
+
   public static parseShipment = async (
     req: Request,
     res: Response,
@@ -60,6 +60,20 @@ export default class AiParserController {
     try {
       const parsedShipment: IShipment =
         await AiParserService.memoryParseShipment(carrier, trackingId);
+      sendSuccessResponse(res, parsedShipment, 'Shipment parsed successfully');
+    } catch (error: any) {
+      sendErrorResponse(res, error);
+    }
+  };
+
+  public static parseShipmentEntry = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
+    const { carrier, trackingId } = req.params;
+    try {
+      const parsedShipment: IShipment =
+        await AiParserService.parseShipmentEntry(carrier, trackingId);
       sendSuccessResponse(res, parsedShipment, 'Shipment parsed successfully');
     } catch (error: any) {
       sendErrorResponse(res, error);

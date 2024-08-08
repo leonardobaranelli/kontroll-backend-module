@@ -4,6 +4,6 @@ type MaybeString = string | null;
 
 export class ParsingDictionary implements IParsingDictionary {
   id!: MaybeString;
-  dictionary!: JSON;
+  dictionary!: Array<{ key: string; value: string }>;
   carrier!: MaybeString;
 }
