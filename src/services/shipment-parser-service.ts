@@ -71,7 +71,7 @@ export default class ShipmentParserService {
     housebillNumber: string,
   ): Promise<IShipment | null> {
     const shipment = this.memoryShipments.find(
-      (s) => s.HousebillNumber === housebillNumber,
+      (s) => s.shipmentContent.HousebillNumber === housebillNumber,
     );
     if (!shipment) {
       const error: IError = {
