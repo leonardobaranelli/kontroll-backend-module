@@ -147,7 +147,7 @@ export interface IShipment {
 export interface IParsingDictionary {
   id: MaybeString;
   carrier: MaybeString;
-  dictionary: JSON;
+  dictionary: Array<{ key: string; value: string }>;
 }
 // End of the Shipment region
 

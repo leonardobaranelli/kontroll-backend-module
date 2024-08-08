@@ -1,0 +1,208 @@
+{
+  "info": {
+    "name": "API Endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "AI Parser",
+      "item": [
+        {
+          "name": "Parse and Create",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ai-parser/parse"
+          }
+        },
+        {
+          "name": "Parse Shipment",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ai-parser/parse/:carrier/:trackingId"
+          }
+        },
+        {
+          "name": "Parse Shipment with Memory",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ai-parser/memory-parse/:carrier/:trackingId"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Carrier",
+      "item": [
+        {
+          "name": "Create Known Carrier",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/carriers/known"
+          }
+        },
+        {
+          "name": "Create New Carrier",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/carriers/new"
+          }
+        },
+        {
+          "name": "Dev Get Req Via Doc",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/carriers/dev"
+          }
+        },
+        {
+          "name": "Get All Carriers",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/carriers"
+          }
+        },
+        {
+          "name": "Delete All Carriers",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/carriers/all"
+          }
+        },
+        {
+          "name": "Delete Carrier by ID",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/carriers/id/:id"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Parsing Dictionary",
+      "item": [
+        {
+          "name": "Get All Parsing Dictionaries",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/parsing-dictionary"
+          }
+        },
+        {
+          "name": "Get Parsing Dictionary by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/parsing-dictionary/:id"
+          }
+        },
+        {
+          "name": "Create Parsing Dictionary",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/parsing-dictionary"
+          }
+        },
+        {
+          "name": "Update Parsing Dictionary",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/parsing-dictionary/:id"
+          }
+        },
+        {
+          "name": "Delete Parsing Dictionary",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/parsing-dictionary/:id"
+          }
+        },
+        {
+          "name": "Get Parsing Dictionary by Carrier",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/parsing-dictionary/carrier/:carrier"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Shipment",
+      "item": [
+        {
+          "name": "Get All Shipments",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/shipments"
+          }
+        },
+        {
+          "name": "Get Shipments by Carrier",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/shipments/carrier/:carrier"
+          }
+        },
+        {
+          "name": "Get Shipment by Carrier and ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/shipments/carrier/:carrier/:shipmentId"
+          }
+        },
+        {
+          "name": "Create Shipment",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/shipments"
+          }
+        },
+        {
+          "name": "Update Shipment by Number",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/shipments/number/:number"
+          }
+        },
+        {
+          "name": "Delete All Shipments",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/shipments/all"
+          }
+        },
+        {
+          "name": "Delete Shipment by Number",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/shipments/number/:number"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Shipment Parser",
+      "item": [
+        {
+          "name": "Parse Shipment",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/shipment-parser/parse"
+          }
+        },
+        {
+          "name": "Parse Shipment with Memory",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/shipment-parser/memory-parse"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001",
+      "type": "string"
+    }
+  ]
+}
