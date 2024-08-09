@@ -7,8 +7,10 @@ import { loadCarrierData } from '../core/carriers/create-by-steps/new/dev-get-re
 import { loadKnownCarrierData } from '../core/carriers/create-by-steps/known/load-carrier-data';
 import { ICarrierPublic, IError } from '../utils/types/utilities.interface';
 
-import areAllRequirementsCaptured from '../core/carriers/create-by-steps/are-all-requirements-captured';
-import performQueries from '../core/carriers/create-by-steps/perform-queries';
+import areAllRequirementsCaptured from '../core/carriers/create-by-steps/known/are-all-requirements-captured';
+import performQueries from '../core/carriers/create-by-steps/known/perform-queries';
+import _performQueries from '../core/carriers/create-by-steps/new/manual/perform-queries';
+//import isGetShipmentEndpoint from '../core/carriers/create-by-steps/new/manual/is-get-shipment-endpoint';
 
 import docNotFoundResponse from './helpers/carrier/dev/doc-not-found-response.helper';
 import completeProcessResponse from './helpers/carrier/complete-process-response.helper';
@@ -19,6 +21,98 @@ export default class CarrierService {
   private static getState(sessionID: string): any {
     return this.stateStore[sessionID] || {};
   }
+
+  private static async _updateState(
+    sessionID: string,
+    state: any,
+  ): Promise<void> {
+    try {
+      this.stateStore[sessionID] = { ...state };
+    } catch (error) {
+      console.error('Error in updateState:', error);
+      throw new Error(
+        `Failed to update state for session ${sessionID}: ${error}`,
+      );
+    }
+  }
+
+  private static async _completeProcess(
+    sessionID: string,
+    state: any,
+  ): Promise<void> {
+    try {
+      const carriersCollection = getCarriersCollection();
+      const cleanedState = cleanData({
+        userId: 'admin',
+        name: state.name,
+        shipmentId: state.shipmentId,
+        endpoints: state.endpoints,
+      });
+      await carriersCollection.add(cleanedState);
+      delete this.stateStore[sessionID];
+    } catch (error) {
+      console.error('Error in completeProcess:', error);
+      throw new Error(`Failed to complete carrier creation process: ${error}`);
+    }
+  }
+
+  private static _captureUserInput(
+    name: string,
+    shipmentId: string,
+    endpoints: Array<object>,
+    sessionID: string,
+  ) {
+    const state = this.getState(sessionID);
+    if (!state.userInputs) {
+      state.userInputs = [];
+    }
+    state.userInputs.push({ name, shipmentId, endpoints });
+    console.log(
+      `User input for session ${sessionID}:`.yellow,
+      state.userInputs,
+    );
+
+    this._updateState(sessionID, state).catch((error) => {
+      console.error('Error updating state:', error);
+    });
+  }
+
+  public static async createNew(
+    name: string,
+    shipmentId: string,
+    endpoints: Array<object>,
+    sessionID: string,
+  ): Promise<any> {
+    try {
+      this._captureUserInput(name, shipmentId, endpoints, sessionID);
+      const state = await this.getState(sessionID);
+
+      if (state.userInputs && state.userInputs.length > 0) {
+        const firstUserInput = state.userInputs[0];
+
+        if (firstUserInput.endpoints && firstUserInput.endpoints.length > 0) {
+          const axiosResponse = await _performQueries(
+            firstUserInput.endpoints[0],
+            true,
+          );
+          await this._completeProcess(sessionID, state);
+          return completeProcessResponse(state.name, axiosResponse);
+        } else {
+          throw new Error('No endpoints available in the first user input.');
+        }
+      } else {
+        throw new Error('User inputs are not initialized or empty.');
+      }
+    } catch (error) {
+      console.error('Error in createNew:'.bgMagenta, error);
+      return {
+        error: true,
+        message: 'Failed to create new endpoint: ' + error,
+      };
+    }
+  }
+
+  //! #####################
 
   private static async updateState(
     sessionID: string,
@@ -112,72 +206,6 @@ export default class CarrierService {
         state.requirements &&
         state.userInputs
       ) {
-        const axiosResponse = await performQueries(state, true);
-        await this.completeProcess(sessionID, state);
-        return completeProcessResponse(state.name, axiosResponse);
-      }
-
-      if (step.next === 'complete') {
-        const axiosResponse = await performQueries(state, true);
-        await this.completeProcess(sessionID, state);
-        return completeProcessResponse(state.name, axiosResponse);
-      } else {
-        await this.updateState(sessionID, step.next, state);
-        return {
-          message: await step.message(state),
-          nextStep: step.next,
-          stepsDetails: step.stepsDetails,
-          form: step.form,
-        };
-      }
-    } catch (error) {
-      console.error('Error in createKnownViaSteps:', error);
-      return {
-        error: true,
-        message: 'Failed to handle step: ' + error,
-      };
-    }
-  }
-
-  public static async createNew(
-    stepKey: string,
-    data: any,
-    sessionID: string,
-  ): Promise<any> {
-    try {
-      const state = this.getState(sessionID);
-
-      this.captureUserInput(sessionID, stepKey, data);
-
-      if (stepKey === 'step1' && data.name) {
-        state.name = data.name;
-        const { carrierConfig, numberOfSteps, requirements } =
-          await loadKnownCarrierData(data.name);
-
-        state.carrierSteps = carrierConfig;
-        state.numberOfSteps = numberOfSteps;
-        state.requirements = requirements;
-        state.step = 'step1';
-      } else if (stepKey !== 'step1' && !state.name) {
-        throw new Error(
-          'Previous steps not completed correctly (please provide the carrier name on step1, thanks)',
-        );
-      }
-
-      const carrierSteps = state.carrierSteps;
-      const step = carrierSteps[stepKey];
-
-      if (!step) {
-        throw new Error(
-          `Step configuration for ${stepKey} is missing. Available steps: ${Object.keys(
-            carrierSteps,
-          ).join(', ')}`,
-        );
-      }
-
-      await step.action(data, state);
-
-      if (areAllRequirementsCaptured(state.requirements, state.userInputs)) {
         const axiosResponse = await performQueries(state, true);
         await this.completeProcess(sessionID, state);
         return completeProcessResponse(state.name, axiosResponse);

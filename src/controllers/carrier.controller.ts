@@ -8,7 +8,7 @@ import { ICarrierPublic } from '../utils/types/utilities.interface';
 import { StepKey } from '../utils/types/models.interface';
 import { devVerifyStepRequest } from './helpers/carrier/dev/dev-verify-step-request.helper';
 import { verifyKnownStepRequest } from './helpers/carrier/known/verify-known-step-request.helper';
-import { verifyStepRequest } from './helpers/carrier/new/verify-step-request.helper';
+import { verifyEndpointRequest } from './helpers/carrier/new/verify-endpoint-request.helper';
 
 export default class CarrierController {
   public static getAll = async (
@@ -52,18 +52,20 @@ export default class CarrierController {
     res: Response,
   ): Promise<void> => {
     try {
-      verifyStepRequest(req, res, async () => {
-        const { step, data } = req.body as {
-          step: StepKey;
-          data: any;
+      verifyEndpointRequest(req, res, async () => {
+        const { name, shipmentId, endpoints } = req.body as {
+          name: string;
+          shipmentId: string;
+          endpoints: Array<object>;
         };
 
         const result = await CarrierService.createNew(
-          step,
-          data,
+          name,
+          shipmentId,
+          endpoints,
           req.sessionID,
         );
-        sendSuccessResponse(res, result, 'Step completed successfully');
+        sendSuccessResponse(res, result, 'Endpoint added successfully');
       });
     } catch (error: any) {
       sendErrorResponse(res, error);
