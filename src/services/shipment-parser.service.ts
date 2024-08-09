@@ -1,4 +1,4 @@
-import { IShipment } from '../utils/types/models.interface';
+import { IShipmentContent } from '../utils/types/models.interface';
 import { IError } from '../utils/types/utilities.interface';
 import {
   ShipmentInput,
@@ -10,7 +10,7 @@ import { parseShipmentWithMemory } from '../core/shipment-parser/memory-parser';
 import { formatShipmentData } from '../core/shipment-parser/utils/formattingUtils';
 
 export default class ShipmentParserService {
-  private static memoryShipments: IShipment[] = [];
+  private static memoryShipments: IShipmentContent[] = [];
 
   public static async parseShipment(
     input: ShipmentInput,
@@ -49,7 +49,7 @@ export default class ShipmentParserService {
     }
   }
 
-  public static async getMemoryShipments(): Promise<IShipment[]> {
+  public static async getMemoryShipments(): Promise<IShipmentContent[]> {
     if (this.memoryShipments.length === 0) {
       const error: IError = {
         name: 'NotFoundError',
@@ -67,9 +67,9 @@ export default class ShipmentParserService {
 
   public static async getShipmentByHousebillNumber(
     housebillNumber: string,
-  ): Promise<IShipment | null> {
+  ): Promise<IShipmentContent | null> {
     const shipment = this.memoryShipments.find(
-      (s) => s.shipmentContent.HousebillNumber === housebillNumber,
+      (s) => s.HousebillNumber === housebillNumber,
     );
     if (!shipment) {
       const error: IError = {

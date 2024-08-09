@@ -1,4 +1,4 @@
-import { IShipment } from '../../../utils/types/models.interface';
+import { IShipmentContent } from '../../../utils/types/models.interface';
 import { ShipmentInput } from '../../../utils/types/utilities.interface';
 interface TimestampEntry {
   TimestampDateTime: string | null;
@@ -15,8 +15,8 @@ function formatDate(dateString: string): string {
 }
 
 export function formatShipmentData(
-  parsedShipment: Partial<IShipment>,
-): IShipment {
+  parsedShipment: Partial<IShipmentContent>,
+): IShipmentContent {
   if (!parsedShipment.HousebillNumber) {
     console.warn('HousebillNumber is missing in the parsed shipment data');
   }
@@ -36,7 +36,7 @@ export function formatShipmentData(
     );
   }
 
-  const formattedShipment: IShipment = {
+  const formattedShipment: IShipmentContent = {
     HousebillNumber: parsedShipment.HousebillNumber || '',
     Origin: {
       LocationCode: parsedShipment.Origin?.LocationCode || null,
@@ -76,8 +76,8 @@ export function formatShipmentData(
   return formattedShipment;
 }
 
-export function removeSpecificNullFields(obj: Partial<IShipment>): IShipment {
-  const optionalFields: Array<keyof IShipment> = [
+export function removeSpecificNullFields(obj: Partial<IShipmentContent>): IShipmentContent {
+  const optionalFields: Array<keyof IShipmentContent> = [
     'brokerName',
     'incoterms',
     'shipmentDate',
@@ -106,7 +106,7 @@ export function removeSpecificNullFields(obj: Partial<IShipment>): IShipment {
     'containers',
   ];
 
-  const result: IShipment = {
+  const result: IShipmentContent = {
     HousebillNumber: obj.HousebillNumber || '',
     Origin: obj.Origin || {
       LocationCode: '',
@@ -214,9 +214,9 @@ export function findScheduledDates(shipment: any): void {
 }
 
 export function ensureRequiredFields(
-  parsedData: Partial<IShipment>,
+  parsedData: Partial<IShipmentContent>,
   inputJson: ShipmentInput,
-): IShipment {
+): IShipmentContent {
   return {
     HousebillNumber: parsedData.HousebillNumber || '',
     Origin: {
