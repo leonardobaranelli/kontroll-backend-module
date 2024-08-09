@@ -1,68 +1,131 @@
-import { IShipmentContent } from '../utils/types/models.interface';
-import { IError } from '../utils/types/utilities.interface';
-import {
-  ShipmentInput,
-  ParserResult,
-  ParserOptions,
-} from '../utils/types/utilities.interface';
+import { IShipment, IShipmentContent } from '../utils/types/models.interface';
+import { ShipmentInput } from '../utils/types/utilities.interface';
+import ParsingDictionaryService from './parsing-dictionary.service';
+import ShipmentController from '../controllers/shipment.controller';
+import { Request, Response } from 'express';
 import { parseShipmentData } from '../core/shipment-parser/parser';
 import { parseShipmentWithMemory } from '../core/shipment-parser/memory-parser';
-import { formatShipmentData } from '../core/shipment-parser/utils/formattingUtils';
 
 export default class ShipmentParserService {
   private static memoryShipments: IShipmentContent[] = [];
 
-  public static async parseShipment(
-    input: ShipmentInput,
+  public static async parseShipmentEntry(
     carrier: string,
-    options: ParserOptions = { useOpenAI: true },
-  ): Promise<ParserResult> {
+    trackingId: string,
+  ): Promise<IShipment> {
+    console.log('parseShipmentEntry started');
     try {
-      let parserResult: ParserResult;
-      console.log('Use OpenAI: ', options.useOpenAI);
-      if (options.useOpenAI) {
-        parserResult = await parseShipmentData(input, carrier, options);
+      const shipmentData = await this.getShipmentFromController(
+        carrier,
+        trackingId,
+      );
+      const parsingDictionary =
+        await ParsingDictionaryService.getParsingDictionaryByCarrier(carrier);
+
+      let result;
+      if (
+        parsingDictionary?.dictionary &&
+        Object.keys(parsingDictionary.dictionary).length > 0
+      ) {
+        result = await parseShipmentWithMemory(shipmentData, carrier);
       } else {
-        parserResult = await parseShipmentWithMemory(input, carrier);
+        result = await parseShipmentData(shipmentData, carrier, {
+          useOpenAI: true,
+        });
       }
 
-      if (!parserResult.success) {
-        return parserResult;
+      if (!result.success || !result.data) {
+        throw new Error('Failed to parse shipment');
       }
 
-      if (!parserResult.data) {
-        return { success: false, error: 'Parser result data is undefined' };
-      }
-      const formattedShipment = formatShipmentData(parserResult.data);
-
-      this.memoryShipments.push(formattedShipment);
-
-      return {
-        success: true,
-        data: formattedShipment,
-      };
+      return this.convertToIShipment(result.data, carrier);
     } catch (error: any) {
-      return {
-        success: false,
-        error: error.message,
-      };
+      console.error('Error in parseShipmentEntry:', error);
+      throw new Error(`Failed to parse shipment entry: ${error.message}`);
     }
   }
 
-  public static async getMemoryShipments(): Promise<IShipmentContent[]> {
-    if (this.memoryShipments.length === 0) {
-      const error: IError = {
-        name: 'NotFoundError',
-        message: 'There are no parsed shipments available',
-        statusCode: 404,
-      };
-      throw error;
+  public static async parseShipmentWithMemory(
+    carrier: string,
+    trackingId: string,
+  ): Promise<IShipment> {
+    console.log('parseShipmentWithMemory started', { carrier });
+    try {
+      const shipmentData = await this.getShipmentFromController(
+        carrier,
+        trackingId,
+      );
+      const result = await parseShipmentWithMemory(shipmentData, carrier);
+      if (!result.success || !result.data) {
+        throw new Error('Failed to parse shipment with memory');
+      }
+      return this.convertToIShipment(result.data, carrier);
+    } catch (error: any) {
+      console.error('Error in parseShipmentWithMemory:', error);
+      throw new Error(`Failed to parse shipment with Memory: ${error.message}`);
     }
-    return this.memoryShipments;
   }
 
-  public static clearMemoryShipments(): void {
-    this.memoryShipments = [];
+  public static async parseShipmentWithAI(
+    carrier: string,
+    trackingId: string,
+  ): Promise<IShipment> {
+    console.log('parseShipmentWithAI started');
+    try {
+      const shipmentData = await this.getShipmentFromController(
+        carrier,
+        trackingId,
+      );
+      const result = await parseShipmentData(shipmentData, carrier, {
+        useOpenAI: true,
+      });
+      if (!result.success || !result.data) {
+        throw new Error('Failed to parse shipment with AI');
+      }
+      return this.convertToIShipment(result.data, carrier);
+    } catch (error: any) {
+      console.error('Error in parseShipmentWithAI:', error);
+      throw new Error(`Failed to parse shipment with AI: ${error.message}`);
+    }
+  }
+
+  public static async getShipmentFromController(
+    carrier: string,
+    trackingId: string,
+  ): Promise<ShipmentInput> {
+    const mockRequest = {
+      params: { carrier, shipmentId: trackingId },
+    } as unknown as Request;
+    const mockResponse = {
+      json: (data: any) => data,
+      status: (statusCode: number) => ({
+        json: (data: any) => ({ statusCode, ...data }),
+      }),
+    } as unknown as Response;
+
+    const shipment = await ShipmentController.getByCarrierAndId(
+      mockRequest,
+      mockResponse,
+    );
+
+    if (!shipment) {
+      throw new Error(
+        `Shipment not found for carrier ${carrier} and tracking ID ${trackingId}`,
+      );
+    }
+
+    return shipment;
+  }
+
+  private static convertToIShipment(
+    shipmentContent: IShipmentContent,
+    carrier: string,
+  ): IShipment {
+    return {
+      id: shipmentContent.HousebillNumber,
+      carrierId: carrier,
+      shipmentContent,
+    };
   }
 
   public static async getShipmentByHousebillNumber(
@@ -72,10 +135,9 @@ export default class ShipmentParserService {
       (s) => s.HousebillNumber === housebillNumber,
     );
     if (!shipment) {
-      const error: IError = {
+      const error: Error = {
         name: 'NotFoundError',
         message: `No shipment found with HousebillNumber: ${housebillNumber}`,
-        statusCode: 404,
       };
       throw error;
     }

@@ -136,9 +136,15 @@ export function enhanceMappingDictionary(
     return aOrder - bOrder;
   });
 
-  // Add mappings to enhancedMapping, ensuring no duplicates
+  // Add mappings to enhancedMapping, ensuring no duplicates and no null values
   for (const { key, value } of combinedMapping) {
-    if (!usedDestinations.has(value)) {
+    if (
+      !usedDestinations.has(value) &&
+      key !== null &&
+      value !== null &&
+      key !== '' &&
+      value !== ''
+    ) {
       console.log(`Adding mapping: ${key} -> ${value}`);
       enhancedMapping.push({ key, value });
       usedDestinations.add(value);
