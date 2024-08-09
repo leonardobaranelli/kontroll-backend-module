@@ -65,7 +65,28 @@ async function parseShipmentWithMapping(
   for (const [inputPath, outputPath] of Object.entries(mappingDictionary)) {
     const value = getValueByPath(inputJson, inputPath);
     console.log(`Mapping ${inputPath} to ${outputPath}. Value:`, value);
-    if (value !== undefined) {
+
+    if (outputPath.startsWith('Timestamp')) {
+      // Handle Timestamp field specially
+      if (!parsedData.Timestamp) parsedData.Timestamp = [];
+      if (Array.isArray(value)) {
+        parsedData.Timestamp.push(
+          ...value.map((item: any) => ({
+            TimestampCode: item.statusCode || null,
+            TimestampDescription: item.status || null,
+            TimestampDateTime: item.timestamp || null,
+            TimestampLocation: item.location?.address?.addressLocality || null,
+          })),
+        );
+      } else if (value) {
+        parsedData.Timestamp.push({
+          TimestampCode: value.statusCode || null,
+          TimestampDescription: value.status || null,
+          TimestampDateTime: value.timestamp || null,
+          TimestampLocation: value.location?.address?.addressLocality || null,
+        });
+      }
+    } else if (value !== undefined) {
       setValueByPath(parsedData, outputPath, value);
     }
   }

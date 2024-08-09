@@ -1,69 +1,61 @@
 import { Request, Response } from 'express';
 import ShipmentParserService from '../services/shipment-parser.service';
-
+import {
+  sendSuccessResponse,
+  sendErrorResponse,
+} from './helpers/commons/handlers/responses.handler';
 export default class ShipmentParserController {
-  public static async parseShipment(req: Request, res: Response) {
-    console.log('ShipmentParserController.parseShipment started');
+  public static async parseShipmentEntry(req: Request, res: Response) {
+    console.log('ShipmentParserController.parseShipmentEntry started');
     try {
-      const shipmentData = req.body.input;
-      const carrier = req.body.carrier;
-      console.log('Request body:', JSON.stringify(req.body, null, 2));
-      const parsedShipment = await ShipmentParserService.parseShipment(
-        shipmentData,
+      const { carrier, trackingId } = req.params;
+      const parsedShipment = await ShipmentParserService.parseShipmentEntry(
         carrier,
-        { useOpenAI: true },
+        trackingId,
       );
-      console.log('Parsed shipment:', JSON.stringify(parsedShipment, null, 2));
-      res.status(200).json(parsedShipment);
+      sendSuccessResponse(res, parsedShipment, 'Shipment parsed successfully');
     } catch (error: any) {
-      console.error(
-        'Error in ShipmentParserController.parseShipment:',
-        error.message,
+      console.error('Error in parseShipmentEntry:', error.message);
+      sendErrorResponse(res, error);
+    }
+  }
+
+  public static async parseShipmentWithAI(req: Request, res: Response) {
+    console.log('ShipmentParserController.parseShipmentWithAI started');
+    try {
+      const { carrier, trackingId } = req.params;
+      const parsedShipment = await ShipmentParserService.parseShipmentWithAI(
+        carrier,
+        trackingId,
       );
-      console.error('Error stack:', error.stack);
-      res.status(500).json({ success: false, error: 'Internal server error' });
+      sendSuccessResponse(
+        res,
+        parsedShipment,
+        'Shipment parsed successfully with AI',
+      );
+    } catch (error: any) {
+      console.error('Error in parseShipmentWithAI:', error.message);
+      sendErrorResponse(res, error);
     }
   }
 
   public static async parseShipmentWithMemory(req: Request, res: Response) {
     console.log('ShipmentParserController.parseShipmentWithMemory started');
     try {
-      const shipmentData = req.body.input;
-      const carrier = req.body.carrier;
-      console.log('Request body:', JSON.stringify(req.body, null, 2));
-      const parsedShipment = await ShipmentParserService.parseShipment(
-        shipmentData,
-        carrier,
-        { useOpenAI: false },
+      const { carrier, trackingId } = req.params;
+      const parsedShipment =
+        await ShipmentParserService.parseShipmentWithMemory(
+          carrier,
+          trackingId,
+        );
+      sendSuccessResponse(
+        res,
+        parsedShipment,
+        'Shipment parsed successfully with memory',
       );
-      console.log(
-        'Parsed shipment with memory:',
-        JSON.stringify(parsedShipment, null, 2),
-      );
-      res.status(200).json(parsedShipment);
     } catch (error: any) {
       console.error('Error in parseShipmentWithMemory:', error.message);
-      res.status(500).json({ success: false, error: 'Internal server error' });
-    }
-  }
-
-  public static async getMemoryShipments(res: Response) {
-    try {
-      const shipments = await ShipmentParserService.getMemoryShipments();
-      res.status(200).json(shipments);
-    } catch (error: any) {
-      console.error('Error in getMemoryShipments:', error.message);
-      res.status(500).json({ success: false, error: 'Internal server error' });
-    }
-  }
-
-  public static async clearMemoryShipments(res: Response) {
-    try {
-      await ShipmentParserService.clearMemoryShipments();
-      res.status(204).send();
-    } catch (error: any) {
-      console.error('Error in clearMemoryShipments:', error.message);
-      res.status(500).json({ success: false, error: 'Internal server error' });
+      sendErrorResponse(res, error);
     }
   }
 }
