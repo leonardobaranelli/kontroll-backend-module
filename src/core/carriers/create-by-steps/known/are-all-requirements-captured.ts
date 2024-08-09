@@ -1,4 +1,4 @@
-import { extractKeysFromBody } from './extract-keys-from-body';
+import { extractKeysFromBody } from '../extract-keys-from-body';
 
 export default (requirements: any, userInputs: any[]): boolean => {
   const requiredKeys = new Set<string>();

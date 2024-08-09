@@ -14,6 +14,7 @@ export interface ICarrier {
 export interface IEndpoint {
   name: string;
   url: string;
+  isGetShipment: boolean;
   query: IQuery;
 }
 

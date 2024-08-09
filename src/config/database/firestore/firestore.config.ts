@@ -20,7 +20,7 @@ async function verifyFirestoreConnection(): Promise<void> {
       .doc('testDoc')
       .set({ test: 'testValue' });
     console.log(
-      'Connection to Firestore has been established successfully.'.green,
+      'Connection to Firestore has been established successfully'.green,
     );
   } catch (error) {
     console.error('Unable to connect to Firestore:'.red, error);
