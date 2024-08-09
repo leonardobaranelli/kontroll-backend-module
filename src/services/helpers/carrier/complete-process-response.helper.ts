@@ -1,4 +1,4 @@
-export default (name: string, axiosResponse: any = null) => {
+export default (name: string, carrierResponse: any = null) => {
   return {
     message: `Process completed successfully! Carrier ${name} created.`,
     nextStep: '',
@@ -19,6 +19,6 @@ export default (name: string, axiosResponse: any = null) => {
       title: 'Your connection has been successfully set up!',
       placeholder: '',
     },
-    ...(axiosResponse && { axiosResponse }),
+    carrierResponse,
   };
 };

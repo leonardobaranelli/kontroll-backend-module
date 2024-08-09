@@ -55,7 +55,7 @@ const buildBody = (body: any, replacements: { [key: string]: string }): any => {
 };
 
 // Main function to make the Axios request using the endpoint object directly
-export default async (endpoint: any, query: boolean): Promise<any[]> => {
+export default async (endpoint: any, query: boolean): Promise<any> => {
   if (!query) {
     return [];
   }
@@ -132,13 +132,10 @@ export default async (endpoint: any, query: boolean): Promise<any[]> => {
       };
     }
   }
-
   try {
     const response = await axios(options);
-    console.log('Axios response:', response.data);
-    return [{ response: response.data }];
+    return response.data;
   } catch (error) {
-    console.log('Axios error:', error);
-    return [{ error }];
+    return { error };
   }
 };
