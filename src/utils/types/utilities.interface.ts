@@ -1,7 +1,6 @@
 import { Property } from '../decorators/property.decorator';
-import { IEndpoint } from './models.interface';
+import { IEndpoint, IShipmentContent } from './models.interface';
 import { IStep } from './models.interface';
-import { IShipment } from './models.interface';
 
 type MaybeString = string | null;
 type MaybeNumber = number | null;
@@ -47,7 +46,7 @@ export interface ShipmentInput {
 
 export interface ParserResult {
   success: boolean;
-  data?: IShipment;
+  data?: IShipmentContent;
   error?: string;
   mappingDictionary?: Record<string, string>;
 }

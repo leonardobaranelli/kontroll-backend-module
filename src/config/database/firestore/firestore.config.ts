@@ -30,7 +30,7 @@ async function verifyFirestoreConnection(): Promise<void> {
 
 function getParsingDictionariesCollection() {
   initializeFirestore();
-  return admin.firestore().collection('parsingDictionaries');
+  return admin.firestore().collection('parsing_dictionaries');
 }
 
 function getCarriersCollection() {

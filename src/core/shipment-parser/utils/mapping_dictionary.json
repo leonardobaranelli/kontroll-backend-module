@@ -1,0 +1,174 @@
+[
+  {
+    "key": "id",
+    "value": "HousebillNumber"
+  },
+  {
+    "key": "origin.address.addressLocality",
+    "value": "Origin.LocationName"
+  },
+  {
+    "key": "origin.address.countryCode",
+    "value": "Origin.CountryCode"
+  },
+  {
+    "key": "destination.address.addressLocality",
+    "value": "Destination.LocationName"
+  },
+  {
+    "key": "destination.address.countryCode",
+    "value": "Destination.CountryCode"
+  },
+  {
+    "key": "status.statusCode",
+    "value": "DateAndTimes.ScheduledDeparture"
+  },
+  {
+    "key": "status.timestamp",
+    "value": "DateAndTimes.ScheduledArrival"
+  },
+  {
+    "key": "status.status",
+    "value": "DateAndTimes.ShipmentDate"
+  },
+  {
+    "key": "details.product.productName",
+    "value": "ProductType"
+  },
+  {
+    "key": "details.weight.value",
+    "value": "TotalWeight.*body"
+  },
+  {
+    "key": "details.weight.unitText",
+    "value": "TotalWeight.@uom"
+  },
+  {
+    "key": "events.5.timestamp",
+    "value": "shipmentDate"
+  },
+  {
+    "key": "details.references[0].number",
+    "value": "booking"
+  },
+  {
+    "key": "details.references[2].number",
+    "value": "mawb"
+  },
+  {
+    "key": "details.references[1].number",
+    "value": "hawb"
+  },
+  {
+    "key": "events[0].timestamp",
+    "value": "Timestamp[0].TimestampDateTime"
+  },
+  {
+    "key": "events[0].statusCode",
+    "value": "Timestamp[0].TimestampCode"
+  },
+  {
+    "key": "events[0].status",
+    "value": "Timestamp[0].TimestampDescription"
+  },
+  {
+    "key": "events[0].location.address.addressLocality",
+    "value": "Timestamp[0].TimestampLocation"
+  },
+  {
+    "key": "events[1].timestamp",
+    "value": "Timestamp[1].TimestampDateTime"
+  },
+  {
+    "key": "events[1].statusCode",
+    "value": "Timestamp[1].TimestampCode"
+  },
+  {
+    "key": "events[1].status",
+    "value": "Timestamp[1].TimestampDescription"
+  },
+  {
+    "key": "events[1].location.address.addressLocality",
+    "value": "Timestamp[1].TimestampLocation"
+  },
+  {
+    "key": "events[2].timestamp",
+    "value": "Timestamp[2].TimestampDateTime"
+  },
+  {
+    "key": "events[2].statusCode",
+    "value": "Timestamp[2].TimestampCode"
+  },
+  {
+    "key": "events[2].status",
+    "value": "Timestamp[2].TimestampDescription"
+  },
+  {
+    "key": "events[2].location.address.addressLocality",
+    "value": "Timestamp[2].TimestampLocation"
+  },
+  {
+    "key": "events[3].timestamp",
+    "value": "Timestamp[3].TimestampDateTime"
+  },
+  {
+    "key": "events[3].statusCode",
+    "value": "Timestamp[3].TimestampCode"
+  },
+  {
+    "key": "events[3].status",
+    "value": "Timestamp[3].TimestampDescription"
+  },
+  {
+    "key": "events[3].location.address.addressLocality",
+    "value": "Timestamp[3].TimestampLocation"
+  },
+  {
+    "key": "events[4].timestamp",
+    "value": "Timestamp[4].TimestampDateTime"
+  },
+  {
+    "key": "events[4].statusCode",
+    "value": "Timestamp[4].TimestampCode"
+  },
+  {
+    "key": "events[4].status",
+    "value": "Timestamp[4].TimestampDescription"
+  },
+  {
+    "key": "events[4].location.address.addressLocality",
+    "value": "Timestamp[4].TimestampLocation"
+  },
+  {
+    "key": "events[5].timestamp",
+    "value": "Timestamp[5].TimestampDateTime"
+  },
+  {
+    "key": "events[5].statusCode",
+    "value": "Timestamp[5].TimestampCode"
+  },
+  {
+    "key": "events[5].status",
+    "value": "Timestamp[5].TimestampDescription"
+  },
+  {
+    "key": "events[6].timestamp",
+    "value": "Timestamp[6].TimestampDateTime"
+  },
+  {
+    "key": "events[6].statusCode",
+    "value": "Timestamp[6].TimestampCode"
+  },
+  {
+    "key": "events[6].status",
+    "value": "Timestamp[6].TimestampDescription"
+  },
+  {
+    "key": "events[6].location.address.addressLocality",
+    "value": "Timestamp[6].TimestampLocation"
+  },
+  {
+    "key": "events.7.status",
+    "value": "Timestamp[7].TimestampDescription"
+  }
+]
