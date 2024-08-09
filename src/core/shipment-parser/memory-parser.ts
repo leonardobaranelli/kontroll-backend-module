@@ -3,7 +3,7 @@ import {
   ParserResult,
   ShipmentInput,
 } from '../../utils/types/utilities.interface';
-import { IShipment } from '../../utils/types/models.interface';
+import { IShipmentContent } from '../../utils/types/models.interface';
 import {
   formatShipmentData,
   getValueByPath,
@@ -51,10 +51,10 @@ export async function getMappingDictionaryByCarrier(
 async function parseShipmentWithMapping(
   inputJson: ShipmentInput,
   carrier: string,
-): Promise<IShipment> {
+): Promise<IShipmentContent> {
   console.log('Starting parseShipmentWithMapping');
   const mappingDictionary = await getMappingDictionaryByCarrier(carrier);
-  const parsedData: Partial<IShipment> = {};
+  const parsedData: Partial<IShipmentContent> = {};
 
   console.log('Input JSON:', JSON.stringify(inputJson, null, 2));
   console.log(
