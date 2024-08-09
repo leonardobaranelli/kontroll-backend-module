@@ -80,11 +80,8 @@ export interface StepConfig {
 // End of the Carrier region
 
 // Beginning of the Shipment region
-export interface IShipment {
-  id: string;
-  carrierId: string;
-  shipmentContent: {
-    HousebillNumber: string;
+export interface IShipmentContent {
+  HousebillNumber: string;
     Origin?: {
       LocationCode?: MaybeString;
       LocationName?: MaybeString;
@@ -143,12 +140,18 @@ export interface IShipment {
     goodsDescription?: MaybeString;
     containers?: Array<any> | null;
   };
+
+export interface IShipment {
+  id: string;
+  carrierId: string;
+  shipmentContent: IShipmentContent
+    
 }
 
 export interface IParsingDictionary {
   id: MaybeString;
   carrier: MaybeString;
-  dictionary: JSON;
+  dictionary: Array<{ key: string; value: string }>;
 }
 // End of the Shipment region
 

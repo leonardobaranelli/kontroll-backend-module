@@ -1,4 +1,4 @@
-import { IShipment } from '../utils/types/models.interface';
+import { IShipmentContent } from '../utils/types/models.interface';
 import { IError } from '../utils/types/utilities.interface';
 import {
   ShipmentInput,
@@ -7,24 +7,23 @@ import {
 } from '../utils/types/utilities.interface';
 import { parseShipmentData } from '../core/shipment-parser/parser';
 import { parseShipmentWithMemory } from '../core/shipment-parser/memory-parser';
-import { validateShipmentData } from '../core/shipment-parser/utils/validator';
-import { formatShipmentData } from '../core/shipment-parser/utils/formatter';
+import { formatShipmentData } from '../core/shipment-parser/utils/formattingUtils';
 
 export default class ShipmentParserService {
-  private static memoryShipments: IShipment[] = [];
+  private static memoryShipments: IShipmentContent[] = [];
 
   public static async parseShipment(
     input: ShipmentInput,
+    carrier: string,
     options: ParserOptions = { useOpenAI: true },
   ): Promise<ParserResult> {
     try {
       let parserResult: ParserResult;
       console.log('Use OpenAI: ', options.useOpenAI);
-      console.log('Input: ', input);
       if (options.useOpenAI) {
-        parserResult = await parseShipmentData(input, options);
+        parserResult = await parseShipmentData(input, carrier, options);
       } else {
-        parserResult = await parseShipmentWithMemory(input);
+        parserResult = await parseShipmentWithMemory(input, carrier);
       }
 
       if (!parserResult.success) {
@@ -34,8 +33,7 @@ export default class ShipmentParserService {
       if (!parserResult.data) {
         return { success: false, error: 'Parser result data is undefined' };
       }
-      const validatedData = validateShipmentData(parserResult.data);
-      const formattedShipment = formatShipmentData(validatedData);
+      const formattedShipment = formatShipmentData(parserResult.data);
 
       this.memoryShipments.push(formattedShipment);
 
@@ -51,7 +49,7 @@ export default class ShipmentParserService {
     }
   }
 
-  public static async getMemoryShipments(): Promise<IShipment[]> {
+  public static async getMemoryShipments(): Promise<IShipmentContent[]> {
     if (this.memoryShipments.length === 0) {
       const error: IError = {
         name: 'NotFoundError',
@@ -69,9 +67,9 @@ export default class ShipmentParserService {
 
   public static async getShipmentByHousebillNumber(
     housebillNumber: string,
-  ): Promise<IShipment | null> {
+  ): Promise<IShipmentContent | null> {
     const shipment = this.memoryShipments.find(
-      (s) => s.shipmentContent.HousebillNumber === housebillNumber,
+      (s) => s.HousebillNumber === housebillNumber,
     );
     if (!shipment) {
       const error: IError = {
