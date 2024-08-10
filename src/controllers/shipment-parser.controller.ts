@@ -58,4 +58,20 @@ export default class ShipmentParserController {
       sendErrorResponse(res, error);
     }
   }
+  public static async saveParsedShipment(req: Request, res: Response) {
+    try {
+      const { carrierId, housebillNumber } = req.params;
+      const parsedShipment = await ShipmentParserService.saveParsedShipment(
+        carrierId,
+        housebillNumber,
+      );
+      sendSuccessResponse(
+        res,
+        parsedShipment,
+        'Shipment succesfully saved in database',
+      );
+    } catch (error: any) {
+      sendErrorResponse(res, error);
+    }
+  }
 }

@@ -1,126 +1,50 @@
 [
   {
-    "key": "id",
+    "key": "ShipmentId",
     "value": "HousebillNumber"
   },
   {
-    "key": "origin.address.addressLocality",
+    "key": "PickupZip",
     "value": "Origin.LocationCode"
   },
   {
-    "key": "origin.address.addressLocality",
+    "key": "PickupPlace",
     "value": "Origin.LocationName"
   },
   {
-    "key": "origin.address.countryCode",
-    "value": "Origin.CountryCode"
-  },
-  {
-    "key": "destination.address.addressLocality",
+    "key": "RecipientZip",
     "value": "Destination.LocationCode"
   },
   {
-    "key": "destination.address.addressLocality",
+    "key": "RecipientPlace",
     "value": "Destination.LocationName"
   },
   {
-    "key": "destination.address.countryCode",
-    "value": "Destination.CountryCode"
-  },
-  {
-    "key": "events[1].timestamp",
+    "key": "PickupTimeFrom",
     "value": "DateAndTimes.ScheduledDeparture"
   },
   {
-    "key": "events[0].timestamp",
-    "value": "DateAndTimes.ScheduledArrival"
-  },
-  {
-    "key": "events[2].timestamp",
+    "key": "PickedupDate",
     "value": "DateAndTimes.ShipmentDate"
   },
   {
-    "key": "details.product.productName",
-    "value": "ProductType"
+    "key": "Parcels",
+    "value": "TotalPackages"
   },
   {
-    "key": "details.weight.value",
+    "key": "Weight",
     "value": "TotalWeight.*body"
   },
   {
-    "key": "details.weight.unitText",
-    "value": "TotalWeight.@uom"
+    "key": "PickupName",
+    "value": "brokerName"
   },
   {
-    "key": "events.5.timestamp",
+    "key": "PickedupDate",
     "value": "shipmentDate"
   },
   {
-    "key": "events[].timestamp",
-    "value": "Timestamp[].TimestampDateTime"
-  },
-  {
-    "key": "events[].status",
-    "value": "Timestamp[].TimestampDescription"
-  },
-  {
-    "key": "events[].statusCode",
-    "value": "Timestamp[].TimestampCode"
-  },
-  {
-    "key": "events[].location.address.addressLocality",
-    "value": "Timestamp[].TimestampLocation"
-  },
-  {
-    "key": "events.0.location.address.addressLocality",
-    "value": "Timestamp[0].TimestampLocation"
-  },
-  {
-    "key": "events.0.statusCode",
-    "value": "Timestamp[0].TimestampCode"
-  },
-  {
-    "key": "events.0.status",
-    "value": "Timestamp[0].TimestampDescription"
-  },
-  {
-    "key": "events.1.location.address.addressLocality",
-    "value": "Timestamp[1].TimestampLocation"
-  },
-  {
-    "key": "events.1.statusCode",
-    "value": "Timestamp[1].TimestampCode"
-  },
-  {
-    "key": "events.1.status",
-    "value": "Timestamp[1].TimestampDescription"
-  },
-  {
-    "key": "events.2.status",
-    "value": "Timestamp[2].TimestampDescription"
-  },
-  {
-    "key": "events.3.status",
-    "value": "Timestamp[3].TimestampDescription"
-  },
-  {
-    "key": "events.4.status",
-    "value": "Timestamp[4].TimestampDescription"
-  },
-  {
-    "key": "events.5.statusCode",
-    "value": "Timestamp[5].TimestampCode"
-  },
-  {
-    "key": "events.5.status",
-    "value": "Timestamp[5].TimestampDescription"
-  },
-  {
-    "key": "events.6.status",
-    "value": "Timestamp[6].TimestampDescription"
-  },
-  {
-    "key": "events.7.status",
-    "value": "Timestamp[7].TimestampDescription"
+    "key": "PickupDate",
+    "value": "pickupDate"
   }
 ]
