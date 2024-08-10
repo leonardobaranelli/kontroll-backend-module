@@ -76,7 +76,9 @@ export function formatShipmentData(
   return formattedShipment;
 }
 
-export function removeSpecificNullFields(obj: Partial<IShipmentContent>): IShipmentContent {
+export function removeSpecificNullFields(
+  obj: Partial<IShipmentContent>,
+): IShipmentContent {
   const optionalFields: Array<keyof IShipmentContent> = [
     'brokerName',
     'incoterms',

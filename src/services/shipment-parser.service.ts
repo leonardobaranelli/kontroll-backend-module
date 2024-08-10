@@ -5,6 +5,7 @@ import ShipmentController from '../controllers/shipment.controller';
 import { Request, Response } from 'express';
 import { parseShipmentData } from '../core/shipment-parser/parser';
 import { parseShipmentWithMemory } from '../core/shipment-parser/memory-parser';
+import { getShipmentsCollection } from '../config/database/firestore/firestore.config';
 
 export default class ShipmentParserService {
   private static memoryShipments: IShipmentContent[] = [];
@@ -38,7 +39,9 @@ export default class ShipmentParserService {
         throw new Error('Failed to parse shipment');
       }
 
-      return this.convertToIShipment(result.data, carrier);
+      const shipment = this.convertToIShipment(result.data, carrier);
+      this.memoryShipments.push(result.data);
+      return shipment;
     } catch (error: any) {
       console.error('Error in parseShipmentEntry:', error);
       throw new Error(`Failed to parse shipment entry: ${error.message}`);
@@ -140,6 +143,35 @@ export default class ShipmentParserService {
         message: `No shipment found with HousebillNumber: ${housebillNumber}`,
       };
       throw error;
+    }
+    return shipment;
+  }
+  public static async saveParsedShipment(
+    carrierId: string,
+    housebillNumber: string,
+  ): Promise<IShipmentContent | null> {
+    console.log('memoryShipments:', this.memoryShipments);
+    const shipment = this.memoryShipments.find(
+      (s) => s.HousebillNumber === housebillNumber,
+    );
+    if (!shipment) {
+      const error: Error = {
+        name: 'NotFoundError',
+        message: `No shipment found with HousebillNumber: ${housebillNumber}`,
+      };
+      throw error;
+    }
+    try {
+      const shipmentsCollection = getShipmentsCollection();
+      const newShipment = {
+        id: shipment.HousebillNumber,
+        carrierId: carrierId,
+        shipmentContent: shipment,
+      };
+      await shipmentsCollection.add(newShipment);
+      console.log('Shipment successfully saved to database');
+    } catch (error) {
+      console.log('Error saving shipment to database:', error);
     }
     return shipment;
   }

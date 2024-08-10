@@ -21,5 +21,9 @@ router.get(
   '/memory-parse/:carrier/:trackingId',
   ShipmentParserController.parseShipmentWithMemory,
 );
-
+//Guarda shipments ya parseados en la base de datos
+router.get(
+  '/save/:carrierId/:housebillNumber',
+  ShipmentParserController.saveParsedShipment,
+);
 export default router;
