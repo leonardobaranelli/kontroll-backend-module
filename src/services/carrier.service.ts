@@ -10,7 +10,7 @@ import { ICarrierPublic, IError } from '../utils/types/utilities.interface';
 import areAllRequirementsCaptured from '../core/carriers/create-by-steps/known/are-all-requirements-captured';
 import performQueries from '../core/carriers/create-by-steps/known/perform-queries';
 import _performQueries from '../core/carriers/create-by-steps/new/manual/perform-queries';
-//import isGetShipmentEndpoint from '../core/carriers/create-by-steps/new/manual/is-get-shipment-endpoint';
+import isGetShipmentEndpoint from '../core/carriers/create-by-steps/new/manual/is-get-shipment-endpoint';
 
 import docNotFoundResponse from './helpers/carrier/dev/doc-not-found-response.helper';
 import completeProcessResponse from './helpers/carrier/complete-process-response.helper';
@@ -88,17 +88,20 @@ export default class CarrierService {
       const state = await this.getState(sessionID);
 
       if (state.userInputs && state.userInputs.length > 0) {
-        const firstUserInput = state.userInputs[0];
+        const lastUserInput = state.userInputs[state.userInputs.length - 1];
 
-        if (firstUserInput.endpoints && firstUserInput.endpoints.length > 0) {
-          const axiosResponse = await _performQueries(
-            firstUserInput.endpoints[0],
-            true,
-          );
-          await this._completeProcess(sessionID, state);
+        if (lastUserInput.endpoints && lastUserInput.endpoints.length > 0) {
+          const lastEndpoint =
+            lastUserInput.endpoints[lastUserInput.endpoints.length - 1];
+          const axiosResponse = await _performQueries(lastEndpoint, true);
+
+          if (isGetShipmentEndpoint(shipmentId, lastEndpoint)) {
+            await this._completeProcess(sessionID, state);
+            return completeProcessResponse(state.name, axiosResponse);
+          }
           return completeProcessResponse(state.name, axiosResponse);
         } else {
-          throw new Error('No endpoints available in the first user input.');
+          throw new Error('No endpoints available in the last user input.');
         }
       } else {
         throw new Error('User inputs are not initialized or empty.');
