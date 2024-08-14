@@ -1,50 +1,322 @@
 [
   {
-    "key": "ShipmentId",
+    "key": "HousebillNumber",
     "value": "HousebillNumber"
   },
   {
-    "key": "PickupZip",
+    "key": "Origin.LocationCode",
     "value": "Origin.LocationCode"
   },
   {
-    "key": "PickupPlace",
+    "key": "Origin.LocationName",
     "value": "Origin.LocationName"
   },
   {
-    "key": "RecipientZip",
+    "key": "Origin.CountryCode",
+    "value": "Origin.CountryCode"
+  },
+  {
+    "key": "Destination.LocationCode",
     "value": "Destination.LocationCode"
   },
   {
-    "key": "RecipientPlace",
+    "key": "Destination.LocationName",
     "value": "Destination.LocationName"
   },
   {
-    "key": "PickupTimeFrom",
+    "key": "Destination.CountryCode",
+    "value": "Destination.CountryCode"
+  },
+  {
+    "key": "LastEvent.TimestampDateTime",
     "value": "DateAndTimes.ScheduledDeparture"
   },
   {
-    "key": "PickedupDate",
+    "key": "Routes.Route[0].EstimatedArrivalDate",
+    "value": "DateAndTimes.ScheduledArrival"
+  },
+  {
+    "key": "LastEvent.TimestampDateTime",
     "value": "DateAndTimes.ShipmentDate"
   },
   {
-    "key": "Parcels",
+    "key": "ProductType",
+    "value": "ProductType"
+  },
+  {
+    "key": "TotalPackages",
     "value": "TotalPackages"
   },
   {
-    "key": "Weight",
+    "key": "TotalWeight.*body",
     "value": "TotalWeight.*body"
   },
   {
-    "key": "PickupName",
+    "key": "TotalWeight.@uom",
+    "value": "TotalWeight.@uom"
+  },
+  {
+    "key": "TotalVolume.*body",
+    "value": "TotalVolume.*body"
+  },
+  {
+    "key": "TotalVolume.@uom",
+    "value": "TotalVolume.@uom"
+  },
+  {
+    "key": "Masterbills.Masterbill[0].Carrier.Name",
     "value": "brokerName"
   },
   {
-    "key": "PickedupDate",
+    "key": "Routes.Route.0.EstimatedDepartureDate",
     "value": "shipmentDate"
   },
   {
-    "key": "PickupDate",
-    "value": "pickupDate"
+    "key": "Masterbills.Masterbill[0].BookingReference",
+    "value": "booking"
+  },
+  {
+    "key": "Masterbills.Masterbill[0].MasterbillNumber",
+    "value": "mawb"
+  },
+  {
+    "key": "Routes.Route[0].VoyageFlightNumber",
+    "value": "flight"
+  },
+  {
+    "key": "Routes.Route[0].EstimatedDepartureDate",
+    "value": "etd"
+  },
+  {
+    "key": "Routes.Route[0].EstimatedArrivalDate",
+    "value": "eta"
+  },
+  {
+    "key": "Routes.Route[0].VesselName",
+    "value": "vessel"
+  },
+  {
+    "key": "Routes.Route[0].PortOfLoading.LocationName",
+    "value": "portOfLoading"
+  },
+  {
+    "key": "Masterbills.Masterbill[0].MasterbillNumber",
+    "value": "mbl"
+  },
+  {
+    "key": "HousebillNumber",
+    "value": "hbl"
+  },
+  {
+    "key": "Routes.Route[0].PortOfUnloading.LocationName",
+    "value": "portOfUnloading"
+  },
+  {
+    "key": "Destination.LocationName",
+    "value": "finalDestination"
+  },
+  {
+    "key": "Masterbills.Masterbill[0].Carrier.Name",
+    "value": "internationalCarrier"
+  },
+  {
+    "key": "Routes.Route[0].VoyageFlightNumber",
+    "value": "voyage"
+  },
+  {
+    "key": "Routes.Route[0].PlaceOfAcceptance.LocationName",
+    "value": "portOfReceipt"
+  },
+  {
+    "key": "GoodsDescription",
+    "value": "goodsDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp",
+    "value": "Timestamp"
+  },
+  {
+    "key": "Timestamps.Timestamp[].TimestampCode",
+    "value": "Timestamp[].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp[].TimestampDescription",
+    "value": "Timestamp[].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp[].TimestampDateTime",
+    "value": "Timestamp[].TimestampDateTime"
+  },
+  {
+    "key": "Timestamps.Timestamp[].LocationName",
+    "value": "Timestamp[].TimestampLocation"
+  },
+  {
+    "key": "TransportUnits.TransportUnit",
+    "value": "containers"
+  },
+  {
+    "key": "TransportUnits.TransportUnit[].TransportUnitID",
+    "value": "containers[].TransportUnitID"
+  },
+  {
+    "key": "TransportUnits.TransportUnit[].TransportUnitType",
+    "value": "containers[].TransportUnitType"
+  },
+  {
+    "key": "Routes.Route.0.PortOfLoading.LocationName",
+    "value": "Timestamp[11].TimestampLocation"
+  },
+  {
+    "key": "Routes.Route.0.PlaceOfAcceptance.LocationName",
+    "value": "Timestamp[3].TimestampLocation"
+  },
+  {
+    "key": "Routes.Route.0.PortOfUnloading.LocationName",
+    "value": "Timestamp[14].TimestampLocation"
+  },
+  {
+    "key": "Timestamps.Timestamp.0.TimestampCode",
+    "value": "Timestamp[0].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.0.TimestampDescription",
+    "value": "Timestamp[0].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.0.LocationName",
+    "value": "Timestamp[0].TimestampLocation"
+  },
+  {
+    "key": "Timestamps.Timestamp.1.TimestampCode",
+    "value": "Timestamp[1].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.1.TimestampDescription",
+    "value": "Timestamp[1].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.2.TimestampCode",
+    "value": "Timestamp[2].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.2.TimestampDescription",
+    "value": "Timestamp[2].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.3.TimestampCode",
+    "value": "Timestamp[3].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.3.TimestampDescription",
+    "value": "Timestamp[3].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.4.TimestampCode",
+    "value": "Timestamp[4].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.4.TimestampDescription",
+    "value": "Timestamp[4].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.5.TimestampCode",
+    "value": "Timestamp[5].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.5.TimestampDescription",
+    "value": "Timestamp[5].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.6.TimestampCode",
+    "value": "Timestamp[6].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.6.TimestampDescription",
+    "value": "Timestamp[6].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.7.TimestampCode",
+    "value": "Timestamp[7].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.7.TimestampDescription",
+    "value": "Timestamp[7].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.8.TimestampCode",
+    "value": "Timestamp[8].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.8.TimestampDescription",
+    "value": "Timestamp[8].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.8.LocationName",
+    "value": "Timestamp[8].TimestampLocation"
+  },
+  {
+    "key": "Timestamps.Timestamp.9.TimestampCode",
+    "value": "Timestamp[9].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.9.TimestampDescription",
+    "value": "Timestamp[9].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.10.TimestampCode",
+    "value": "Timestamp[10].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.10.TimestampDescription",
+    "value": "Timestamp[10].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.11.TimestampCode",
+    "value": "Timestamp[11].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.11.TimestampDescription",
+    "value": "Timestamp[11].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.12.TimestampCode",
+    "value": "Timestamp[12].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.12.TimestampDescription",
+    "value": "Timestamp[12].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.13.TimestampCode",
+    "value": "Timestamp[13].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.13.TimestampDescription",
+    "value": "Timestamp[13].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.14.TimestampCode",
+    "value": "Timestamp[14].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.14.TimestampDescription",
+    "value": "Timestamp[14].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.15.TimestampCode",
+    "value": "Timestamp[15].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.15.TimestampDescription",
+    "value": "Timestamp[15].TimestampDescription"
+  },
+  {
+    "key": "Timestamps.Timestamp.16.TimestampCode",
+    "value": "Timestamp[16].TimestampCode"
+  },
+  {
+    "key": "Timestamps.Timestamp.16.TimestampDescription",
+    "value": "Timestamp[16].TimestampDescription"
   }
 ]

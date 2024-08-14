@@ -65,9 +65,13 @@ export const verifyKnownStepRequest = (
   }
 
   try {
-    const carrierNameLowerCase = data.name.toLowerCase();
+    const carrierNameLowerCaseAndUndescore = data.name
+      .toLowerCase()
+      .replace(/\s+/g, '_');
     const carrier = integrated.find(
-      (carrier) => carrier.name.toLowerCase() === carrierNameLowerCase,
+      (carrier) =>
+        carrier.name.toLowerCase().replace(/\s+/g, '_') ===
+        carrierNameLowerCaseAndUndescore,
     );
     if (!carrier) {
       throw new Error(`Carrier ${data.name} is not registered`);
