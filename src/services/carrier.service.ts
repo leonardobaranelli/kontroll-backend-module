@@ -14,6 +14,7 @@ import isGetShipmentEndpoint from '../core/carriers/create-by-steps/new/manual/i
 
 import docNotFoundResponse from './helpers/carrier/dev/doc-not-found-response.helper';
 import completeProcessResponse from './helpers/carrier/complete-process-response.helper';
+import ShipmentParserService from './shipment-parser.service';
 
 export default class CarrierService {
   private static stateStore: { [sessionID: string]: any } = {};
@@ -211,6 +212,15 @@ export default class CarrierService {
       ) {
         const axiosResponse = await performQueries(state, true);
         await this.completeProcess(sessionID, state);
+        await ShipmentParserService.parseShipmentEntry(
+          data.name,
+          data.shipmentID,
+        ),
+          await ShipmentParserService.saveParsedShipment(
+            data.name,
+            data.shipmentID,
+          );
+
         return completeProcessResponse(state.name, axiosResponse);
       }
 

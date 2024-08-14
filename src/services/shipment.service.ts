@@ -13,6 +13,7 @@ export default class ShipmentService {
   private static getIdFieldForCarrier(carrier: string): string {
     const carrierIdFields: { [key: string]: string } = {
       dhl: 'id',
+      dhl_global_forwarding: 'HousebillNumber',
       fedex: 'trackingNumber',
       kandn: 'shipmentNumber',
       sch: 'ShipmentId',
@@ -25,6 +26,7 @@ export default class ShipmentService {
     try {
       const shipmentCollections = [
         'shipments_dhl',
+        'shipments_dhl_global_forwarding',
         'shipments_fedex',
         'shipments_kandn',
         'shipments_sch',
