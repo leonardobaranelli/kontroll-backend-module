@@ -44,18 +44,35 @@ export default class CarrierService {
     state: any,
   ): Promise<void> {
     try {
-      const carriersCollection = getCarriersCollection();
-      const cleanedState = cleanData({
+      if (!state.userInputs || state.userInputs.length === 0) {
+        throw new Error('No user inputs found in the session state.');
+      }
+
+      const lastUserInput = state.userInputs[state.userInputs.length - 1];
+      if (!lastUserInput || typeof lastUserInput !== 'object') {
+        throw new Error('Invalid last user input.');
+      }
+
+      const { name, endpoints } = lastUserInput;
+      if (!name || !endpoints || !Array.isArray(endpoints)) {
+        throw new Error('Invalid name or endpoints in the last user input.');
+      }
+
+      const cleanedData = cleanData({
         userId: 'admin',
-        name: state.name,
-        shipmentId: state.shipmentId,
-        endpoints: state.endpoints,
+        name: name,
+        endpoints: endpoints,
       });
-      await carriersCollection.add(cleanedState);
+
+      const carriersCollection = getCarriersCollection();
+      await carriersCollection.add(cleanedData);
+
       delete this.stateStore[sessionID];
-    } catch (error) {
-      console.error('Error in completeProcess:', error);
-      throw new Error(`Failed to complete carrier creation process: ${error}`);
+    } catch (error: any) {
+      console.error('Error in endProcess:', error);
+      throw new Error(
+        `Failed to complete carrier creation process: ${error.message}`,
+      );
     }
   }
 
@@ -69,7 +86,16 @@ export default class CarrierService {
     if (!state.userInputs) {
       state.userInputs = [];
     }
-    state.userInputs.push({ name, shipmentId, endpoint });
+
+    let endpoints: object[] = [];
+    if (state.userInputs.length > 0) {
+      const lastUserInput = state.userInputs[state.userInputs.length - 1];
+      endpoints = lastUserInput.endpoints ? [...lastUserInput.endpoints] : [];
+    }
+
+    endpoints.push(endpoint);
+    state.userInputs.push({ name, shipmentId, endpoints });
+
     console.log(
       `User input for session ${sessionID}:`.magenta,
       state.userInputs,
@@ -101,8 +127,9 @@ export default class CarrierService {
       if (state.userInputs && state.userInputs.length > 0) {
         const lastUserInput = state.userInputs[state.userInputs.length - 1];
 
-        if (lastUserInput.endpoint) {
-          const lastEndpoint = lastUserInput.endpoint;
+        if (lastUserInput.endpoints && lastUserInput.endpoints.length > 0) {
+          const lastEndpoint =
+            lastUserInput.endpoints[lastUserInput.endpoints.length - 1];
           let _success = false;
           const [axiosResponse, status] = await _performQueries(
             lastEndpoint,
