@@ -5,33 +5,29 @@ export const verifyEndpointRequest = (
   res: Response,
   next: NextFunction,
 ): void => {
-  const { name, shipmentId, endpoints } = req.body as {
+  const { name, shipmentId, endpoint } = req.body as {
     name: string;
     shipmentId: string;
-    endpoints: Array<object>;
+    endpoint: object;
   };
 
   try {
-    validate(name, shipmentId, endpoints);
+    validate(name, shipmentId, endpoint);
     next();
   } catch (error: any) {
     res.status(400).json({ error: error.message });
   }
 };
 
-function validate(
-  name: string,
-  shipmentId: string,
-  endpoints: Array<object>,
-): void {
+function validate(name: string, shipmentId: string, endpoint: object): void {
   if (!name) {
     throw new Error('Name of your carrier is required');
   }
   if (!shipmentId) {
     throw new Error('Shipment ID is required');
   }
-  if (!endpoints) {
-    throw new Error('At leaste one endpoint is required');
+  if (!endpoint) {
+    throw new Error('The endpoint is required');
   }
   if (typeof name !== 'string') {
     throw new Error('Name must be a string');

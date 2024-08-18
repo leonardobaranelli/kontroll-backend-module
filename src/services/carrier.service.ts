@@ -6,14 +6,16 @@ import {
 import { loadCarrierData } from '../core/carriers/create-by-steps/new/dev-get-req-via-doc/load-carrier-data';
 import { loadKnownCarrierData } from '../core/carriers/create-by-steps/known/load-carrier-data';
 import { ICarrierPublic, IError } from '../utils/types/utilities.interface';
+import completeProcessResponse from './helpers/carrier/complete-process-response.helper';
 
 import areAllRequirementsCaptured from '../core/carriers/create-by-steps/known/are-all-requirements-captured';
 import performQueries from '../core/carriers/create-by-steps/known/perform-queries';
 import _performQueries from '../core/carriers/create-by-steps/new/manual/perform-queries';
 import isGetShipmentEndpoint from '../core/carriers/create-by-steps/new/manual/is-get-shipment-endpoint';
 
-import docNotFoundResponse from './helpers/carrier/dev/doc-not-found-response.helper';
-import completeProcessResponse from './helpers/carrier/complete-process-response.helper';
+import docNotFoundResponse from './helpers/carrier/new/dev/doc-not-found-response.helper';
+import endProcessResponse from './helpers/carrier/new/manual/end-process-response.helper';
+import continueProcessResponse from './helpers/carrier/new/manual/continue-process-response.helper';
 import ShipmentParserService from './shipment-parser.service';
 
 export default class CarrierService {
@@ -37,39 +39,65 @@ export default class CarrierService {
     }
   }
 
-  private static async _completeProcess(
+  private static async endProcess(
     sessionID: string,
     state: any,
   ): Promise<void> {
     try {
-      const carriersCollection = getCarriersCollection();
-      const cleanedState = cleanData({
+      if (!state.userInputs || state.userInputs.length === 0) {
+        throw new Error('No user inputs found in the session state.');
+      }
+
+      const lastUserInput = state.userInputs[state.userInputs.length - 1];
+      if (!lastUserInput || typeof lastUserInput !== 'object') {
+        throw new Error('Invalid last user input.');
+      }
+
+      const { name, endpoints } = lastUserInput;
+      if (!name || !endpoints || !Array.isArray(endpoints)) {
+        throw new Error('Invalid name or endpoints in the last user input.');
+      }
+
+      const cleanedData = cleanData({
         userId: 'admin',
-        name: state.name,
-        shipmentId: state.shipmentId,
-        endpoints: state.endpoints,
+        name: name,
+        endpoints: endpoints,
       });
-      await carriersCollection.add(cleanedState);
+
+      const carriersCollection = getCarriersCollection();
+      await carriersCollection.add(cleanedData);
+
       delete this.stateStore[sessionID];
-    } catch (error) {
-      console.error('Error in completeProcess:', error);
-      throw new Error(`Failed to complete carrier creation process: ${error}`);
+    } catch (error: any) {
+      console.error('Error in endProcess:', error);
+      throw new Error(
+        `Failed to complete carrier creation process: ${error.message}`,
+      );
     }
   }
 
   private static _captureUserInput(
     name: string,
     shipmentId: string,
-    endpoints: Array<object>,
+    endpoint: object,
     sessionID: string,
   ) {
     const state = this.getState(sessionID);
     if (!state.userInputs) {
       state.userInputs = [];
     }
+
+    let endpoints: object[] = [];
+    if (state.userInputs.length > 0) {
+      const lastUserInput = state.userInputs[state.userInputs.length - 1];
+      endpoints = lastUserInput.endpoints ? [...lastUserInput.endpoints] : [];
+    }
+
+    endpoints.push(endpoint);
     state.userInputs.push({ name, shipmentId, endpoints });
+
     console.log(
-      `User input for session ${sessionID}:`.yellow,
+      `User input for session ${sessionID}:`.magenta,
       state.userInputs,
     );
 
@@ -78,29 +106,57 @@ export default class CarrierService {
     });
   }
 
+  public static async endSession(sessionID: string): Promise<void> {
+    try {
+      delete this.stateStore[sessionID];
+    } catch (error) {
+      console.error('Failed to end session:', error);
+      throw new Error(`Failed to end session: ${error}`);
+    }
+  }
+
   public static async createNew(
     name: string,
     shipmentId: string,
-    endpoints: Array<object>,
+    endpoint: object,
     sessionID: string,
   ): Promise<any> {
     try {
-      this._captureUserInput(name, shipmentId, endpoints, sessionID);
+      this._captureUserInput(name, shipmentId, endpoint, sessionID);
       const state = await this.getState(sessionID);
-
       if (state.userInputs && state.userInputs.length > 0) {
         const lastUserInput = state.userInputs[state.userInputs.length - 1];
 
         if (lastUserInput.endpoints && lastUserInput.endpoints.length > 0) {
           const lastEndpoint =
             lastUserInput.endpoints[lastUserInput.endpoints.length - 1];
-          const axiosResponse = await _performQueries(lastEndpoint, true);
+          let _success = false;
+          const [axiosResponse, status] = await _performQueries(
+            lastEndpoint,
+            true,
+          );
 
-          if (isGetShipmentEndpoint(shipmentId, lastEndpoint)) {
-            await this._completeProcess(sessionID, state);
-            return completeProcessResponse(state.name, axiosResponse);
+          if (axiosResponse && status >= 200 && status < 300) {
+            _success = true;
           }
-          return completeProcessResponse(state.name, axiosResponse);
+
+          let _isGetShipmentEndpoint = false;
+          if (isGetShipmentEndpoint(shipmentId, lastEndpoint)) {
+            _isGetShipmentEndpoint = true;
+            await this.endProcess(sessionID, state);
+            return endProcessResponse(
+              state.name,
+              _isGetShipmentEndpoint,
+              _success,
+              axiosResponse,
+            );
+          }
+
+          return continueProcessResponse(
+            _isGetShipmentEndpoint,
+            _success,
+            axiosResponse,
+          );
         } else {
           throw new Error('No endpoints available in the last user input.');
         }
@@ -116,7 +172,7 @@ export default class CarrierService {
     }
   }
 
-  //! #####################
+  //* #####################
 
   private static async updateState(
     sessionID: string,
@@ -221,13 +277,13 @@ export default class CarrierService {
             data.shipmentID,
           );
 
-        return completeProcessResponse(state.name, axiosResponse);
+        return completeProcessResponse(null, axiosResponse);
       }
 
       if (step.next === 'complete') {
         const axiosResponse = await performQueries(state, true);
         await this.completeProcess(sessionID, state);
-        return completeProcessResponse(state.name, axiosResponse);
+        return completeProcessResponse(null, axiosResponse);
       } else {
         await this.updateState(sessionID, step.next, state);
         return {
