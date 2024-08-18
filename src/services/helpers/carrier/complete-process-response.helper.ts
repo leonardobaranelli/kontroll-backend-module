@@ -1,6 +1,6 @@
-export default (name: string, carrierResponse: any = null) => {
+export default (_name: string | null = null, carrierResponse: any = null) => {
   return {
-    message: `Process completed successfully! Carrier ${name} created.`,
+    //message: `Process completed successfully! Carrier ${name} created.`,
     nextStep: '',
     stepsDetails: {
       step: 'complete',

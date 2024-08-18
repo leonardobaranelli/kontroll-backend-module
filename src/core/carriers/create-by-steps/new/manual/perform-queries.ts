@@ -134,8 +134,12 @@ export default async (endpoint: any, query: boolean): Promise<any> => {
   }
   try {
     const response = await axios(options);
-    return response.data;
-  } catch (error) {
-    return { error };
+    return [response.data, response.status];
+  } catch (error: any) {
+    if (error.response) {
+      return [error.response.data, error.response.status, error.message];
+    } else {
+      return ['Unknown error', 500, error.message];
+    }
   }
 };
