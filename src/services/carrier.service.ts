@@ -94,13 +94,13 @@ export default class CarrierService {
         if (lastUserInput.endpoints && lastUserInput.endpoints.length > 0) {
           const lastEndpoint =
             lastUserInput.endpoints[lastUserInput.endpoints.length - 1];
-          const axiosResponse = await _performQueries(lastEndpoint, true);
 
+          const response = await _performQueries(lastEndpoint, true);
           if (isGetShipmentEndpoint(shipmentId, lastEndpoint)) {
             await this._completeProcess(sessionID, state);
-            return completeProcessResponse(state.name, axiosResponse);
+            return completeProcessResponse(state.name, response);
           }
-          return completeProcessResponse(state.name, axiosResponse);
+          return completeProcessResponse(state.name, response);
         } else {
           throw new Error('No endpoints available in the last user input.');
         }

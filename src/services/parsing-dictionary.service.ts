@@ -10,7 +10,7 @@ export default class ParsingDictionaryService {
     try {
       const snapshot = await this.collection.get();
       return snapshot.docs.map(
-        (doc) => ({ id: doc.id, ...doc.data() }) as IParsingDictionary,
+        (doc) => ({ id: doc.id, ...doc.data() } as IParsingDictionary),
       );
     } catch (error) {
       console.error('Error getting all parsing dictionaries:', error);
@@ -88,7 +88,8 @@ export default class ParsingDictionaryService {
       const newDoc = await docRef.get();
       const newParsingDictionary = {
         id: newDoc.id,
-        ...newDoc.data(),
+        carrier: data.carrier,
+        dictionary: dictionaryArray,
       } as IParsingDictionary;
       console.log(
         'New ParsingDictionary created successfully:',
@@ -100,7 +101,6 @@ export default class ParsingDictionaryService {
       throw error;
     }
   }
-
   public static async updateParsingDictionary(
     id: string,
     data: Partial<Omit<IParsingDictionary, 'id'>>,

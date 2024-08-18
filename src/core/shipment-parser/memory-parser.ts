@@ -4,45 +4,42 @@ import {
   ShipmentInput,
 } from '../../utils/types/utilities.interface';
 import { IShipmentContent } from '../../utils/types/models.interface';
-import {
-  formatShipmentData,
-  getValueByPath,
-  setValueByPath,
-  findScheduledDates,
-  ensureRequiredFields,
-} from './utils/formattingUtils';
+import { formatShipmentData } from './utils/formattingUtils';
+import { createLogger, LogLevel } from './utils/loggingUtils';
+import { validateParsedShipmentContent } from './validator/shipment-content.validator';
 
-interface MappingDictionary {
-  [key: string]: string;
+const Logger = createLogger('MemoryParser');
+class ParsingError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'ParsingError';
+  }
 }
 
 export async function getMappingDictionaryByCarrier(
   carrier: string,
-): Promise<MappingDictionary> {
-  console.log(`Fetching mapping dictionary for carrier: ${carrier}`);
+): Promise<Array<{ key: string; value: string }>> {
+  Logger.info(`Fetching mapping dictionary for carrier: ${carrier}`);
 
   try {
     const parsingDictionary =
       await ParsingDictionaryService.getParsingDictionaryByCarrier(carrier);
 
     if (!parsingDictionary || !parsingDictionary.dictionary) {
-      throw new Error(`Mapping dictionary for carrier ${carrier} not found`);
+      throw new ParsingError(
+        `Mapping dictionary for carrier ${carrier} not found`,
+      );
     }
 
-    console.log(
+    Logger.debug(
       `Mapping dictionary fetched: ${JSON.stringify(
         parsingDictionary.dictionary,
       )}`,
     );
-    return Object.fromEntries(
-      parsingDictionary.dictionary.map(
-        (item: { key: string; value: string }) => [item.key, item.value],
-      ),
-    );
+    return parsingDictionary.dictionary;
   } catch (error) {
-    console.error(
-      `Error fetching mapping dictionary for carrier ${carrier}:`,
-      error,
+    Logger.error(
+      `Error fetching mapping dictionary for carrier ${carrier}: ${error}`,
     );
     throw error;
   }
@@ -52,81 +49,255 @@ async function parseShipmentWithMapping(
   inputJson: ShipmentInput,
   carrier: string,
 ): Promise<IShipmentContent> {
-  console.log('Starting parseShipmentWithMapping');
+  Logger.info('Starting parseShipmentWithMapping');
   const mappingDictionary = await getMappingDictionaryByCarrier(carrier);
   const parsedData: Partial<IShipmentContent> = {};
 
-  console.log('Input JSON:', JSON.stringify(inputJson, null, 2));
-  console.log(
-    'Mapping Dictionary:',
-    JSON.stringify(mappingDictionary, null, 2),
-  );
+  Logger.debug(`Input JSON: ${JSON.stringify(inputJson)}`);
+  Logger.debug(`Mapping Dictionary: ${JSON.stringify(mappingDictionary)}`);
 
-  for (const [inputPath, outputPath] of Object.entries(mappingDictionary)) {
+  for (const { value: inputPath, key: outputPath } of mappingDictionary) {
+    if (!inputPath) continue;
+
     const value = getValueByPath(inputJson, inputPath);
-    console.log(`Mapping ${inputPath} to ${outputPath}. Value:`, value);
+    Logger.debug(
+      `Mapping ${inputPath} to ${outputPath}. Value: ${JSON.stringify(value)}`,
+    );
 
-    if (outputPath.startsWith('Timestamp')) {
-      // Handle Timestamp field specially
-      if (!parsedData.Timestamp) parsedData.Timestamp = [];
-      if (Array.isArray(value)) {
-        parsedData.Timestamp.push(
-          ...value.map((item: any) => ({
-            TimestampCode: item.statusCode || null,
-            TimestampDescription: item.status || null,
-            TimestampDateTime: item.timestamp || null,
-            TimestampLocation: item.location?.address?.addressLocality || null,
-          })),
-        );
-      } else if (value) {
-        parsedData.Timestamp.push({
-          TimestampCode: value.statusCode || null,
-          TimestampDescription: value.status || null,
-          TimestampDateTime: value.timestamp || null,
-          TimestampLocation: value.location?.address?.addressLocality || null,
-        });
-      }
-    } else if (value !== undefined) {
-      setValueByPath(parsedData, outputPath, value);
+    if (value !== undefined) {
+      setValueByPath(parsedData, outputPath, value, true);
     }
   }
 
-  console.log('Parsed Data:', JSON.stringify(parsedData, null, 2));
+  ensureRequiredFields(parsedData, inputJson);
+  handleOptionalFields(parsedData, inputJson);
 
-  // Ensure all required fields are present and properly formatted
-  const shipment = ensureRequiredFields(parsedData, inputJson);
+  Logger.debug(`Parsed Data: ${JSON.stringify(parsedData)}`);
 
-  console.log('Final shipment object:', JSON.stringify(shipment, null, 2));
+  return parsedData as IShipmentContent;
+}
 
-  // Try to find ScheduledDeparture and ShipmentDate from Timestamp if not already set
-  findScheduledDates(shipment);
+function setValueByPath(
+  obj: any,
+  path: string,
+  value: any,
+  caseInsensitive = false,
+) {
+  const parts = path.split('.');
+  let current = obj;
+  for (let i = 0; i < parts.length - 1; i++) {
+    const part = parts[i];
+    if (caseInsensitive) {
+      const key = Object.keys(current).find(
+        (k) => k.toLowerCase() === part.toLowerCase(),
+      );
+      if (!key) {
+        current[part] = {};
+        current = current[part];
+      } else {
+        current = current[key];
+      }
+    } else {
+      if (!current[part]) current[part] = {};
+      current = current[part];
+    }
+  }
+  const lastPart = parts[parts.length - 1];
+  if (caseInsensitive) {
+    const key = Object.keys(current).find(
+      (k) => k.toLowerCase() === lastPart.toLowerCase(),
+    );
+    if (key) {
+      current[key] = value;
+    } else {
+      current[lastPart] = value;
+    }
+  } else {
+    current[lastPart] = value;
+  }
+}
 
-  return shipment;
+function getValueByPath(obj: any, path: string): any {
+  const parts = path.split('.');
+  let current = obj;
+  for (const part of parts) {
+    if (current === null || current === undefined) return undefined;
+    const key = Object.keys(current).find(
+      (k) => k.toLowerCase() === part.toLowerCase(),
+    );
+    if (key === undefined) return undefined;
+    current = current[key];
+  }
+  return current;
+}
+
+function handleOptionalFields(
+  parsedData: Partial<IShipmentContent>,
+  inputJson: ShipmentInput,
+) {
+  const optionalFields = [
+    'brokerName',
+    'incoterms',
+    'booking',
+    'etd',
+    'atd',
+    'eta',
+    'vessel',
+    'portOfLoading',
+    'mbl',
+    'hbl',
+    'pickupDate',
+    'containerNumber',
+    'portOfUnloading',
+    'finalDestination',
+    'internationalCarrier',
+    'voyage',
+    'portOfReceipt',
+    'goodsDescription',
+    'containers',
+  ];
+
+  optionalFields.forEach((field) => {
+    const key = Object.keys(inputJson).find(
+      (k) => k.toLowerCase() === field.toLowerCase(),
+    );
+    if (key && inputJson[key] !== undefined) {
+      setValueByPath(parsedData, field, inputJson[key], true);
+    }
+  });
+
+  // Ensure HousebillNumber is set
+  if (!parsedData.HousebillNumber) {
+    const hblKey = Object.keys(inputJson).find(
+      (k) => k.toLowerCase() === 'hbl',
+    );
+    const shipmentIdKey = Object.keys(inputJson).find(
+      (k) => k.toLowerCase() === 'shipmentid',
+    );
+    parsedData.HousebillNumber =
+      (hblKey && inputJson[hblKey]) ||
+      (shipmentIdKey && inputJson[shipmentIdKey]) ||
+      '';
+  }
+}
+
+function ensureRequiredFields(
+  parsedData: Partial<IShipmentContent>,
+  inputJson: ShipmentInput,
+) {
+  parsedData.HousebillNumber =
+    parsedData.HousebillNumber || inputJson.hbl || inputJson.ShipmentId || '';
+  // Convert TotalPackages to number
+  if (
+    parsedData.TotalPackages &&
+    typeof parsedData.TotalPackages === 'string'
+  ) {
+    parsedData.TotalPackages = Number(parsedData.TotalPackages);
+  }
+  // Convert TotalWeight and TotalVolume to numbers
+  if (
+    parsedData.TotalWeight &&
+    typeof parsedData.TotalWeight['*body'] === 'string'
+  ) {
+    parsedData.TotalWeight['*body'] = Number(parsedData.TotalWeight['*body']);
+  }
+  if (
+    parsedData.TotalVolume &&
+    typeof parsedData.TotalVolume['*body'] === 'string'
+  ) {
+    parsedData.TotalVolume['*body'] = Number(parsedData.TotalVolume['*body']);
+  }
+  parsedData.Origin = parsedData.Origin || {
+    LocationCode: null,
+    LocationName: null,
+    CountryCode: null,
+  };
+  parsedData.Destination = parsedData.Destination || {
+    LocationCode: null,
+    LocationName: null,
+    CountryCode: null,
+  };
+  parsedData.DateAndTimes = parsedData.DateAndTimes || {
+    ScheduledDeparture: null,
+    ScheduledArrival: null,
+    ShipmentDate: null,
+  };
+  parsedData.ProductType = parsedData.ProductType || inputJson.UnitType || null;
+  parsedData.TotalWeight = parsedData.TotalWeight || {
+    '*body': null,
+    '@uom': 'KG',
+  };
+  parsedData.TotalVolume = parsedData.TotalVolume || {
+    '*body': null,
+    '@uom': null,
+  };
+  parsedData.Timestamp = parsedData.Timestamp || [];
+
+  if (parsedData.Timestamp.length === 0) {
+    parsedData.Timestamp.push({
+      TimestampCode: 'PU',
+      TimestampDescription: 'Shipment picked up from the origin',
+      TimestampDateTime: inputJson.PickedupDate || null,
+      TimestampLocation: inputJson.PickupPlace || null,
+    });
+  }
+}
+
+// Update the ParserResult type
+interface ExtendedParserResult extends ParserResult {
+  validationErrors?: string[];
 }
 
 export async function parseShipmentWithMemory(
   inputJson: ShipmentInput,
   carrier: string,
-): Promise<ParserResult> {
-  console.log('Starting parseShipmentWithMemory');
+): Promise<ExtendedParserResult> {
+  Logger.info('Starting parseShipmentWithMemory');
   try {
     if (Object.keys(inputJson).length === 0) {
-      throw new Error('Input JSON is empty');
+      throw new ParsingError('Input JSON is empty');
     }
     const parsedData = await parseShipmentWithMapping(inputJson, carrier);
     const formattedData = formatShipmentData(parsedData);
 
-    console.log('Formatted Data:', JSON.stringify(formattedData, null, 2));
+    Logger.debug(`Formatted Data: ${JSON.stringify(formattedData)}`);
+
+    // Validate the parsed data against the standard structure
+    const validationResult = validateParsedShipmentContent(formattedData);
+    if (
+      typeof validationResult === 'object' &&
+      !Array.isArray(validationResult)
+    ) {
+      // Validation passed, no errors
+      return {
+        success: true,
+        data: formattedData,
+        validationErrors: [],
+      };
+    } else if (Array.isArray(validationResult) && validationResult.length > 0) {
+      // Validation failed with errors
+      Logger.warn(`Validation failed: ${validationResult.join(', ')}`);
+      return {
+        success: true,
+        data: formattedData,
+        validationErrors: validationResult,
+      };
+    }
 
     return {
       success: true,
       data: formattedData,
+      validationErrors: [],
     };
-  } catch (error: any) {
-    console.error('Error parsing shipment with memory:', error);
+  } catch (error) {
+    Logger.error(`Error parsing shipment with memory: ${error}`);
     return {
       success: false,
-      error: `Error parsing shipment with memory: ${error.message}`,
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+      validationErrors: [],
     };
   }
 }
+
+// Set the log level for the module
+Logger.setLogLevel(LogLevel.INFO);

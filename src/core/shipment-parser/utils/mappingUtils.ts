@@ -22,11 +22,11 @@ export function generateMechanicalMapping(
 ): Array<{ key: string; value: string }> {
   const mechanicalMapping: Array<{ key: string; value: string }> = [];
 
-  // Helper function to compare objects and find matching values
   function compareObjects(
     inputObj: any,
     outputObj: any,
     inputPath: string = '',
+    outputPath: string = '',
   ) {
     for (const [inputKey, inputValue] of Object.entries(inputObj)) {
       const currentInputPath = inputPath
@@ -34,25 +34,35 @@ export function generateMechanicalMapping(
         : inputKey;
 
       if (typeof inputValue === 'object' && inputValue !== null) {
-        // Recursively compare nested objects
-        compareObjects(inputValue, outputObj, currentInputPath);
+        for (const [outputKey, outputValue] of Object.entries(outputObj)) {
+          const currentOutputPath = outputPath
+            ? `${outputPath}.${outputKey}`
+            : outputKey;
+          if (typeof outputValue === 'object' && outputValue !== null) {
+            compareObjects(
+              inputValue,
+              outputValue,
+              currentInputPath,
+              currentOutputPath,
+            );
+          }
+        }
       } else {
-        // Find matching value in the output object
-        const matchingOutputPath = findMatchingValue(outputObj, inputValue);
+        const matchingOutputPath = findMatchingValue(
+          outputObj,
+          inputValue,
+          outputPath,
+        );
         if (matchingOutputPath) {
           mechanicalMapping.push({
             key: currentInputPath,
             value: matchingOutputPath,
           });
-          console.log(
-            `Mapping found: ${currentInputPath} -> ${matchingOutputPath}`,
-          );
         }
       }
     }
   }
 
-  // Helper function to find a matching value in an object
   function findMatchingValue(
     obj: any,
     value: any,
@@ -79,7 +89,6 @@ export function generateMechanicalMapping(
     return null;
   }
 
-  // Start comparing input and output objects
   compareObjects(input, output);
   return mechanicalMapping;
 }
@@ -107,52 +116,56 @@ export function combineMappings(
 export function enhanceMappingDictionary(
   aiMappingDictionary: Array<{ key: string; value: string }>,
   mechanicalMappingDictionary: Array<{ key: string; value: string }>,
+  parsedData: any,
 ): Array<{ key: string; value: string }> {
-  const enhancedMapping: Array<{ key: string; value: string }> = [];
-  const usedDestinations: Set<string> = new Set();
+  const combinedMapping = new Map<string, Set<string>>();
 
-  // Combine AI and mechanical mappings using the new function
-  const combinedMapping = combineMappings(
-    aiMappingDictionary,
-    mechanicalMappingDictionary,
+  // Helper function to add mappings
+  const addMapping = (key: string, value: string) => {
+    if (!combinedMapping.has(key)) {
+      combinedMapping.set(key, new Set());
+    }
+    combinedMapping.get(key)!.add(value);
+  };
+
+  // Add AI mappings
+  for (const { key, value } of aiMappingDictionary) {
+    addMapping(key, value);
+  }
+
+  // Add mechanical mappings
+  for (const { key, value } of mechanicalMappingDictionary) {
+    addMapping(key, value);
+  }
+
+  // Add all parsed fields
+  for (const [key, value] of Object.entries(parsedData)) {
+    if (typeof value === 'object' && value !== null) {
+      for (const [nestedKey] of Object.entries(value)) {
+        addMapping(`${key}.${nestedKey}`, nestedKey);
+      }
+    } else {
+      addMapping(key, key);
+    }
+  }
+
+  // Convert the map to an array of objects
+  const enhancedMapping = Array.from(combinedMapping.entries()).flatMap(
+    ([key, values]) => Array.from(values).map((value) => ({ key, value })),
   );
 
-  console.log('--- Combined Mapping Dictionary ---');
-  console.log(JSON.stringify(combinedMapping, null, 2));
-
-  // Get the order of keys from the standard shipment structure
+  // Sort the mapping based on the standard structure
   const shipmentStructureOrder = getStructureKeys(standardShipmentStructure);
-
-  // Create a map for quick lookup of the order of structure keys
   const structureKeyOrderMap = new Map<string, number>();
   shipmentStructureOrder.forEach((key, index) => {
     structureKeyOrderMap.set(key, index);
   });
 
-  // Sort combinedMapping based on the order of values in standardShipmentStructure
-  combinedMapping.sort((a, b) => {
+  enhancedMapping.sort((a, b) => {
     const aOrder = structureKeyOrderMap.get(a.value) ?? Number.MAX_SAFE_INTEGER;
     const bOrder = structureKeyOrderMap.get(b.value) ?? Number.MAX_SAFE_INTEGER;
     return aOrder - bOrder;
   });
-
-  // Add mappings to enhancedMapping, ensuring no duplicates and no null values
-  for (const { key, value } of combinedMapping) {
-    if (
-      !usedDestinations.has(value) &&
-      key !== null &&
-      value !== null &&
-      key !== '' &&
-      value !== ''
-    ) {
-      console.log(`Adding mapping: ${key} -> ${value}`);
-      enhancedMapping.push({ key, value });
-      usedDestinations.add(value);
-    }
-  }
-
-  console.log('--- Enhanced Mapping Dictionary ---');
-  console.log(JSON.stringify(enhancedMapping, null, 2));
 
   return enhancedMapping;
 }

@@ -159,26 +159,56 @@ export function removeSpecificNullFields(
 }
 
 export function getValueByPath(obj: any, path: string): any {
-  const keys = path.replace(/\[(\w+)\]/g, '.$1').split('.');
-  let result = obj;
-  for (const key of keys) {
-    result = result?.[key];
-    if (result === undefined) break;
+  const parts = path.split('.');
+  let current = obj;
+  for (const part of parts) {
+    if (current === null || current === undefined) return undefined;
+    const key = Object.keys(current).find(
+      (k) => k.toLowerCase() === part.toLowerCase(),
+    );
+    if (key === undefined) return undefined;
+    current = current[key];
   }
-  return result;
+  return current;
 }
 
-export function setValueByPath(obj: any, path: string, value: any): void {
-  const keys = path.replace(/\[(\w+)\]/g, '.$1').split('.');
-  const lastKey = keys.pop();
-  const target = keys.reduce((acc, key) => {
-    if (!acc[key] || typeof acc[key] !== 'object') {
-      acc[key] = {};
+export function setValueByPath(
+  obj: any,
+  path: string,
+  value: any,
+  caseInsensitive = false,
+) {
+  const parts = path.split('.');
+  let current = obj;
+  for (let i = 0; i < parts.length - 1; i++) {
+    const part = parts[i];
+    if (caseInsensitive) {
+      const key = Object.keys(current).find(
+        (k) => k.toLowerCase() === part.toLowerCase(),
+      );
+      if (!key) {
+        current[part] = {};
+        current = current[part];
+      } else {
+        current = current[key];
+      }
+    } else {
+      if (!current[part]) current[part] = {};
+      current = current[part];
     }
-    return acc[key];
-  }, obj);
-  if (lastKey) {
-    target[lastKey] = value;
+  }
+  const lastPart = parts[parts.length - 1];
+  if (caseInsensitive) {
+    const key = Object.keys(current).find(
+      (k) => k.toLowerCase() === lastPart.toLowerCase(),
+    );
+    if (key) {
+      current[key] = value;
+    } else {
+      current[lastPart] = value;
+    }
+  } else {
+    current[lastPart] = value;
   }
 }
 
@@ -219,66 +249,33 @@ export function ensureRequiredFields(
   parsedData: Partial<IShipmentContent>,
   inputJson: ShipmentInput,
 ): IShipmentContent {
-  return {
-    HousebillNumber: parsedData.HousebillNumber || '',
-    Origin: {
-      LocationCode: parsedData.Origin?.LocationCode || null,
-      LocationName: parsedData.Origin?.LocationName || '',
-      CountryCode: parsedData.Origin?.CountryCode || '',
-    },
-    Destination: {
-      LocationCode: parsedData.Destination?.LocationCode || null,
-      LocationName: parsedData.Destination?.LocationName || '',
-      CountryCode: parsedData.Destination?.CountryCode || '',
-    },
-    DateAndTimes: parsedData.DateAndTimes || {
-      ScheduledDeparture: null,
-      ScheduledArrival: null,
-      ShipmentDate: null,
-    },
-    ProductType: parsedData.ProductType || null,
-    TotalPackages: parsedData.TotalPackages || null,
-    TotalWeight: parsedData.TotalWeight || {
-      '*body': null,
-      '@uom': null,
-    },
-    TotalVolume: parsedData.TotalVolume || {
-      '*body': null,
-      '@uom': null,
-    },
-    Timestamp: (
-      inputJson.events?.map((event: any) => ({
-        TimestampCode: event.statusCode || 'unknown',
-        TimestampDescription: event.status || '',
-        TimestampDateTime: event.timestamp || null,
-        TimestampLocation: event.location?.address?.addressLocality || null,
-      })) || []
-    ).reverse(), // Reverse the order to match AI parsing
-    shipmentDate: parsedData.shipmentDate || null,
-    brokerName: parsedData.brokerName || null,
-    incoterms: parsedData.incoterms || null,
-    booking: parsedData.booking || null,
-    mawb: parsedData.mawb || null,
-    hawb: parsedData.hawb || null,
-    flight: parsedData.flight || null,
-    airportOfDeparture: parsedData.airportOfDeparture || null,
-    etd: parsedData.etd || null,
-    atd: parsedData.atd || null,
-    airportOfArrival: parsedData.airportOfArrival || null,
-    eta: parsedData.eta || null,
-    ata: parsedData.ata || null,
-    vessel: parsedData.vessel || null,
-    portOfLoading: parsedData.portOfLoading || null,
-    mbl: parsedData.mbl || null,
-    hbl: parsedData.hbl || null,
-    pickupDate: parsedData.pickupDate || null,
-    containerNumber: parsedData.containerNumber || null,
-    portOfUnloading: parsedData.portOfUnloading || null,
-    finalDestination: parsedData.finalDestination || null,
-    internationalCarrier: parsedData.internationalCarrier || null,
-    voyage: parsedData.voyage || null,
-    portOfReceipt: parsedData.portOfReceipt || null,
-    goodsDescription: parsedData.goodsDescription || null,
-    containers: parsedData.containers || null,
-  };
+  const result: Partial<IShipmentContent> = {};
+
+  // Merge parsedData and inputJson, giving priority to parsedData
+  const mergedData = { ...inputJson, ...parsedData };
+
+  // Iterate through all properties of mergedData
+  for (const key in mergedData) {
+    if (Object.prototype.hasOwnProperty.call(mergedData, key)) {
+      const value = mergedData[key as keyof IShipmentContent];
+
+      if (key === 'Timestamp') {
+        // Ensure Timestamp is always an array
+        result[key] = Array.isArray(value) ? value : [];
+      } else if (typeof value === 'object' && value !== null) {
+        // Handle nested objects
+        result[key as keyof IShipmentContent] = { ...value } as any;
+      } else {
+        // Handle primitive values
+        result[key as keyof IShipmentContent] = value as any;
+      }
+    }
+  }
+
+  // Ensure HousebillNumber is present (it's a required field)
+  if (!result.HousebillNumber) {
+    result.HousebillNumber = inputJson.ShipmentId || '';
+  }
+
+  return result as IShipmentContent;
 }

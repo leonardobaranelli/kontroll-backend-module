@@ -1,322 +1,82 @@
 [
   {
-    "key": "HousebillNumber",
+    "key": "id",
     "value": "HousebillNumber"
   },
   {
-    "key": "Origin.LocationCode",
+    "key": "origin.address.addressLocality",
     "value": "Origin.LocationCode"
   },
   {
-    "key": "Origin.LocationName",
+    "key": "status.location.address.addressLocality",
     "value": "Origin.LocationName"
   },
   {
-    "key": "Origin.CountryCode",
+    "key": "status.location.address.countryCode",
     "value": "Origin.CountryCode"
   },
   {
-    "key": "Destination.LocationCode",
+    "key": "destination.address.addressLocality",
     "value": "Destination.LocationCode"
   },
   {
-    "key": "Destination.LocationName",
+    "key": "destination.address.addressLocality",
     "value": "Destination.LocationName"
   },
   {
-    "key": "Destination.CountryCode",
+    "key": "destination.address.countryCode",
     "value": "Destination.CountryCode"
   },
   {
-    "key": "LastEvent.TimestampDateTime",
-    "value": "DateAndTimes.ScheduledDeparture"
-  },
-  {
-    "key": "Routes.Route[0].EstimatedArrivalDate",
-    "value": "DateAndTimes.ScheduledArrival"
-  },
-  {
-    "key": "LastEvent.TimestampDateTime",
-    "value": "DateAndTimes.ShipmentDate"
-  },
-  {
-    "key": "ProductType",
+    "key": "details.product.productName",
     "value": "ProductType"
   },
   {
-    "key": "TotalPackages",
-    "value": "TotalPackages"
-  },
-  {
-    "key": "TotalWeight.*body",
+    "key": "details.weight.value",
     "value": "TotalWeight.*body"
   },
   {
-    "key": "TotalWeight.@uom",
+    "key": "details.weight.unitText",
     "value": "TotalWeight.@uom"
   },
   {
-    "key": "TotalVolume.*body",
-    "value": "TotalVolume.*body"
+    "key": "details.references[0].number",
+    "value": "TotalPackages"
   },
   {
-    "key": "TotalVolume.@uom",
-    "value": "TotalVolume.@uom"
-  },
-  {
-    "key": "Masterbills.Masterbill[0].Carrier.Name",
-    "value": "brokerName"
-  },
-  {
-    "key": "Routes.Route.0.EstimatedDepartureDate",
-    "value": "shipmentDate"
-  },
-  {
-    "key": "Masterbills.Masterbill[0].BookingReference",
-    "value": "booking"
-  },
-  {
-    "key": "Masterbills.Masterbill[0].MasterbillNumber",
-    "value": "mawb"
-  },
-  {
-    "key": "Routes.Route[0].VoyageFlightNumber",
-    "value": "flight"
-  },
-  {
-    "key": "Routes.Route[0].EstimatedDepartureDate",
-    "value": "etd"
-  },
-  {
-    "key": "Routes.Route[0].EstimatedArrivalDate",
-    "value": "eta"
-  },
-  {
-    "key": "Routes.Route[0].VesselName",
-    "value": "vessel"
-  },
-  {
-    "key": "Routes.Route[0].PortOfLoading.LocationName",
-    "value": "portOfLoading"
-  },
-  {
-    "key": "Masterbills.Masterbill[0].MasterbillNumber",
-    "value": "mbl"
-  },
-  {
-    "key": "HousebillNumber",
-    "value": "hbl"
-  },
-  {
-    "key": "Routes.Route[0].PortOfUnloading.LocationName",
-    "value": "portOfUnloading"
-  },
-  {
-    "key": "Destination.LocationName",
-    "value": "finalDestination"
-  },
-  {
-    "key": "Masterbills.Masterbill[0].Carrier.Name",
-    "value": "internationalCarrier"
-  },
-  {
-    "key": "Routes.Route[0].VoyageFlightNumber",
-    "value": "voyage"
-  },
-  {
-    "key": "Routes.Route[0].PlaceOfAcceptance.LocationName",
-    "value": "portOfReceipt"
-  },
-  {
-    "key": "GoodsDescription",
-    "value": "goodsDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp",
+    "key": "events",
     "value": "Timestamp"
   },
   {
-    "key": "Timestamps.Timestamp[].TimestampCode",
-    "value": "Timestamp[].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp[].TimestampDescription",
-    "value": "Timestamp[].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp[].TimestampDateTime",
+    "key": "events[].timestamp",
     "value": "Timestamp[].TimestampDateTime"
   },
   {
-    "key": "Timestamps.Timestamp[].LocationName",
+    "key": "events[].statusCode",
+    "value": "Timestamp[].TimestampCode"
+  },
+  {
+    "key": "events[].status",
+    "value": "Timestamp[].TimestampDescription"
+  },
+  {
+    "key": "events[].location.address.addressLocality",
     "value": "Timestamp[].TimestampLocation"
   },
   {
-    "key": "TransportUnits.TransportUnit",
-    "value": "containers"
+    "key": "status.timestamp",
+    "value": "DateAndTimes.ScheduledArrival"
   },
   {
-    "key": "TransportUnits.TransportUnit[].TransportUnitID",
-    "value": "containers[].TransportUnitID"
+    "key": "status.location.address.addressLocality",
+    "value": "DateAndTimes.ScheduledDeparture"
   },
   {
-    "key": "TransportUnits.TransportUnit[].TransportUnitType",
-    "value": "containers[].TransportUnitType"
+    "key": "details.weight.value",
+    "value": "TotalVolume.*body"
   },
   {
-    "key": "Routes.Route.0.PortOfLoading.LocationName",
-    "value": "Timestamp[11].TimestampLocation"
-  },
-  {
-    "key": "Routes.Route.0.PlaceOfAcceptance.LocationName",
-    "value": "Timestamp[3].TimestampLocation"
-  },
-  {
-    "key": "Routes.Route.0.PortOfUnloading.LocationName",
-    "value": "Timestamp[14].TimestampLocation"
-  },
-  {
-    "key": "Timestamps.Timestamp.0.TimestampCode",
-    "value": "Timestamp[0].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.0.TimestampDescription",
-    "value": "Timestamp[0].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.0.LocationName",
-    "value": "Timestamp[0].TimestampLocation"
-  },
-  {
-    "key": "Timestamps.Timestamp.1.TimestampCode",
-    "value": "Timestamp[1].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.1.TimestampDescription",
-    "value": "Timestamp[1].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.2.TimestampCode",
-    "value": "Timestamp[2].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.2.TimestampDescription",
-    "value": "Timestamp[2].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.3.TimestampCode",
-    "value": "Timestamp[3].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.3.TimestampDescription",
-    "value": "Timestamp[3].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.4.TimestampCode",
-    "value": "Timestamp[4].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.4.TimestampDescription",
-    "value": "Timestamp[4].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.5.TimestampCode",
-    "value": "Timestamp[5].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.5.TimestampDescription",
-    "value": "Timestamp[5].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.6.TimestampCode",
-    "value": "Timestamp[6].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.6.TimestampDescription",
-    "value": "Timestamp[6].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.7.TimestampCode",
-    "value": "Timestamp[7].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.7.TimestampDescription",
-    "value": "Timestamp[7].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.8.TimestampCode",
-    "value": "Timestamp[8].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.8.TimestampDescription",
-    "value": "Timestamp[8].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.8.LocationName",
-    "value": "Timestamp[8].TimestampLocation"
-  },
-  {
-    "key": "Timestamps.Timestamp.9.TimestampCode",
-    "value": "Timestamp[9].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.9.TimestampDescription",
-    "value": "Timestamp[9].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.10.TimestampCode",
-    "value": "Timestamp[10].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.10.TimestampDescription",
-    "value": "Timestamp[10].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.11.TimestampCode",
-    "value": "Timestamp[11].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.11.TimestampDescription",
-    "value": "Timestamp[11].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.12.TimestampCode",
-    "value": "Timestamp[12].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.12.TimestampDescription",
-    "value": "Timestamp[12].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.13.TimestampCode",
-    "value": "Timestamp[13].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.13.TimestampDescription",
-    "value": "Timestamp[13].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.14.TimestampCode",
-    "value": "Timestamp[14].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.14.TimestampDescription",
-    "value": "Timestamp[14].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.15.TimestampCode",
-    "value": "Timestamp[15].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.15.TimestampDescription",
-    "value": "Timestamp[15].TimestampDescription"
-  },
-  {
-    "key": "Timestamps.Timestamp.16.TimestampCode",
-    "value": "Timestamp[16].TimestampCode"
-  },
-  {
-    "key": "Timestamps.Timestamp.16.TimestampDescription",
-    "value": "Timestamp[16].TimestampDescription"
+    "key": "details.weight.unitText",
+    "value": "TotalVolume.@uom"
   }
 ]
