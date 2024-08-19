@@ -16,20 +16,6 @@ const buildFinalUrl = (
   return replacePlaceholders(url, replacements);
 };
 
-// Function to build headers with replacements
-const buildHeaders = (
-  headers: Record<string, string> | undefined,
-  replacements: { [key: string]: string },
-): Record<string, string> => {
-  const result: Record<string, string> = {};
-  if (headers) {
-    for (const key in headers) {
-      result[key] = replacePlaceholders(headers[key], replacements);
-    }
-  }
-  return result;
-};
-
 // Function to build query parameters with replacements
 const buildParams = (
   params: Record<string, string> | undefined,
@@ -44,24 +30,50 @@ const buildParams = (
   return result;
 };
 
+// Function to build headers with replacements
+const buildHeaders = (
+  headers: Record<string, string> | undefined,
+  replacements: { [key: string]: string },
+): Record<string, string> => {
+  const result: Record<string, string> = {};
+  if (headers) {
+    for (const key in headers) {
+      result[key] = replacePlaceholders(headers[key], replacements);
+    }
+  }
+  return result;
+};
+
 // Function to build the request body with replacements
-const buildBody = (body: any, replacements: { [key: string]: string }): any => {
-  if (typeof body === 'string') {
+const buildBody = (
+  body: any,
+  replacements: { [key: string]: string },
+  format: 'json' | 'xml',
+): any => {
+  if (format === 'json') {
+    if (typeof body === 'string') {
+      return replacePlaceholders(body, replacements);
+    } else if (typeof body === 'object') {
+      // If body is an object, convert to JSON, replace placeholders, and parse back to object
+      const jsonString = JSON.stringify(body);
+      return JSON.parse(replacePlaceholders(jsonString, replacements));
+    }
+  } else if (format === 'xml') {
+    // Assume body is a string containing XML
     return replacePlaceholders(body, replacements);
-  } else if (typeof body === 'object') {
-    // If body is an object, convert to JSON, replace placeholders, and parse back to object
-    const jsonString = JSON.stringify(body);
-    return JSON.parse(replacePlaceholders(jsonString, replacements));
   }
   return body;
 };
 
-// Main function to make the Axios request using the endpoint object directly
-export default async (endpoint: any, query: boolean): Promise<any> => {
-  if (!query) {
-    return [];
-  }
+// Function to parse XML response to JSON
+const parseXmlToJson = async (xml: string): Promise<any> => {
+  const xml2js = require('xml2js');
+  const parser = new xml2js.Parser({ explicitArray: false, mergeAttrs: true });
+  return parser.parseStringPromise(xml);
+};
 
+// Main function to make the Axios request using the endpoint object directly
+export default async (endpoint: any): Promise<any> => {
   const { url, query: queryDetails } = endpoint;
 
   if (!url || !queryDetails) {
@@ -134,6 +146,7 @@ export default async (endpoint: any, query: boolean): Promise<any> => {
     if (queryDetails.body.language === 'json') {
       try {
         options.data = JSON.parse(queryDetails.body.value);
+        //options.data = buildBody(queryDetails.body.value, replacements, 'json');
         //options.headers = {
         //  ...options.headers,
         //'Content-Type': 'application/json',
@@ -143,7 +156,7 @@ export default async (endpoint: any, query: boolean): Promise<any> => {
         throw new Error('Invalid JSON format in the body');
       }
     } else if (queryDetails.body.language === 'xml') {
-      options.data = buildBody(queryDetails.body.value, replacements);
+      options.data = buildBody(queryDetails.body.value, replacements, 'xml');
       options.headers = {
         ...options.headers,
         'Content-Type': 'application/xml',
@@ -163,9 +176,28 @@ export default async (endpoint: any, query: boolean): Promise<any> => {
 
   try {
     const response = await axios(options);
+
+    // If the response is XML, parse it to JSON
+    if (queryDetails.body.language === 'xml') {
+      const jsonResponse = await parseXmlToJson(response.data);
+
+      // Check if the parsed JSON indicates an error status
+      const actionStatus = jsonResponse?.Response?.Status?.ActionStatus;
+      if (actionStatus && actionStatus !== 'Success') {
+        return [jsonResponse, response.status, `Error: ${actionStatus}`];
+      }
+
+      return [jsonResponse, response.status];
+    }
+
+    // For non-XML responses, return as is
     return [response.data, response.status];
   } catch (error: any) {
     if (error.response) {
+      if (queryDetails.body.language === 'xml') {
+        const jsonResponse = await parseXmlToJson(error.response.data);
+        return [jsonResponse, error.response.status, error.message];
+      }
       return [error.response.data, error.response.status, error.message];
     } else {
       return ['Unknown error', 500, error.message];

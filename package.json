@@ -42,7 +42,8 @@
     "reflect-metadata": "^0.2.2",
     "sequelize": "^6.37.3",
     "sequelize-typescript": "^2.1.6",
-    "uuid": "^10.0.0"
+    "uuid": "^10.0.0",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.7",

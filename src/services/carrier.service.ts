@@ -132,10 +132,7 @@ export default class CarrierService {
             lastUserInput.endpoints[lastUserInput.endpoints.length - 1];
 
           let _success = false;
-          const [axiosResponse, status] = await _performQueries(
-            lastEndpoint,
-            true,
-          );
+          const [axiosResponse, status] = await _performQueries(lastEndpoint);
 
           if (axiosResponse && status >= 200 && status < 300) {
             _success = true;
