@@ -1,19 +1,5 @@
 import { IEndpoint } from '../../../../../utils/types/models.interface';
-
-// Function to traverse a nested JSON object searching for shipmentId
-const searchInObject = (obj: any, shipmentId: string): boolean => {
-  if (typeof obj !== 'object' || obj === null) return false;
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      if (typeof obj[key] === 'object') {
-        if (searchInObject(obj[key], shipmentId)) return true;
-      } else if (obj[key] === shipmentId) {
-        return true;
-      }
-    }
-  }
-  return false;
-};
+import { searchInObject } from './utils';
 
 export default (shipmentId: string, endpoint: IEndpoint): boolean => {
   // Check if the shipmentId is in the params
