@@ -24,6 +24,18 @@ export default class CarrierController {
     }
   };
 
+  public static endSession = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
+    try {
+      const result = await CarrierService.endSession(req.sessionID);
+      sendSuccessResponse(res, result, 'Session ended successfully');
+    } catch (error: any) {
+      sendErrorResponse(res, error, error.statusCode || 400);
+    }
+  };
+
   public static createKnown = async (
     req: Request,
     res: Response,
@@ -53,16 +65,16 @@ export default class CarrierController {
   ): Promise<void> => {
     try {
       verifyEndpointRequest(req, res, async () => {
-        const { name, shipmentId, endpoints } = req.body as {
+        const { name, shipmentId, endpoint } = req.body as {
           name: string;
           shipmentId: string;
-          endpoints: Array<object>;
+          endpoint: object;
         };
 
         const result = await CarrierService.createNew(
           name,
           shipmentId,
-          endpoints,
+          endpoint,
           req.sessionID,
         );
         sendSuccessResponse(res, result, 'Endpoint added successfully');
