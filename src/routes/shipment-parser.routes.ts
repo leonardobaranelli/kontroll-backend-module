@@ -26,4 +26,9 @@ router.get(
   '/save/:carrierId/:housebillNumber',
   ShipmentParserController.saveParsedShipment,
 );
+
+router.post(
+  '/test-mechanical-parser',
+  ShipmentParserController.testMechanicalParser,
+);
 export default router;

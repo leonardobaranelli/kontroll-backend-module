@@ -21,6 +21,7 @@ export function generateMechanicalMapping(
   output: any,
 ): Array<{ key: string; value: string }> {
   const mechanicalMapping: Array<{ key: string; value: string }> = [];
+  const standardKeys = getStructureKeys(standardShipmentStructure);
 
   function compareObjects(
     inputObj: any,
@@ -34,138 +35,108 @@ export function generateMechanicalMapping(
         : inputKey;
 
       if (typeof inputValue === 'object' && inputValue !== null) {
-        for (const [outputKey, outputValue] of Object.entries(outputObj)) {
-          const currentOutputPath = outputPath
-            ? `${outputPath}.${outputKey}`
-            : outputKey;
-          if (typeof outputValue === 'object' && outputValue !== null) {
+        if (Array.isArray(inputValue)) {
+          for (let i = 0; i < inputValue.length; i++) {
             compareObjects(
-              inputValue,
-              outputValue,
-              currentInputPath,
-              currentOutputPath,
+              inputValue[i],
+              outputObj,
+              `${currentInputPath}[${i}]`,
+              outputPath,
             );
           }
+        } else {
+          compareObjects(inputValue, outputObj, currentInputPath, outputPath);
         }
       } else {
-        const matchingOutputPath = findMatchingValue(
+        const matchingOutputPaths = findMatchingValues(
           outputObj,
           inputValue,
           outputPath,
         );
-        if (matchingOutputPath) {
-          mechanicalMapping.push({
-            key: currentInputPath,
-            value: matchingOutputPath,
+        if (matchingOutputPaths.length > 0) {
+          matchingOutputPaths.forEach((matchingOutputPath) => {
+            mechanicalMapping.push({
+              key: currentInputPath,
+              value: matchingOutputPath,
+            });
           });
         }
       }
     }
+    console.log('--------------------------------');
+    console.log('mechanicalMapping', mechanicalMapping);
+    console.log('--------------------------------');
   }
 
-  function findMatchingValue(
+  function findMatchingValues(
     obj: any,
     value: any,
     path: string = '',
-  ): string | null {
+  ): string[] {
+    const matchingPaths: string[] = [];
     for (const [key, val] of Object.entries(obj)) {
       const currentPath = path ? `${path}.${key}` : key;
 
       if (val === value) {
-        return currentPath;
+        matchingPaths.push(currentPath);
       } else if (typeof val === 'object' && val !== null) {
         if (Array.isArray(val)) {
           for (let i = 0; i < val.length; i++) {
             const arrayPath = `${currentPath}[${i}]`;
-            const result = findMatchingValue(val[i], value, arrayPath);
-            if (result) return result;
+            matchingPaths.push(...findMatchingValues(val[i], value, arrayPath));
           }
         } else {
-          const result = findMatchingValue(val, value, currentPath);
-          if (result) return result;
+          matchingPaths.push(...findMatchingValues(val, value, currentPath));
         }
       }
     }
-    return null;
+    return matchingPaths;
   }
 
   compareObjects(input, output);
+
+  // Add missing fields from standard structure
+  for (const key of standardKeys) {
+    if (!mechanicalMapping.some((mapping) => mapping.value === key)) {
+      const inputKey = findInputKeyForStandardKey(input, key);
+      mechanicalMapping.push({ key: inputKey || 'null', value: key });
+    }
+  }
+
+  // Sort the mapping based on the standard structure order
+  const shipmentStructureOrder = getStructureKeys(standardShipmentStructure);
+  mechanicalMapping.sort((a, b) => {
+    const aIndex = shipmentStructureOrder.indexOf(a.value);
+    const bIndex = shipmentStructureOrder.indexOf(b.value);
+    return aIndex - bIndex;
+  });
+
   return mechanicalMapping;
 }
 
-// Function to combine AI and mechanical mappings
-export function combineMappings(
-  aiMapping: Array<{ key: string; value: string }>,
-  mechanicalMapping: Array<{ key: string; value: string }>,
-): Array<{ key: string; value: string }> {
-  const combinedMapping: Array<{ key: string; value: string }> = [...aiMapping];
-  const existingValues: Set<string> = new Set(
-    aiMapping.map((item) => item.value),
-  );
+function findInputKeyForStandardKey(
+  input: any,
+  standardKey: string,
+): string | null {
+  const parts = standardKey.split('.');
+  let current = input;
+  let currentPath = '';
 
-  for (const { key, value } of mechanicalMapping) {
-    if (!existingValues.has(value)) {
-      combinedMapping.push({ key, value });
-    }
-  }
-
-  return combinedMapping;
-}
-
-// Function to enhance the mapping dictionary by combining AI and mechanical mappings
-export function enhanceMappingDictionary(
-  aiMappingDictionary: Array<{ key: string; value: string }>,
-  mechanicalMappingDictionary: Array<{ key: string; value: string }>,
-  parsedData: any,
-): Array<{ key: string; value: string }> {
-  const combinedMapping = new Map<string, Set<string>>();
-
-  // Helper function to add mappings
-  const addMapping = (key: string, value: string) => {
-    if (!combinedMapping.has(key)) {
-      combinedMapping.set(key, new Set());
-    }
-    combinedMapping.get(key)!.add(value);
-  };
-
-  // Add AI mappings
-  for (const { key, value } of aiMappingDictionary) {
-    addMapping(key, value);
-  }
-
-  // Add mechanical mappings
-  for (const { key, value } of mechanicalMappingDictionary) {
-    addMapping(key, value);
-  }
-
-  // Add all parsed fields
-  for (const [key, value] of Object.entries(parsedData)) {
-    if (typeof value === 'object' && value !== null) {
-      for (const [nestedKey] of Object.entries(value)) {
-        addMapping(`${key}.${nestedKey}`, nestedKey);
+  for (const part of parts) {
+    if (current && typeof current === 'object') {
+      const key = Object.keys(current).find(
+        (k) => k.toLowerCase() === part.toLowerCase(),
+      );
+      if (key) {
+        currentPath = currentPath ? `${currentPath}.${key}` : key;
+        current = current[key];
+      } else {
+        return null;
       }
     } else {
-      addMapping(key, key);
+      return null;
     }
   }
 
-  // Convert the map to an array of objects
-  const enhancedMapping = Array.from(combinedMapping.entries()).flatMap(
-    ([key, values]) => Array.from(values).map((value) => ({ key, value })),
-  );
-
-  // Sort the mapping based on the standard structure
-  const shipmentStructureOrder = getStructureKeys(standardShipmentStructure);
-  const structureKeyOrderMap = new Map<string, number>();
-  shipmentStructureOrder.forEach((key, index) => {
-    structureKeyOrderMap.set(key, index);
-  });
-
-  enhancedMapping.sort((a, b) => {
-    const aOrder = structureKeyOrderMap.get(a.value) ?? Number.MAX_SAFE_INTEGER;
-    const bOrder = structureKeyOrderMap.get(b.value) ?? Number.MAX_SAFE_INTEGER;
-    return aOrder - bOrder;
-  });
-
-  return enhancedMapping;
+  return currentPath;
 }

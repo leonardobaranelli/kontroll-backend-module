@@ -1,5 +1,6 @@
 import { IShipmentContent } from '../../../utils/types/models.interface';
 import { ShipmentInput } from '../../../utils/types/utilities.interface';
+
 interface TimestampEntry {
   TimestampDateTime: string | null;
   [key: string]: any;
@@ -14,6 +15,19 @@ function formatDate(dateString: string): string {
   return date.toISOString();
 }
 
+export function formatTimestamps(timestamps: any[]): TimestampEntry[] {
+  if (!Array.isArray(timestamps)) {
+    return [];
+  }
+
+  return timestamps.map((timestamp) => ({
+    ...timestamp,
+    TimestampDateTime: timestamp.TimestampDateTime
+      ? formatDate(timestamp.TimestampDateTime)
+      : null,
+  }));
+}
+
 export function formatShipmentData(
   parsedShipment: Partial<IShipmentContent>,
 ): IShipmentContent {
@@ -21,20 +35,7 @@ export function formatShipmentData(
     console.warn('HousebillNumber is missing in the parsed shipment data');
   }
 
-  let formattedTimestamp: TimestampEntry[] = [];
-  if (
-    parsedShipment.Timestamp &&
-    typeof parsedShipment.Timestamp === 'object'
-  ) {
-    formattedTimestamp = Object.entries(parsedShipment.Timestamp).map(
-      ([, value]) => ({
-        ...value,
-        TimestampDateTime: value.TimestampDateTime
-          ? formatDate(value.TimestampDateTime as string)
-          : null,
-      }),
-    );
-  }
+  const formattedTimestamp = formatTimestamps(parsedShipment.Timestamp || []);
 
   const formattedShipment: IShipmentContent = {
     HousebillNumber: parsedShipment.HousebillNumber || '',
@@ -69,8 +70,42 @@ export function formatShipmentData(
       '*body': null,
       '@uom': null,
     },
-    Timestamp: formattedTimestamp,
-    shipmentDate: parsedShipment.shipmentDate || null,
+    Timestamp: formattedTimestamp.map((timestamp) => ({
+      TimestampCode: timestamp.TimestampCode || null,
+      TimestampDescription: timestamp.TimestampDescription || null,
+      TimestampDateTime: timestamp.TimestampDateTime || null,
+      TimestampLocation: timestamp.TimestampLocation || null,
+    })),
+    brokerName: parsedShipment.brokerName || null,
+    incoterms: parsedShipment.incoterms || null,
+    shipmentDate: parsedShipment.shipmentDate
+      ? formatDate(parsedShipment.shipmentDate as string)
+      : null,
+    booking: parsedShipment.booking || null,
+    mawb: parsedShipment.mawb || null,
+    hawb: parsedShipment.hawb || null,
+    flight: parsedShipment.flight || null,
+    airportOfDeparture: parsedShipment.airportOfDeparture || null,
+    etd: parsedShipment.etd ? formatDate(parsedShipment.etd as string) : null,
+    atd: parsedShipment.atd ? formatDate(parsedShipment.atd as string) : null,
+    airportOfArrival: parsedShipment.airportOfArrival || null,
+    eta: parsedShipment.eta ? formatDate(parsedShipment.eta as string) : null,
+    ata: parsedShipment.ata ? formatDate(parsedShipment.ata as string) : null,
+    vessel: parsedShipment.vessel || null,
+    portOfLoading: parsedShipment.portOfLoading || null,
+    mbl: parsedShipment.mbl || null,
+    hbl: parsedShipment.hbl || null,
+    pickupDate: parsedShipment.pickupDate
+      ? formatDate(parsedShipment.pickupDate as string)
+      : null,
+    containerNumber: parsedShipment.containerNumber || null,
+    portOfUnloading: parsedShipment.portOfUnloading || null,
+    finalDestination: parsedShipment.finalDestination || null,
+    internationalCarrier: parsedShipment.internationalCarrier || null,
+    voyage: parsedShipment.voyage || null,
+    portOfReceipt: parsedShipment.portOfReceipt || null,
+    goodsDescription: parsedShipment.goodsDescription || null,
+    containers: parsedShipment.containers || null,
   };
 
   return formattedShipment;
@@ -100,12 +135,6 @@ export function removeSpecificNullFields(
     'pickupDate',
     'containerNumber',
     'portOfUnloading',
-    'finalDestination',
-    'internationalCarrier',
-    'voyage',
-    'portOfReceipt',
-    'goodsDescription',
-    'containers',
   ];
 
   const result: IShipmentContent = {

@@ -10,6 +10,8 @@ import { saveMappingDictionary } from './utils/fileUtils';
 import { createLogger, countTokens } from './utils/loggingUtils';
 import { validateParsedShipmentContent } from './validator/shipment-content.validator';
 import { standardShipmentStructure } from './utils/standardStructure';
+import { generateMechanicalMapping } from './utils/mappingUtils';
+import { IShipmentContent } from '../../utils/types/models.interface';
 
 const Logger = createLogger('ShipmentParser');
 
@@ -17,18 +19,18 @@ async function parseJsonWithOpenAI(inputJson: ShipmentInput) {
   const parsePrompt = createParsePrompt(inputJson);
   const parsedData = await callOpenAI(parsePrompt);
 
-  const mappingPrompt = createMappingPrompt(inputJson, parsedData);
-  const rawMappingDictionary = await callOpenAI(mappingPrompt);
-  const mappingDictionary = processMappingDictionary(rawMappingDictionary);
-
   try {
-    const validatedData = validateParsedShipmentContent(parsedData);
+    // Validar que los campos requeridos estén presentes
+    if (!parsedData.HousebillNumber) {
+      throw new Error('HousebillNumber is required');
+    }
+    // Agregar más validaciones según sea necesario
+
+    const validatedData: Partial<IShipmentContent> =
+      validateParsedShipmentContent(parsedData) as Partial<IShipmentContent>;
     const finalData = removeSpecificNullFields(validatedData);
 
-    return {
-      parsedData: finalData,
-      mappingDictionary,
-    };
+    return finalData;
   } catch (error: any) {
     Logger.error(`Validation error: ${error.message}`);
     throw new Error('Parsed data does not match the expected structure');
@@ -121,103 +123,6 @@ Your response should be a valid JSON object following the standard structure, wi
 `;
 }
 
-function createMappingPrompt(
-  inputJson: ShipmentInput,
-  parsedData: any,
-): string {
-  return `
-### Instruction ###
-You are a highly capable JSON mapping assistant for the Kontroll application. Your task is to create a mapping dictionary showing how each input field maps to the corresponding output field in the standard structure.
-
-### Input JSON ###
-\`\`\`json
-${JSON.stringify(inputJson, null, 2)}
-\`\`\`
-
-### Parsed Output ###
-\`\`\`json
-${JSON.stringify(parsedData, null, 2)}
-\`\`\`
-
-### Standard Structure ###
-{
-  HousebillNumber: 'String', // The unique identifier for the shipment, often referred to as the tracking number.
-  Origin: {
-    LocationCode: 'String', // The code identifying the origin location.
-    LocationName: 'String', // The name of the origin location.
-    CountryCode: 'String', // The country code of the origin.
-  },
-  Destination: {
-    LocationCode: 'String', // The code identifying the destination location.
-    LocationName: 'String', // The name of the destination location.
-    CountryCode: 'String', // The country code of the destination.
-  },
-  DateAndTimes: {
-    ShipmentDate: 'String', // The date when the shipment was initiated.
-    ScheduledDeparture: 'String', // The scheduled departure date and time.
-    ScheduledArrival: 'String', // The scheduled arrival date and time.
-  },
-  ProductType: 'String', // The type of shipping service used.
-  TotalPackages: 'Number', // The total number of packages in the shipment.
-  TotalWeight: {
-    '*body': 'Number', // The numeric value of the total weight.
-    '@uom': 'String', // The unit of measurement for the weight (e.g., 'KG', 'LB').
-  },
-  TotalVolume: {
-    '*body': 'Number', // The numeric value of the total volume.
-    '@uom': 'String', // The unit of measurement for the volume (e.g., 'CBM', 'CFT').
-  },
-  Timestamp: [
-    {
-      TimestampLocation: 'String', // The location where the event occurred.
-      TimestampCode: 'String', // A code representing the type of event.
-      TimestampDescription: 'String', // A description of the event.
-      TimestampDateTime: 'String', // The date and time when the event occurred.
-    },
-  ],
-  brokerName: 'String', // The name of the broker handling the shipment.
-  incoterms: 'String', // The Incoterms rule used for the shipment.
-  shipmentDate: 'String', // The date when the shipment was initiated (alternative to DateAndTimes.ShipmentDate).
-  booking: 'String', // The booking reference number.
-  mawb: 'String', // The Master Air Waybill number for air freight.
-  hawb: 'String', // The House Air Waybill number for air freight.
-  flight: 'String', // The flight number for air freight.
-  airportOfDeparture: 'String', // The airport where the shipment departs.
-  etd: 'String', // The estimated time of departure.
-  airportOfArrival: 'String', // The name of the airport where the shipment arrives.
-  eta: 'String', // The estimated time of arrival at the destination.
-  ata: 'String', // The actual time of arrival at the destination.
-  vessel: 'String', // The name of the vessel if the shipment is transported by sea.
-  portOfLoading: 'String', // The name of the port where the shipment is loaded onto the vessel.
-  mbl: 'String', // The Master Bill of Lading number for the shipment. This is used for sea freight.
-  hbl: 'String', // The House Bill of Lading number for the shipment. This is used for sea freight.
-  pickupDate: 'String', // The date when the shipment was picked up from the origin.
-  containerNumber: 'String', // The number of the container if the shipment is transported in a container.
-  portOfUnloading: 'String', // The name of the port where the shipment is unloaded from the vessel.
-  finalDestination: 'String', // The final destination of the shipment.
-  internationalCarrier: 'String', // The name of the international carrier transporting the shipment.
-  voyage: 'String', // The voyage number if the shipment is transported by sea.
-  portOfReceipt: 'String', // The name of the port where the carrier received the shipment.
-  goodsDescription: 'String', // A description of the goods being shipped.
-  containers: [], // A list of containers associated with the shipment. Each container can have its own set of details and identifiers.
-}
-
-### Mapping Dictionary Guidelines ###
-1. Use dot notation for nested objects and [] for array indices.
-2. Include mappings for ALL fields present in both the input and output, even if they are null or empty.
-3. Pay special attention to all fields described in the standard structure.
-4. If a field in the standard structure doesn't have a direct correspondence in the input, map it to null or the most appropriate alternative.
-5. For arrays like Timestamp or containers, map each relevant field from the input to the corresponding output structure.
-6. Ensure all fields from the input are mapped to the output, even if the output field is null.
-7. If there are multiple possible mappings for a field, include all of them.
-8. Carefully identify and map all date and time fields, ensuring consistent formatting.
-9. Ensure TotalWeight.*body and TotalVolume.*body are mapped to numeric values only.
-10. Ensure to map all fields from the standard structure, even if they're not present in the input. For missing fields, use 'null' as the key.
-11. HouseBillNumber have to be always be present in the output, even if it's value is repited on other fields.
-Your response should be a JSON array of objects, each with 'key' (input path) and 'value' (output path) properties, without any additional text or comments. Ensure the mapping is as complete and accurate as possible, including all fields whether they are required or optional.
-`;
-}
-
 async function callOpenAI(prompt: string): Promise<any> {
   Logger.info(`Prompt: ${prompt}`);
   Logger.debug(`Token count: ${countTokens(prompt)}`);
@@ -297,25 +202,6 @@ async function callOpenAI(prompt: string): Promise<any> {
   }
 }
 
-function processMappingDictionary(
-  mappingDictionary: Array<{ key: string; value: string }>,
-): Array<{ key: string; value: string }> {
-  return mappingDictionary
-    .map((entry) => {
-      if (entry.key === 'null') {
-        // Instead of returning null, we'll use a special string to indicate missing input
-        return { key: '__MISSING_INPUT__', value: entry.value };
-      }
-      // If the key is from the standard structure and the value is from the input,
-      // swap them to correct the mapping
-      if (entry.key.includes('.') || entry.value.includes('.')) {
-        return { key: entry.value, value: entry.key };
-      }
-      return entry;
-    })
-    .filter((entry) => entry.value !== 'null' && entry.key !== 'null');
-}
-
 export async function parseShipmentData(
   input: ShipmentInput,
   carrier: string,
@@ -337,21 +223,13 @@ export async function parseShipmentData(
       throw new Error('standardShipmentStructure is not properly defined');
     }
 
-    const { parsedData, mappingDictionary } = await parseJsonWithOpenAI(input);
-    Logger.info('AI Mapping Dictionary:');
+    const parsedData = await parseJsonWithOpenAI(input);
+    const mappingDictionary = generateMechanicalMapping(input, parsedData);
+
+    Logger.info('Mechanical Mapping Dictionary:');
     Logger.info(JSON.stringify(mappingDictionary, null, 2));
 
-    // Ensure mappingDictionary is an array
-    if (!Array.isArray(mappingDictionary)) {
-      throw new Error('Mapping dictionary is not in the expected format');
-    }
-
     await saveMappingDictionary(mappingDictionary, carrier);
-
-    // Validate parsedData
-    if (typeof parsedData !== 'object' || parsedData === null) {
-      throw new Error('Parsed data is not a valid object');
-    }
 
     return {
       success: true,
