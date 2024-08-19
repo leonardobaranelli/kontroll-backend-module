@@ -130,6 +130,7 @@ export default class CarrierService {
         if (lastUserInput.endpoints && lastUserInput.endpoints.length > 0) {
           const lastEndpoint =
             lastUserInput.endpoints[lastUserInput.endpoints.length - 1];
+
           let _success = false;
           const [axiosResponse, status] = await _performQueries(
             lastEndpoint,

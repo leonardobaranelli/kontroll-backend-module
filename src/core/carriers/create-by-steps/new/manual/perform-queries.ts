@@ -49,7 +49,9 @@ const buildBody = (body: any, replacements: { [key: string]: string }): any => {
   if (typeof body === 'string') {
     return replacePlaceholders(body, replacements);
   } else if (typeof body === 'object') {
-    return JSON.parse(replacePlaceholders(JSON.stringify(body), replacements));
+    // If body is an object, convert to JSON, replace placeholders, and parse back to object
+    const jsonString = JSON.stringify(body);
+    return JSON.parse(replacePlaceholders(jsonString, replacements));
   }
   return body;
 };
@@ -71,22 +73,30 @@ export default async (endpoint: any, query: boolean): Promise<any> => {
   // Extract replacements from query params, headers, and auth
   if (queryDetails.params) {
     queryDetails.params.forEach((param: any) => {
-      if (param.name && param.value) {
-        replacements[param.name] = param.value;
+      if (param.key && param.value) {
+        replacements[param.key] = param.value;
       }
     });
   }
 
   if (queryDetails.header) {
     queryDetails.header.forEach((header: any) => {
-      if (header.name && header.value) {
-        replacements[header.name] = header.value;
+      if (header.key && header.value) {
+        replacements[header.key] = header.value;
       }
     });
   }
 
-  if (queryDetails.auth && queryDetails.auth.value) {
-    replacements['Authorization'] = queryDetails.auth.value;
+  // Handling authentication
+  if (queryDetails.auth) {
+    const { type, value } = queryDetails.auth;
+
+    if (type === 'basic') {
+      const token = Buffer.from(value, 'utf8').toString('base64');
+      replacements['Authorization'] = `Basic ${token}`;
+    } else if (type === 'bearer') {
+      replacements['Authorization'] = `Bearer ${value}`;
+    }
   }
 
   const finalUrl = buildFinalUrl(url, replacements);
@@ -94,22 +104,25 @@ export default async (endpoint: any, query: boolean): Promise<any> => {
   const options: AxiosRequestConfig = {
     method: queryDetails.method,
     url: finalUrl,
-    headers: buildHeaders(
-      queryDetails.header?.reduce(
-        (acc: Record<string, string>, header: any) => {
-          if (header.name && header.value) {
-            acc[header.name] = header.value;
-          }
-          return acc;
-        },
-        {},
+    headers: {
+      ...buildHeaders(
+        queryDetails.header?.reduce(
+          (acc: Record<string, string>, header: any) => {
+            if (header.key && header.value) {
+              acc[header.key] = header.value;
+            }
+            return acc;
+          },
+          {},
+        ),
+        replacements,
       ),
-      replacements,
-    ),
+      Authorization: replacements['Authorization'], // Add the Authorization header if present
+    },
     params: buildParams(
       queryDetails.params?.reduce((acc: Record<string, string>, param: any) => {
-        if (param.name && param.value) {
-          acc[param.name] = param.value;
+        if (param.key && param.value) {
+          acc[param.key] = param.value;
         }
         return acc;
       }, {}),
@@ -117,21 +130,37 @@ export default async (endpoint: any, query: boolean): Promise<any> => {
     ),
   };
 
-  if (queryDetails.body) {
-    options.data = buildBody(queryDetails.body.value, replacements);
-
-    if (queryDetails.body.language === 'xml') {
+  if (queryDetails.body.value && queryDetails.body.value !== '') {
+    if (queryDetails.body.language === 'json') {
+      try {
+        options.data = JSON.parse(queryDetails.body.value);
+        //options.headers = {
+        //  ...options.headers,
+        //'Content-Type': 'application/json',
+        //'Content-Type': 'application/x-www-form-urlencoded',
+        //};
+      } catch (error) {
+        throw new Error('Invalid JSON format in the body');
+      }
+    } else if (queryDetails.body.language === 'xml') {
+      options.data = buildBody(queryDetails.body.value, replacements);
       options.headers = {
         ...options.headers,
-        'Content-Type': 'text/xml',
+        'Content-Type': 'application/xml',
       };
-    } else if (queryDetails.body.language === 'json') {
-      options.headers = {
-        ...options.headers,
-        'Content-Type': 'application/json',
-      };
+    } else {
+      throw new Error('Unsupported body language');
     }
+  } else {
+    options.data = undefined;
+    options.headers = {
+      ...options.headers,
+      'Content-Type': 'application/octet-stream',
+    };
   }
+
+  console.log('Options: ' + JSON.stringify(options));
+
   try {
     const response = await axios(options);
     return [response.data, response.status];

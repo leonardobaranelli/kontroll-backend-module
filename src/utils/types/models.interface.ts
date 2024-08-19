@@ -27,7 +27,7 @@ export interface IQuery {
 }
 
 export interface IParam {
-  name?: string;
+  key?: string;
   value?: string;
 }
 
@@ -37,7 +37,7 @@ export interface IAuth {
 }
 
 export interface IHeader {
-  name?: string;
+  key?: string;
   value?: string;
 }
 
