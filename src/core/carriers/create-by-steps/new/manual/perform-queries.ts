@@ -1,83 +1,26 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import {
+  buildFinalUrl,
+  buildParams,
+  buildHeaders,
+  buildBody,
+  parseXmlToJson,
+} from './utils';
+import { handleSoapRequest } from './soapClient';
 
-// Function to replace placeholders in a template string
-const replacePlaceholders = (
-  template: string,
-  replacements: { [key: string]: string },
-): string => {
-  return template.replace(/{(\w+)}/g, (_, key) => replacements[key] || '');
+const isSoapService = (url: string): boolean => {
+  return url.trim().toLowerCase().endsWith('wsdl');
 };
 
-// Function to build the final URL with replacements
-const buildFinalUrl = (
-  url: string,
-  replacements: { [key: string]: string },
-): string => {
-  return replacePlaceholders(url, replacements);
-};
-
-// Function to build query parameters with replacements
-const buildParams = (
-  params: Record<string, string> | undefined,
-  replacements: { [key: string]: string },
-): Record<string, string> => {
-  const result: Record<string, string> = {};
-  if (params) {
-    for (const key in params) {
-      result[key] = replacePlaceholders(params[key], replacements);
-    }
-  }
-  return result;
-};
-
-// Function to build headers with replacements
-const buildHeaders = (
-  headers: Record<string, string> | undefined,
-  replacements: { [key: string]: string },
-): Record<string, string> => {
-  const result: Record<string, string> = {};
-  if (headers) {
-    for (const key in headers) {
-      result[key] = replacePlaceholders(headers[key], replacements);
-    }
-  }
-  return result;
-};
-
-// Function to build the request body with replacements
-const buildBody = (
-  body: any,
-  replacements: { [key: string]: string },
-  format: 'json' | 'xml',
-): any => {
-  if (format === 'json') {
-    if (typeof body === 'string') {
-      return replacePlaceholders(body, replacements);
-    } else if (typeof body === 'object') {
-      // If body is an object, convert to JSON, replace placeholders, and parse back to object
-      const jsonString = JSON.stringify(body);
-      return JSON.parse(replacePlaceholders(jsonString, replacements));
-    }
-  } else if (format === 'xml') {
-    // Assume body is a string containing XML
-    return replacePlaceholders(body, replacements);
-  }
-  return body;
-};
-
-// Function to parse XML response to JSON
-const parseXmlToJson = async (xml: string): Promise<any> => {
-  const xml2js = require('xml2js');
-  const parser = new xml2js.Parser({ explicitArray: false, mergeAttrs: true });
-  return parser.parseStringPromise(xml);
-};
-
-// Main function to make the Axios request using the endpoint object directly
 export default async (endpoint: any): Promise<any> => {
   const { url, query: queryDetails } = endpoint;
 
   if (!url || !queryDetails) {
     throw new Error('Endpoint details are incomplete.');
+  }
+
+  if (isSoapService(url)) {
+    return handleSoapRequest(endpoint);
   }
 
   const replacements: { [key: string]: string } = {};
@@ -99,7 +42,6 @@ export default async (endpoint: any): Promise<any> => {
     });
   }
 
-  // Handling authentication
   if (queryDetails.auth) {
     const { type, value } = queryDetails.auth;
 
