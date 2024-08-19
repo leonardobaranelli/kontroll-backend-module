@@ -83,7 +83,7 @@ export default class ShipmentParserService {
         useOpenAI: true,
       });
       if (!result.success || !result.data) {
-        throw new Error('Failed to parse shipment with AI');
+        throw new Error(result.error || 'Failed to parse shipment with AI');
       }
       return this.convertToIShipment(result.data, carrier);
     } catch (error: any) {

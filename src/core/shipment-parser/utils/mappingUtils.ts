@@ -21,12 +21,13 @@ export function generateMechanicalMapping(
   output: any,
 ): Array<{ key: string; value: string }> {
   const mechanicalMapping: Array<{ key: string; value: string }> = [];
+  const standardKeys = getStructureKeys(standardShipmentStructure);
 
-  // Helper function to compare objects and find matching values
   function compareObjects(
     inputObj: any,
     outputObj: any,
     inputPath: string = '',
+    outputPath: string = '',
   ) {
     for (const [inputKey, inputValue] of Object.entries(inputObj)) {
       const currentInputPath = inputPath
@@ -34,125 +35,108 @@ export function generateMechanicalMapping(
         : inputKey;
 
       if (typeof inputValue === 'object' && inputValue !== null) {
-        // Recursively compare nested objects
-        compareObjects(inputValue, outputObj, currentInputPath);
+        if (Array.isArray(inputValue)) {
+          for (let i = 0; i < inputValue.length; i++) {
+            compareObjects(
+              inputValue[i],
+              outputObj,
+              `${currentInputPath}[${i}]`,
+              outputPath,
+            );
+          }
+        } else {
+          compareObjects(inputValue, outputObj, currentInputPath, outputPath);
+        }
       } else {
-        // Find matching value in the output object
-        const matchingOutputPath = findMatchingValue(outputObj, inputValue);
-        if (matchingOutputPath) {
-          mechanicalMapping.push({
-            key: currentInputPath,
-            value: matchingOutputPath,
+        const matchingOutputPaths = findMatchingValues(
+          outputObj,
+          inputValue,
+          outputPath,
+        );
+        if (matchingOutputPaths.length > 0) {
+          matchingOutputPaths.forEach((matchingOutputPath) => {
+            mechanicalMapping.push({
+              key: currentInputPath,
+              value: matchingOutputPath,
+            });
           });
-          console.log(
-            `Mapping found: ${currentInputPath} -> ${matchingOutputPath}`,
-          );
         }
       }
     }
+    console.log('--------------------------------');
+    console.log('mechanicalMapping', mechanicalMapping);
+    console.log('--------------------------------');
   }
 
-  // Helper function to find a matching value in an object
-  function findMatchingValue(
+  function findMatchingValues(
     obj: any,
     value: any,
     path: string = '',
-  ): string | null {
+  ): string[] {
+    const matchingPaths: string[] = [];
     for (const [key, val] of Object.entries(obj)) {
       const currentPath = path ? `${path}.${key}` : key;
 
       if (val === value) {
-        return currentPath;
+        matchingPaths.push(currentPath);
       } else if (typeof val === 'object' && val !== null) {
         if (Array.isArray(val)) {
           for (let i = 0; i < val.length; i++) {
             const arrayPath = `${currentPath}[${i}]`;
-            const result = findMatchingValue(val[i], value, arrayPath);
-            if (result) return result;
+            matchingPaths.push(...findMatchingValues(val[i], value, arrayPath));
           }
         } else {
-          const result = findMatchingValue(val, value, currentPath);
-          if (result) return result;
+          matchingPaths.push(...findMatchingValues(val, value, currentPath));
         }
       }
     }
-    return null;
+    return matchingPaths;
   }
 
-  // Start comparing input and output objects
   compareObjects(input, output);
+
+  // Add missing fields from standard structure
+  for (const key of standardKeys) {
+    if (!mechanicalMapping.some((mapping) => mapping.value === key)) {
+      const inputKey = findInputKeyForStandardKey(input, key);
+      mechanicalMapping.push({ key: inputKey || 'null', value: key });
+    }
+  }
+
+  // Sort the mapping based on the standard structure order
+  const shipmentStructureOrder = getStructureKeys(standardShipmentStructure);
+  mechanicalMapping.sort((a, b) => {
+    const aIndex = shipmentStructureOrder.indexOf(a.value);
+    const bIndex = shipmentStructureOrder.indexOf(b.value);
+    return aIndex - bIndex;
+  });
+
   return mechanicalMapping;
 }
 
-// Function to combine AI and mechanical mappings
-export function combineMappings(
-  aiMapping: Array<{ key: string; value: string }>,
-  mechanicalMapping: Array<{ key: string; value: string }>,
-): Array<{ key: string; value: string }> {
-  const combinedMapping: Array<{ key: string; value: string }> = [...aiMapping];
-  const existingValues: Set<string> = new Set(
-    aiMapping.map((item) => item.value),
-  );
+function findInputKeyForStandardKey(
+  input: any,
+  standardKey: string,
+): string | null {
+  const parts = standardKey.split('.');
+  let current = input;
+  let currentPath = '';
 
-  for (const { key, value } of mechanicalMapping) {
-    if (!existingValues.has(value)) {
-      combinedMapping.push({ key, value });
+  for (const part of parts) {
+    if (current && typeof current === 'object') {
+      const key = Object.keys(current).find(
+        (k) => k.toLowerCase() === part.toLowerCase(),
+      );
+      if (key) {
+        currentPath = currentPath ? `${currentPath}.${key}` : key;
+        current = current[key];
+      } else {
+        return null;
+      }
+    } else {
+      return null;
     }
   }
 
-  return combinedMapping;
-}
-
-// Function to enhance the mapping dictionary by combining AI and mechanical mappings
-export function enhanceMappingDictionary(
-  aiMappingDictionary: Array<{ key: string; value: string }>,
-  mechanicalMappingDictionary: Array<{ key: string; value: string }>,
-): Array<{ key: string; value: string }> {
-  const enhancedMapping: Array<{ key: string; value: string }> = [];
-  const usedDestinations: Set<string> = new Set();
-
-  // Combine AI and mechanical mappings using the new function
-  const combinedMapping = combineMappings(
-    aiMappingDictionary,
-    mechanicalMappingDictionary,
-  );
-
-  console.log('--- Combined Mapping Dictionary ---');
-  console.log(JSON.stringify(combinedMapping, null, 2));
-
-  // Get the order of keys from the standard shipment structure
-  const shipmentStructureOrder = getStructureKeys(standardShipmentStructure);
-
-  // Create a map for quick lookup of the order of structure keys
-  const structureKeyOrderMap = new Map<string, number>();
-  shipmentStructureOrder.forEach((key, index) => {
-    structureKeyOrderMap.set(key, index);
-  });
-
-  // Sort combinedMapping based on the order of values in standardShipmentStructure
-  combinedMapping.sort((a, b) => {
-    const aOrder = structureKeyOrderMap.get(a.value) ?? Number.MAX_SAFE_INTEGER;
-    const bOrder = structureKeyOrderMap.get(b.value) ?? Number.MAX_SAFE_INTEGER;
-    return aOrder - bOrder;
-  });
-
-  // Add mappings to enhancedMapping, ensuring no duplicates and no null values
-  for (const { key, value } of combinedMapping) {
-    if (
-      !usedDestinations.has(value) &&
-      key !== null &&
-      value !== null &&
-      key !== '' &&
-      value !== ''
-    ) {
-      console.log(`Adding mapping: ${key} -> ${value}`);
-      enhancedMapping.push({ key, value });
-      usedDestinations.add(value);
-    }
-  }
-
-  console.log('--- Enhanced Mapping Dictionary ---');
-  console.log(JSON.stringify(enhancedMapping, null, 2));
-
-  return enhancedMapping;
+  return currentPath;
 }

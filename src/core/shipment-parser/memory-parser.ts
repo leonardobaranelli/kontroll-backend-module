@@ -1,132 +1,207 @@
+import _ from 'lodash';
 import ParsingDictionaryService from '../../services/parsing-dictionary.service';
-import {
-  ParserResult,
-  ShipmentInput,
-} from '../../utils/types/utilities.interface';
+import { ShipmentInput } from '../../utils/types/utilities.interface';
 import { IShipmentContent } from '../../utils/types/models.interface';
+import { createLogger, LogLevel } from './utils/loggingUtils';
 import {
   formatShipmentData,
-  getValueByPath,
-  setValueByPath,
-  findScheduledDates,
-  ensureRequiredFields,
+  removeSpecificNullFields,
 } from './utils/formattingUtils';
+import { ParserResult } from '../../utils/types/utilities.interface';
 
-interface MappingDictionary {
-  [key: string]: string;
+interface ExtendedParserResult extends ParserResult {
+  validationErrors: string[];
+}
+
+const Logger = createLogger('MemoryParser');
+
+class ParsingError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'ParsingError';
+  }
 }
 
 export async function getMappingDictionaryByCarrier(
   carrier: string,
-): Promise<MappingDictionary> {
-  console.log(`Fetching mapping dictionary for carrier: ${carrier}`);
-
+): Promise<Array<{ key: string; value: string }>> {
   try {
-    const parsingDictionary =
+    const response =
       await ParsingDictionaryService.getParsingDictionaryByCarrier(carrier);
-
-    if (!parsingDictionary || !parsingDictionary.dictionary) {
-      throw new Error(`Mapping dictionary for carrier ${carrier} not found`);
+    if (!response) {
+      throw new ParsingError(`No response received for carrier: ${carrier}`);
     }
-
-    console.log(
-      `Mapping dictionary fetched: ${JSON.stringify(
-        parsingDictionary.dictionary,
+    const dictionary = response.dictionary;
+    Logger.info(
+      `Fetched dictionary for carrier ${carrier}: ${JSON.stringify(
+        dictionary,
       )}`,
     );
-    return Object.fromEntries(
-      parsingDictionary.dictionary.map(
-        (item: { key: string; value: string }) => [item.key, item.value],
-      ),
-    );
+    if (!dictionary) {
+      throw new ParsingError(
+        `No mapping dictionary found for carrier: ${carrier}`,
+      );
+    }
+    // Ensure dictionary is in the correct format
+    if (
+      Array.isArray(dictionary) &&
+      dictionary.every((item) => item.key && item.value)
+    ) {
+      return dictionary.map((item: { key: string; value: string }) => ({
+        key: item.key,
+        value: item.value,
+      }));
+    } else {
+      Logger.error(
+        `Invalid dictionary format for carrier: ${carrier}: ${JSON.stringify(
+          dictionary,
+        )}`,
+      );
+      throw new ParsingError(
+        `Invalid dictionary format for carrier: ${carrier}`,
+      );
+    }
   } catch (error) {
-    console.error(
-      `Error fetching mapping dictionary for carrier ${carrier}:`,
-      error,
+    Logger.error(
+      `Error fetching mapping dictionary for carrier ${carrier}: ${
+        (error as Error).message
+      }`,
     );
     throw error;
   }
 }
 
-async function parseShipmentWithMapping(
+function handleOptionalFields(
+  parsedData: Partial<IShipmentContent>,
   inputJson: ShipmentInput,
-  carrier: string,
-): Promise<IShipmentContent> {
-  console.log('Starting parseShipmentWithMapping');
-  const mappingDictionary = await getMappingDictionaryByCarrier(carrier);
-  const parsedData: Partial<IShipmentContent> = {};
-
-  console.log('Input JSON:', JSON.stringify(inputJson, null, 2));
-  console.log(
-    'Mapping Dictionary:',
-    JSON.stringify(mappingDictionary, null, 2),
-  );
-
-  for (const [inputPath, outputPath] of Object.entries(mappingDictionary)) {
-    const value = getValueByPath(inputJson, inputPath);
-    console.log(`Mapping ${inputPath} to ${outputPath}. Value:`, value);
-
-    if (outputPath.startsWith('Timestamp')) {
-      // Handle Timestamp field specially
-      if (!parsedData.Timestamp) parsedData.Timestamp = [];
-      if (Array.isArray(value)) {
-        parsedData.Timestamp.push(
-          ...value.map((item: any) => ({
-            TimestampCode: item.statusCode || null,
-            TimestampDescription: item.status || null,
-            TimestampDateTime: item.timestamp || null,
-            TimestampLocation: item.location?.address?.addressLocality || null,
-          })),
-        );
-      } else if (value) {
-        parsedData.Timestamp.push({
-          TimestampCode: value.statusCode || null,
-          TimestampDescription: value.status || null,
-          TimestampDateTime: value.timestamp || null,
-          TimestampLocation: value.location?.address?.addressLocality || null,
-        });
-      }
-    } else if (value !== undefined) {
-      setValueByPath(parsedData, outputPath, value);
-    }
+) {
+  if (!parsedData.TotalPackages) {
+    parsedData.TotalPackages = inputJson.details?.references?.length || 0;
   }
 
-  console.log('Parsed Data:', JSON.stringify(parsedData, null, 2));
+  const optionalFields: Array<keyof IShipmentContent> = [
+    'brokerName',
+    'incoterms',
+    'shipmentDate',
+    'booking',
+    'mawb',
+    'hawb',
+    'flight',
+    'airportOfDeparture',
+    'etd',
+    'atd',
+    'airportOfArrival',
+    'eta',
+    'ata',
+    'vessel',
+    'portOfLoading',
+    'mbl',
+    'hbl',
+    'pickupDate',
+    'containerNumber',
+    'portOfUnloading',
+  ];
 
-  // Ensure all required fields are present and properly formatted
-  const shipment = ensureRequiredFields(parsedData, inputJson);
+  optionalFields.forEach((field) => {
+    if (!parsedData[field]) {
+      parsedData[field] = inputJson[field] || null;
+    }
+  });
+}
 
-  console.log('Final shipment object:', JSON.stringify(shipment, null, 2));
+export function parseShipmentData(
+  parsedData: any,
+  mappingDictionary: Array<{ key: string; value: string }>,
+): IShipmentContent {
+  const shipmentContent: IShipmentContent = {} as IShipmentContent;
+  const missingKeys: string[] = [];
 
-  // Try to find ScheduledDeparture and ShipmentDate from Timestamp if not already set
-  findScheduledDates(shipment);
+  // Initialize optional fields with null values
+  const optionalFields: Array<keyof IShipmentContent> = [
+    'brokerName',
+    'incoterms',
+    'shipmentDate',
+    'booking',
+    'mawb',
+    'hawb',
+    'flight',
+    'airportOfDeparture',
+    'etd',
+    'atd',
+    'airportOfArrival',
+    'eta',
+    'ata',
+    'vessel',
+    'portOfLoading',
+    'mbl',
+    'hbl',
+    'pickupDate',
+    'containerNumber',
+    'portOfUnloading',
+  ];
 
-  return shipment;
+  optionalFields.forEach((field) => {
+    if (field in shipmentContent) {
+      (shipmentContent as any)[field] = null;
+    }
+  });
+
+  console.log('shipmentContent before parsing:', shipmentContent);
+
+  mappingDictionary.forEach(({ key, value }) => {
+    if (key === 'null') {
+      Logger.warn(`Invalid key 'null' found in mapping dictionary`);
+      return;
+    }
+
+    const parsedValue = _.get(parsedData, key, null);
+    if (parsedValue === null) {
+      Logger.warn(`Key ${key} not found in parsed data`);
+      missingKeys.push(key);
+    } else {
+      Logger.info(
+        `Mapping key ${key} to value ${value} with data ${parsedValue}`,
+      );
+    }
+    _.set(shipmentContent, value, parsedValue);
+  });
+
+  if (missingKeys.length > 0) {
+    Logger.warn(`Missing keys from parsed data: ${missingKeys.join(', ')}`);
+  }
+
+  handleOptionalFields(shipmentContent, parsedData);
+
+  return shipmentContent; // Added this line
 }
 
 export async function parseShipmentWithMemory(
   inputJson: ShipmentInput,
   carrier: string,
-): Promise<ParserResult> {
-  console.log('Starting parseShipmentWithMemory');
+): Promise<ExtendedParserResult> {
   try {
-    if (Object.keys(inputJson).length === 0) {
-      throw new Error('Input JSON is empty');
-    }
-    const parsedData = await parseShipmentWithMapping(inputJson, carrier);
+    const mappingDictionary = await getMappingDictionaryByCarrier(carrier);
+    let parsedData = parseShipmentData(inputJson, mappingDictionary);
+
+    handleOptionalFields(parsedData, inputJson);
+
     const formattedData = formatShipmentData(parsedData);
+    const cleanedData = removeSpecificNullFields(formattedData);
 
-    console.log('Formatted Data:', JSON.stringify(formattedData, null, 2));
-
+    console.log('Parsed shipment data:', cleanedData);
     return {
       success: true,
-      data: formattedData,
+      data: cleanedData,
+      validationErrors: [],
     };
-  } catch (error: any) {
-    console.error('Error parsing shipment with memory:', error);
+  } catch (error) {
+    Logger.error(`Error in parseShipmentWithMemory: ${error}`);
     return {
       success: false,
-      error: `Error parsing shipment with memory: ${error.message}`,
+      error: `Failed to parse shipment: ${error}`,
+      validationErrors: [],
     };
   }
 }
+
+Logger.setLogLevel(LogLevel.INFO);

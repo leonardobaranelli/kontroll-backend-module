@@ -1,0 +1,14 @@
+[
+  {
+    "carrier": "dhl",
+    "shipment_id": "GMDBD8E9CCE94842E495B7"
+  },
+  {
+    "carrier": "dhl_global_forwarding",
+    "shipment_id": "BOGA06663"
+  },
+  {
+    "carrier": "sch",
+    "shipment_id": "DBSN1234567890"
+  }
+]

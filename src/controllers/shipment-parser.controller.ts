@@ -4,6 +4,8 @@ import {
   sendSuccessResponse,
   sendErrorResponse,
 } from './helpers/commons/handlers/responses.handler';
+import { generateMechanicalMapping } from '../core/shipment-parser/utils/mappingUtils';
+
 export default class ShipmentParserController {
   public static async parseShipmentEntry(req: Request, res: Response) {
     console.log('ShipmentParserController.parseShipmentEntry started');
@@ -71,6 +73,25 @@ export default class ShipmentParserController {
         'Shipment succesfully saved in database',
       );
     } catch (error: any) {
+      sendErrorResponse(res, error);
+    }
+  }
+
+  public static async testMechanicalParser(req: Request, res: Response) {
+    console.log('ShipmentParserController.testMechanicalParser started');
+    try {
+      const { input, output } = req.body;
+      if (!input || !output) {
+        throw new Error('Both input and output JSONs are required');
+      }
+      const mappingDictionary = generateMechanicalMapping(input, output);
+      sendSuccessResponse(
+        res,
+        mappingDictionary,
+        'Mechanical parsing completed successfully',
+      );
+    } catch (error: any) {
+      console.error('Error in testMechanicalParser:', error.message);
       sendErrorResponse(res, error);
     }
   }
