@@ -3,9 +3,9 @@ import express from 'express';
 import cors from 'cors';
 import logger from 'morgan';
 import session from 'express-session';
-import mainRouter from './routes';
 import cookieParser from 'cookie-parser';
 import { handleError, handleNotFound } from './middlewares/errors.middleware';
+import routerSetup from './routes';
 
 dotenv.config();
 
@@ -32,7 +32,7 @@ app.use(
   }),
 );
 
-app.use(mainRouter);
+routerSetup(app);
 
 // Catch 404 and forward to error handler
 app.use(handleNotFound);
