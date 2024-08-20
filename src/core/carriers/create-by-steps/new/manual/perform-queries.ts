@@ -124,9 +124,15 @@ export default async (endpoint: any): Promise<any> => {
       const jsonResponse = await parseXmlToJson(response.data);
 
       // Check if the parsed JSON indicates an error status
-      const actionStatus = jsonResponse?.Response?.Status?.ActionStatus;
+      const actionStatus =
+        jsonResponse?.['res:ErrorResponse']?.Response?.Status?.ActionStatus;
+
+      const conditionCode =
+        jsonResponse?.['res:ErrorResponse']?.Response?.Status?.Condition
+          ?.ConditionCode;
+
       if (actionStatus && actionStatus !== 'Success') {
-        return [jsonResponse, response.status, `Error: ${actionStatus}`];
+        return [jsonResponse, conditionCode, `Error: ${actionStatus}`];
       }
 
       return [jsonResponse, response.status];

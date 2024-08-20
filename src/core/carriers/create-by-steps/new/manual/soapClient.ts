@@ -1,48 +1,72 @@
-import axios, { AxiosRequestConfig } from 'axios';
-import {
-  buildFinalUrl,
-  buildHeaders,
-  buildBody,
-  parseXmlToJson,
-} from './utils';
+const soap = require('soap');
+const xml2js = require('xml2js');
 
-const createSoapEnvelope = (body: string): string => {
-  return `
-    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://webservice.example.com/">
-      <soapenv:Header/>
-      <soapenv:Body>
-        ${body}
-      </soapenv:Body>
-    </soapenv:Envelope>
-  `;
+const parseXmlToJson = (xml: string): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    xml2js.parseString(
+      xml,
+      { explicitArray: false },
+      (err: any, result: any) => {
+        if (err) {
+          console.error('Error parsing XML to JSON:', err);
+          return reject(err);
+        }
+
+        if (result.Envelope) {
+          resolve(result.Envelope);
+        } else {
+          resolve(result);
+        }
+      },
+    );
+  });
 };
 
-export const handleSoapRequest = async (endpoint: any): Promise<any> => {
+const createSoapClient = (url: string): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    soap.createClient(url, { timeout: 180000 }, (err: any, client: any) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(client);
+    });
+  });
+};
+
+export const handleSoapRequest = async (endpoint: any): Promise<any[]> => {
   const { url, query: queryDetails } = endpoint;
-
-  const soapBody = buildBody(queryDetails.body.value, {}, 'xml');
-  const finalUrl = buildFinalUrl(url, {});
-
-  const options: AxiosRequestConfig = {
-    method: queryDetails.method,
-    url: finalUrl,
-    headers: {
-      'Content-Type': 'text/xml',
-      ...buildHeaders(queryDetails.header, {}),
-    },
-    data: createSoapEnvelope(soapBody),
-  };
+  const method = queryDetails.method;
+  const xml = queryDetails.body.value;
 
   try {
-    const response = await axios(options);
-    const jsonResponse = await parseXmlToJson(response.data);
-    return [jsonResponse, response.status];
+    const xmlObject = await parseXmlToJson(xml);
+    console.log('Creating SOAP client...'.bgGreen);
+    const client = await createSoapClient(url);
+
+    const result = await new Promise<any>((resolve, reject) => {
+      Reflect.apply(client[method], client, [
+        xmlObject,
+        (err: any, _result: any) => {
+          if (err) {
+            console.error('Error invoking method:', err);
+            return reject(err);
+          }
+          console.log('data:', _result);
+          resolve(_result);
+        },
+      ]);
+    });
+
+    return [result, 200];
   } catch (error: any) {
-    if (error.response) {
-      const jsonResponse = await parseXmlToJson(error.response.data);
-      return [jsonResponse, error.response.status, error.message];
+    console.error('Error in handleSoapRequest:', error);
+    if (error.root) {
+      const errorResponse = await parseXmlToJson(error.root.Envelope.Body);
+      return [errorResponse, error.statusCode || 500, error.message];
     } else {
-      return ['Unknown error', 500, error.message];
+      return [{}, 500, error.message || 'An error occurred'];
     }
   }
 };
+
+module.exports = { handleSoapRequest };
