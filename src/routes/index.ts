@@ -11,4 +11,7 @@ mainRouter.use('/carriers', carrierRouter);
 mainRouter.use('/shipment-parser', shipmentParserRouter);
 mainRouter.use('/parsing-dictionary', parsingDictionaryRouter);
 
-export default mainRouter;
+const routerSetup = (app: Express.Application) => {
+  app.use(mainRouter);
+};
+export default routerSetup;
