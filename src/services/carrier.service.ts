@@ -265,10 +265,12 @@ export default class CarrierService {
         state.userInputs
       ) {
         const axiosResponse = await performQueries(state, true);
+        const unparsedShipment =
+          axiosResponse[0].response.ShipmentTracking.Shipment;
         await this.completeProcess(sessionID, state);
         await ShipmentParserService.parseShipmentEntry(
           data.name,
-          data.shipmentID,
+          unparsedShipment,
         ),
           await ShipmentParserService.saveParsedShipment(
             data.name,
@@ -281,6 +283,7 @@ export default class CarrierService {
       if (step.next === 'complete') {
         const axiosResponse = await performQueries(state, true);
         await this.completeProcess(sessionID, state);
+
         return completeProcessResponse(null, axiosResponse);
       } else {
         await this.updateState(sessionID, step.next, state);

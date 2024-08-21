@@ -7,13 +7,17 @@ import {
 import { generateMechanicalMapping } from '../core/shipment-parser/utils/mappingUtils';
 
 export default class ShipmentParserController {
-  public static async parseShipmentEntry(req: Request, res: Response) {
+  public static async parseShipmentEntry(
+    req: Request,
+    res: Response,
+    shipmentData: any,
+  ) {
     console.log('ShipmentParserController.parseShipmentEntry started');
     try {
-      const { carrier, trackingId } = req.params;
+      const { carrier } = req.params;
       const parsedShipment = await ShipmentParserService.parseShipmentEntry(
         carrier,
-        trackingId,
+        shipmentData,
       );
       sendSuccessResponse(res, parsedShipment, 'Shipment parsed successfully');
     } catch (error: any) {
@@ -22,13 +26,17 @@ export default class ShipmentParserController {
     }
   }
 
-  public static async parseShipmentWithAI(req: Request, res: Response) {
+  public static async parseShipmentWithAI(
+    req: Request,
+    res: Response,
+    shipmentData: any,
+  ) {
     console.log('ShipmentParserController.parseShipmentWithAI started');
     try {
-      const { carrier, trackingId } = req.params;
+      const { carrier } = req.params;
       const parsedShipment = await ShipmentParserService.parseShipmentWithAI(
         carrier,
-        trackingId,
+        shipmentData,
       );
       sendSuccessResponse(
         res,
@@ -41,14 +49,18 @@ export default class ShipmentParserController {
     }
   }
 
-  public static async parseShipmentWithMemory(req: Request, res: Response) {
+  public static async parseShipmentWithMemory(
+    req: Request,
+    res: Response,
+    shipmentData: any,
+  ) {
     console.log('ShipmentParserController.parseShipmentWithMemory started');
     try {
-      const { carrier, trackingId } = req.params;
+      const { carrier } = req.params;
       const parsedShipment =
         await ShipmentParserService.parseShipmentWithMemory(
           carrier,
-          trackingId,
+          shipmentData,
         );
       sendSuccessResponse(
         res,
