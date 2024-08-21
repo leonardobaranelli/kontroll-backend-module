@@ -12,14 +12,10 @@ export default class ShipmentParserService {
 
   public static async parseShipmentEntry(
     carrier: string,
-    trackingId: string,
+    shipmentData: string[],
   ): Promise<IShipment> {
     console.log('parseShipmentEntry started');
     try {
-      const shipmentData = await this.getShipmentFromController(
-        carrier,
-        trackingId,
-      );
       const parsingDictionary =
         await ParsingDictionaryService.getParsingDictionaryByCarrier(carrier);
 
@@ -50,14 +46,10 @@ export default class ShipmentParserService {
 
   public static async parseShipmentWithMemory(
     carrier: string,
-    trackingId: string,
+    shipmentData: string[],
   ): Promise<IShipment> {
     console.log('parseShipmentWithMemory started', { carrier });
     try {
-      const shipmentData = await this.getShipmentFromController(
-        carrier,
-        trackingId,
-      );
       const result = await parseShipmentWithMemory(shipmentData, carrier);
       if (!result.success || !result.data) {
         throw new Error('Failed to parse shipment with memory');
@@ -71,14 +63,10 @@ export default class ShipmentParserService {
 
   public static async parseShipmentWithAI(
     carrier: string,
-    trackingId: string,
+    shipmentData: string[],
   ): Promise<IShipment> {
     console.log('parseShipmentWithAI started');
     try {
-      const shipmentData = await this.getShipmentFromController(
-        carrier,
-        trackingId,
-      );
       const result = await parseShipmentData(shipmentData, carrier, {
         useOpenAI: true,
       });
