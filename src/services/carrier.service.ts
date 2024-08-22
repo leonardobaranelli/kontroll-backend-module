@@ -135,11 +135,12 @@ export default class CarrierService {
           const [axiosResponse, status] = await _performQueries(lastEndpoint);
 
           if (axiosResponse && status >= 200 && status < 300) {
+            console.log(axiosResponse);
             _success = true;
           }
 
           let _isGetShipmentEndpoint = false;
-          if (isGetShipmentEndpoint(shipmentId, lastEndpoint)) {
+          if (await isGetShipmentEndpoint(shipmentId, lastEndpoint)) {
             _isGetShipmentEndpoint = true;
             await this.endProcess(sessionID, state);
             return endProcessResponse(
