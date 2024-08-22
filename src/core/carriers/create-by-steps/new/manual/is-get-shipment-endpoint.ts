@@ -1,7 +1,10 @@
 import { IEndpoint } from '../../../../../utils/types/models.interface';
-import { searchInObject } from './utils';
+import { searchInObject, parseXmlToJson } from './utils';
 
-export default (shipmentId: string, endpoint: IEndpoint): boolean => {
+export default async (
+  shipmentId: string,
+  endpoint: IEndpoint,
+): Promise<boolean> => {
   // Check if the shipmentId is in the params
   if (endpoint.query && endpoint.query.params) {
     for (const param of endpoint.query.params) {
@@ -31,14 +34,14 @@ export default (shipmentId: string, endpoint: IEndpoint): boolean => {
     }
     // If the body is XML, convert it to JSON and then traverse it
     else if (endpoint.query.body.language === 'xml') {
-      const xml2js = require('xml2js');
-      let bodyObject: any;
-      xml2js.parseString(endpoint.query.body.value, (err: any, result: any) => {
-        if (err) throw err;
-        bodyObject = result;
-      });
-      if (searchInObject(bodyObject, shipmentId)) {
-        return true;
+      try {
+        const bodyObject = await parseXmlToJson(endpoint.query.body.value);
+        if (searchInObject(bodyObject, shipmentId)) {
+          return true;
+        }
+      } catch (error) {
+        console.error('Error parsing XML body:', error);
+        return false;
       }
     }
   }
