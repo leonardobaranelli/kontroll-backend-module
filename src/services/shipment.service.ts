@@ -1,6 +1,5 @@
-import admin from 'firebase-admin';
 // import { Shipment } from '../models/shipment.model';
-import { CreateShipmentDto, UpdateShipmentDto } from '../utils/dtos';
+import { UpdateShipmentDto } from '../utils/dtos';
 import {
   IShipmentPublic,
   // AbstractShipmentPublic,
@@ -24,21 +23,13 @@ export default class ShipmentService {
 
   public static async getAllShipments(): Promise<IShipmentPublic[]> {
     try {
-      const shipmentCollections = [
-        'shipments_dhl',
-        'shipments_dhl_global_forwarding',
-        'shipments_fedex',
-        'shipments_kandn',
-        'shipments_sch',
-      ];
+      const shipmentsCollection = getShipmentsCollection();
       const allShipments: IShipmentPublic[] = [];
 
-      for (const collection of shipmentCollections) {
-        const snapshot = await admin.firestore().collection(collection).get();
-        snapshot.forEach((doc) => {
-          allShipments.push({ ...(doc.data() as IShipmentPublic) });
-        });
-      }
+      const snapshot = await shipmentsCollection.get();
+      snapshot.forEach((doc) => {
+        allShipments.push({ ...(doc.data() as IShipmentPublic) });
+      });
 
       if (allShipments.length === 0) {
         const error: IError = new Error('There are no shipments available');
@@ -55,10 +46,10 @@ export default class ShipmentService {
     carrier: string,
   ): Promise<IShipmentPublic[]> {
     try {
-      const shipmentsCollection = admin
-        .firestore()
-        .collection(`shipments_${carrier}`);
-      const snapshot = await shipmentsCollection.get();
+      const shipmentsCollection = getShipmentsCollection();
+      const snapshot = await shipmentsCollection
+        .where('carrierId', '==', carrier)
+        .get();
       const shipments: IShipmentPublic[] = [];
 
       snapshot.forEach((doc) => {
@@ -84,9 +75,7 @@ export default class ShipmentService {
     shipmentId: string,
   ): Promise<IShipmentPublic> {
     try {
-      const shipmentsCollection = admin
-        .firestore()
-        .collection(`shipments_${carrier}`);
+      const shipmentsCollection = getShipmentsCollection();
 
       const snapshot = await shipmentsCollection.get();
       const idField = this.getIdFieldForCarrier(carrier);
@@ -132,38 +121,7 @@ export default class ShipmentService {
     }
   }
 
-  public static async createShipment(
-    shipmentData: CreateShipmentDto,
-  ): Promise<IShipmentPublic> {
-    const { HousebillNumber } = shipmentData.shipmentContent;
-
-    try {
-      // Aquí deberíamos buscar el envío en los conectores
-      const existingShipment =
-        await this.searchShipmentInConnectors(HousebillNumber);
-
-      if (existingShipment) {
-        const error: IError = new Error(
-          `Shipment with tracking number ${HousebillNumber} already exists`,
-        );
-        error.statusCode = 409;
-        throw error;
-      }
-
-      // Aquí deberíamos crear el envío en el conector apropiado
-      const newShipment = await this.createShipmentInConnector(shipmentData);
-
-      // Convertir el resultado del conector a IShipmentPublic
-      const publicShipment: IShipmentPublic =
-        this.convertToPublicShipment(newShipment);
-
-      return publicShipment;
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  private static async searchShipmentInConnectors(
+  /* private static async searchShipmentInConnectors(
     HousebillNumber: string,
   ): Promise<any> {
     // Implementar la lógica para buscar en los conectores
@@ -172,19 +130,14 @@ export default class ShipmentService {
     return null;
   }
 
-  private static async createShipmentInConnector(
-    shipmentData: CreateShipmentDto,
-  ): Promise<any> {
-    // Implementar la lógica para crear el envío en el conector apropiado
-    // Por ahora, retornamos los datos recibidos como placeholder
-    return shipmentData;
-  }
+  
 
   private static convertToPublicShipment(shipmentData: any): IShipmentPublic {
     // Implementar la lógica para convertir los datos del conector a IShipmentPublic
     // Por ahora, hacemos un cast simple
     return shipmentData as IShipmentPublic;
   }
+    */
 
   public static async updateShipmentByNumber(
     HousebillNumber: string,

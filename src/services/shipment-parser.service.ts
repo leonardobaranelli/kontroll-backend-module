@@ -1,8 +1,5 @@
 import { IShipment, IShipmentContent } from '../utils/types/models.interface';
-import { ShipmentInput } from '../utils/types/utilities.interface';
 import ParsingDictionaryService from './parsing-dictionary.service';
-import ShipmentController from '../controllers/shipment.controller';
-import { Request, Response } from 'express';
 import { parseShipmentData } from '../core/shipment-parser/parser';
 import { parseShipmentWithMemory } from '../core/shipment-parser/memory-parser';
 import { getShipmentsCollection } from '../config/database/firestore/firestore.config';
@@ -78,34 +75,6 @@ export default class ShipmentParserService {
       console.error('Error in parseShipmentWithAI:', error);
       throw new Error(`Failed to parse shipment with AI: ${error.message}`);
     }
-  }
-
-  public static async getShipmentFromController(
-    carrier: string,
-    trackingId: string,
-  ): Promise<ShipmentInput> {
-    const mockRequest = {
-      params: { carrier, shipmentId: trackingId },
-    } as unknown as Request;
-    const mockResponse = {
-      json: (data: any) => data,
-      status: (statusCode: number) => ({
-        json: (data: any) => ({ statusCode, ...data }),
-      }),
-    } as unknown as Response;
-
-    const shipment = await ShipmentController.getByCarrierAndId(
-      mockRequest,
-      mockResponse,
-    );
-
-    if (!shipment) {
-      throw new Error(
-        `Shipment not found for carrier ${carrier} and tracking ID ${trackingId}`,
-      );
-    }
-
-    return shipment;
   }
 
   private static convertToIShipment(
