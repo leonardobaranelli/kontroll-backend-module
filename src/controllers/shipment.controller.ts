@@ -1,13 +1,11 @@
 import { Request, Response } from 'express';
-import { validateOrReject } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 import {
   sendSuccessResponse,
   sendErrorResponse,
 } from './helpers/commons/handlers/responses.handler';
-import { CreateShipmentDto, UpdateShipmentDto } from '../utils/dtos';
+import { UpdateShipmentDto } from '../utils/dtos';
 import ShipmentService from '../services/shipment.service';
-import { isErrorArray } from './helpers/commons/is-error-array.helper';
 import { IShipmentPublic } from '../utils/types/utilities.interface';
 
 export default class ShipmentController {
@@ -57,35 +55,6 @@ export default class ShipmentController {
     } catch (error: any) {
       sendErrorResponse(res, error, error.statusCode || 400);
       return null;
-    }
-  };
-
-  public static create = async (req: Request, res: Response): Promise<void> => {
-    let shipmentData: CreateShipmentDto = plainToClass(
-      CreateShipmentDto,
-      req.body,
-    ) as CreateShipmentDto;
-
-    try {
-      await validateOrReject(shipmentData);
-
-      const newShipment: IShipmentPublic | null =
-        await ShipmentService.createShipment(shipmentData);
-      sendSuccessResponse(
-        res,
-        newShipment,
-        'Shipment created successfully',
-        201,
-      );
-    } catch (error: any) {
-      if (isErrorArray(error)) {
-        const errorMessage: string = error
-          .map((err) => Object.values(err.constraints || {}))
-          .join(', ');
-        sendErrorResponse(res, new Error(errorMessage));
-      } else {
-        sendErrorResponse(res, error as Error);
-      }
     }
   };
 

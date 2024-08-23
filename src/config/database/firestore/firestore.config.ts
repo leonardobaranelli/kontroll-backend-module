@@ -40,7 +40,7 @@ function getCarriersCollection() {
 
 function getShipmentsCollection() {
   initializeFirestore();
-  return admin.firestore().collection('parsed-shipments');
+  return admin.firestore().collection('shipments');
 }
 
 function cleanData(data: any) {
