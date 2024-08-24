@@ -24,6 +24,22 @@ export default class CarrierController {
     }
   };
 
+  public static getById = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
+    const carrierId = req.params.id as string;
+
+    try {
+      const carrier: ICarrierPublic = await CarrierService.getCarrierById(
+        carrierId,
+      );
+      sendSuccessResponse(res, carrier, 'Carrier retrieved successfully');
+    } catch (error: any) {
+      sendErrorResponse(res, error, error.statusCode || 500);
+    }
+  };
+
   public static endSession = async (
     req: Request,
     res: Response,
@@ -65,15 +81,17 @@ export default class CarrierController {
   ): Promise<void> => {
     try {
       verifyEndpointRequest(req, res, async () => {
-        const { name, shipmentId, endpoint } = req.body as {
+        const { name, shipmentId, transportMode, endpoint } = req.body as {
           name: string;
           shipmentId: string;
+          transportMode: string | null;
           endpoint: object;
         };
 
         const result = await CarrierService.createNew(
           name,
           shipmentId,
+          transportMode,
           endpoint,
           req.sessionID,
         );

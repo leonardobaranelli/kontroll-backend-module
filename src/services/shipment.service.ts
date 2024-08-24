@@ -7,8 +7,30 @@ import {
 } from '../utils/types/utilities.interface';
 // import { getAttributes } from './helpers/commons/get-attributes.helper';
 import { getShipmentsCollection } from '../config/database/firestore/firestore.config';
+import CarrierService from './carrier.service';
 
 export default class ShipmentService {
+  //*#############################################*\\
+
+  public static async getShipment(
+    _userId: string,
+    carrierId: string,
+    _companyId: string,
+    _token: string | null,
+    _transportMode: string | null,
+    _shipmentId: string,
+    //): Promise<IShipmentPublic> {
+  ) {
+    try {
+      const carrier = await CarrierService.getCarrierById(carrierId);
+
+      return carrier;
+    } catch (error) {
+      throw error;
+    }
+  }
+  //*#############################################*//
+
   private static getIdFieldForCarrier(carrier: string): string {
     const carrierIdFields: { [key: string]: string } = {
       dhl: 'id',
@@ -42,6 +64,7 @@ export default class ShipmentService {
       throw error;
     }
   }
+
   public static async getShipmentsByCarrier(
     carrier: string,
   ): Promise<IShipmentPublic[]> {

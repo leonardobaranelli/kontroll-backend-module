@@ -12,6 +12,7 @@ import areAllRequirementsCaptured from '../core/carriers/create-by-steps/known/a
 import performQueries from '../core/carriers/create-by-steps/known/perform-queries';
 import _performQueries from '../core/carriers/create-by-steps/new/manual/perform-queries';
 import isGetShipmentEndpoint from '../core/carriers/create-by-steps/new/manual/is-get-shipment-endpoint';
+import isAuthEndpoint from '../core/carriers/create-by-steps/new/manual/is-auth-endpoint';
 
 import docNotFoundResponse from './helpers/carrier/new/dev/doc-not-found-response.helper';
 import endProcessResponse from './helpers/carrier/new/manual/end-process-response.helper';
@@ -19,7 +20,7 @@ import continueProcessResponse from './helpers/carrier/new/manual/continue-proce
 import ShipmentParserService from './shipment-parser.service';
 
 export default class CarrierService {
-  private static stateStore: { [sessionID: string]: any } = {};
+  private static stateStore: Record<string, any> = {};
 
   private static getState(sessionID: string): any {
     return this.stateStore[sessionID] || {};
@@ -31,10 +32,10 @@ export default class CarrierService {
   ): Promise<void> {
     try {
       this.stateStore[sessionID] = { ...state };
-    } catch (error) {
-      console.error('Error in updateState:', error);
+    } catch (error: any) {
+      console.error('Error updating state:', error);
       throw new Error(
-        `Failed to update state for session ${sessionID}: ${error}`,
+        `Failed to update state for session ${sessionID}: ${error.message}`,
       );
     }
   }
@@ -44,11 +45,12 @@ export default class CarrierService {
     state: any,
   ): Promise<void> {
     try {
-      if (!state.userInputs || state.userInputs.length === 0) {
+      const { userInputs } = state;
+      if (!userInputs || userInputs.length === 0) {
         throw new Error('No user inputs found in the session state.');
       }
 
-      const lastUserInput = state.userInputs[state.userInputs.length - 1];
+      const lastUserInput = userInputs[userInputs.length - 1];
       if (!lastUserInput || typeof lastUserInput !== 'object') {
         throw new Error('Invalid last user input.');
       }
@@ -60,8 +62,8 @@ export default class CarrierService {
 
       const cleanedData = cleanData({
         userId: 'admin',
-        name: name,
-        endpoints: endpoints,
+        name,
+        endpoints,
       });
 
       const carriersCollection = getCarriersCollection();
@@ -79,22 +81,26 @@ export default class CarrierService {
   private static _captureUserInput(
     name: string,
     shipmentId: string,
+    transportMode: string | null,
     endpoint: object,
     sessionID: string,
-  ) {
+  ): void {
     const state = this.getState(sessionID);
     if (!state.userInputs) {
       state.userInputs = [];
     }
 
-    let endpoints: object[] = [];
-    if (state.userInputs.length > 0) {
-      const lastUserInput = state.userInputs[state.userInputs.length - 1];
-      endpoints = lastUserInput.endpoints ? [...lastUserInput.endpoints] : [];
-    }
+    const lastUserInput = state.userInputs[state.userInputs.length - 1] || {};
+    const endpoints = lastUserInput.endpoints
+      ? [...lastUserInput.endpoints]
+      : [];
 
     endpoints.push(endpoint);
     state.userInputs.push({ name, shipmentId, endpoints });
+
+    if (transportMode) {
+      state.userInputs.push({ transportMode });
+    }
 
     console.log(
       `User input for session ${sessionID}:`.magenta,
@@ -106,69 +112,138 @@ export default class CarrierService {
     });
   }
 
+  private static saveResponse(axiosResponse: any, sessionID: string): void {
+    const state = this.getState(sessionID);
+    const lastUserInput = state.userInputs[state.userInputs.length - 1];
+
+    if (
+      lastUserInput &&
+      lastUserInput.endpoints &&
+      lastUserInput.endpoints.length > 0
+    ) {
+      const lastEndpoint =
+        lastUserInput.endpoints[lastUserInput.endpoints.length - 1];
+      lastEndpoint.response = axiosResponse;
+    }
+
+    this._updateState(sessionID, state).catch((error) => {
+      console.error('Error updating state:', error);
+    });
+  }
+
   public static async endSession(sessionID: string): Promise<void> {
     try {
       delete this.stateStore[sessionID];
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to end session:', error);
-      throw new Error(`Failed to end session: ${error}`);
+      throw new Error(`Failed to end session: ${error.message}`);
     }
   }
 
   public static async createNew(
     name: string,
     shipmentId: string,
+    transportMode: string | null,
     endpoint: object,
     sessionID: string,
   ): Promise<any> {
     try {
-      this._captureUserInput(name, shipmentId, endpoint, sessionID);
+      this._captureUserInput(
+        name,
+        shipmentId,
+        transportMode,
+        endpoint,
+        sessionID,
+      );
+
       const state = await this.getState(sessionID);
-      if (state.userInputs && state.userInputs.length > 0) {
-        const lastUserInput = state.userInputs[state.userInputs.length - 1];
+      const lastUserInput = state.userInputs?.[state.userInputs.length - 1];
+      const previousEndpoint = this.getPreviousEndpoint(state);
+      const currentEndpoint = this.getCurrentEndpoint(state);
 
-        if (lastUserInput.endpoints && lastUserInput.endpoints.length > 0) {
-          const lastEndpoint =
-            lastUserInput.endpoints[lastUserInput.endpoints.length - 1];
-
-          let _success = false;
-          const [axiosResponse, status] = await _performQueries(lastEndpoint);
-
-          if (axiosResponse && status >= 200 && status < 300) {
-            console.log(axiosResponse);
-            _success = true;
-          }
-
-          let _isGetShipmentEndpoint = false;
-          if (await isGetShipmentEndpoint(shipmentId, lastEndpoint)) {
-            _isGetShipmentEndpoint = true;
-            await this.endProcess(sessionID, state);
-            return endProcessResponse(
-              state.name,
-              _isGetShipmentEndpoint,
-              _success,
-              axiosResponse,
-            );
-          }
-
-          return continueProcessResponse(
-            _isGetShipmentEndpoint,
-            _success,
-            axiosResponse,
-          );
-        } else {
-          throw new Error('No endpoints available in the last user input.');
-        }
-      } else {
-        throw new Error('User inputs are not initialized or empty.');
+      if (!lastUserInput || !currentEndpoint) {
+        throw new Error('No endpoints available in the last user input.');
       }
-    } catch (error) {
-      console.error('Error in createNew:'.bgMagenta, error);
+
+      const [axiosResponse, status] = await _performQueries(currentEndpoint);
+      await this.saveResponse(axiosResponse, sessionID);
+
+      const success = axiosResponse && status >= 200 && status < 300;
+      const isAuthEndpoint = previousEndpoint
+        ? await this.isAuthEndpoint(state, currentEndpoint)
+        : false;
+      const isGetShipmentEndpoint = await this.isGetShipmentEndpoint(
+        shipmentId,
+        currentEndpoint,
+      );
+
+      if (previousEndpoint) {
+        previousEndpoint.isAuthEndpoint = isAuthEndpoint;
+      }
+      currentEndpoint.isGetShipmentEndpoint = isGetShipmentEndpoint;
+
+      if (isGetShipmentEndpoint) {
+        await this.endProcess(sessionID, state);
+        return endProcessResponse(
+          state.name,
+          isGetShipmentEndpoint,
+          isAuthEndpoint,
+          success,
+          axiosResponse,
+        );
+      } else {
+        return continueProcessResponse(
+          isGetShipmentEndpoint,
+          isAuthEndpoint,
+          success,
+          axiosResponse,
+        );
+      }
+    } catch (error: any) {
+      console.error('Error in createNew:', error);
       return {
         error: true,
-        message: 'Failed to create new endpoint: ' + error,
+        message: `Failed to create new endpoint: ${error.message}`,
       };
     }
+  }
+
+  private static getPreviousEndpoint(state: any): any | null {
+    const userInputs = state.userInputs || [];
+    if (userInputs.length > 1) {
+      const previousUserInput = userInputs[userInputs.length - 2];
+      const previousEndpoints = previousUserInput.endpoints || [];
+      if (previousEndpoints.length > 0) {
+        return previousEndpoints[previousEndpoints.length - 1];
+      }
+    }
+    return null;
+  }
+
+  private static getCurrentEndpoint(state: any): any | null {
+    const lastUserInput = state.userInputs?.[state.userInputs.length - 1];
+    const endpoints = lastUserInput?.endpoints || [];
+    if (endpoints.length > 0) {
+      return endpoints[endpoints.length - 1];
+    }
+    return null;
+  }
+
+  private static async isAuthEndpoint(
+    state: any,
+    lastEndpoint: any,
+  ): Promise<boolean> {
+    const previousEndpoint = this.getPreviousEndpoint(state);
+    return previousEndpoint
+      ? await isAuthEndpoint(previousEndpoint.response, lastEndpoint)
+      : false;
+  }
+
+  private static async isGetShipmentEndpoint(
+    shipmentId: string,
+    lastEndpoint: any,
+  ): Promise<boolean> {
+    return await isGetShipmentEndpoint(shipmentId, lastEndpoint);
   }
 
   //* #####################
@@ -327,6 +402,25 @@ export default class CarrierService {
       });
 
       return allConnectors;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public static async getCarrierById(id: string): Promise<ICarrierPublic> {
+    try {
+      const carriersCollection = getCarriersCollection();
+      const docRef = carriersCollection.doc(id);
+      const docSnapshot = await docRef.get();
+
+      if (!docSnapshot.exists) {
+        const error: IError = new Error(`Carrier with ID ${id} not found`);
+        error.statusCode = 404;
+        throw error;
+      }
+
+      const carrierData = docSnapshot.data() as ICarrierPublic;
+      return carrierData;
     } catch (error) {
       throw error;
     }
