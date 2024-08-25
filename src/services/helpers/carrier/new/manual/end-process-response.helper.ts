@@ -4,12 +4,15 @@ export default (
   isAuthEndpoint: boolean,
   success: boolean,
   carrierResponse: any = null,
+  location?: string,
+  value?: string,
 ) => {
   return {
-    //message: `Process completed successfully! Carrier ${name} created.`,
     isGetShipmentEndpoint,
     isAuthEndpoint,
     success,
     carrierResponse,
+    location,
+    value,
   };
 };
