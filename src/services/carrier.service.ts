@@ -60,12 +60,14 @@ export default class CarrierService {
         throw new Error('Invalid name or endpoints in the last user input.');
       }
 
+      // Update the cleanedData to include shipmentId details if present
       const cleanedData = cleanData({
         userId: 'admin',
         name,
         endpoints,
       });
 
+      // Here you should update the data with shipmentId details
       const carriersCollection = getCarriersCollection();
       await carriersCollection.add(cleanedData);
 
@@ -96,7 +98,15 @@ export default class CarrierService {
       : [];
 
     endpoints.push(endpoint);
-    state.userInputs.push({ name, shipmentId, endpoints });
+
+    const shipmentInfo = {
+      name,
+      shipmentId,
+      endpoints,
+      transportMode,
+    };
+
+    state.userInputs.push(shipmentInfo);
 
     if (transportMode) {
       state.userInputs.push({ transportMode });
@@ -123,7 +133,16 @@ export default class CarrierService {
     ) {
       const lastEndpoint =
         lastUserInput.endpoints[lastUserInput.endpoints.length - 1];
+
       lastEndpoint.response = axiosResponse;
+
+      if (lastUserInput.shipmentId) {
+        lastEndpoint.shipmentId = lastUserInput.shipmentId;
+        lastEndpoint.location =
+          lastUserInput.endpoints.find(
+            (e: any) => e.value === lastUserInput.shipmentId,
+          )?.key || 'unknown';
+      }
     }
 
     this._updateState(sessionID, state).catch((error) => {
@@ -172,13 +191,22 @@ export default class CarrierService {
       const isAuthEndpoint = previousEndpoint
         ? await this.isAuthEndpoint(state, currentEndpoint)
         : false;
-      const isGetShipmentEndpoint = await this.isGetShipmentEndpoint(
+
+      const getShipmentResult = await this.isGetShipmentEndpoint(
         shipmentId,
         currentEndpoint,
       );
 
+      const isGetShipmentEndpoint = getShipmentResult.isGetShipmentEndpoint;
+      if (getShipmentResult.location) {
+        currentEndpoint.location = getShipmentResult.location;
+      }
+
       if (previousEndpoint) {
         previousEndpoint.isAuthEndpoint = isAuthEndpoint;
+        currentEndpoint.isAuthEndpoint = false;
+      } else {
+        currentEndpoint.isAuthEndpoint = false;
       }
       currentEndpoint.isGetShipmentEndpoint = isGetShipmentEndpoint;
 
@@ -242,8 +270,25 @@ export default class CarrierService {
   private static async isGetShipmentEndpoint(
     shipmentId: string,
     lastEndpoint: any,
-  ): Promise<boolean> {
-    return await isGetShipmentEndpoint(shipmentId, lastEndpoint);
+  ): Promise<{
+    isGetShipmentEndpoint: boolean;
+    location?: string;
+    value?: string;
+  }> {
+    const result = await isGetShipmentEndpoint(shipmentId, lastEndpoint);
+    console.log(result);
+
+    if (result.found) {
+      return {
+        isGetShipmentEndpoint: true,
+        location: result.location,
+        value: result.value,
+      };
+    } else {
+      return {
+        isGetShipmentEndpoint: false,
+      };
+    }
   }
 
   //* #####################

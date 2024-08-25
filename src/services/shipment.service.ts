@@ -8,6 +8,7 @@ import {
 // import { getAttributes } from './helpers/commons/get-attributes.helper';
 import { getShipmentsCollection } from '../config/database/firestore/firestore.config';
 import CarrierService from './carrier.service';
+import performQueries from '../core/carriers/perform-queries';
 
 export default class ShipmentService {
   //*#############################################*\\
@@ -16,15 +17,23 @@ export default class ShipmentService {
     _userId: string,
     carrierId: string,
     _companyId: string,
-    _token: string | null,
+    token: string | undefined | null,
     _transportMode: string | null,
-    _shipmentId: string,
+    shipmentId: string,
     //): Promise<IShipmentPublic> {
   ) {
     try {
       const carrier = await CarrierService.getCarrierById(carrierId);
+      const endpoints = carrier.endpoints;
+      const result: any = await performQueries(endpoints, shipmentId, token);
 
-      return carrier;
+      // endpoints.forEach((endpoint: any) => {
+      //   const { response, ...rest } = endpoint;
+      //   //console.log('Endpoint:', rest);
+      //   result.push(rest);
+      // });
+
+      return result;
     } catch (error) {
       throw error;
     }
