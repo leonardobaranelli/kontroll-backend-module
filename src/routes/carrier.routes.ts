@@ -12,6 +12,7 @@ router.post('/dev', CarrierController.devGetReqViaDoc);
 
 //GET
 router.get('/', CarrierController.getAll);
+router.get('/id/:id', CarrierController.getById);
 router.get('/end-session', CarrierController.endSession);
 
 //DELETE

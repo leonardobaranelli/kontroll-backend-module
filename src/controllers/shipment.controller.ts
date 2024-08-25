@@ -7,8 +7,57 @@ import {
 import { UpdateShipmentDto } from '../utils/dtos';
 import ShipmentService from '../services/shipment.service';
 import { IShipmentPublic } from '../utils/types/utilities.interface';
+import { verifyEndpointRequest } from './helpers/shipment/verify-endpoint-request.helper';
 
 export default class ShipmentController {
+  //*#############################################*\\
+  public static getShipment = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
+    try {
+      verifyEndpointRequest(req, res, async () => {
+        const {
+          userId,
+          carrierId,
+          _companyId,
+          token,
+          transportMode,
+          shipmentId,
+        } = req.body as {
+          userId: string;
+          carrierId: string;
+          token: string | null;
+          transportMode: string | null;
+          shipmentId: string;
+          _companyId: string;
+        };
+
+        //const shipment: IShipmentPublic = await ShipmentService.getShipment(
+        // const shipment = await ShipmentService.getShipment(
+        //   userId,
+        //   carrierId,
+        //   _companyId,
+        //   token,
+        //   transportMode,
+        //   shipmentId
+        // );
+        const shipment = await ShipmentService.getShipment(
+          userId,
+          carrierId,
+          _companyId,
+          token,
+          transportMode,
+          shipmentId,
+        );
+        sendSuccessResponse(res, shipment, 'Shipment successfully obtained.');
+      });
+    } catch (error: any) {
+      sendErrorResponse(res, error);
+    }
+  };
+  //*#############################################*//
+
   public static getAll = async (
     _req: Request,
     res: Response,

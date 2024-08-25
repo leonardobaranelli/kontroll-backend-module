@@ -114,7 +114,7 @@ export default async (endpoint: any): Promise<any> => {
     };
   }
 
-  console.log('Options: ' + JSON.stringify(options));
+  //console.log('Options: ' + JSON.stringify(options));
 
   try {
     const response = await axios(options);

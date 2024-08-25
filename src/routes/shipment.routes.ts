@@ -7,6 +7,9 @@ const router = Express.Router();
 router.get('/', ShipmentController.getAll);
 router.get('/carrier/:carrier', ShipmentController.getByCarrier);
 
+//POST
+router.post('/get-shipment', ShipmentController.getShipment);
+
 //PUT
 router.put('/number/:number', ShipmentController.updateByNumber);
 
