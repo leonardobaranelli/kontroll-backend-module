@@ -139,6 +139,7 @@ export default async (endpoint: any): Promise<any> => {
     }
 
     // For non-XML responses, return as is
+    console.log('HERE' + JSON.stringify(response.data));
     return [response.data, response.status];
   } catch (error: any) {
     if (error.response) {

@@ -1,10 +1,29 @@
 import { IEndpoint } from '../../../../../utils/types/models.interface';
-import { searchInObject, parseXmlToJson } from './utils';
+import { parseXmlToJson } from './utils';
 
 type SearchResult = {
   found: boolean;
-  location?: string;
+  shipmentLocation?: string;
   value?: string;
+};
+
+// Helper function to find shipmentId and return its key
+const findShipmentIdInObject = (
+  obj: any,
+  shipmentId: string,
+): string | null => {
+  if (typeof obj !== 'object' || obj === null) return null;
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      if (typeof obj[key] === 'object') {
+        const foundKey = findShipmentIdInObject(obj[key], shipmentId);
+        if (foundKey) return `${key}.${foundKey}`;
+      } else if (obj[key] === shipmentId) {
+        return key;
+      }
+    }
+  }
+  return null;
 };
 
 export default async (
@@ -12,16 +31,14 @@ export default async (
   endpoint: IEndpoint,
 ): Promise<SearchResult> => {
   console.log('Endpoint ' + JSON.stringify(endpoint));
+
   // Check if the shipmentId is in the params
   if (endpoint.query && endpoint.query.params) {
     for (const param of endpoint.query.params) {
       if (param.value === shipmentId) {
-        console.log(
-          'location: ' + `params[${param.key}]` + 'value ' + param.value,
-        );
         return {
           found: true,
-          location: `params[${param.key}]`,
+          shipmentLocation: `params[${param.key}]`,
           value: param.value,
         };
       }
@@ -34,7 +51,7 @@ export default async (
       if (header.value === shipmentId) {
         return {
           found: true,
-          location: `headers[${header.key}]`,
+          shipmentLocation: `headers[${header.key}]`,
           value: header.value,
         };
       }
@@ -43,32 +60,40 @@ export default async (
 
   // Check if the shipmentId is in the body
   if (endpoint.query && endpoint.query.body && endpoint.query.body.value) {
-    // If the body is JSON, traverse it
-    if (endpoint.query.body.language === 'json') {
-      const bodyObject = JSON.parse(endpoint.query.body.value);
-      if (searchInObject(bodyObject, shipmentId)) {
-        return {
-          found: true,
-          location: 'body',
-          value: endpoint.query.body.value,
-        };
-      }
-    }
-    // If the body is XML, convert it to JSON and then traverse it
-    else if (endpoint.query.body.language === 'xml') {
-      try {
-        const bodyObject = await parseXmlToJson(endpoint.query.body.value);
-        if (searchInObject(bodyObject, shipmentId)) {
+    try {
+      let bodyObject: any;
+
+      // If the body is JSON, parse it
+      if (endpoint.query.body.language === 'json') {
+        bodyObject = JSON.parse(endpoint.query.body.value);
+
+        // Find the shipmentId in the JSON object and get the key
+        const key = findShipmentIdInObject(bodyObject, shipmentId);
+        if (key) {
           return {
             found: true,
-            location: 'body',
-            value: endpoint.query.body.value,
+            shipmentLocation: `body[${key}]`,
+            value: shipmentId,
           };
         }
-      } catch (error) {
-        console.error('Error parsing XML body:', error);
-        return { found: false };
       }
+      // If the body is XML, convert it to JSON
+      else if (endpoint.query.body.language === 'xml') {
+        bodyObject = await parseXmlToJson(endpoint.query.body.value);
+
+        // Find the shipmentId in the JSON object and get the key
+        const key = findShipmentIdInObject(bodyObject, shipmentId);
+        if (key) {
+          return {
+            found: true,
+            shipmentLocation: `body[${key}]`,
+            value: shipmentId,
+          };
+        }
+      }
+    } catch (error) {
+      console.error('Error parsing body:', error);
+      return { found: false };
     }
   }
 

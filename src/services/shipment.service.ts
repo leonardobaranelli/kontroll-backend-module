@@ -17,7 +17,6 @@ export default class ShipmentService {
     _userId: string,
     carrierId: string,
     _companyId: string,
-    token: string | undefined | null,
     _transportMode: string | null,
     shipmentId: string,
     //): Promise<IShipmentPublic> {
@@ -25,8 +24,7 @@ export default class ShipmentService {
     try {
       const carrier = await CarrierService.getCarrierById(carrierId);
       const endpoints = carrier.endpoints;
-      const result: any = await performQueries(endpoints, shipmentId, token);
-
+      const result: any = await performQueries(endpoints, shipmentId);
       // endpoints.forEach((endpoint: any) => {
       //   const { response, ...rest } = endpoint;
       //   //console.log('Endpoint:', rest);
