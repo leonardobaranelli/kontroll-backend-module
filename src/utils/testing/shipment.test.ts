@@ -2,7 +2,7 @@ import testServer from './index';
 import router from '../../routes/shipment.routes';
 
 const housebillNumber = 'D470100';
-const carrier = 'dhl_global_forwarding' || 'dhl_express' || '';
+const carrier = 'dhl_global_forwarding';
 const updatedShipment = { name: 'Updated Shipment', status: 'In Transit' };
 
 jest.mock('../../controllers/shipment.controller', () => ({
@@ -15,6 +15,11 @@ jest.mock('../../controllers/shipment.controller', () => ({
     status: 200,
     message: 'Shipments retrieved successfully',
     data: ['shipment-carrier1', 'shipment-carrier2'],
+  })),
+  getByCarrierAndId: jest.fn().mockImplementation(() => ({
+    status: 200,
+    message: 'Shipments retrieved successfully',
+    data: ['shipment-carrier-and-id'],
   })),
   getShipment: jest.fn().mockImplementation(() => ({
     status: 200,
@@ -48,10 +53,8 @@ describe('[routes / shipments]', () => {
     );
     expect(response.status).toBe(200);
     expect(response.body.data).toEqual(expected);
-  }, 500000);
-});
+  });
 
-describe('[routes / shipments]', () => {
   it('Should return shipments with a certain carrier', async () => {
     const expected = ['shipment-carrier1', 'shipment-carrier2'];
     const response = await request.get(`/carrier/${carrier}`);
@@ -61,10 +64,8 @@ describe('[routes / shipments]', () => {
     );
     expect(response.status).toBe(200);
     expect(response.body.data).toEqual(expected);
-  }, 500000);
-});
+  });
 
-describe('[routes / shipments]', () => {
   it('Should return parsed shipment', async () => {
     const expected = ['shipment-carrier1', 'shipment-carrier2'];
     const response = await request.post(`/get-shipment`);
@@ -74,10 +75,8 @@ describe('[routes / shipments]', () => {
     );
     expect(response.status).toBe(200);
     expect(response.body.data).toEqual(expected);
-  }, 500000);
-});
+  });
 
-describe('[routes /shipments]', () => {
   it('Should update shipment by Housebill Number', async () => {
     const response = await request
       .put(`/number/${housebillNumber}`)
@@ -92,10 +91,8 @@ describe('[routes /shipments]', () => {
       number: housebillNumber,
       ...updatedShipment,
     });
-  }, 500000);
-});
+  });
 
-describe('[routes / shipments]', () => {
   it('Should delete all shipments', async () => {
     const response = await request.delete('/all');
 
@@ -104,10 +101,8 @@ describe('[routes / shipments]', () => {
       'message',
       'All shipments deleted successfully',
     );
-  }, 500000);
-});
+  });
 
-describe('[routes / shipments]', () => {
   it('Should delete shipment by ID', async () => {
     const response = await request.delete(`/number/${housebillNumber}`);
 
@@ -116,5 +111,5 @@ describe('[routes / shipments]', () => {
       'message',
       `Shipment ${housebillNumber} deleted successfully`,
     );
-  }, 500000);
+  });
 });

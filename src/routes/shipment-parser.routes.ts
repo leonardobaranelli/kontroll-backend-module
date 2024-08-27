@@ -32,3 +32,4 @@ router.post(
   ShipmentParserController.testMechanicalParser,
 );
 export default router;
+
