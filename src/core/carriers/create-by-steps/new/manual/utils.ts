@@ -91,23 +91,23 @@ export const searchInObject = (obj: any, shipmentId: string): boolean => {
 };
 
 // Function to traverse a nested JSON object searching for a specific value
-export const searchInObject2 = (
-  obj: Record<string, any>,
-  targetValue: string,
-): boolean => {
-  if (typeof obj !== 'object' || obj === null) return false;
+// export const searchInObject2 = (
+//   obj: Record<string, any>,
+//   targetValue: string,
+// ): boolean => {
+//   if (typeof obj !== 'object' || obj === null) return false;
 
-  for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      const value = obj[key];
+//   for (const key in obj) {
+//     if (Object.prototype.hasOwnProperty.call(obj, key)) {
+//       const value = obj[key];
 
-      if (typeof value === 'object' && value !== null) {
-        if (searchInObject2(value, targetValue)) return true;
-      } else if (value === targetValue) {
-        return true;
-      }
-    }
-  }
+//       if (typeof value === 'object' && value !== null) {
+//         if (searchInObject2(value, targetValue)) return true;
+//       } else if (value === targetValue) {
+//         return true;
+//       }
+//     }
+//   }
 
-  return false;
-};
+//   return false;
+// };

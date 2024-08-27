@@ -17,28 +17,20 @@ export default class ShipmentController {
   ): Promise<void> => {
     try {
       verifyEndpointRequest(req, res, async () => {
-        const {
-          userId,
-          carrierId,
-          _companyId,
-          token,
-          transportMode,
-          shipmentId,
-        } = req.body as {
-          userId: string;
-          carrierId: string;
-          token: string | null;
-          transportMode: string | null;
-          shipmentId: string;
-          _companyId: string;
-        };
+        const { userId, carrierId, _companyId, transportMode, shipmentId } =
+          req.body as {
+            userId: string;
+            carrierId: string;
+            transportMode: string | null;
+            shipmentId: string;
+            _companyId: string;
+          };
 
         //const shipment: IShipmentPublic = await ShipmentService.getShipment(
         // const shipment = await ShipmentService.getShipment(
         //   userId,
         //   carrierId,
         //   _companyId,
-        //   token,
         //   transportMode,
         //   shipmentId
         // );
@@ -46,7 +38,6 @@ export default class ShipmentController {
           userId,
           carrierId,
           _companyId,
-          token,
           transportMode,
           shipmentId,
         );

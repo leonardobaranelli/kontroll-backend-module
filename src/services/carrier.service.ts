@@ -138,7 +138,7 @@ export default class CarrierService {
 
       if (lastUserInput.shipmentId) {
         lastEndpoint.shipmentId = lastUserInput.shipmentId;
-        lastEndpoint.location =
+        lastEndpoint.shipmentLocation =
           lastUserInput.endpoints.find(
             (e: any) => e.value === lastUserInput.shipmentId,
           )?.key || 'unknown';
@@ -188,22 +188,33 @@ export default class CarrierService {
       await this.saveResponse(axiosResponse, sessionID);
 
       const success = axiosResponse && status >= 200 && status < 300;
-      const isAuthEndpoint = previousEndpoint
-        ? await this.isAuthEndpoint(state, currentEndpoint)
-        : false;
 
+      // Verify if the previous endpoint is an authentication endpoint
+      const isAuthResult = previousEndpoint
+        ? await this.isAuthEndpoint(state, currentEndpoint)
+        : { isAuthEndpoint: false };
+
+      const isAuthEndpoint = isAuthResult.isAuthEndpoint;
+      const inputAuthLocation = isAuthResult.inputAuthLocation;
+      const outputAuthLocation = isAuthResult.outputAuthLocation;
+      const authValue = isAuthResult.value;
+
+      // Verify if the current endpoint is a shipment endpoint
       const getShipmentResult = await this.isGetShipmentEndpoint(
         shipmentId,
         currentEndpoint,
       );
 
       const isGetShipmentEndpoint = getShipmentResult.isGetShipmentEndpoint;
-      if (getShipmentResult.location) {
-        currentEndpoint.location = getShipmentResult.location;
+      if (getShipmentResult.shipmentLocation) {
+        currentEndpoint.shipmentLocation = getShipmentResult.shipmentLocation;
       }
 
       if (previousEndpoint) {
         previousEndpoint.isAuthEndpoint = isAuthEndpoint;
+        previousEndpoint.outputAuthLocation = outputAuthLocation;
+        currentEndpoint.inputAuthLocation = inputAuthLocation;
+        currentEndpoint.authValue = authValue;
         currentEndpoint.isAuthEndpoint = false;
       } else {
         currentEndpoint.isAuthEndpoint = false;
@@ -260,11 +271,33 @@ export default class CarrierService {
   private static async isAuthEndpoint(
     state: any,
     lastEndpoint: any,
-  ): Promise<boolean> {
+  ): Promise<{
+    isAuthEndpoint: boolean;
+    inputAuthLocation?: string;
+    outputAuthLocation?: string;
+    value?: string;
+  }> {
     const previousEndpoint = this.getPreviousEndpoint(state);
-    return previousEndpoint
-      ? await isAuthEndpoint(previousEndpoint.response, lastEndpoint)
-      : false;
+
+    if (previousEndpoint) {
+      const result = await isAuthEndpoint(
+        previousEndpoint.response,
+        lastEndpoint,
+      );
+
+      if (result.found) {
+        return {
+          isAuthEndpoint: true,
+          inputAuthLocation: result.inputAuthLocation,
+          outputAuthLocation: result.outputAuthLocation,
+          value: result.value,
+        };
+      }
+    }
+
+    return {
+      isAuthEndpoint: false,
+    };
   }
 
   private static async isGetShipmentEndpoint(
@@ -272,7 +305,7 @@ export default class CarrierService {
     lastEndpoint: any,
   ): Promise<{
     isGetShipmentEndpoint: boolean;
-    location?: string;
+    shipmentLocation?: string;
     value?: string;
   }> {
     const result = await isGetShipmentEndpoint(shipmentId, lastEndpoint);
@@ -281,7 +314,7 @@ export default class CarrierService {
     if (result.found) {
       return {
         isGetShipmentEndpoint: true,
-        location: result.location,
+        shipmentLocation: result.shipmentLocation,
         value: result.value,
       };
     } else {
