@@ -99,32 +99,67 @@ async function handleShipmentEndpoint(
   authToken: string | null,
 ) {
   const { url, query: queryDetails, shipmentLocation } = endpoint;
-  console.log('Received SHIPMENT ID:', shipmentId); // Debug log
 
+  // Clone the query body if it exists
   let body = queryDetails.body
     ? JSON.parse(JSON.stringify(queryDetails.body))
     : {};
 
+  // Handle shipmentId in shipmentLocation
   if (shipmentLocation) {
-    const locationParts = shipmentLocation.split(/[\[\]]/).filter(Boolean);
-    let target = body;
+    const [locationType, propertyPath] = shipmentLocation
+      .split(/\[(.+)\]/)
+      .filter(Boolean);
+    let target;
 
-    console.log('Shipment Location Parts:', locationParts); // Debug log
-
-    for (let i = 0; i < locationParts.length - 1; i++) {
-      target = target[locationParts[i]];
-      console.log('Navigating to:', target); // Debug log
+    switch (locationType) {
+      case 'body':
+        if (propertyPath === 'value' && typeof body.value === 'string') {
+          // If the target is "value" in the body, parse the JSON
+          target = JSON.parse(body.value);
+        } else {
+          target = body;
+        }
+        break;
+      case 'header':
+        if (!queryDetails.header) queryDetails.header = [];
+        target = queryDetails.header;
+        break;
+      case 'params':
+        if (!queryDetails.params) queryDetails.params = {};
+        target = queryDetails.params;
+        break;
+      default:
+        console.warn(`Invalid shipmentLocation type: ${locationType}`);
+        target = null;
     }
 
-    const finalKey = locationParts[locationParts.length - 1];
-    if (target && target.hasOwnProperty(finalKey)) {
-      console.log(`Replacing ${finalKey} with ${shipmentId}`); // Debug log
-      target[finalKey] = shipmentId;
-    } else {
-      console.warn(`Could not find ${finalKey} in target`); // Warning log
+    if (target && propertyPath) {
+      const pathParts = propertyPath
+        .split('][')
+        .map((part: any) => part.replace(/['"]/g, ''));
+      let finalTarget = target;
+
+      for (let i = 0; i < pathParts.length - 1; i++) {
+        finalTarget = finalTarget[pathParts[i]];
+      }
+
+      const finalKey = pathParts[pathParts.length - 1];
+      if (finalTarget && finalTarget.hasOwnProperty(finalKey)) {
+        console.log(`Replacing ${finalKey} with ${shipmentId}`); // Debug log
+        finalTarget[finalKey] = shipmentId;
+
+        if (locationType === 'body' && propertyPath === 'value') {
+          // Repackage the modified object into `body.value` as JSON
+          body.value = JSON.stringify(target);
+        }
+      } else {
+        console.warn(`Could not find ${finalKey} in target`); // Warning log
+      }
     }
   }
 
+  // Process headers
   const replacements: { [key: string]: string } =
     queryDetails.header?.reduce((acc: Record<string, string>, header: any) => {
       if (header.key && header.value) {
@@ -135,6 +170,7 @@ async function handleShipmentEndpoint(
 
   const options = buildAxiosOptions(url, queryDetails, replacements, body);
 
+  // Handle authentication token
   if (authToken) {
     const authLocation = endpoint.inputAuthLocation;
     if (authLocation?.startsWith('params[') && authLocation.endsWith(']')) {
@@ -164,8 +200,6 @@ async function handleShipmentEndpoint(
 
   try {
     const response = await axios(options);
-    console.log('Final response:', response);
-    console.log('Final response.data:', response.data);
     return [response.data, response.status];
   } catch (error: any) {
     return error.response
@@ -178,14 +212,14 @@ async function handleShipmentEndpoint(
 async function handleAuthEndpoint(endpoint: any) {
   const { url, query: queryDetails, outputAuthLocation } = endpoint;
 
-  if (queryDetails.auth.type && queryDetails.auth.type === 'basic') {
+  if (queryDetails.auth.type === 'basic') {
     const basicAuth = Buffer.from(queryDetails.auth.value).toString('base64');
     queryDetails.header = queryDetails.header || [];
     queryDetails.header.push({
       key: 'Authorization',
       value: `Basic ${basicAuth}`,
     });
-  } else if (queryDetails.auth.type && queryDetails.auth.type === 'bearer') {
+  } else if (queryDetails.auth.type === 'bearer') {
     queryDetails.header = queryDetails.header || [];
     queryDetails.header.push({
       key: 'Authorization',
@@ -198,9 +232,7 @@ async function handleAuthEndpoint(endpoint: any) {
   console.log('Sending auth request with options:', options); // Debug log
   try {
     const response = await axios(options);
-    //console.log('response data: ' + response.data.response.access_token);
-    console.log('response data: ' + JSON.stringify(response.data));
-    //console.log('Auth endpoint response status:', response.status); // Debug log
+    console.log('Response data:', JSON.stringify(response.data)); // Debug log
 
     const authToken = outputAuthLocation
       .split(/[\[\]\.]+/) // Split on [ ] or .
@@ -208,8 +240,6 @@ async function handleAuthEndpoint(endpoint: any) {
       .reduce((acc: any, part: string) => {
         return acc ? acc[part] : null;
       }, response.data);
-
-    console.log('Retrieved token for next request:'.bgMagenta, authToken); // Debug log
 
     return [authToken, response.data, response.status];
   } catch (error: any) {
@@ -273,5 +303,5 @@ export default async function executeEndpoints(
     }
   }
 
-  return responses;
+  return responses[responses.length - 1];
 }
