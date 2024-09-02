@@ -1,7 +1,8 @@
-// Function to replace placeholders in a template string
+import { AxiosRequestConfig } from 'axios';
+
 export const replacePlaceholders = (
-  template: any,
-  replacements: { [key: string]: string },
+  template: string | number,
+  replacements: Record<string, string>,
 ): string => {
   const templateString =
     typeof template === 'string' ? template : String(template);
@@ -11,18 +12,16 @@ export const replacePlaceholders = (
   );
 };
 
-// Function to build the final URL with replacements
 export const buildFinalUrl = (
   url: string,
-  replacements: { [key: string]: string },
+  replacements: Record<string, string>,
 ): string => {
   return replacePlaceholders(url, replacements);
 };
 
-// Function to build query parameters with replacements
 export const buildParams = (
-  params: Record<string, string> | undefined,
-  replacements: { [key: string]: string },
+  params: Record<string, any>,
+  replacements: Record<string, string>,
 ): Record<string, string> => {
   const result: Record<string, string> = {};
   if (params) {
@@ -33,10 +32,9 @@ export const buildParams = (
   return result;
 };
 
-// Function to build headers with replacements
 export const buildHeaders = (
-  headers: Record<string, string> | undefined,
-  replacements: { [key: string]: string },
+  headers: Record<string, any>,
+  replacements: Record<string, string>,
 ): Record<string, string> => {
   const result: Record<string, string> = {};
   if (headers) {
@@ -47,35 +45,24 @@ export const buildHeaders = (
   return result;
 };
 
-// Function to build the request body with replacements
 export const buildBody = (
   body: any,
-  replacements: { [key: string]: string },
-  format: 'json' | 'xml',
+  replacements: Record<string, string>,
+  format: string,
 ): any => {
   if (format === 'json') {
     if (typeof body === 'string') {
       return replacePlaceholders(body, replacements);
     } else if (typeof body === 'object') {
-      // If body is an object, convert to JSON, replace placeholders, and parse back to object
       const jsonString = JSON.stringify(body);
       return JSON.parse(replacePlaceholders(jsonString, replacements));
     }
   } else if (format === 'xml') {
-    // Assume body is a string containing XML
     return replacePlaceholders(body, replacements);
   }
   return body;
 };
 
-// Function to parse XML response to JSON
-export const parseXmlToJson = async (xml: string): Promise<any> => {
-  const xml2js = require('xml2js');
-  const parser = new xml2js.Parser({ explicitArray: false, mergeAttrs: true });
-  return parser.parseStringPromise(xml);
-};
-
-// Function to traverse a nested JSON object searching for shipmentId
 export const searchInObject = (obj: any, shipmentId: string): boolean => {
   if (typeof obj !== 'object' || obj === null) return false;
   for (const key in obj) {
@@ -90,24 +77,87 @@ export const searchInObject = (obj: any, shipmentId: string): boolean => {
   return false;
 };
 
-// Function to traverse a nested JSON object searching for a specific value
-// export const searchInObject2 = (
-//   obj: Record<string, any>,
-//   targetValue: string,
-// ): boolean => {
-//   if (typeof obj !== 'object' || obj === null) return false;
+function processParams(
+  params: any[],
+  key: string,
+  value: string,
+): Record<string, string> {
+  const result: Record<string, string> = {};
+  params.forEach((param) => {
+    if (param.key) {
+      result[param.key] = param.value || '';
+    }
+  });
+  if (key) {
+    result[key] = value;
+  }
+  return result;
+}
 
-//   for (const key in obj) {
-//     if (Object.prototype.hasOwnProperty.call(obj, key)) {
-//       const value = obj[key];
+function buildRequestData(
+  language: string,
+  bodyValue: string,
+  replacements: Record<string, string>,
+): any {
+  let data;
+  if (language === 'json') {
+    try {
+      data = JSON.parse(bodyValue);
+    } catch {
+      throw new Error('Invalid JSON format in the body');
+    }
+  } else if (language === 'xml') {
+    data = buildBody(bodyValue, replacements, 'xml');
+  } else if (language === 'form') {
+    data = new URLSearchParams(bodyValue).toString();
+  } else {
+    throw new Error('Unsupported body language');
+  }
+  return data;
+}
 
-//       if (typeof value === 'object' && value !== null) {
-//         if (searchInObject2(value, targetValue)) return true;
-//       } else if (value === targetValue) {
-//         return true;
-//       }
-//     }
-//   }
+export function buildAxiosOptions(
+  url: string,
+  queryDetails: any,
+  headers: Record<string, string>,
+  body: any,
+): AxiosRequestConfig {
+  const finalUrl = buildFinalUrl(url, headers);
+  const options: AxiosRequestConfig = {
+    method: queryDetails.method,
+    url: finalUrl,
+    headers: {
+      ...buildHeaders(
+        queryDetails.header?.reduce(
+          (acc: Record<string, string>, header: any) => {
+            if (header.key && header.value) {
+              acc[header.key] = header.value;
+            }
+            return acc;
+          },
+          {},
+        ),
+        headers,
+      ),
+    },
+    params: queryDetails.params
+      ? processParams(queryDetails.params, '', '')
+      : {},
+  };
 
-//   return false;
-// };
+  if (body?.value) {
+    options.data = buildRequestData(body.language, body.value, headers);
+    if (body.language === 'xml' || body.language === 'form') {
+      if (options.headers)
+        options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    }
+  }
+
+  return options;
+}
+
+export const parseXmlToJson = async (xml: string): Promise<any> => {
+  const xml2js = require('xml2js');
+  const parser = new xml2js.Parser({ explicitArray: false, mergeAttrs: true });
+  return parser.parseStringPromise(xml);
+};

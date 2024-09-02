@@ -9,7 +9,7 @@ import {
 import { getShipmentsCollection } from '../config/database/firestore/firestore.config';
 import CarrierService from './carrier.service';
 import performQueries from '../core/carriers/perform-queries';
-import ShipmentParserService from './shipment-parser.service';
+//import ShipmentParserService from './shipment-parser.service';
 
 export default class ShipmentService {
   //*#############################################*\\
@@ -26,21 +26,22 @@ export default class ShipmentService {
       const carrier = await CarrierService.getCarrierById(carrierId);
       const endpoints = carrier.endpoints;
       const result: any = await performQueries(endpoints, shipmentId);
-      const unparsedShipment = result;
+      // const unparsedShipment = result;
 
-      const result1 = await ShipmentParserService.parseShipmentEntry(
-        carrier.name,
-        unparsedShipment,
-      );
-      const result2 = await ShipmentParserService.saveParsedShipment(
-        carrier.name,
-        shipmentId,
-      );
+      // const result1 = await ShipmentParserService.parseShipmentEntry(
+      //   carrier.name,
+      //   unparsedShipment,
+      // );
+      // const result2 = await ShipmentParserService.saveParsedShipment(
+      //   carrier.name,
+      //   shipmentId,
+      // );
 
-      console.log('result1 ' + result1);
-      console.log('result2 ' + result2);
+      // console.log('result1 ' + result1);
+      // console.log('result2 ' + result2);
 
-      return result2;
+      // return result2;
+      return result;
     } catch (error) {
       throw error;
     }
